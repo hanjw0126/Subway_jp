@@ -1,0 +1,9 @@
+# local.properties 로 복사해서 사용하세요 (git에 커밋되지 않습니다)
+sdk.dir=/path/to/Android/sdk
+# ODPT 개발자 토큰 (비워 두면 데모 시간표 모드, 앱 설정 화면에서도 입력 가능)
+odpt.consumerKey=
+# 릴리즈 서명 (선택)
+release.storeFile=
+release.storePassword=
+release.keyAlias=
+release.keyPassword=

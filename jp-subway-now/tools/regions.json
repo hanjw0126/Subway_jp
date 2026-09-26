@@ -1,0 +1,30 @@
+[
+  {
+    "id": "tokyo",
+    "name": {
+      "ko": "도쿄",
+      "ja": "東京",
+      "en": "Tokyo"
+    },
+    "realtime": true,
+    "operators": [
+      "odpt.Operator:TokyoMetro"
+    ],
+    "seed": "tokyo.json",
+    "note": "도쿄메트로 긴자·마루노우치·한조몬선 (샘플 3개 노선)"
+  },
+  {
+    "id": "osaka",
+    "name": {
+      "ko": "오사카",
+      "ja": "大阪",
+      "en": "Osaka"
+    },
+    "realtime": false,
+    "operators": [
+      "odpt.Operator:OsakaMetro"
+    ],
+    "seed": "osaka.json",
+    "note": "미도스지·주오선 · 실시간 미제공 → 데모 시간표"
+  }
+]

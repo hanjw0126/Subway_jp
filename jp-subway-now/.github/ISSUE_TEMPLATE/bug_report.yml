@@ -1,0 +1,28 @@
+name: 버그 제보
+description: 앱이 잘못 동작하는 경우
+labels: [ bug ]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 무슨 일이 있었나요?
+      placeholder: "긴자선 시부야역에서 도착 시간이 10분 이상 틀려요"
+    validations:
+      required: true
+  - type: input
+    id: station
+    attributes:
+      label: 지역 / 노선 / 역
+  - type: input
+    id: when
+    attributes:
+      label: 발생 시각 (JST)
+  - type: dropdown
+    id: mode
+    attributes:
+      label: 데이터 모드
+      options: [ "실시간(토큰 사용)", "데모 시간표", "모름" ]
+  - type: input
+    id: version
+    attributes:
+      label: 앱 버전 / 안드로이드 버전

@@ -1,0 +1,14 @@
+name: 기능 제안
+description: 새 기능이나 개선 아이디어
+labels: [ enhancement ]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: 제안 내용
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 왜 필요한가요?

@@ -1,0 +1,1036 @@
+{
+ "schemaVersion": 1,
+ "regionId": "tokyo",
+ "source": "seed",
+ "lines": [
+  {
+   "id": "odpt.Railway:TokyoMetro.Ginza",
+   "operator": "odpt.Operator:TokyoMetro",
+   "code": "G",
+   "name": {
+    "ja": "銀座線",
+    "ko": "긴자선",
+    "en": "Ginza Line",
+    "kana": ""
+   },
+   "color": "#FF9500",
+   "stations": [
+    "odpt.Station:TokyoMetro.Ginza.Shibuya",
+    "odpt.Station:TokyoMetro.Ginza.OmoteSando",
+    "odpt.Station:TokyoMetro.Ginza.Gaiemmae",
+    "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
+    "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+    "odpt.Station:TokyoMetro.Ginza.TameikeSanno",
+    "odpt.Station:TokyoMetro.Ginza.Toranomon",
+    "odpt.Station:TokyoMetro.Ginza.Shimbashi",
+    "odpt.Station:TokyoMetro.Ginza.Ginza",
+    "odpt.Station:TokyoMetro.Ginza.Kyobashi",
+    "odpt.Station:TokyoMetro.Ginza.Nihombashi",
+    "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
+    "odpt.Station:TokyoMetro.Ginza.Kanda",
+    "odpt.Station:TokyoMetro.Ginza.Suehirocho",
+    "odpt.Station:TokyoMetro.Ginza.UenoHirokoji",
+    "odpt.Station:TokyoMetro.Ginza.Ueno",
+    "odpt.Station:TokyoMetro.Ginza.Inaricho",
+    "odpt.Station:TokyoMetro.Ginza.Tawaramachi",
+    "odpt.Station:TokyoMetro.Ginza.Asakusa"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:TokyoMetro.Asakusa",
+     "name": {
+      "ja": "浅草方面",
+      "ko": "아사쿠사 방면",
+      "en": "for Asakusa",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:TokyoMetro.Shibuya",
+     "name": {
+      "ja": "渋谷方面",
+      "ko": "시부야 방면",
+      "en": "for Shibuya",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  },
+  {
+   "id": "odpt.Railway:TokyoMetro.Marunouchi",
+   "operator": "odpt.Operator:TokyoMetro",
+   "code": "M",
+   "name": {
+    "ja": "丸ノ内線",
+    "ko": "마루노우치선",
+    "en": "Marunouchi Line",
+    "kana": ""
+   },
+   "color": "#F62E36",
+   "stations": [
+    "odpt.Station:TokyoMetro.Marunouchi.Ogikubo",
+    "odpt.Station:TokyoMetro.Marunouchi.MinamiAsagaya",
+    "odpt.Station:TokyoMetro.Marunouchi.ShinKoenji",
+    "odpt.Station:TokyoMetro.Marunouchi.HigashiKoenji",
+    "odpt.Station:TokyoMetro.Marunouchi.ShinNakano",
+    "odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue",
+    "odpt.Station:TokyoMetro.Marunouchi.NishiShinjuku",
+    "odpt.Station:TokyoMetro.Marunouchi.Shinjuku",
+    "odpt.Station:TokyoMetro.Marunouchi.ShinjukuSanchome",
+    "odpt.Station:TokyoMetro.Marunouchi.ShinjukuGyoemmae",
+    "odpt.Station:TokyoMetro.Marunouchi.YotsuyaSanchome",
+    "odpt.Station:TokyoMetro.Marunouchi.Yotsuya",
+    "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke",
+    "odpt.Station:TokyoMetro.Marunouchi.KokkaiGijidomae",
+    "odpt.Station:TokyoMetro.Marunouchi.Kasumigaseki",
+    "odpt.Station:TokyoMetro.Marunouchi.Ginza",
+    "odpt.Station:TokyoMetro.Marunouchi.Tokyo",
+    "odpt.Station:TokyoMetro.Marunouchi.Otemachi",
+    "odpt.Station:TokyoMetro.Marunouchi.Awajicho",
+    "odpt.Station:TokyoMetro.Marunouchi.Ochanomizu",
+    "odpt.Station:TokyoMetro.Marunouchi.HongoSanchome",
+    "odpt.Station:TokyoMetro.Marunouchi.Korakuen",
+    "odpt.Station:TokyoMetro.Marunouchi.Myogadani",
+    "odpt.Station:TokyoMetro.Marunouchi.ShinOtsuka",
+    "odpt.Station:TokyoMetro.Marunouchi.Ikebukuro"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:TokyoMetro.Ikebukuro",
+     "name": {
+      "ja": "池袋方面",
+      "ko": "이케부쿠로 방면",
+      "en": "for Ikebukuro",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:TokyoMetro.Ogikubo",
+     "name": {
+      "ja": "荻窪方面",
+      "ko": "오기쿠보 방면",
+      "en": "for Ogikubo",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  },
+  {
+   "id": "odpt.Railway:TokyoMetro.Hanzomon",
+   "operator": "odpt.Operator:TokyoMetro",
+   "code": "Z",
+   "name": {
+    "ja": "半蔵門線",
+    "ko": "한조몬선",
+    "en": "Hanzomon Line",
+    "kana": ""
+   },
+   "color": "#8F76D6",
+   "stations": [
+    "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+    "odpt.Station:TokyoMetro.Hanzomon.OmoteSando",
+    "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome",
+    "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
+    "odpt.Station:TokyoMetro.Hanzomon.Hanzomon",
+    "odpt.Station:TokyoMetro.Hanzomon.Kudanshita",
+    "odpt.Station:TokyoMetro.Hanzomon.Jimbocho",
+    "odpt.Station:TokyoMetro.Hanzomon.Otemachi",
+    "odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae",
+    "odpt.Station:TokyoMetro.Hanzomon.Suitengumae",
+    "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa",
+    "odpt.Station:TokyoMetro.Hanzomon.Sumiyoshi",
+    "odpt.Station:TokyoMetro.Hanzomon.Kinshicho",
+    "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:TokyoMetro.Oshiage",
+     "name": {
+      "ja": "押上方面",
+      "ko": "오시아게 방면",
+      "en": "for Oshiage",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:TokyoMetro.Shibuya",
+     "name": {
+      "ja": "渋谷方面",
+      "ko": "시부야 방면",
+      "en": "for Shibuya",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  }
+ ],
+ "stations": [
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Shibuya",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G01",
+   "name": {
+    "ja": "渋谷",
+    "ko": "시부야",
+    "en": "Shibuya",
+    "kana": "しぶや"
+   },
+   "lat": 35.659,
+   "lon": 139.7016,
+   "group": "g.Shibuya"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.OmoteSando",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G02",
+   "name": {
+    "ja": "表参道",
+    "ko": "오모테산도",
+    "en": "OmoteSando",
+    "kana": "おもてさんどう"
+   },
+   "lat": 35.6652,
+   "lon": 139.7123,
+   "group": "g.OmoteSando"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Gaiemmae",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G03",
+   "name": {
+    "ja": "外苑前",
+    "ko": "가이엔마에",
+    "en": "Gaiemmae",
+    "kana": "がいえんまえ"
+   },
+   "lat": 35.6705,
+   "lon": 139.7177,
+   "group": "g.Gaiemmae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G04",
+   "name": {
+    "ja": "青山一丁目",
+    "ko": "아오야마잇초메",
+    "en": "AoyamaItchome",
+    "kana": "あおやまいっちょうめ"
+   },
+   "lat": 35.6727,
+   "lon": 139.724,
+   "group": "g.AoyamaItchome"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G05",
+   "name": {
+    "ja": "赤坂見附",
+    "ko": "아카사카미쓰케",
+    "en": "AkasakaMitsuke",
+    "kana": "あかさかみつけ"
+   },
+   "lat": 35.677,
+   "lon": 139.7371,
+   "group": "g.AkasakaMitsuke"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.TameikeSanno",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G06",
+   "name": {
+    "ja": "溜池山王",
+    "ko": "다메이케산노",
+    "en": "TameikeSanno",
+    "kana": "ためいけさんのう"
+   },
+   "lat": 35.6736,
+   "lon": 139.7414,
+   "group": "g.TameikeSanno"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Toranomon",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G07",
+   "name": {
+    "ja": "虎ノ門",
+    "ko": "도라노몬",
+    "en": "Toranomon",
+    "kana": "とらのもん"
+   },
+   "lat": 35.6703,
+   "lon": 139.7497,
+   "group": "g.Toranomon"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Shimbashi",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G08",
+   "name": {
+    "ja": "新橋",
+    "ko": "신바시",
+    "en": "Shimbashi",
+    "kana": "しんばし"
+   },
+   "lat": 35.6667,
+   "lon": 139.7584,
+   "group": "g.Shimbashi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Ginza",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G09",
+   "name": {
+    "ja": "銀座",
+    "ko": "긴자",
+    "en": "Ginza",
+    "kana": "ぎんざ"
+   },
+   "lat": 35.6717,
+   "lon": 139.765,
+   "group": "g.Ginza"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Kyobashi",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G10",
+   "name": {
+    "ja": "京橋",
+    "ko": "교바시",
+    "en": "Kyobashi",
+    "kana": "きょうばし"
+   },
+   "lat": 35.6767,
+   "lon": 139.7703,
+   "group": "g.Kyobashi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Nihombashi",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G11",
+   "name": {
+    "ja": "日本橋",
+    "ko": "니혼바시",
+    "en": "Nihombashi",
+    "kana": "にほんばし"
+   },
+   "lat": 35.682,
+   "lon": 139.7738,
+   "group": "g.Nihombashi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G12",
+   "name": {
+    "ja": "三越前",
+    "ko": "미쓰코시마에",
+    "en": "Mitsukoshimae",
+    "kana": "みつこしまえ"
+   },
+   "lat": 35.6856,
+   "lon": 139.773,
+   "group": "g.Mitsukoshimae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Kanda",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G13",
+   "name": {
+    "ja": "神田",
+    "ko": "간다",
+    "en": "Kanda",
+    "kana": "かんだ"
+   },
+   "lat": 35.6917,
+   "lon": 139.7709,
+   "group": "g.Kanda"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Suehirocho",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G14",
+   "name": {
+    "ja": "末広町",
+    "ko": "스에히로초",
+    "en": "Suehirocho",
+    "kana": "すえひろちょう"
+   },
+   "lat": 35.7027,
+   "lon": 139.7717,
+   "group": "g.Suehirocho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.UenoHirokoji",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G15",
+   "name": {
+    "ja": "上野広小路",
+    "ko": "우에노히로코지",
+    "en": "UenoHirokoji",
+    "kana": "うえのひろこうじ"
+   },
+   "lat": 35.7076,
+   "lon": 139.7727,
+   "group": "g.UenoHirokoji"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Ueno",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G16",
+   "name": {
+    "ja": "上野",
+    "ko": "우에노",
+    "en": "Ueno",
+    "kana": "うえの"
+   },
+   "lat": 35.7115,
+   "lon": 139.7766,
+   "group": "g.Ueno"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Inaricho",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G17",
+   "name": {
+    "ja": "稲荷町",
+    "ko": "이나리초",
+    "en": "Inaricho",
+    "kana": "いなりちょう"
+   },
+   "lat": 35.7113,
+   "lon": 139.7825,
+   "group": "g.Inaricho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Tawaramachi",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G18",
+   "name": {
+    "ja": "田原町",
+    "ko": "다와라마치",
+    "en": "Tawaramachi",
+    "kana": "たわらまち"
+   },
+   "lat": 35.7098,
+   "lon": 139.7908,
+   "group": "g.Tawaramachi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Ginza.Asakusa",
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "code": "G19",
+   "name": {
+    "ja": "浅草",
+    "ko": "아사쿠사",
+    "en": "Asakusa",
+    "kana": "あさくさ"
+   },
+   "lat": 35.711,
+   "lon": 139.7975,
+   "group": "g.Asakusa"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Ogikubo",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M01",
+   "name": {
+    "ja": "荻窪",
+    "ko": "오기쿠보",
+    "en": "Ogikubo",
+    "kana": "おぎくぼ"
+   },
+   "lat": 35.7045,
+   "lon": 139.62,
+   "group": "g.Ogikubo"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.MinamiAsagaya",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M02",
+   "name": {
+    "ja": "南阿佐ケ谷",
+    "ko": "미나미아사가야",
+    "en": "MinamiAsagaya",
+    "kana": "みなみあさがや"
+   },
+   "lat": 35.6995,
+   "lon": 139.6358,
+   "group": "g.MinamiAsagaya"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.ShinKoenji",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M03",
+   "name": {
+    "ja": "新高円寺",
+    "ko": "신코엔지",
+    "en": "ShinKoenji",
+    "kana": "しんこうえんじ"
+   },
+   "lat": 35.6979,
+   "lon": 139.6481,
+   "group": "g.ShinKoenji"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.HigashiKoenji",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M04",
+   "name": {
+    "ja": "東高円寺",
+    "ko": "히가시코엔지",
+    "en": "HigashiKoenji",
+    "kana": "ひがしこうえんじ"
+   },
+   "lat": 35.6978,
+   "lon": 139.6577,
+   "group": "g.HigashiKoenji"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.ShinNakano",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M05",
+   "name": {
+    "ja": "新中野",
+    "ko": "신나카노",
+    "en": "ShinNakano",
+    "kana": "しんなかの"
+   },
+   "lat": 35.6975,
+   "lon": 139.6694,
+   "group": "g.ShinNakano"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M06",
+   "name": {
+    "ja": "中野坂上",
+    "ko": "나카노사카우에",
+    "en": "NakanoSakaue",
+    "kana": "なかのさかうえ"
+   },
+   "lat": 35.6972,
+   "lon": 139.6826,
+   "group": "g.NakanoSakaue"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.NishiShinjuku",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M07",
+   "name": {
+    "ja": "西新宿",
+    "ko": "니시신주쿠",
+    "en": "NishiShinjuku",
+    "kana": "にししんじゅく"
+   },
+   "lat": 35.6943,
+   "lon": 139.6926,
+   "group": "g.NishiShinjuku"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Shinjuku",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M08",
+   "name": {
+    "ja": "新宿",
+    "ko": "신주쿠",
+    "en": "Shinjuku",
+    "kana": "しんじゅく"
+   },
+   "lat": 35.6921,
+   "lon": 139.7003,
+   "group": "g.Shinjuku"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.ShinjukuSanchome",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M09",
+   "name": {
+    "ja": "新宿三丁目",
+    "ko": "신주쿠산초메",
+    "en": "ShinjukuSanchome",
+    "kana": "しんじゅくさんちょうめ"
+   },
+   "lat": 35.6909,
+   "lon": 139.705,
+   "group": "g.ShinjukuSanchome"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.ShinjukuGyoemmae",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M10",
+   "name": {
+    "ja": "新宿御苑前",
+    "ko": "신주쿠교엔마에",
+    "en": "ShinjukuGyoemmae",
+    "kana": "しんじゅくぎょえんまえ"
+   },
+   "lat": 35.6882,
+   "lon": 139.7106,
+   "group": "g.ShinjukuGyoemmae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.YotsuyaSanchome",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M11",
+   "name": {
+    "ja": "四谷三丁目",
+    "ko": "요쓰야산초메",
+    "en": "YotsuyaSanchome",
+    "kana": "よつやさんちょうめ"
+   },
+   "lat": 35.6878,
+   "lon": 139.72,
+   "group": "g.YotsuyaSanchome"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Yotsuya",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M12",
+   "name": {
+    "ja": "四ツ谷",
+    "ko": "요쓰야",
+    "en": "Yotsuya",
+    "kana": "よつや"
+   },
+   "lat": 35.6846,
+   "lon": 139.7302,
+   "group": "g.Yotsuya"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M13",
+   "name": {
+    "ja": "赤坂見附",
+    "ko": "아카사카미쓰케",
+    "en": "AkasakaMitsuke",
+    "kana": "あかさかみつけ"
+   },
+   "lat": 35.677,
+   "lon": 139.7371,
+   "group": "g.AkasakaMitsuke"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.KokkaiGijidomae",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M14",
+   "name": {
+    "ja": "国会議事堂前",
+    "ko": "곳카이기지도마에",
+    "en": "KokkaiGijidomae",
+    "kana": "こっかいぎじどうまえ"
+   },
+   "lat": 35.6743,
+   "lon": 139.7453,
+   "group": "g.KokkaiGijidomae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Kasumigaseki",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M15",
+   "name": {
+    "ja": "霞ケ関",
+    "ko": "가스미가세키",
+    "en": "Kasumigaseki",
+    "kana": "かすみがせき"
+   },
+   "lat": 35.6737,
+   "lon": 139.7508,
+   "group": "g.Kasumigaseki"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Ginza",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M16",
+   "name": {
+    "ja": "銀座",
+    "ko": "긴자",
+    "en": "Ginza",
+    "kana": "ぎんざ"
+   },
+   "lat": 35.672,
+   "lon": 139.7637,
+   "group": "g.Ginza"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Tokyo",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M17",
+   "name": {
+    "ja": "東京",
+    "ko": "도쿄",
+    "en": "Tokyo",
+    "kana": "とうきょう"
+   },
+   "lat": 35.6812,
+   "lon": 139.766,
+   "group": "g.Tokyo"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Otemachi",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M18",
+   "name": {
+    "ja": "大手町",
+    "ko": "오테마치",
+    "en": "Otemachi",
+    "kana": "おおてまち"
+   },
+   "lat": 35.6863,
+   "lon": 139.7646,
+   "group": "g.Otemachi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Awajicho",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M19",
+   "name": {
+    "ja": "淡路町",
+    "ko": "아와지초",
+    "en": "Awajicho",
+    "kana": "あわじちょう"
+   },
+   "lat": 35.6953,
+   "lon": 139.7678,
+   "group": "g.Awajicho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Ochanomizu",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M20",
+   "name": {
+    "ja": "御茶ノ水",
+    "ko": "오차노미즈",
+    "en": "Ochanomizu",
+    "kana": "おちゃのみず"
+   },
+   "lat": 35.7005,
+   "lon": 139.7644,
+   "group": "g.Ochanomizu"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.HongoSanchome",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M21",
+   "name": {
+    "ja": "本郷三丁目",
+    "ko": "혼고산초메",
+    "en": "HongoSanchome",
+    "kana": "ほんごうさんちょうめ"
+   },
+   "lat": 35.7068,
+   "lon": 139.7603,
+   "group": "g.HongoSanchome"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Korakuen",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M22",
+   "name": {
+    "ja": "後楽園",
+    "ko": "고라쿠엔",
+    "en": "Korakuen",
+    "kana": "こうらくえん"
+   },
+   "lat": 35.7078,
+   "lon": 139.7517,
+   "group": "g.Korakuen"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Myogadani",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M23",
+   "name": {
+    "ja": "茗荷谷",
+    "ko": "묘가다니",
+    "en": "Myogadani",
+    "kana": "みょうがだに"
+   },
+   "lat": 35.7168,
+   "lon": 139.7372,
+   "group": "g.Myogadani"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.ShinOtsuka",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M24",
+   "name": {
+    "ja": "新大塚",
+    "ko": "신오쓰카",
+    "en": "ShinOtsuka",
+    "kana": "しんおおつか"
+   },
+   "lat": 35.7251,
+   "lon": 139.73,
+   "group": "g.ShinOtsuka"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Marunouchi.Ikebukuro",
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "code": "M25",
+   "name": {
+    "ja": "池袋",
+    "ko": "이케부쿠로",
+    "en": "Ikebukuro",
+    "kana": "いけぶくろ"
+   },
+   "lat": 35.7295,
+   "lon": 139.7109,
+   "group": "g.Ikebukuro"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z01",
+   "name": {
+    "ja": "渋谷",
+    "ko": "시부야",
+    "en": "Shibuya",
+    "kana": "しぶや"
+   },
+   "lat": 35.6588,
+   "lon": 139.702,
+   "group": "g.Shibuya"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.OmoteSando",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z02",
+   "name": {
+    "ja": "表参道",
+    "ko": "오모테산도",
+    "en": "OmoteSando",
+    "kana": "おもてさんどう"
+   },
+   "lat": 35.6652,
+   "lon": 139.7123,
+   "group": "g.OmoteSando"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z03",
+   "name": {
+    "ja": "青山一丁目",
+    "ko": "아오야마잇초메",
+    "en": "AoyamaItchome",
+    "kana": "あおやまいっちょうめ"
+   },
+   "lat": 35.6727,
+   "lon": 139.724,
+   "group": "g.AoyamaItchome"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z04",
+   "name": {
+    "ja": "永田町",
+    "ko": "나가타초",
+    "en": "Nagatacho",
+    "kana": "ながたちょう"
+   },
+   "lat": 35.6786,
+   "lon": 139.7404,
+   "group": "g.Nagatacho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Hanzomon",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z05",
+   "name": {
+    "ja": "半蔵門",
+    "ko": "한조몬",
+    "en": "Hanzomon",
+    "kana": "はんぞうもん"
+   },
+   "lat": 35.6856,
+   "lon": 139.7414,
+   "group": "g.Hanzomon"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Kudanshita",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z06",
+   "name": {
+    "ja": "九段下",
+    "ko": "구단시타",
+    "en": "Kudanshita",
+    "kana": "くだんした"
+   },
+   "lat": 35.6955,
+   "lon": 139.7516,
+   "group": "g.Kudanshita"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Jimbocho",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z07",
+   "name": {
+    "ja": "神保町",
+    "ko": "진보초",
+    "en": "Jimbocho",
+    "kana": "じんぼうちょう"
+   },
+   "lat": 35.6959,
+   "lon": 139.7577,
+   "group": "g.Jimbocho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Otemachi",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z08",
+   "name": {
+    "ja": "大手町",
+    "ko": "오테마치",
+    "en": "Otemachi",
+    "kana": "おおてまち"
+   },
+   "lat": 35.686,
+   "lon": 139.766,
+   "group": "g.Otemachi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z09",
+   "name": {
+    "ja": "三越前",
+    "ko": "미쓰코시마에",
+    "en": "Mitsukoshimae",
+    "kana": "みつこしまえ"
+   },
+   "lat": 35.6848,
+   "lon": 139.7735,
+   "group": "g.Mitsukoshimae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Suitengumae",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z10",
+   "name": {
+    "ja": "水天宮前",
+    "ko": "스이텐구마에",
+    "en": "Suitengumae",
+    "kana": "すいてんぐうまえ"
+   },
+   "lat": 35.6828,
+   "lon": 139.7856,
+   "group": "g.Suitengumae"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z11",
+   "name": {
+    "ja": "清澄白河",
+    "ko": "기요스미시라카와",
+    "en": "KiyosumiShirakawa",
+    "kana": "きよすみしらかわ"
+   },
+   "lat": 35.6822,
+   "lon": 139.7985,
+   "group": "g.KiyosumiShirakawa"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Sumiyoshi",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z12",
+   "name": {
+    "ja": "住吉",
+    "ko": "스미요시",
+    "en": "Sumiyoshi",
+    "kana": "すみよし"
+   },
+   "lat": 35.6893,
+   "lon": 139.8155,
+   "group": "g.Sumiyoshi"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Kinshicho",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z13",
+   "name": {
+    "ja": "錦糸町",
+    "ko": "긴시초",
+    "en": "Kinshicho",
+    "kana": "きんしちょう"
+   },
+   "lat": 35.6965,
+   "lon": 139.815,
+   "group": "g.Kinshicho"
+  },
+  {
+   "id": "odpt.Station:TokyoMetro.Hanzomon.Oshiage",
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "code": "Z14",
+   "name": {
+    "ja": "押上",
+    "ko": "오시아게",
+    "en": "Oshiage",
+    "kana": "おしあげ"
+   },
+   "lat": 35.7104,
+   "lon": 139.8134,
+   "group": "g.Oshiage"
+  }
+ ],
+ "transfers": [
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+   "to": "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.Ginza",
+   "to": "odpt.Station:TokyoMetro.Marunouchi.Ginza",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.OmoteSando",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.OmoteSando",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Marunouchi.Otemachi",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.Otemachi",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.Shibuya",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.Shibuya",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.TameikeSanno",
+   "to": "odpt.Station:TokyoMetro.Marunouchi.KokkaiGijidomae",
+   "walkSec": 240
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
+   "walkSec": 300
+  },
+  {
+   "from": "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke",
+   "to": "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
+   "walkSec": 300
+  }
+ ]
+}

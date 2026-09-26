@@ -1,0 +1,881 @@
+{
+ "schemaVersion": 1,
+ "regionId": "osaka",
+ "unit": 60.0,
+ "width": 930.0,
+ "height": 1260.0,
+ "nodes": [
+  {
+   "group": "g.Abiko",
+   "x": 480.0,
+   "y": 930.0,
+   "labelKo": "아비코",
+   "labelJa": "あびこ",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Abiko"
+   ]
+  },
+  {
+   "group": "g.Asashiobashi",
+   "x": 180.0,
+   "y": 600.0,
+   "labelKo": "아사시오바시",
+   "labelJa": "朝潮橋",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Asashiobashi"
+   ]
+  },
+  {
+   "group": "g.Awaza",
+   "x": 360.0,
+   "y": 510.0,
+   "labelKo": "아와자",
+   "labelJa": "阿波座",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Awaza"
+   ]
+  },
+  {
+   "group": "g.Bentencho",
+   "x": 240.0,
+   "y": 600.0,
+   "labelKo": "벤텐초",
+   "labelJa": "弁天町",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Bentencho"
+   ]
+  },
+  {
+   "group": "g.Cosmosquare",
+   "x": 120.0,
+   "y": 720.0,
+   "labelKo": "코스모스퀘어",
+   "labelJa": "コスモスクエア",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Cosmosquare"
+   ]
+  },
+  {
+   "group": "g.Daikokucho",
+   "x": 360.0,
+   "y": 690.0,
+   "labelKo": "다이코쿠초",
+   "labelJa": "大国町",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Daikokucho"
+   ]
+  },
+  {
+   "group": "g.Dobutsuemmae",
+   "x": 450.0,
+   "y": 690.0,
+   "labelKo": "도부쓰엔마에",
+   "labelJa": "動物園前",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Dobutsuemmae"
+   ]
+  },
+  {
+   "group": "g.Esaka",
+   "x": 420.0,
+   "y": 120.0,
+   "labelKo": "에사카",
+   "labelJa": "江坂",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Esaka"
+   ]
+  },
+  {
+   "group": "g.Fukaebashi",
+   "x": 690.0,
+   "y": 540.0,
+   "labelKo": "후카에바시",
+   "labelJa": "深江橋",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Fukaebashi"
+   ]
+  },
+  {
+   "group": "g.HigashiMikuni",
+   "x": 420.0,
+   "y": 180.0,
+   "labelKo": "히가시미쿠니",
+   "labelJa": "東三国",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.HigashiMikuni"
+   ]
+  },
+  {
+   "group": "g.Hommachi",
+   "x": 420.0,
+   "y": 510.0,
+   "labelKo": "혼마치",
+   "labelJa": "本町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Hommachi",
+    "odpt.Station:OsakaMetro.Chuo.Hommachi"
+   ]
+  },
+  {
+   "group": "g.Kitahanada",
+   "x": 480.0,
+   "y": 1020.0,
+   "labelKo": "기타하나다",
+   "labelJa": "北花田",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Kitahanada"
+   ]
+  },
+  {
+   "group": "g.Kujo",
+   "x": 300.0,
+   "y": 540.0,
+   "labelKo": "구조",
+   "labelJa": "九条",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Kujo"
+   ]
+  },
+  {
+   "group": "g.Midoribashi",
+   "x": 630.0,
+   "y": 540.0,
+   "labelKo": "미도리바시",
+   "labelJa": "緑橋",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Midoribashi"
+   ]
+  },
+  {
+   "group": "g.Morinomiya",
+   "x": 570.0,
+   "y": 510.0,
+   "labelKo": "모리노미야",
+   "labelJa": "森ノ宮",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Morinomiya"
+   ]
+  },
+  {
+   "group": "g.Nagai",
+   "x": 480.0,
+   "y": 870.0,
+   "labelKo": "나가이",
+   "labelJa": "長居",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Nagai"
+   ]
+  },
+  {
+   "group": "g.Nagata",
+   "x": 810.0,
+   "y": 540.0,
+   "labelKo": "나가타",
+   "labelJa": "長田",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Nagata"
+   ]
+  },
+  {
+   "group": "g.Nakamozu",
+   "x": 480.0,
+   "y": 1140.0,
+   "labelKo": "나카모즈",
+   "labelJa": "なかもず",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Nakamozu"
+   ]
+  },
+  {
+   "group": "g.Nakatsu",
+   "x": 420.0,
+   "y": 360.0,
+   "labelKo": "나카쓰",
+   "labelJa": "中津",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Nakatsu"
+   ]
+  },
+  {
+   "group": "g.Namba",
+   "x": 420.0,
+   "y": 630.0,
+   "labelKo": "난바",
+   "labelJa": "なんば",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Namba"
+   ]
+  },
+  {
+   "group": "g.NishinakajimaMinamigata",
+   "x": 420.0,
+   "y": 300.0,
+   "labelKo": "니시나카지마미나미가타",
+   "labelJa": "西中島南方",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.NishinakajimaMinamigata"
+   ]
+  },
+  {
+   "group": "g.Nishitanabe",
+   "x": 510.0,
+   "y": 810.0,
+   "labelKo": "니시타나베",
+   "labelJa": "西田辺",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Nishitanabe"
+   ]
+  },
+  {
+   "group": "g.Osakako",
+   "x": 180.0,
+   "y": 660.0,
+   "labelKo": "오사카항",
+   "labelJa": "大阪港",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Osakako"
+   ]
+  },
+  {
+   "group": "g.SakaisujiHommachi",
+   "x": 450.0,
+   "y": 510.0,
+   "labelKo": "사카이스지혼마치",
+   "labelJa": "堺筋本町",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.SakaisujiHommachi"
+   ]
+  },
+  {
+   "group": "g.ShinOsaka",
+   "x": 420.0,
+   "y": 240.0,
+   "labelKo": "신오사카",
+   "labelJa": "新大阪",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.ShinOsaka"
+   ]
+  },
+  {
+   "group": "g.Shinkanaoka",
+   "x": 480.0,
+   "y": 1080.0,
+   "labelKo": "신카나오카",
+   "labelJa": "新金岡",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Shinkanaoka"
+   ]
+  },
+  {
+   "group": "g.Shinsaibashi",
+   "x": 420.0,
+   "y": 570.0,
+   "labelKo": "신사이바시",
+   "labelJa": "心斎橋",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Shinsaibashi"
+   ]
+  },
+  {
+   "group": "g.Showacho",
+   "x": 510.0,
+   "y": 750.0,
+   "labelKo": "쇼와초",
+   "labelJa": "昭和町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Showacho"
+   ]
+  },
+  {
+   "group": "g.Takaida",
+   "x": 750.0,
+   "y": 540.0,
+   "labelKo": "다카이다",
+   "labelJa": "高井田",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.Takaida"
+   ]
+  },
+  {
+   "group": "g.TanimachiYonchome",
+   "x": 510.0,
+   "y": 510.0,
+   "labelKo": "다니마치욘초메",
+   "labelJa": "谷町四丁目",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Chuo.TanimachiYonchome"
+   ]
+  },
+  {
+   "group": "g.Tennoji",
+   "x": 510.0,
+   "y": 690.0,
+   "labelKo": "덴노지",
+   "labelJa": "天王寺",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Tennoji"
+   ]
+  },
+  {
+   "group": "g.Umeda",
+   "x": 420.0,
+   "y": 420.0,
+   "labelKo": "우메다",
+   "labelJa": "梅田",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Umeda"
+   ]
+  },
+  {
+   "group": "g.Yodoyabashi",
+   "x": 420.0,
+   "y": 450.0,
+   "labelKo": "요도야바시",
+   "labelJa": "淀屋橋",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:OsakaMetro.Midosuji.Yodoyabashi"
+   ]
+  }
+ ],
+ "lines": [
+  {
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "color": "#E5171F",
+   "segments": [
+    {
+     "points": [
+      [
+       420.0,
+       120.0
+      ],
+      [
+       420.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       180.0
+      ],
+      [
+       420.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       300.0
+      ],
+      [
+       420.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       360.0
+      ],
+      [
+       420.0,
+       300.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       360.0
+      ],
+      [
+       420.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       420.0
+      ],
+      [
+       420.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       510.0
+      ],
+      [
+       420.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       510.0
+      ],
+      [
+       420.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       630.0
+      ],
+      [
+       420.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       360.0,
+       690.0
+      ],
+      [
+       420.0,
+       630.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       360.0,
+       690.0
+      ],
+      [
+       450.0,
+       690.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       450.0,
+       690.0
+      ],
+      [
+       510.0,
+       690.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       510.0,
+       750.0
+      ],
+      [
+       510.0,
+       690.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       510.0,
+       810.0
+      ],
+      [
+       510.0,
+       750.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       870.0
+      ],
+      [
+       510.0,
+       840.0
+      ],
+      [
+       510.0,
+       810.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       930.0
+      ],
+      [
+       480.0,
+       870.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       930.0
+      ],
+      [
+       480.0,
+       1020.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       1020.0
+      ],
+      [
+       480.0,
+       1080.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       1140.0
+      ],
+      [
+       480.0,
+       1080.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  },
+  {
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "color": "#019A66",
+   "segments": [
+    {
+     "points": [
+      [
+       120.0,
+       720.0
+      ],
+      [
+       180.0,
+       660.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       600.0
+      ],
+      [
+       180.0,
+       660.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       600.0
+      ],
+      [
+       240.0,
+       600.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       600.0
+      ],
+      [
+       300.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       360.0,
+       510.0
+      ],
+      [
+       330.0,
+       540.0
+      ],
+      [
+       300.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       360.0,
+       510.0
+      ],
+      [
+       420.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       510.0
+      ],
+      [
+       450.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       450.0,
+       510.0
+      ],
+      [
+       510.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       570.0,
+       510.0
+      ],
+      [
+       510.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       630.0,
+       540.0
+      ],
+      [
+       600.0,
+       510.0
+      ],
+      [
+       570.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       690.0,
+       540.0
+      ],
+      [
+       630.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       690.0,
+       540.0
+      ],
+      [
+       750.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       540.0
+      ],
+      [
+       750.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  }
+ ]
+}

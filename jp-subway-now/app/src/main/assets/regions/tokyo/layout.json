@@ -1,0 +1,1422 @@
+{
+ "schemaVersion": 1,
+ "regionId": "tokyo",
+ "unit": 60.0,
+ "width": 1410.0,
+ "height": 690.0,
+ "nodes": [
+  {
+   "group": "g.AkasakaMitsuke",
+   "x": 810.0,
+   "y": 510.0,
+   "labelKo": "아카사카미쓰케",
+   "labelJa": "赤坂見附",
+   "labelDx": 1,
+   "labelDy": -1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
+    "odpt.Station:TokyoMetro.Marunouchi.AkasakaMitsuke"
+   ]
+  },
+  {
+   "group": "g.AoyamaItchome",
+   "x": 750.0,
+   "y": 510.0,
+   "labelKo": "아오야마잇초메",
+   "labelJa": "青山一丁目",
+   "labelDx": -1,
+   "labelDy": -1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
+    "odpt.Station:TokyoMetro.Hanzomon.AoyamaItchome"
+   ]
+  },
+  {
+   "group": "g.Asakusa",
+   "x": 1230.0,
+   "y": 210.0,
+   "labelKo": "아사쿠사",
+   "labelJa": "浅草",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Asakusa"
+   ]
+  },
+  {
+   "group": "g.Awajicho",
+   "x": 1050.0,
+   "y": 300.0,
+   "labelKo": "아와지초",
+   "labelJa": "淡路町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Awajicho"
+   ]
+  },
+  {
+   "group": "g.Gaiemmae",
+   "x": 690.0,
+   "y": 510.0,
+   "labelKo": "가이엔마에",
+   "labelJa": "外苑前",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Gaiemmae"
+   ]
+  },
+  {
+   "group": "g.Ginza",
+   "x": 990.0,
+   "y": 570.0,
+   "labelKo": "긴자",
+   "labelJa": "銀座",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Ginza",
+    "odpt.Station:TokyoMetro.Marunouchi.Ginza"
+   ]
+  },
+  {
+   "group": "g.Hanzomon",
+   "x": 780.0,
+   "y": 360.0,
+   "labelKo": "한조몬",
+   "labelJa": "半蔵門",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Hanzomon"
+   ]
+  },
+  {
+   "group": "g.HigashiKoenji",
+   "x": 300.0,
+   "y": 330.0,
+   "labelKo": "히가시코엔지",
+   "labelJa": "東高円寺",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.HigashiKoenji"
+   ]
+  },
+  {
+   "group": "g.HongoSanchome",
+   "x": 960.0,
+   "y": 240.0,
+   "labelKo": "혼고산초메",
+   "labelJa": "本郷三丁目",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.HongoSanchome"
+   ]
+  },
+  {
+   "group": "g.Ikebukuro",
+   "x": 660.0,
+   "y": 120.0,
+   "labelKo": "이케부쿠로",
+   "labelJa": "池袋",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Ikebukuro"
+   ]
+  },
+  {
+   "group": "g.Inaricho",
+   "x": 1110.0,
+   "y": 210.0,
+   "labelKo": "이나리초",
+   "labelJa": "稲荷町",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Inaricho"
+   ]
+  },
+  {
+   "group": "g.Jimbocho",
+   "x": 930.0,
+   "y": 360.0,
+   "labelKo": "진보초",
+   "labelJa": "神保町",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Jimbocho"
+   ]
+  },
+  {
+   "group": "g.Kanda",
+   "x": 1050.0,
+   "y": 360.0,
+   "labelKo": "간다",
+   "labelJa": "神田",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Kanda"
+   ]
+  },
+  {
+   "group": "g.Kasumigaseki",
+   "x": 930.0,
+   "y": 510.0,
+   "labelKo": "가스미가세키",
+   "labelJa": "霞ケ関",
+   "labelDx": 1,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Kasumigaseki"
+   ]
+  },
+  {
+   "group": "g.Kinshicho",
+   "x": 1290.0,
+   "y": 300.0,
+   "labelKo": "긴시초",
+   "labelJa": "錦糸町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Kinshicho"
+   ]
+  },
+  {
+   "group": "g.KiyosumiShirakawa",
+   "x": 1200.0,
+   "y": 420.0,
+   "labelKo": "기요스미시라카와",
+   "labelJa": "清澄白河",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa"
+   ]
+  },
+  {
+   "group": "g.KokkaiGijidomae",
+   "x": 870.0,
+   "y": 510.0,
+   "labelKo": "곳카이기지도마에",
+   "labelJa": "国会議事堂前",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.KokkaiGijidomae"
+   ]
+  },
+  {
+   "group": "g.Korakuen",
+   "x": 870.0,
+   "y": 240.0,
+   "labelKo": "고라쿠엔",
+   "labelJa": "後楽園",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Korakuen"
+   ]
+  },
+  {
+   "group": "g.Kudanshita",
+   "x": 870.0,
+   "y": 360.0,
+   "labelKo": "구단시타",
+   "labelJa": "九段下",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Kudanshita"
+   ]
+  },
+  {
+   "group": "g.Kyobashi",
+   "x": 1050.0,
+   "y": 510.0,
+   "labelKo": "교바시",
+   "labelJa": "京橋",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Kyobashi"
+   ]
+  },
+  {
+   "group": "g.MinamiAsagaya",
+   "x": 180.0,
+   "y": 330.0,
+   "labelKo": "미나미아사가야",
+   "labelJa": "南阿佐ケ谷",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.MinamiAsagaya"
+   ]
+  },
+  {
+   "group": "g.Mitsukoshimae",
+   "x": 1050.0,
+   "y": 420.0,
+   "labelKo": "미쓰코시마에",
+   "labelJa": "三越前",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
+    "odpt.Station:TokyoMetro.Hanzomon.Mitsukoshimae"
+   ]
+  },
+  {
+   "group": "g.Myogadani",
+   "x": 810.0,
+   "y": 180.0,
+   "labelKo": "묘가다니",
+   "labelJa": "茗荷谷",
+   "labelDx": 1,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Myogadani"
+   ]
+  },
+  {
+   "group": "g.Nagatacho",
+   "x": 840.0,
+   "y": 420.0,
+   "labelKo": "나가타초",
+   "labelJa": "永田町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Nagatacho"
+   ]
+  },
+  {
+   "group": "g.NakanoSakaue",
+   "x": 480.0,
+   "y": 330.0,
+   "labelKo": "나카노사카우에",
+   "labelJa": "中野坂上",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.NakanoSakaue"
+   ]
+  },
+  {
+   "group": "g.Nihombashi",
+   "x": 1050.0,
+   "y": 450.0,
+   "labelKo": "니혼바시",
+   "labelJa": "日本橋",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Nihombashi"
+   ]
+  },
+  {
+   "group": "g.NishiShinjuku",
+   "x": 480.0,
+   "y": 420.0,
+   "labelKo": "니시신주쿠",
+   "labelJa": "西新宿",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.NishiShinjuku"
+   ]
+  },
+  {
+   "group": "g.Ochanomizu",
+   "x": 960.0,
+   "y": 300.0,
+   "labelKo": "오차노미즈",
+   "labelJa": "御茶ノ水",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Ochanomizu"
+   ]
+  },
+  {
+   "group": "g.Ogikubo",
+   "x": 120.0,
+   "y": 330.0,
+   "labelKo": "오기쿠보",
+   "labelJa": "荻窪",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Ogikubo"
+   ]
+  },
+  {
+   "group": "g.OmoteSando",
+   "x": 690.0,
+   "y": 570.0,
+   "labelKo": "오모테산도",
+   "labelJa": "表参道",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.OmoteSando",
+    "odpt.Station:TokyoMetro.Hanzomon.OmoteSando"
+   ]
+  },
+  {
+   "group": "g.Oshiage",
+   "x": 1290.0,
+   "y": 210.0,
+   "labelKo": "오시아게",
+   "labelJa": "押上",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Oshiage"
+   ]
+  },
+  {
+   "group": "g.Otemachi",
+   "x": 990.0,
+   "y": 360.0,
+   "labelKo": "오테마치",
+   "labelJa": "大手町",
+   "labelDx": -1,
+   "labelDy": -1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Otemachi",
+    "odpt.Station:TokyoMetro.Hanzomon.Otemachi"
+   ]
+  },
+  {
+   "group": "g.Shibuya",
+   "x": 630.0,
+   "y": 570.0,
+   "labelKo": "시부야",
+   "labelJa": "渋谷",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Shibuya",
+    "odpt.Station:TokyoMetro.Hanzomon.Shibuya"
+   ]
+  },
+  {
+   "group": "g.Shimbashi",
+   "x": 930.0,
+   "y": 570.0,
+   "labelKo": "신바시",
+   "labelJa": "新橋",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Shimbashi"
+   ]
+  },
+  {
+   "group": "g.ShinKoenji",
+   "x": 240.0,
+   "y": 330.0,
+   "labelKo": "신코엔지",
+   "labelJa": "新高円寺",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.ShinKoenji"
+   ]
+  },
+  {
+   "group": "g.ShinNakano",
+   "x": 390.0,
+   "y": 330.0,
+   "labelKo": "신나카노",
+   "labelJa": "新中野",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.ShinNakano"
+   ]
+  },
+  {
+   "group": "g.ShinOtsuka",
+   "x": 750.0,
+   "y": 120.0,
+   "labelKo": "신오쓰카",
+   "labelJa": "新大塚",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.ShinOtsuka"
+   ]
+  },
+  {
+   "group": "g.Shinjuku",
+   "x": 540.0,
+   "y": 360.0,
+   "labelKo": "신주쿠",
+   "labelJa": "新宿",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Shinjuku"
+   ]
+  },
+  {
+   "group": "g.ShinjukuGyoemmae",
+   "x": 660.0,
+   "y": 420.0,
+   "labelKo": "신주쿠교엔마에",
+   "labelJa": "新宿御苑前",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.ShinjukuGyoemmae"
+   ]
+  },
+  {
+   "group": "g.ShinjukuSanchome",
+   "x": 600.0,
+   "y": 360.0,
+   "labelKo": "신주쿠산초메",
+   "labelJa": "新宿三丁目",
+   "labelDx": 1,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.ShinjukuSanchome"
+   ]
+  },
+  {
+   "group": "g.Suehirocho",
+   "x": 1110.0,
+   "y": 300.0,
+   "labelKo": "스에히로초",
+   "labelJa": "末広町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Suehirocho"
+   ]
+  },
+  {
+   "group": "g.Suitengumae",
+   "x": 1110.0,
+   "y": 420.0,
+   "labelKo": "스이텐구마에",
+   "labelJa": "水天宮前",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Suitengumae"
+   ]
+  },
+  {
+   "group": "g.Sumiyoshi",
+   "x": 1260.0,
+   "y": 360.0,
+   "labelKo": "스미요시",
+   "labelJa": "住吉",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Hanzomon.Sumiyoshi"
+   ]
+  },
+  {
+   "group": "g.TameikeSanno",
+   "x": 810.0,
+   "y": 570.0,
+   "labelKo": "다메이케산노",
+   "labelJa": "溜池山王",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.TameikeSanno"
+   ]
+  },
+  {
+   "group": "g.Tawaramachi",
+   "x": 1170.0,
+   "y": 210.0,
+   "labelKo": "다와라마치",
+   "labelJa": "田原町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Tawaramachi"
+   ]
+  },
+  {
+   "group": "g.Tokyo",
+   "x": 990.0,
+   "y": 450.0,
+   "labelKo": "도쿄",
+   "labelJa": "東京",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Tokyo"
+   ]
+  },
+  {
+   "group": "g.Toranomon",
+   "x": 870.0,
+   "y": 570.0,
+   "labelKo": "도라노몬",
+   "labelJa": "虎ノ門",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Toranomon"
+   ]
+  },
+  {
+   "group": "g.Ueno",
+   "x": 1050.0,
+   "y": 150.0,
+   "labelKo": "우에노",
+   "labelJa": "上野",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.Ueno"
+   ]
+  },
+  {
+   "group": "g.UenoHirokoji",
+   "x": 1050.0,
+   "y": 240.0,
+   "labelKo": "우에노히로코지",
+   "labelJa": "上野広小路",
+   "labelDx": -1,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Ginza.UenoHirokoji"
+   ]
+  },
+  {
+   "group": "g.Yotsuya",
+   "x": 780.0,
+   "y": 420.0,
+   "labelKo": "요쓰야",
+   "labelJa": "四ツ谷",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.Yotsuya"
+   ]
+  },
+  {
+   "group": "g.YotsuyaSanchome",
+   "x": 720.0,
+   "y": 420.0,
+   "labelKo": "요쓰야산초메",
+   "labelJa": "四谷三丁目",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TokyoMetro.Marunouchi.YotsuyaSanchome"
+   ]
+  }
+ ],
+ "lines": [
+  {
+   "lineId": "odpt.Railway:TokyoMetro.Ginza",
+   "color": "#FF9500",
+   "segments": [
+    {
+     "points": [
+      [
+       690.0,
+       570.0
+      ],
+      [
+       630.0,
+       570.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       690.0,
+       510.0
+      ],
+      [
+       690.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       750.0,
+       510.0
+      ],
+      [
+       690.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       510.0
+      ],
+      [
+       750.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       510.0
+      ],
+      [
+       810.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       570.0
+      ],
+      [
+       870.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       570.0
+      ],
+      [
+       870.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       570.0
+      ],
+      [
+       930.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       570.0
+      ],
+      [
+       1050.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       510.0
+      ],
+      [
+       1050.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       420.0
+      ],
+      [
+       1050.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       360.0
+      ],
+      [
+       1050.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       360.0
+      ],
+      [
+       1110.0,
+       300.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       300.0
+      ],
+      [
+       1050.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       150.0
+      ],
+      [
+       1050.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       210.0
+      ],
+      [
+       1050.0,
+       150.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       210.0
+      ],
+      [
+       1170.0,
+       210.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1230.0,
+       210.0
+      ],
+      [
+       1170.0,
+       210.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  },
+  {
+   "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
+   "color": "#F62E36",
+   "segments": [
+    {
+     "points": [
+      [
+       180.0,
+       330.0
+      ],
+      [
+       120.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       330.0
+      ],
+      [
+       240.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       300.0,
+       330.0
+      ],
+      [
+       240.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       300.0,
+       330.0
+      ],
+      [
+       390.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       330.0
+      ],
+      [
+       390.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       330.0
+      ],
+      [
+       480.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       420.0
+      ],
+      [
+       540.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       360.0
+      ],
+      [
+       600.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       420.0
+      ],
+      [
+       600.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       420.0
+      ],
+      [
+       720.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       420.0
+      ],
+      [
+       720.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       510.0
+      ],
+      [
+       780.0,
+       480.0
+      ],
+      [
+       780.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       510.0
+      ],
+      [
+       870.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       510.0
+      ],
+      [
+       870.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       570.0
+      ],
+      [
+       930.0,
+       510.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       570.0
+      ],
+      [
+       990.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       360.0
+      ],
+      [
+       990.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       300.0
+      ],
+      [
+       990.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       300.0
+      ],
+      [
+       960.0,
+       300.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       960.0,
+       240.0
+      ],
+      [
+       960.0,
+       300.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       960.0,
+       240.0
+      ],
+      [
+       870.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       870.0,
+       240.0
+      ],
+      [
+       810.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       180.0
+      ],
+      [
+       750.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       120.0
+      ],
+      [
+       750.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  },
+  {
+   "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
+   "color": "#8F76D6",
+   "segments": [
+    {
+     "points": [
+      [
+       690.0,
+       570.0
+      ],
+      [
+       630.0,
+       570.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       750.0,
+       510.0
+      ],
+      [
+       690.0,
+       570.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       750.0,
+       510.0
+      ],
+      [
+       840.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       360.0
+      ],
+      [
+       840.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       360.0
+      ],
+      [
+       870.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       360.0
+      ],
+      [
+       870.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       360.0
+      ],
+      [
+       990.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       420.0
+      ],
+      [
+       990.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       420.0
+      ],
+      [
+       1110.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       420.0
+      ],
+      [
+       1110.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       420.0
+      ],
+      [
+       1260.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       300.0
+      ],
+      [
+       1290.0,
+       330.0
+      ],
+      [
+       1260.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       300.0
+      ],
+      [
+       1290.0,
+       210.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  }
+ ]
+}

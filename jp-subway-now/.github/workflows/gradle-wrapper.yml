@@ -1,0 +1,28 @@
+# 저장소를 처음 올린 뒤 Actions 탭에서 한 번 수동 실행하면 gradlew / gradle-wrapper.jar 를 생성해 커밋합니다.
+name: Generate Gradle wrapper
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  wrapper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+      - run: gradle wrapper --gradle-version 8.11.1 --distribution-type bin
+      - name: Commit wrapper
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gradlew gradlew.bat gradle/wrapper/
+          git diff --cached --quiet && echo "변경 없음" || (git commit -m "ci: add gradle wrapper" && git push)

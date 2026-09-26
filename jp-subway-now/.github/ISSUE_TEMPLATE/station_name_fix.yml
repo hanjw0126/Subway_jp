@@ -1,0 +1,27 @@
+name: 역명 한글 표기 수정
+description: 역 이름의 한글 표기가 어색하거나 틀린 경우
+labels: [ data, i18n ]
+body:
+  - type: input
+    id: ja
+    attributes:
+      label: 역 이름 (일본어)
+      placeholder: 広尾
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: 현재 표기
+      placeholder: 히로
+  - type: input
+    id: suggested
+    attributes:
+      label: 제안 표기
+      placeholder: 히로오
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 근거 (외래어 표기법, 관광공사 표기 등)

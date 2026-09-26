@@ -1,0 +1,27 @@
+name: Data tools
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ "tools/**", "app/src/main/assets/**" ]
+  pull_request:
+    paths: [ "tools/**", "app/src/main/assets/**" ]
+  workflow_dispatch:
+
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r tools/requirements.txt
+      - name: Unit tests
+        run: python -m pytest tools/tests -q
+      - name: Rebuild assets and check they are up to date
+        run: |
+          python tools/build_all.py --no-preview
+          git diff --stat --exit-code app/src/main/assets || (echo "::error::assets 가 seed 와 다릅니다. python tools/build_all.py 실행 후 커밋하세요." && exit 1)
+      - name: Validate assets
+        run: python tools/validate_assets.py

@@ -1,0 +1,596 @@
+{
+ "schemaVersion": 1,
+ "regionId": "osaka",
+ "source": "seed",
+ "lines": [
+  {
+   "id": "odpt.Railway:OsakaMetro.Midosuji",
+   "operator": "odpt.Operator:OsakaMetro",
+   "code": "M",
+   "name": {
+    "ja": "御堂筋線",
+    "ko": "미도스지선",
+    "en": "Midosuji Line",
+    "kana": ""
+   },
+   "color": "#E5171F",
+   "stations": [
+    "odpt.Station:OsakaMetro.Midosuji.Esaka",
+    "odpt.Station:OsakaMetro.Midosuji.HigashiMikuni",
+    "odpt.Station:OsakaMetro.Midosuji.ShinOsaka",
+    "odpt.Station:OsakaMetro.Midosuji.NishinakajimaMinamigata",
+    "odpt.Station:OsakaMetro.Midosuji.Nakatsu",
+    "odpt.Station:OsakaMetro.Midosuji.Umeda",
+    "odpt.Station:OsakaMetro.Midosuji.Yodoyabashi",
+    "odpt.Station:OsakaMetro.Midosuji.Hommachi",
+    "odpt.Station:OsakaMetro.Midosuji.Shinsaibashi",
+    "odpt.Station:OsakaMetro.Midosuji.Namba",
+    "odpt.Station:OsakaMetro.Midosuji.Daikokucho",
+    "odpt.Station:OsakaMetro.Midosuji.Dobutsuemmae",
+    "odpt.Station:OsakaMetro.Midosuji.Tennoji",
+    "odpt.Station:OsakaMetro.Midosuji.Showacho",
+    "odpt.Station:OsakaMetro.Midosuji.Nishitanabe",
+    "odpt.Station:OsakaMetro.Midosuji.Nagai",
+    "odpt.Station:OsakaMetro.Midosuji.Abiko",
+    "odpt.Station:OsakaMetro.Midosuji.Kitahanada",
+    "odpt.Station:OsakaMetro.Midosuji.Shinkanaoka",
+    "odpt.Station:OsakaMetro.Midosuji.Nakamozu"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:OsakaMetro.Nakamozu",
+     "name": {
+      "ja": "なかもず方面",
+      "ko": "나카모즈 방면",
+      "en": "for Nakamozu",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:OsakaMetro.Esaka",
+     "name": {
+      "ja": "江坂方面",
+      "ko": "에사카 방면",
+      "en": "for Esaka",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  },
+  {
+   "id": "odpt.Railway:OsakaMetro.Chuo",
+   "operator": "odpt.Operator:OsakaMetro",
+   "code": "C",
+   "name": {
+    "ja": "中央線",
+    "ko": "주오선",
+    "en": "Chuo Line",
+    "kana": ""
+   },
+   "color": "#019A66",
+   "stations": [
+    "odpt.Station:OsakaMetro.Chuo.Cosmosquare",
+    "odpt.Station:OsakaMetro.Chuo.Osakako",
+    "odpt.Station:OsakaMetro.Chuo.Asashiobashi",
+    "odpt.Station:OsakaMetro.Chuo.Bentencho",
+    "odpt.Station:OsakaMetro.Chuo.Kujo",
+    "odpt.Station:OsakaMetro.Chuo.Awaza",
+    "odpt.Station:OsakaMetro.Chuo.Hommachi",
+    "odpt.Station:OsakaMetro.Chuo.SakaisujiHommachi",
+    "odpt.Station:OsakaMetro.Chuo.TanimachiYonchome",
+    "odpt.Station:OsakaMetro.Chuo.Morinomiya",
+    "odpt.Station:OsakaMetro.Chuo.Midoribashi",
+    "odpt.Station:OsakaMetro.Chuo.Fukaebashi",
+    "odpt.Station:OsakaMetro.Chuo.Takaida",
+    "odpt.Station:OsakaMetro.Chuo.Nagata"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:OsakaMetro.Nagata",
+     "name": {
+      "ja": "長田方面",
+      "ko": "나가타 방면",
+      "en": "for Nagata",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:OsakaMetro.Cosmosquare",
+     "name": {
+      "ja": "コスモスクエア方面",
+      "ko": "코스모스퀘어 방면",
+      "en": "for Cosmosquare",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  }
+ ],
+ "stations": [
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Esaka",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M11",
+   "name": {
+    "ja": "江坂",
+    "ko": "에사카",
+    "en": "Esaka",
+    "kana": "えさか"
+   },
+   "lat": 34.758,
+   "lon": 135.4966,
+   "group": "g.Esaka"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.HigashiMikuni",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M12",
+   "name": {
+    "ja": "東三国",
+    "ko": "히가시미쿠니",
+    "en": "HigashiMikuni",
+    "kana": "ひがしみくに"
+   },
+   "lat": 34.747,
+   "lon": 135.499,
+   "group": "g.HigashiMikuni"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.ShinOsaka",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M13",
+   "name": {
+    "ja": "新大阪",
+    "ko": "신오사카",
+    "en": "ShinOsaka",
+    "kana": "しんおおさか"
+   },
+   "lat": 34.7334,
+   "lon": 135.5002,
+   "group": "g.ShinOsaka"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.NishinakajimaMinamigata",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M14",
+   "name": {
+    "ja": "西中島南方",
+    "ko": "니시나카지마미나미가타",
+    "en": "NishinakajimaMinamigata",
+    "kana": "にしなかじまみなみがた"
+   },
+   "lat": 34.7262,
+   "lon": 135.4988,
+   "group": "g.NishinakajimaMinamigata"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Nakatsu",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M15",
+   "name": {
+    "ja": "中津",
+    "ko": "나카쓰",
+    "en": "Nakatsu",
+    "kana": "なかつ"
+   },
+   "lat": 34.7094,
+   "lon": 135.4969,
+   "group": "g.Nakatsu"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Umeda",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M16",
+   "name": {
+    "ja": "梅田",
+    "ko": "우메다",
+    "en": "Umeda",
+    "kana": "うめだ"
+   },
+   "lat": 34.7025,
+   "lon": 135.4983,
+   "group": "g.Umeda"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Yodoyabashi",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M17",
+   "name": {
+    "ja": "淀屋橋",
+    "ko": "요도야바시",
+    "en": "Yodoyabashi",
+    "kana": "よどやばし"
+   },
+   "lat": 34.6926,
+   "lon": 135.501,
+   "group": "g.Yodoyabashi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Hommachi",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M18",
+   "name": {
+    "ja": "本町",
+    "ko": "혼마치",
+    "en": "Hommachi",
+    "kana": "ほんまち"
+   },
+   "lat": 34.6823,
+   "lon": 135.5011,
+   "group": "g.Hommachi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Shinsaibashi",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M19",
+   "name": {
+    "ja": "心斎橋",
+    "ko": "신사이바시",
+    "en": "Shinsaibashi",
+    "kana": "しんさいばし"
+   },
+   "lat": 34.6752,
+   "lon": 135.5007,
+   "group": "g.Shinsaibashi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Namba",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M20",
+   "name": {
+    "ja": "なんば",
+    "ko": "난바",
+    "en": "Namba",
+    "kana": "なんば"
+   },
+   "lat": 34.6663,
+   "lon": 135.501,
+   "group": "g.Namba"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Daikokucho",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M21",
+   "name": {
+    "ja": "大国町",
+    "ko": "다이코쿠초",
+    "en": "Daikokucho",
+    "kana": "だいこくちょう"
+   },
+   "lat": 34.6544,
+   "lon": 135.4968,
+   "group": "g.Daikokucho"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Dobutsuemmae",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M22",
+   "name": {
+    "ja": "動物園前",
+    "ko": "도부쓰엔마에",
+    "en": "Dobutsuemmae",
+    "kana": "どうぶつえんまえ"
+   },
+   "lat": 34.648,
+   "lon": 135.5059,
+   "group": "g.Dobutsuemmae"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Tennoji",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M23",
+   "name": {
+    "ja": "天王寺",
+    "ko": "덴노지",
+    "en": "Tennoji",
+    "kana": "てんのうじ"
+   },
+   "lat": 34.6468,
+   "lon": 135.5139,
+   "group": "g.Tennoji"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Showacho",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M24",
+   "name": {
+    "ja": "昭和町",
+    "ko": "쇼와초",
+    "en": "Showacho",
+    "kana": "しょうわちょう"
+   },
+   "lat": 34.6352,
+   "lon": 135.517,
+   "group": "g.Showacho"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Nishitanabe",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M25",
+   "name": {
+    "ja": "西田辺",
+    "ko": "니시타나베",
+    "en": "Nishitanabe",
+    "kana": "にしたなべ"
+   },
+   "lat": 34.6247,
+   "lon": 135.5177,
+   "group": "g.Nishitanabe"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Nagai",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M26",
+   "name": {
+    "ja": "長居",
+    "ko": "나가이",
+    "en": "Nagai",
+    "kana": "ながい"
+   },
+   "lat": 34.6112,
+   "lon": 135.514,
+   "group": "g.Nagai"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Abiko",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M27",
+   "name": {
+    "ja": "あびこ",
+    "ko": "아비코",
+    "en": "Abiko",
+    "kana": "あびこ"
+   },
+   "lat": 34.599,
+   "lon": 135.51,
+   "group": "g.Abiko"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Kitahanada",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M28",
+   "name": {
+    "ja": "北花田",
+    "ko": "기타하나다",
+    "en": "Kitahanada",
+    "kana": "きたはなだ"
+   },
+   "lat": 34.585,
+   "lon": 135.51,
+   "group": "g.Kitahanada"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Shinkanaoka",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M29",
+   "name": {
+    "ja": "新金岡",
+    "ko": "신카나오카",
+    "en": "Shinkanaoka",
+    "kana": "しんかなおか"
+   },
+   "lat": 34.5705,
+   "lon": 135.5117,
+   "group": "g.Shinkanaoka"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Midosuji.Nakamozu",
+   "lineId": "odpt.Railway:OsakaMetro.Midosuji",
+   "code": "M30",
+   "name": {
+    "ja": "なかもず",
+    "ko": "나카모즈",
+    "en": "Nakamozu",
+    "kana": "なかもず"
+   },
+   "lat": 34.5565,
+   "lon": 135.5035,
+   "group": "g.Nakamozu"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Cosmosquare",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C10",
+   "name": {
+    "ja": "コスモスクエア",
+    "ko": "코스모스퀘어",
+    "en": "Cosmosquare",
+    "kana": "コスモスクエア"
+   },
+   "lat": 34.6384,
+   "lon": 135.414,
+   "group": "g.Cosmosquare"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Osakako",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C11",
+   "name": {
+    "ja": "大阪港",
+    "ko": "오사카항",
+    "en": "Osakako",
+    "kana": "おおさかこう"
+   },
+   "lat": 34.6546,
+   "lon": 135.433,
+   "group": "g.Osakako"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Asashiobashi",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C12",
+   "name": {
+    "ja": "朝潮橋",
+    "ko": "아사시오바시",
+    "en": "Asashiobashi",
+    "kana": "あさしおばし"
+   },
+   "lat": 34.6603,
+   "lon": 135.4483,
+   "group": "g.Asashiobashi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Bentencho",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C13",
+   "name": {
+    "ja": "弁天町",
+    "ko": "벤텐초",
+    "en": "Bentencho",
+    "kana": "べんてんちょう"
+   },
+   "lat": 34.6697,
+   "lon": 135.4616,
+   "group": "g.Bentencho"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Kujo",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C14",
+   "name": {
+    "ja": "九条",
+    "ko": "구조",
+    "en": "Kujo",
+    "kana": "くじょう"
+   },
+   "lat": 34.6752,
+   "lon": 135.4735,
+   "group": "g.Kujo"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Awaza",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C15",
+   "name": {
+    "ja": "阿波座",
+    "ko": "아와자",
+    "en": "Awaza",
+    "kana": "あわざ"
+   },
+   "lat": 34.6822,
+   "lon": 135.4883,
+   "group": "g.Awaza"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Hommachi",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C16",
+   "name": {
+    "ja": "本町",
+    "ko": "혼마치",
+    "en": "Hommachi",
+    "kana": "ほんまち"
+   },
+   "lat": 34.682,
+   "lon": 135.4985,
+   "group": "g.Hommachi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.SakaisujiHommachi",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C17",
+   "name": {
+    "ja": "堺筋本町",
+    "ko": "사카이스지혼마치",
+    "en": "SakaisujiHommachi",
+    "kana": "さかいすじほんまち"
+   },
+   "lat": 34.6822,
+   "lon": 135.5068,
+   "group": "g.SakaisujiHommachi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.TanimachiYonchome",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C18",
+   "name": {
+    "ja": "谷町四丁目",
+    "ko": "다니마치욘초메",
+    "en": "TanimachiYonchome",
+    "kana": "たにまちよんちょうめ"
+   },
+   "lat": 34.6823,
+   "lon": 135.5171,
+   "group": "g.TanimachiYonchome"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Morinomiya",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C19",
+   "name": {
+    "ja": "森ノ宮",
+    "ko": "모리노미야",
+    "en": "Morinomiya",
+    "kana": "もりのみや"
+   },
+   "lat": 34.6814,
+   "lon": 135.533,
+   "group": "g.Morinomiya"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Midoribashi",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C20",
+   "name": {
+    "ja": "緑橋",
+    "ko": "미도리바시",
+    "en": "Midoribashi",
+    "kana": "みどりばし"
+   },
+   "lat": 34.681,
+   "lon": 135.5474,
+   "group": "g.Midoribashi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Fukaebashi",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C21",
+   "name": {
+    "ja": "深江橋",
+    "ko": "후카에바시",
+    "en": "Fukaebashi",
+    "kana": "ふかえばし"
+   },
+   "lat": 34.6796,
+   "lon": 135.5605,
+   "group": "g.Fukaebashi"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Takaida",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C22",
+   "name": {
+    "ja": "高井田",
+    "ko": "다카이다",
+    "en": "Takaida",
+    "kana": "たかいだ"
+   },
+   "lat": 34.677,
+   "lon": 135.5745,
+   "group": "g.Takaida"
+  },
+  {
+   "id": "odpt.Station:OsakaMetro.Chuo.Nagata",
+   "lineId": "odpt.Railway:OsakaMetro.Chuo",
+   "code": "C23",
+   "name": {
+    "ja": "長田",
+    "ko": "나가타",
+    "en": "Nagata",
+    "kana": "ながた"
+   },
+   "lat": 34.679,
+   "lon": 135.5877,
+   "group": "g.Nagata"
+  }
+ ],
+ "transfers": [
+  {
+   "from": "odpt.Station:OsakaMetro.Midosuji.Hommachi",
+   "to": "odpt.Station:OsakaMetro.Chuo.Hommachi",
+   "walkSec": 180
+  }
+ ]
+}
