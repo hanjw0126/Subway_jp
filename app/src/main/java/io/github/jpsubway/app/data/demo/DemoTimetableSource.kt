@@ -30,7 +30,7 @@ object DemoTimetableSource {
             if (st.size < 2) continue
             val run = IntArray(st.size - 1) { i -> runSec(st[i], st[i + 1]) }
             for (asc in listOf(true, false)) {
-                val order = if (asc) st.indices.toList() else st.indices.reversed()
+                val order = if (asc) st.indices.toList() else st.indices.reversed().toList()
                 val dir = if (asc) line.directions.asc else line.directions.desc
                 val tag = if (asc) "A" else "B"
                 var t = FIRST + if (asc) 0 else 120
