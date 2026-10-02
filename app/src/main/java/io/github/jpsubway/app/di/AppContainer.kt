@@ -1,5 +1,6 @@
 package io.github.jpsubway.app.di
 
+import io.github.jpsubway.app.BuildConfig
 import android.content.Context
 import io.github.jpsubway.app.data.remote.OdptClient
 import io.github.jpsubway.app.data.repo.NetworkRepository
@@ -25,7 +26,7 @@ class AppContainer(context: Context) {
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
         .build()
-    val odpt = OdptClient(http, json)
+    val odpt = OdptClient(http, json, proxyBaseUrl = BuildConfig.ODPT_PROXY_URL)
     val networks = NetworkRepository(context, json)
     val timetables = TimetableRepository(context, json, odpt, settings)
     val realtime = RealtimeRepository(odpt, settings)

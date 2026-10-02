@@ -1,0 +1,5 @@
+name = "jp-subway-proxy"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+# ODPT_CONSUMER_KEY 는 Worker Secret 으로 등록됩니다 (.github/workflows/deploy-proxy.yml)

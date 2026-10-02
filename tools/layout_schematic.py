@@ -42,7 +42,8 @@ def edges_of(net):
         gs = [sid2g[s] for s in line["stations"]]
         if line.get("loop"):
             gs = gs + gs[:1]
-        for a, b in zip(gs, gs[1:]):
+        pairs = list(zip(gs, gs[1:])) + [(sid2g[a], sid2g[b]) for a, b in line.get("extraEdges", [])]
+        for a, b in pairs:
             if a == b:
                 continue
             k = (a, b) if a < b else (b, a)

@@ -1,0 +1,185 @@
+{
+ "regionId": "tama",
+ "transferWalkSec": 180,
+ "autoTransferRadiusM": 300,
+ "lines": [
+  {
+   "id": "odpt.Railway:TamaMonorail.TamaMonorail",
+   "operator": "odpt.Operator:TamaMonorail",
+   "code": "TT",
+   "color": "#286460",
+   "name": {
+    "ja": "多摩モノレール",
+    "ko": "다마 모노레일",
+    "en": "Tama Monorail Line"
+   },
+   "asc": {
+    "id": "odpt.RailDirection:Northbound",
+    "ja": "上北台方面",
+    "ko": "가미키타다이 방면",
+    "en": "for Kamikitadai"
+   },
+   "desc": {
+    "id": "odpt.RailDirection:Southbound",
+    "ja": "多摩センター方面",
+    "ko": "다마센터 방면",
+    "en": "for Tama Center"
+   },
+   "stations": [
+    [
+     "TT01",
+     "TamaCenter",
+     "多摩センター",
+     "たまえんて",
+     35.6239,
+     139.4228
+    ],
+    [
+     "TT02",
+     "Matsugaya",
+     "松が谷",
+     "まつがや",
+     35.6318,
+     139.422
+    ],
+    [
+     "TT03",
+     "OtsukaTeikyoDaigaku",
+     "大塚・帝京大学",
+     "おつかていきょだいがく",
+     35.6369,
+     139.4164
+    ],
+    [
+     "TT04",
+     "ChuoDaigakuMeiseiDaigaku",
+     "中央大学・明星大学",
+     "ちゅおだいがくめいせいだいがく",
+     35.6419,
+     139.4087
+    ],
+    [
+     "TT05",
+     "TamaDobutsukoen",
+     "多摩動物公園",
+     "たまどぶつこえん",
+     35.6485,
+     139.4038
+    ],
+    [
+     "TT06",
+     "Hodokubo",
+     "程久保",
+     "ほどくぼ",
+     35.6552,
+     139.4108
+    ],
+    [
+     "TT07",
+     "Takahatafudo",
+     "高幡不動",
+     "たかはたふど",
+     35.6613,
+     139.4152
+    ],
+    [
+     "TT08",
+     "Manganji",
+     "万願寺",
+     "まんがんじ",
+     35.6713,
+     139.4199
+    ],
+    [
+     "TT09",
+     "Koshukaido",
+     "甲州街道",
+     "こしゅかいど",
+     35.6782,
+     139.4092
+    ],
+    [
+     "TT10",
+     "ShibasakiTaiikukan",
+     "柴崎体育館",
+     "しばさきたいいくかん",
+     35.6898,
+     139.4093
+    ],
+    [
+     "TT11",
+     "TachikawaMinami",
+     "立川南",
+     "たちかわみなみ",
+     35.6962,
+     139.4126
+    ],
+    [
+     "TT12",
+     "TachikawaKita",
+     "立川北",
+     "たちかわきた",
+     35.6995,
+     139.4127
+    ],
+    [
+     "TT13",
+     "Takamatsu",
+     "高松",
+     "たかまつ",
+     35.71,
+     139.4133
+    ],
+    [
+     "TT14",
+     "Tachihi",
+     "立飛",
+     "たちひ",
+     35.7143,
+     139.4171
+    ],
+    [
+     "TT15",
+     "IzumiTaiikukan",
+     "泉体育館",
+     "いずみたいいくかん",
+     35.7188,
+     139.4196
+    ],
+    [
+     "TT16",
+     "SunagawaNanaban",
+     "砂川七番",
+     "すながわななばん",
+     35.7234,
+     139.4181
+    ],
+    [
+     "TT17",
+     "TamagawaJosui",
+     "玉川上水",
+     "たまがわじょすい",
+     35.7322,
+     139.4177
+    ],
+    [
+     "TT18",
+     "Sakurakaido",
+     "桜街道",
+     "さくらかいど",
+     35.739,
+     139.4166
+    ],
+    [
+     "TT19",
+     "Kamikitadai",
+     "上北台",
+     "かみきただい",
+     35.7458,
+     139.4159
+    ]
+   ]
+  }
+ ],
+ "extraTransfers": []
+}

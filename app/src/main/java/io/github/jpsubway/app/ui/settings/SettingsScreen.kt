@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter
 class SettingsViewModel(private val c: AppContainer) : ViewModel() {
     val token = c.settings.userToken
     val state = c.session.state
-    val hasBuiltInKey = BuildConfig.ODPT_CONSUMER_KEY.isNotBlank()
+    val hasBuiltInKey = BuildConfig.ODPT_CONSUMER_KEY.isNotBlank() || BuildConfig.ODPT_PROXY_URL.isNotBlank()
     fun save(t: String) {
         c.settings.setUserToken(t.trim())
         c.timetables.clearMemory()

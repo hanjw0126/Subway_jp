@@ -2,6 +2,7 @@ package io.github.jpsubway.app.data.repo
 
 import android.content.Context
 import io.github.jpsubway.app.BuildConfig
+import io.github.jpsubway.app.data.remote.OdptClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,8 +26,15 @@ class SettingsRepository(context: Context) {
         _userToken.value = token.trim()
     }
 
-    /** 사용자가 입력한 토큰 > 빌드 시 주입된 토큰 */
-    fun consumerKey(): String = _userToken.value.ifBlank { BuildConfig.ODPT_CONSUMER_KEY }
+    /**
+     * 사용자가 입력한 토큰 > (debug 빌드 전용) local.properties 토큰 > 중계 서버.
+     * 배포 APK 에는 ODPT 키가 들어가지 않는다.
+     */
+    fun consumerKey(): String = _userToken.value
+        .ifBlank { BuildConfig.ODPT_CONSUMER_KEY }
+        .ifBlank { if (BuildConfig.ODPT_PROXY_URL.isNotBlank()) OdptClient.PROXY_KEY else "" }
+
+    fun usingProxy(): Boolean = consumerKey() == OdptClient.PROXY_KEY
 
     fun hasToken(): Boolean = consumerKey().isNotBlank()
 

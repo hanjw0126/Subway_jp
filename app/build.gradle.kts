@@ -22,8 +22,10 @@ android {
         targetSdk = 35
         versionCode = (System.getenv("VERSION_CODE") ?: "1").toInt()
         versionName = System.getenv("VERSION_NAME") ?: "0.1.0"
-        // 비어 있으면 데모 시간표 모드. 사용자가 앱 설정에서 직접 토큰을 입력할 수도 있습니다.
-        buildConfigField("String", "ODPT_CONSUMER_KEY", "\"${secret("odpt.consumerKey", "ODPT_CONSUMER_KEY")}\"")
+        // ODPT 키는 배포 APK 에 넣지 않습니다. 배포 빌드는 중계 서버(worker/)를 거칩니다.
+        // 둘 다 비어 있으면 데모 시간표 모드. 사용자가 앱 설정에서 직접 토큰을 입력할 수도 있습니다.
+        buildConfigField("String", "ODPT_CONSUMER_KEY", "\"\"")
+        buildConfigField("String", "ODPT_PROXY_URL", "\"${secret("odpt.proxyUrl", "ODPT_PROXY_URL")}\"")
     }
 
     signingConfigs {
@@ -39,6 +41,10 @@ android {
     }
 
     buildTypes {
+        getByName("debug") {
+            // 로컬 개발용: local.properties 의 odpt.consumerKey (CI 환경변수는 읽지 않음)
+            buildConfigField("String", "ODPT_CONSUMER_KEY", "\"${localProps.getProperty("odpt.consumerKey") ?: ""}\"")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true

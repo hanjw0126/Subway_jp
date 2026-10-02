@@ -15,6 +15,8 @@ class OdptClient(
     private val http: OkHttpClient,
     private val json: Json,
     private val baseUrl: String = DEFAULT_BASE_URL,
+    /** 키를 보관하는 중계 서버(Cloudflare Worker). 비어 있으면 사용하지 않는다. */
+    private val proxyBaseUrl: String = "",
 ) {
     suspend fun trainTimetables(railway: String, calendar: String, key: String): List<OdptTrainTimetable> =
         get("odpt:TrainTimetable", mapOf("odpt:railway" to railway, "odpt:calendar" to calendar), key, OdptTrainTimetable.serializer())
@@ -27,9 +29,12 @@ class OdptClient(
 
     private suspend fun <T> get(type: String, params: Map<String, String>, key: String, ser: KSerializer<T>): List<T> =
         withContext(Dispatchers.IO) {
-            val url = baseUrl.toHttpUrl().newBuilder().addPathSegment(type).apply {
+            val viaProxy = key == PROXY_KEY
+            val base = if (viaProxy) proxyBaseUrl else baseUrl
+            if (base.isBlank()) throw IOException("ODPT 중계 서버 주소가 설정되지 않았습니다")
+            val url = base.toHttpUrl().newBuilder().addPathSegment(type).apply {
                 params.forEach { (k, v) -> addQueryParameter(k, v) }
-                addQueryParameter("acl:consumerKey", key)
+                if (!viaProxy) addQueryParameter("acl:consumerKey", key)
             }.build()
             http.newCall(Request.Builder().url(url).build()).execute().use { resp ->
                 if (!resp.isSuccessful) throw IOException("ODPT HTTP ${resp.code}")
@@ -39,5 +44,8 @@ class OdptClient(
 
     companion object {
         const val DEFAULT_BASE_URL = "https://api.odpt.org/api/v4/"
+
+        /** consumerKey 대신 이 값을 넘기면 중계 서버로 요청한다 (APK 에 ODPT 키를 넣지 않기 위함). */
+        const val PROXY_KEY = "@proxy"
     }
 }

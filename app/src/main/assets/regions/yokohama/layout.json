@@ -1,0 +1,1069 @@
+{
+ "schemaVersion": 1,
+ "regionId": "yokohama",
+ "unit": 60.0,
+ "width": 960.0,
+ "height": 1110.0,
+ "nodes": [
+  {
+   "group": "g.Azamino",
+   "x": 480.0,
+   "y": 120.0,
+   "labelKo": "아자미노",
+   "labelJa": "あざみ野",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Azamino"
+   ]
+  },
+  {
+   "group": "g.Bandobashi",
+   "x": 810.0,
+   "y": 780.0,
+   "labelKo": "반도바시",
+   "labelJa": "阪東橋",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Bandobashi"
+   ]
+  },
+  {
+   "group": "g.CenterKita",
+   "x": 600.0,
+   "y": 180.0,
+   "labelKo": "센터키타",
+   "labelJa": "センター北",
+   "labelDx": 1,
+   "labelDy": 1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.CenterKita",
+    "odpt.Station:YokohamaMunicipal.Green.CenterKita"
+   ]
+  },
+  {
+   "group": "g.CenterMinami",
+   "x": 540.0,
+   "y": 240.0,
+   "labelKo": "센터미나미",
+   "labelJa": "センター南",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": true,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.CenterMinami",
+    "odpt.Station:YokohamaMunicipal.Green.CenterMinami"
+   ]
+  },
+  {
+   "group": "g.Gumyoji",
+   "x": 600.0,
+   "y": 840.0,
+   "labelKo": "구묘지",
+   "labelJa": "弘明寺",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Gumyoji"
+   ]
+  },
+  {
+   "group": "g.HigashiYamata",
+   "x": 660.0,
+   "y": 180.0,
+   "labelKo": "히가시야마타",
+   "labelJa": "東山田",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.HigashiYamata"
+   ]
+  },
+  {
+   "group": "g.Hiyoshi",
+   "x": 840.0,
+   "y": 180.0,
+   "labelKo": "히요시",
+   "labelJa": "日吉",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.Hiyoshi"
+   ]
+  },
+  {
+   "group": "g.HiyoshiHoncho",
+   "x": 780.0,
+   "y": 180.0,
+   "labelKo": "히요시혼초",
+   "labelJa": "日吉本町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.HiyoshiHoncho"
+   ]
+  },
+  {
+   "group": "g.IsezakiChojamachi",
+   "x": 750.0,
+   "y": 720.0,
+   "labelKo": "이세자키초자마치",
+   "labelJa": "伊勢佐木長者町",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.IsezakiChojamachi"
+   ]
+  },
+  {
+   "group": "g.Kaminagaya",
+   "x": 540.0,
+   "y": 930.0,
+   "labelKo": "가미나가야",
+   "labelJa": "上永谷",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Kaminagaya"
+   ]
+  },
+  {
+   "group": "g.Kamiooka",
+   "x": 600.0,
+   "y": 900.0,
+   "labelKo": "가미오카",
+   "labelJa": "上大岡",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Kamiooka"
+   ]
+  },
+  {
+   "group": "g.Kannai",
+   "x": 810.0,
+   "y": 720.0,
+   "labelKo": "간나이",
+   "labelJa": "関内",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Kannai"
+   ]
+  },
+  {
+   "group": "g.Katakuracho",
+   "x": 630.0,
+   "y": 450.0,
+   "labelKo": "가타쿠라초",
+   "labelJa": "片倉町",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Katakuracho"
+   ]
+  },
+  {
+   "group": "g.Kawawacho",
+   "x": 480.0,
+   "y": 330.0,
+   "labelKo": "가와와초",
+   "labelJa": "川和町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.Kawawacho"
+   ]
+  },
+  {
+   "group": "g.KishineKoen",
+   "x": 720.0,
+   "y": 450.0,
+   "labelKo": "기시네코엔",
+   "labelJa": "岸根公園",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.KishineKoen"
+   ]
+  },
+  {
+   "group": "g.KitaShinYokohama",
+   "x": 660.0,
+   "y": 330.0,
+   "labelKo": "기타신요코하마",
+   "labelJa": "北新横浜",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.KitaShinYokohama"
+   ]
+  },
+  {
+   "group": "g.KitaYamata",
+   "x": 600.0,
+   "y": 120.0,
+   "labelKo": "기타야마타",
+   "labelJa": "北山田",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.KitaYamata"
+   ]
+  },
+  {
+   "group": "g.KonanChuo",
+   "x": 600.0,
+   "y": 990.0,
+   "labelKo": "고난추오",
+   "labelJa": "港南中央",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.KonanChuo"
+   ]
+  },
+  {
+   "group": "g.Maioka",
+   "x": 420.0,
+   "y": 930.0,
+   "labelKo": "마이오카",
+   "labelJa": "舞岡",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Maioka"
+   ]
+  },
+  {
+   "group": "g.Maita",
+   "x": 660.0,
+   "y": 780.0,
+   "labelKo": "마이타",
+   "labelJa": "蒔田",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Maita"
+   ]
+  },
+  {
+   "group": "g.MitsuzawaKamicho",
+   "x": 630.0,
+   "y": 540.0,
+   "labelKo": "미쓰자와카미초",
+   "labelJa": "三ツ沢上町",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaKamicho"
+   ]
+  },
+  {
+   "group": "g.MitsuzawaShimocho",
+   "x": 690.0,
+   "y": 540.0,
+   "labelKo": "미쓰자와시모초",
+   "labelJa": "三ツ沢下町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaShimocho"
+   ]
+  },
+  {
+   "group": "g.Nakada",
+   "x": 240.0,
+   "y": 900.0,
+   "labelKo": "나카다",
+   "labelJa": "中田",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Nakada"
+   ]
+  },
+  {
+   "group": "g.Nakagawa",
+   "x": 540.0,
+   "y": 120.0,
+   "labelKo": "나카가와",
+   "labelJa": "中川",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Nakagawa"
+   ]
+  },
+  {
+   "group": "g.Nakamachidai",
+   "x": 600.0,
+   "y": 240.0,
+   "labelKo": "나카마치다이",
+   "labelJa": "仲町台",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Nakamachidai"
+   ]
+  },
+  {
+   "group": "g.Nakayama",
+   "x": 420.0,
+   "y": 330.0,
+   "labelKo": "나카야마",
+   "labelJa": "中山",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.Nakayama"
+   ]
+  },
+  {
+   "group": "g.Nippa",
+   "x": 660.0,
+   "y": 240.0,
+   "labelKo": "닛파",
+   "labelJa": "新羽",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Nippa"
+   ]
+  },
+  {
+   "group": "g.Odoriba",
+   "x": 300.0,
+   "y": 930.0,
+   "labelKo": "오도리바",
+   "labelJa": "踊場",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Odoriba"
+   ]
+  },
+  {
+   "group": "g.Sakuragicho",
+   "x": 810.0,
+   "y": 630.0,
+   "labelKo": "사쿠라기초",
+   "labelJa": "桜木町",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Sakuragicho"
+   ]
+  },
+  {
+   "group": "g.Shimoiida",
+   "x": 120.0,
+   "y": 900.0,
+   "labelKo": "시모이이다",
+   "labelJa": "下飯田",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Shimoiida"
+   ]
+  },
+  {
+   "group": "g.Shimonagaya",
+   "x": 480.0,
+   "y": 930.0,
+   "labelKo": "시모나가야",
+   "labelJa": "下永谷",
+   "labelDx": 0,
+   "labelDy": 1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Shimonagaya"
+   ]
+  },
+  {
+   "group": "g.ShinYokohama",
+   "x": 660.0,
+   "y": 390.0,
+   "labelKo": "신요코하마",
+   "labelJa": "新横浜",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.ShinYokohama"
+   ]
+  },
+  {
+   "group": "g.Shonandai",
+   "x": 120.0,
+   "y": 960.0,
+   "labelKo": "쇼난다이",
+   "labelJa": "湘南台",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Shonandai"
+   ]
+  },
+  {
+   "group": "g.Takashimacho",
+   "x": 750.0,
+   "y": 630.0,
+   "labelKo": "다카시마초",
+   "labelJa": "高島町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Takashimacho"
+   ]
+  },
+  {
+   "group": "g.Takata",
+   "x": 720.0,
+   "y": 180.0,
+   "labelKo": "다카타",
+   "labelJa": "高田",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.Takata"
+   ]
+  },
+  {
+   "group": "g.Tateba",
+   "x": 180.0,
+   "y": 900.0,
+   "labelKo": "다테바",
+   "labelJa": "立場",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Tateba"
+   ]
+  },
+  {
+   "group": "g.Totsuka",
+   "x": 360.0,
+   "y": 930.0,
+   "labelKo": "도쓰카",
+   "labelJa": "戸塚",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Totsuka"
+   ]
+  },
+  {
+   "group": "g.TsuzukiFureainooka",
+   "x": 480.0,
+   "y": 240.0,
+   "labelKo": "쓰즈키후레아이노카",
+   "labelJa": "都筑ふれあいの丘",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Green.TsuzukiFureainooka"
+   ]
+  },
+  {
+   "group": "g.Yokohama",
+   "x": 690.0,
+   "y": 630.0,
+   "labelKo": "요코하마",
+   "labelJa": "横浜",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Yokohama"
+   ]
+  },
+  {
+   "group": "g.Yoshinocho",
+   "x": 720.0,
+   "y": 780.0,
+   "labelKo": "요시노초",
+   "labelJa": "吉野町",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:YokohamaMunicipal.Blue.Yoshinocho"
+   ]
+  }
+ ],
+ "lines": [
+  {
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "color": "#0070C0",
+   "segments": [
+    {
+     "points": [
+      [
+       120.0,
+       900.0
+      ],
+      [
+       120.0,
+       960.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       900.0
+      ],
+      [
+       180.0,
+       900.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       900.0
+      ],
+      [
+       180.0,
+       900.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       900.0
+      ],
+      [
+       270.0,
+       930.0
+      ],
+      [
+       300.0,
+       930.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       300.0,
+       930.0
+      ],
+      [
+       360.0,
+       930.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       930.0
+      ],
+      [
+       360.0,
+       930.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       420.0,
+       930.0
+      ],
+      [
+       480.0,
+       930.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       930.0
+      ],
+      [
+       480.0,
+       930.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       930.0
+      ],
+      [
+       600.0,
+       990.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       900.0
+      ],
+      [
+       600.0,
+       990.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       840.0
+      ],
+      [
+       600.0,
+       900.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       840.0
+      ],
+      [
+       660.0,
+       780.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       780.0
+      ],
+      [
+       720.0,
+       780.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       780.0
+      ],
+      [
+       720.0,
+       780.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       780.0
+      ],
+      [
+       750.0,
+       720.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       750.0,
+       720.0
+      ],
+      [
+       810.0,
+       720.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       720.0
+      ],
+      [
+       810.0,
+       630.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       630.0
+      ],
+      [
+       750.0,
+       630.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       750.0,
+       630.0
+      ],
+      [
+       690.0,
+       630.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       690.0,
+       540.0
+      ],
+      [
+       690.0,
+       630.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       630.0,
+       540.0
+      ],
+      [
+       690.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       630.0,
+       450.0
+      ],
+      [
+       630.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       630.0,
+       450.0
+      ],
+      [
+       720.0,
+       450.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       720.0,
+       450.0
+      ],
+      [
+       660.0,
+       390.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       330.0
+      ],
+      [
+       660.0,
+       390.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       330.0
+      ],
+      [
+       660.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       240.0
+      ],
+      [
+       660.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       240.0
+      ],
+      [
+       600.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       180.0
+      ],
+      [
+       540.0,
+       240.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       600.0,
+       180.0
+      ],
+      [
+       540.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       120.0
+      ],
+      [
+       540.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  },
+  {
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "color": "#00B050",
+   "segments": [
+    {
+     "points": [
+      [
+       600.0,
+       180.0
+      ],
+      [
+       540.0,
+       240.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       480.0,
+       330.0
+      ],
+      [
+       420.0,
+       330.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       480.0,
+       330.0
+      ],
+      [
+       480.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       240.0
+      ],
+      [
+       480.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       180.0
+      ],
+      [
+       600.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       180.0
+      ],
+      [
+       600.0,
+       120.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       180.0
+      ],
+      [
+       720.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       180.0
+      ],
+      [
+       720.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       840.0,
+       180.0
+      ],
+      [
+       780.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  }
+ ]
+}

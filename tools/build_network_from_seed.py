@@ -24,8 +24,10 @@ def build(seed, overrides):
     for L in seed["lines"]:
         path = L["id"].split(":", 1)[1]
         ids = []
-        for code, en, ja, kana, lat, lon in L["stations"]:
-            sid = f"odpt.Station:{path}.{en}"
+        en2sid = {}
+        for code, en, ja, kana, lat, lon, *rest in L["stations"]:
+            sid = rest[0] if rest else f"odpt.Station:{path}.{en}"
+            en2sid[en] = sid
             g = f"g.{en}"
             if g in group_pos and dist_m(group_pos[g], (lat, lon)) > GROUP_RADIUS_M:
                 g = f"g.{en}.{L['code']}"
@@ -40,6 +42,8 @@ def build(seed, overrides):
         lines.append({"id": L["id"], "operator": L["operator"], "code": L["code"],
                       "name": {**L["name"], "kana": ""}, "color": L["color"], "stations": ids,
                       "directions": {"asc": d(L["asc"]), "desc": d(L["desc"])}, "loop": bool(L.get("loop", False))})
+        if L.get("extraEdges"):
+            lines[-1]["extraEdges"] = [[en2sid[a], en2sid[b]] for a, b in L["extraEdges"]]
     by_group = {}
     for s in stations:
         by_group.setdefault(s["group"], []).append(s["id"])
@@ -53,6 +57,24 @@ def build(seed, overrides):
         for a in by_group.get(ga, []):
             for b in by_group.get(gb, []):
                 transfers.append({"from": a, "to": b, "walkSec": sec})
+    # 이름은 다르지만 가까운 역(예: 우에노오카치마치–나카오카치마치) → 도보 환승 자동 생성
+    radius = seed.get("autoTransferRadiusM", 0)
+    if radius:
+        explicit = {frozenset((a, b)) for a, b, _ in seed.get("extraTransfers", [])}
+        glines = {}
+        for st in stations:
+            glines.setdefault(st["group"], set()).add(st["lineId"])
+        gs = sorted(by_group)
+        for i, ga in enumerate(gs):
+            for gb in gs[i + 1:]:
+                if glines[ga] & glines[gb] or frozenset((ga, gb)) in explicit:
+                    continue
+                dm = dist_m(group_pos[ga], group_pos[gb])
+                if dm <= radius:
+                    sec = max(walk, int(round(60 + dm / 1.2)))
+                    for a in by_group[ga]:
+                        for b in by_group[gb]:
+                            transfers.append({"from": a, "to": b, "walkSec": sec})
     return {"schemaVersion": 1, "regionId": seed["regionId"], "source": "seed",
             "lines": lines, "stations": stations, "transfers": transfers}
 

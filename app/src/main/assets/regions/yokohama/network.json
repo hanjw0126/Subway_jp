@@ -1,0 +1,721 @@
+{
+ "schemaVersion": 1,
+ "regionId": "yokohama",
+ "source": "seed",
+ "lines": [
+  {
+   "id": "odpt.Railway:YokohamaMunicipal.Blue",
+   "operator": "odpt.Operator:YokohamaMunicipal",
+   "code": "B",
+   "name": {
+    "ja": "ブルーライン",
+    "ko": "요코하마 블루라인",
+    "en": "Blue Line",
+    "kana": ""
+   },
+   "color": "#0070C0",
+   "stations": [
+    "odpt.Station:YokohamaMunicipal.Blue.Shonandai",
+    "odpt.Station:YokohamaMunicipal.Blue.Shimoiida",
+    "odpt.Station:YokohamaMunicipal.Blue.Tateba",
+    "odpt.Station:YokohamaMunicipal.Blue.Nakada",
+    "odpt.Station:YokohamaMunicipal.Blue.Odoriba",
+    "odpt.Station:YokohamaMunicipal.Blue.Totsuka",
+    "odpt.Station:YokohamaMunicipal.Blue.Maioka",
+    "odpt.Station:YokohamaMunicipal.Blue.Shimonagaya",
+    "odpt.Station:YokohamaMunicipal.Blue.Kaminagaya",
+    "odpt.Station:YokohamaMunicipal.Blue.KonanChuo",
+    "odpt.Station:YokohamaMunicipal.Blue.Kamiooka",
+    "odpt.Station:YokohamaMunicipal.Blue.Gumyoji",
+    "odpt.Station:YokohamaMunicipal.Blue.Maita",
+    "odpt.Station:YokohamaMunicipal.Blue.Yoshinocho",
+    "odpt.Station:YokohamaMunicipal.Blue.Bandobashi",
+    "odpt.Station:YokohamaMunicipal.Blue.IsezakiChojamachi",
+    "odpt.Station:YokohamaMunicipal.Blue.Kannai",
+    "odpt.Station:YokohamaMunicipal.Blue.Sakuragicho",
+    "odpt.Station:YokohamaMunicipal.Blue.Takashimacho",
+    "odpt.Station:YokohamaMunicipal.Blue.Yokohama",
+    "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaShimocho",
+    "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaKamicho",
+    "odpt.Station:YokohamaMunicipal.Blue.Katakuracho",
+    "odpt.Station:YokohamaMunicipal.Blue.KishineKoen",
+    "odpt.Station:YokohamaMunicipal.Blue.ShinYokohama",
+    "odpt.Station:YokohamaMunicipal.Blue.KitaShinYokohama",
+    "odpt.Station:YokohamaMunicipal.Blue.Nippa",
+    "odpt.Station:YokohamaMunicipal.Blue.Nakamachidai",
+    "odpt.Station:YokohamaMunicipal.Blue.CenterMinami",
+    "odpt.Station:YokohamaMunicipal.Blue.CenterKita",
+    "odpt.Station:YokohamaMunicipal.Blue.Nakagawa",
+    "odpt.Station:YokohamaMunicipal.Blue.Azamino"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:Inbound",
+     "name": {
+      "ja": "あざみ野方面",
+      "ko": "아자미노 방면",
+      "en": "for Azamino",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:Outbound",
+     "name": {
+      "ja": "湘南台方面",
+      "ko": "쇼난다이 방면",
+      "en": "for Shonandai",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  },
+  {
+   "id": "odpt.Railway:YokohamaMunicipal.Green",
+   "operator": "odpt.Operator:YokohamaMunicipal",
+   "code": "G",
+   "name": {
+    "ja": "グリーンライン",
+    "ko": "요코하마 그린라인",
+    "en": "Green Line",
+    "kana": ""
+   },
+   "color": "#00B050",
+   "stations": [
+    "odpt.Station:YokohamaMunicipal.Green.Nakayama",
+    "odpt.Station:YokohamaMunicipal.Green.Kawawacho",
+    "odpt.Station:YokohamaMunicipal.Green.TsuzukiFureainooka",
+    "odpt.Station:YokohamaMunicipal.Green.CenterMinami",
+    "odpt.Station:YokohamaMunicipal.Green.CenterKita",
+    "odpt.Station:YokohamaMunicipal.Green.KitaYamata",
+    "odpt.Station:YokohamaMunicipal.Green.HigashiYamata",
+    "odpt.Station:YokohamaMunicipal.Green.Takata",
+    "odpt.Station:YokohamaMunicipal.Green.HiyoshiHoncho",
+    "odpt.Station:YokohamaMunicipal.Green.Hiyoshi"
+   ],
+   "directions": {
+    "asc": {
+     "id": "odpt.RailDirection:Inbound",
+     "name": {
+      "ja": "日吉方面",
+      "ko": "히요시 방면",
+      "en": "for Hiyoshi",
+      "kana": ""
+     }
+    },
+    "desc": {
+     "id": "odpt.RailDirection:Outbound",
+     "name": {
+      "ja": "中山方面",
+      "ko": "나카야마 방면",
+      "en": "for Nakayama",
+      "kana": ""
+     }
+    }
+   },
+   "loop": false
+  }
+ ],
+ "stations": [
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Shonandai",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B01",
+   "name": {
+    "ja": "湘南台",
+    "ko": "쇼난다이",
+    "en": "Shonandai",
+    "kana": "しょなんだい"
+   },
+   "lat": 35.396565,
+   "lon": 139.466502,
+   "group": "g.Shonandai"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Shimoiida",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B02",
+   "name": {
+    "ja": "下飯田",
+    "ko": "시모이이다",
+    "en": "Shimoiida",
+    "kana": "しもいいだ"
+   },
+   "lat": 35.403362,
+   "lon": 139.482969,
+   "group": "g.Shimoiida"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Tateba",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B03",
+   "name": {
+    "ja": "立場",
+    "ko": "다테바",
+    "en": "Tateba",
+    "kana": "たてば"
+   },
+   "lat": 35.41423,
+   "lon": 139.50028,
+   "group": "g.Tateba"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Nakada",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B04",
+   "name": {
+    "ja": "中田",
+    "ko": "나카다",
+    "en": "Nakada",
+    "kana": "なかだ"
+   },
+   "lat": 35.411199,
+   "lon": 139.511324,
+   "group": "g.Nakada"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Odoriba",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B05",
+   "name": {
+    "ja": "踊場",
+    "ko": "오도리바",
+    "en": "Odoriba",
+    "kana": "おどりば"
+   },
+   "lat": 35.405704,
+   "lon": 139.518501,
+   "group": "g.Odoriba"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Totsuka",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B06",
+   "name": {
+    "ja": "戸塚",
+    "ko": "도쓰카",
+    "en": "Totsuka",
+    "kana": "とつか"
+   },
+   "lat": 35.401142,
+   "lon": 139.535125,
+   "group": "g.Totsuka"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Maioka",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B07",
+   "name": {
+    "ja": "舞岡",
+    "ko": "마이오카",
+    "en": "Maioka",
+    "kana": "まいおか"
+   },
+   "lat": 35.402538,
+   "lon": 139.551498,
+   "group": "g.Maioka"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Shimonagaya",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B08",
+   "name": {
+    "ja": "下永谷",
+    "ko": "시모나가야",
+    "en": "Shimonagaya",
+    "kana": "しもながや"
+   },
+   "lat": 35.402844,
+   "lon": 139.559275,
+   "group": "g.Shimonagaya"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Kaminagaya",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B09",
+   "name": {
+    "ja": "上永谷",
+    "ko": "가미나가야",
+    "en": "Kaminagaya",
+    "kana": "かみながや"
+   },
+   "lat": 35.401456,
+   "lon": 139.573079,
+   "group": "g.Kaminagaya"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.KonanChuo",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B10",
+   "name": {
+    "ja": "港南中央",
+    "ko": "고난추오",
+    "en": "KonanChuo",
+    "kana": "こなんちゅお"
+   },
+   "lat": 35.401317,
+   "lon": 139.591578,
+   "group": "g.KonanChuo"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Kamiooka",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B11",
+   "name": {
+    "ja": "上大岡",
+    "ko": "가미오카",
+    "en": "Kamiooka",
+    "kana": "かみおおか"
+   },
+   "lat": 35.408451,
+   "lon": 139.595875,
+   "group": "g.Kamiooka"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Gumyoji",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B12",
+   "name": {
+    "ja": "弘明寺",
+    "ko": "구묘지",
+    "en": "Gumyoji",
+    "kana": "ぐみょじ"
+   },
+   "lat": 35.423152,
+   "lon": 139.602039,
+   "group": "g.Gumyoji"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Maita",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B13",
+   "name": {
+    "ja": "蒔田",
+    "ko": "마이타",
+    "en": "Maita",
+    "kana": "まいた"
+   },
+   "lat": 35.430203,
+   "lon": 139.610464,
+   "group": "g.Maita"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Yoshinocho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B14",
+   "name": {
+    "ja": "吉野町",
+    "ko": "요시노초",
+    "en": "Yoshinocho",
+    "kana": "よしのちょ"
+   },
+   "lat": 35.435424,
+   "lon": 139.61888,
+   "group": "g.Yoshinocho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Bandobashi",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B15",
+   "name": {
+    "ja": "阪東橋",
+    "ko": "반도바시",
+    "en": "Bandobashi",
+    "kana": "ばんどばし"
+   },
+   "lat": 35.437646,
+   "lon": 139.625296,
+   "group": "g.Bandobashi"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.IsezakiChojamachi",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B16",
+   "name": {
+    "ja": "伊勢佐木長者町",
+    "ko": "이세자키초자마치",
+    "en": "IsezakiChojamachi",
+    "kana": "いせざきちょじゃまち"
+   },
+   "lat": 35.441008,
+   "lon": 139.632601,
+   "group": "g.IsezakiChojamachi"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Kannai",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B17",
+   "name": {
+    "ja": "関内",
+    "ko": "간나이",
+    "en": "Kannai",
+    "kana": "かんない"
+   },
+   "lat": 35.445714,
+   "lon": 139.635978,
+   "group": "g.Kannai"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Sakuragicho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B18",
+   "name": {
+    "ja": "桜木町",
+    "ko": "사쿠라기초",
+    "en": "Sakuragicho",
+    "kana": "さくらぎちょ"
+   },
+   "lat": 35.449761,
+   "lon": 139.630626,
+   "group": "g.Sakuragicho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Takashimacho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B19",
+   "name": {
+    "ja": "高島町",
+    "ko": "다카시마초",
+    "en": "Takashimacho",
+    "kana": "たかしまちょ"
+   },
+   "lat": 35.458945,
+   "lon": 139.623477,
+   "group": "g.Takashimacho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Yokohama",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B20",
+   "name": {
+    "ja": "横浜",
+    "ko": "요코하마",
+    "en": "Yokohama",
+    "kana": "よこはま"
+   },
+   "lat": 35.465624,
+   "lon": 139.619948,
+   "group": "g.Yokohama"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaShimocho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B21",
+   "name": {
+    "ja": "三ツ沢下町",
+    "ko": "미쓰자와시모초",
+    "en": "MitsuzawaShimocho",
+    "kana": "みつざわしもちょ"
+   },
+   "lat": 35.476517,
+   "lon": 139.615042,
+   "group": "g.MitsuzawaShimocho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.MitsuzawaKamicho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B22",
+   "name": {
+    "ja": "三ツ沢上町",
+    "ko": "미쓰자와카미초",
+    "en": "MitsuzawaKamicho",
+    "kana": "みつざわかみちょ"
+   },
+   "lat": 35.47642,
+   "lon": 139.605408,
+   "group": "g.MitsuzawaKamicho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Katakuracho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B23",
+   "name": {
+    "ja": "片倉町",
+    "ko": "가타쿠라초",
+    "en": "Katakuracho",
+    "kana": "かたくらちょ"
+   },
+   "lat": 35.489974,
+   "lon": 139.606518,
+   "group": "g.Katakuracho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.KishineKoen",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B24",
+   "name": {
+    "ja": "岸根公園",
+    "ko": "기시네코엔",
+    "en": "KishineKoen",
+    "kana": "きしねこえん"
+   },
+   "lat": 35.495556,
+   "lon": 139.616656,
+   "group": "g.KishineKoen"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.ShinYokohama",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B25",
+   "name": {
+    "ja": "新横浜",
+    "ko": "신요코하마",
+    "en": "ShinYokohama",
+    "kana": "しんよこはま"
+   },
+   "lat": 35.508876,
+   "lon": 139.617318,
+   "group": "g.ShinYokohama"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.KitaShinYokohama",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B26",
+   "name": {
+    "ja": "北新横浜",
+    "ko": "기타신요코하마",
+    "en": "KitaShinYokohama",
+    "kana": "きたしんよこはま"
+   },
+   "lat": 35.519237,
+   "lon": 139.612816,
+   "group": "g.KitaShinYokohama"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Nippa",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B27",
+   "name": {
+    "ja": "新羽",
+    "ko": "닛파",
+    "en": "Nippa",
+    "kana": "にっぱ"
+   },
+   "lat": 35.527081,
+   "lon": 139.612377,
+   "group": "g.Nippa"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Nakamachidai",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B28",
+   "name": {
+    "ja": "仲町台",
+    "ko": "나카마치다이",
+    "en": "Nakamachidai",
+    "kana": "なかまちだい"
+   },
+   "lat": 35.53523,
+   "lon": 139.589828,
+   "group": "g.Nakamachidai"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.CenterMinami",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B29",
+   "name": {
+    "ja": "センター南",
+    "ko": "센터미나미",
+    "en": "CenterMinami",
+    "kana": "えんてみなみ"
+   },
+   "lat": 35.545633,
+   "lon": 139.574713,
+   "group": "g.CenterMinami"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.CenterKita",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B30",
+   "name": {
+    "ja": "センター北",
+    "ko": "센터키타",
+    "en": "CenterKita",
+    "kana": "えんてきた"
+   },
+   "lat": 35.553383,
+   "lon": 139.579045,
+   "group": "g.CenterKita"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Nakagawa",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B31",
+   "name": {
+    "ja": "中川",
+    "ko": "나카가와",
+    "en": "Nakagawa",
+    "kana": "なかがわ"
+   },
+   "lat": 35.562659,
+   "lon": 139.570296,
+   "group": "g.Nakagawa"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Blue.Azamino",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Blue",
+   "code": "B32",
+   "name": {
+    "ja": "あざみ野",
+    "ko": "아자미노",
+    "en": "Azamino",
+    "kana": "あざみの"
+   },
+   "lat": 35.568022,
+   "lon": 139.553876,
+   "group": "g.Azamino"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.Nakayama",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G01",
+   "name": {
+    "ja": "中山",
+    "ko": "나카야마",
+    "en": "Nakayama",
+    "kana": "なかやま"
+   },
+   "lat": 35.515143,
+   "lon": 139.540439,
+   "group": "g.Nakayama"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.Kawawacho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G02",
+   "name": {
+    "ja": "川和町",
+    "ko": "가와와초",
+    "en": "Kawawacho",
+    "kana": "かわわちょ"
+   },
+   "lat": 35.528382,
+   "lon": 139.549265,
+   "group": "g.Kawawacho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.TsuzukiFureainooka",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G03",
+   "name": {
+    "ja": "都筑ふれあいの丘",
+    "ko": "쓰즈키후레아이노카",
+    "en": "TsuzukiFureainooka",
+    "kana": "つずきふれあいのおか"
+   },
+   "lat": 35.536637,
+   "lon": 139.561611,
+   "group": "g.TsuzukiFureainooka"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.CenterMinami",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G04",
+   "name": {
+    "ja": "センター南",
+    "ko": "센터미나미",
+    "en": "CenterMinami",
+    "kana": "えんてみなみ"
+   },
+   "lat": 35.545633,
+   "lon": 139.574713,
+   "group": "g.CenterMinami"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.CenterKita",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G05",
+   "name": {
+    "ja": "センター北",
+    "ko": "센터키타",
+    "en": "CenterKita",
+    "kana": "えんてきた"
+   },
+   "lat": 35.553383,
+   "lon": 139.579045,
+   "group": "g.CenterKita"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.KitaYamata",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G06",
+   "name": {
+    "ja": "北山田",
+    "ko": "기타야마타",
+    "en": "KitaYamata",
+    "kana": "きたやまた"
+   },
+   "lat": 35.56095,
+   "lon": 139.592827,
+   "group": "g.KitaYamata"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.HigashiYamata",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G07",
+   "name": {
+    "ja": "東山田",
+    "ko": "히가시야마타",
+    "en": "HigashiYamata",
+    "kana": "ひがしやまた"
+   },
+   "lat": 35.554184,
+   "lon": 139.604928,
+   "group": "g.HigashiYamata"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.Takata",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G08",
+   "name": {
+    "ja": "高田",
+    "ko": "다카타",
+    "en": "Takata",
+    "kana": "たかた"
+   },
+   "lat": 35.549594,
+   "lon": 139.620231,
+   "group": "g.Takata"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.HiyoshiHoncho",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G09",
+   "name": {
+    "ja": "日吉本町",
+    "ko": "히요시혼초",
+    "en": "HiyoshiHoncho",
+    "kana": "ひよしほんちょ"
+   },
+   "lat": 35.549961,
+   "lon": 139.633413,
+   "group": "g.HiyoshiHoncho"
+  },
+  {
+   "id": "odpt.Station:YokohamaMunicipal.Green.Hiyoshi",
+   "lineId": "odpt.Railway:YokohamaMunicipal.Green",
+   "code": "G10",
+   "name": {
+    "ja": "日吉",
+    "ko": "히요시",
+    "en": "Hiyoshi",
+    "kana": "ひよし"
+   },
+   "lat": 35.553207,
+   "lon": 139.647449,
+   "group": "g.Hiyoshi"
+  }
+ ],
+ "transfers": [
+  {
+   "from": "odpt.Station:YokohamaMunicipal.Blue.CenterKita",
+   "to": "odpt.Station:YokohamaMunicipal.Green.CenterKita",
+   "walkSec": 180
+  },
+  {
+   "from": "odpt.Station:YokohamaMunicipal.Blue.CenterMinami",
+   "to": "odpt.Station:YokohamaMunicipal.Green.CenterMinami",
+   "walkSec": 180
+  }
+ ]
+}

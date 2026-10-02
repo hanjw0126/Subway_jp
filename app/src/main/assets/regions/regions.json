@@ -8,9 +8,38 @@
     },
     "realtime": true,
     "operators": [
-      "odpt.Operator:TokyoMetro"
+      "odpt.Operator:TokyoMetro",
+      "odpt.Operator:Toei",
+      "odpt.Operator:MIR",
+      "odpt.Operator:TWR"
     ],
-    "note": "도쿄메트로 긴자·마루노우치·한조몬선 (샘플 3개 노선)"
+    "note": "도쿄메트로 9·도에이 6·TX·린카이선 (18개 노선)"
+  },
+  {
+    "id": "yokohama",
+    "name": {
+      "ko": "요코하마",
+      "ja": "横浜",
+      "en": "Yokohama"
+    },
+    "realtime": true,
+    "operators": [
+      "odpt.Operator:YokohamaMunicipal"
+    ],
+    "note": "요코하마 시영 지하철 블루·그린라인"
+  },
+  {
+    "id": "tama",
+    "name": {
+      "ko": "다마",
+      "ja": "多摩",
+      "en": "Tama"
+    },
+    "realtime": true,
+    "operators": [
+      "odpt.Operator:TamaMonorail"
+    ],
+    "note": "다마 모노레일 · 시간표 기준"
   },
   {
     "id": "osaka",

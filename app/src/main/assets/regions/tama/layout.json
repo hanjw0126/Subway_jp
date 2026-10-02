@@ -1,0 +1,498 @@
+{
+ "schemaVersion": 1,
+ "regionId": "tama",
+ "unit": 60.0,
+ "width": 360.0,
+ "height": 1200.0,
+ "nodes": [
+  {
+   "group": "g.ChuoDaigakuMeiseiDaigaku",
+   "x": 120.0,
+   "y": 960.0,
+   "labelKo": "주오다이가쿠·메이세이다이가쿠",
+   "labelJa": "中央大学・明星大学",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.ChuoDaigakuMeiseiDaigaku"
+   ]
+  },
+  {
+   "group": "g.Hodokubo",
+   "x": 180.0,
+   "y": 840.0,
+   "labelKo": "호도쿠보",
+   "labelJa": "程久保",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Hodokubo"
+   ]
+  },
+  {
+   "group": "g.IzumiTaiikukan",
+   "x": 210.0,
+   "y": 360.0,
+   "labelKo": "이즈미타이이쿠칸",
+   "labelJa": "泉体育館",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.IzumiTaiikukan"
+   ]
+  },
+  {
+   "group": "g.Kamikitadai",
+   "x": 210.0,
+   "y": 120.0,
+   "labelKo": "가미키타다이",
+   "labelJa": "上北台",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Kamikitadai"
+   ]
+  },
+  {
+   "group": "g.Koshukaido",
+   "x": 120.0,
+   "y": 660.0,
+   "labelKo": "고슈카이도",
+   "labelJa": "甲州街道",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Koshukaido"
+   ]
+  },
+  {
+   "group": "g.Manganji",
+   "x": 180.0,
+   "y": 720.0,
+   "labelKo": "만간지",
+   "labelJa": "万願寺",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Manganji"
+   ]
+  },
+  {
+   "group": "g.Matsugaya",
+   "x": 240.0,
+   "y": 1020.0,
+   "labelKo": "마쓰가야",
+   "labelJa": "松が谷",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Matsugaya"
+   ]
+  },
+  {
+   "group": "g.OtsukaTeikyoDaigaku",
+   "x": 180.0,
+   "y": 960.0,
+   "labelKo": "오쓰카·데이쿄다이가쿠",
+   "labelJa": "大塚・帝京大学",
+   "labelDx": 1,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.OtsukaTeikyoDaigaku"
+   ]
+  },
+  {
+   "group": "g.Sakurakaido",
+   "x": 210.0,
+   "y": 180.0,
+   "labelKo": "사쿠라카이도",
+   "labelJa": "桜街道",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Sakurakaido"
+   ]
+  },
+  {
+   "group": "g.ShibasakiTaiikukan",
+   "x": 120.0,
+   "y": 600.0,
+   "labelKo": "시바사키타이이쿠칸",
+   "labelJa": "柴崎体育館",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.ShibasakiTaiikukan"
+   ]
+  },
+  {
+   "group": "g.SunagawaNanaban",
+   "x": 210.0,
+   "y": 300.0,
+   "labelKo": "스나가와나나반",
+   "labelJa": "砂川七番",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.SunagawaNanaban"
+   ]
+  },
+  {
+   "group": "g.Tachihi",
+   "x": 120.0,
+   "y": 360.0,
+   "labelKo": "다치히",
+   "labelJa": "立飛",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Tachihi"
+   ]
+  },
+  {
+   "group": "g.TachikawaKita",
+   "x": 180.0,
+   "y": 480.0,
+   "labelKo": "다치카와키타",
+   "labelJa": "立川北",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TachikawaKita"
+   ]
+  },
+  {
+   "group": "g.TachikawaMinami",
+   "x": 180.0,
+   "y": 540.0,
+   "labelKo": "다치카와미나미",
+   "labelJa": "立川南",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TachikawaMinami"
+   ]
+  },
+  {
+   "group": "g.Takahatafudo",
+   "x": 180.0,
+   "y": 780.0,
+   "labelKo": "다카하타후도",
+   "labelJa": "高幡不動",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Takahatafudo"
+   ]
+  },
+  {
+   "group": "g.Takamatsu",
+   "x": 180.0,
+   "y": 420.0,
+   "labelKo": "다카마쓰",
+   "labelJa": "高松",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Takamatsu"
+   ]
+  },
+  {
+   "group": "g.TamaCenter",
+   "x": 240.0,
+   "y": 1080.0,
+   "labelKo": "다마센터",
+   "labelJa": "多摩センター",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamaCenter"
+   ]
+  },
+  {
+   "group": "g.TamaDobutsukoen",
+   "x": 120.0,
+   "y": 900.0,
+   "labelKo": "다마도부쓰코엔",
+   "labelJa": "多摩動物公園",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamaDobutsukoen"
+   ]
+  },
+  {
+   "group": "g.TamagawaJosui",
+   "x": 210.0,
+   "y": 240.0,
+   "labelKo": "다마가와조스이",
+   "labelJa": "玉川上水",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamagawaJosui"
+   ]
+  }
+ ],
+ "lines": [
+  {
+   "lineId": "odpt.Railway:TamaMonorail.TamaMonorail",
+   "color": "#286460",
+   "segments": [
+    {
+     "points": [
+      [
+       240.0,
+       1020.0
+      ],
+      [
+       240.0,
+       1080.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       1020.0
+      ],
+      [
+       180.0,
+       960.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       960.0
+      ],
+      [
+       180.0,
+       960.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       960.0
+      ],
+      [
+       120.0,
+       900.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       840.0
+      ],
+      [
+       120.0,
+       900.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       840.0
+      ],
+      [
+       180.0,
+       780.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       720.0
+      ],
+      [
+       180.0,
+       780.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       660.0
+      ],
+      [
+       180.0,
+       720.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       660.0
+      ],
+      [
+       120.0,
+       600.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       600.0
+      ],
+      [
+       180.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       480.0
+      ],
+      [
+       180.0,
+       540.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       180.0,
+       480.0
+      ],
+      [
+       180.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       120.0,
+       360.0
+      ],
+      [
+       180.0,
+       420.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       360.0
+      ],
+      [
+       120.0,
+       360.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       360.0
+      ],
+      [
+       210.0,
+       300.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       300.0
+      ],
+      [
+       210.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       180.0
+      ],
+      [
+       210.0,
+       240.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       120.0
+      ],
+      [
+       210.0,
+       180.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  }
+ ]
+}
