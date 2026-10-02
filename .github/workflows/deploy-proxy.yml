@@ -5,9 +5,17 @@ on:
     branches: [ main ]
     paths: [ "worker/**", ".github/workflows/deploy-proxy.yml" ]
   workflow_dispatch:
+    inputs:
+      subdomain:
+        description: "workers.dev 하위 도메인 (미등록일 때만 사용)"
+        required: false
+        default: ""
 
 permissions:
   contents: read
+
+env:
+  WRANGLER_VERSION: "4.146.0"
 
 jobs:
   deploy:
@@ -16,8 +24,12 @@ jobs:
     env:
       CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CF_API: https://api.cloudflare.com/client/v4
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: false
+
       - name: Check secrets
         env:
           ODPT: ${{ secrets.ODPT_CONSUMER_KEY }}
@@ -25,32 +37,50 @@ jobs:
           for v in CF_TOKEN CF_ACCOUNT ODPT; do
             if [ -z "${!v}" ]; then echo "::error::$v 에 해당하는 secret 이 비어 있습니다"; exit 1; fi
           done
+          V=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/user/tokens/verify" | jq -r '.result.status // "invalid"')
+          echo "Cloudflare token: $V"; [ "$V" = "active" ] || { echo "::error::CLOUDFLARE_API_TOKEN 이 유효하지 않습니다"; exit 1; }
+
+      - name: Ensure workers.dev subdomain
+        env:
+          WANT: ${{ inputs.subdomain || vars.CF_WORKERS_SUBDOMAIN || 'jpsubway-hanjw0126' }}
+        run: |
+          SUB=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')
+          if [ -n "$SUB" ]; then echo "이미 등록됨: $SUB.workers.dev"; exit 0; fi
+          echo "하위 도메인 등록 시도: $WANT"
+          RES=$(curl -sS -X PUT -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+                --data "{\"subdomain\":\"$WANT\"}" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain")
+          echo "$RES" | jq -c '{success, errors, result}'
+          if [ "$(echo "$RES" | jq -r .success)" != "true" ]; then
+            echo "::error::workers.dev 하위 도메인 등록 실패. 이름이 이미 사용 중이면 Actions > Deploy ODPT proxy > Run workflow 에서 다른 이름을 넣거나, Cloudflare 대시보드 > Workers & Pages 에서 직접 등록하세요."
+            exit 1
+          fi
+          echo "등록 완료: $WANT.workers.dev (DNS 전파에 몇 분 걸릴 수 있음)" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
+          wranglerVersion: ${{ env.WRANGLER_VERSION }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: worker
           command: deploy
+
       - name: Upload ODPT key as worker secret
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: worker
-          secrets: |
-            ODPT_CONSUMER_KEY
-          command: deployments list
+        working-directory: worker
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           ODPT_CONSUMER_KEY: ${{ secrets.ODPT_CONSUMER_KEY }}
+        run: printf '%s' "$ODPT_CONSUMER_KEY" | npx --yes "wrangler@$WRANGLER_VERSION" secret put ODPT_CONSUMER_KEY
+
       - name: Smoke test
         run: |
-          SUB=$(curl -fsS -H "Authorization: Bearer $CF_TOKEN" "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')
-          [ -n "$SUB" ] || { echo "::error::workers.dev 하위 도메인을 찾지 못했습니다 (Cloudflare 대시보드 > Workers & Pages 에서 설정)"; exit 1; }
+          SUB=$(curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')
+          [ -n "$SUB" ] || { echo "::error::workers.dev 하위 도메인을 찾지 못했습니다"; exit 1; }
           BASE="https://jp-subway-proxy.$SUB.workers.dev"
           echo "중계 서버: $BASE/api/v4/" >> "$GITHUB_STEP_SUMMARY"
           CODE=000
-          for i in $(seq 1 12); do
+          for i in $(seq 1 20); do
             CODE=$(curl -s -o /tmp/r.json -w '%{http_code}' "$BASE/api/v4/odpt:TrainInformation?odpt:railway=odpt.Railway:Toei.Asakusa" || true)
             echo "try $i: HTTP $CODE"; [ "$CODE" = "200" ] && break; sleep 15
           done
