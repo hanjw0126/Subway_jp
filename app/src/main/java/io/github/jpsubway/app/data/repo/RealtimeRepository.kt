@@ -18,7 +18,7 @@ class RealtimeRepository(private val odpt: OdptClient, private val settings: Set
     suspend fun snapshot(region: RegionInfo, network: Network, nowEpoch: Long): RealtimeSnapshot {
         val key = settings.consumerKey()
         if (!region.realtime) return RealtimeSnapshot(fetchedAtEpochSec = nowEpoch, error = "이 지역은 실시간 정보를 제공하지 않습니다")
-        if (key.isBlank()) return RealtimeSnapshot(fetchedAtEpochSec = nowEpoch, error = "ODPT 토큰이 없어 시간표 기준으로 표시합니다")
+        if (key.isBlank()) return RealtimeSnapshot(fetchedAtEpochSec = nowEpoch, error = "실시간 서버를 사용할 수 없어 시간표 기준으로 표시합니다")
         return try {
             coroutineScope {
                 val trains = network.lines.map { line -> async { odpt.trains(line.id, key) } }.awaitAll().flatten()

@@ -15,6 +15,19 @@ from collections import defaultdict
 UNIT = 60.0
 GRID = 0.5
 MARGIN = 2.0
+# 복잡 구간 완화: 반경 CROWD_RADIUS 안에 역이 CROWD_START 개 넘게 몰린 곳은
+# 구간 목표 길이를 최대 +CROWD_EXTRA, 비인접 역 최소 간격을 최대 +CROWD_REPEL 만큼 늘린다.
+CROWD_RADIUS = 1.6
+CROWD_START = 4
+CROWD_SPAN = 8
+CROWD_EXTRA = 0.3
+CROWD_REPEL = 0.25
+_REPEL = {}
+
+
+def _crowding(geo_n, r=CROWD_RADIUS):
+    items = list(geo_n.items())
+    return {g: sum(1 for h, (u, v) in items if h != g and (u - x) ** 2 + (v - y) ** 2 < r * r) for g, (x, y) in items}
 
 
 def _is_oct(dx, dy, eps=1e-6):
@@ -57,7 +70,16 @@ def relax(geo, edges, iters=700):
     lens = sorted(math.dist(geo[a], geo[b]) for a, b in edges)
     med = lens[len(lens) // 2]
     geo_n = {g: (x / med, y / med) for g, (x, y) in geo.items()}
-    target = {e: (1.0 if math.dist(geo_n[e[0]], geo_n[e[1]]) < 1.8 else 1.5) for e in edges}
+    crowd = _crowding(geo_n)
+
+    def spread(g):
+        return min(1.0, max(0.0, (crowd[g] - CROWD_START) / CROWD_SPAN))
+
+    target = {e: (1.0 if math.dist(geo_n[e[0]], geo_n[e[1]]) < 1.8 else 1.5) * (1 + CROWD_EXTRA * max(spread(e[0]), spread(e[1])))
+              for e in edges}
+    repel = {g: 1.0 + CROWD_REPEL * spread(g) for g in geo_n}
+    _REPEL.clear()
+    _REPEL.update(repel)
     pos = dict(geo_n)
     nodes = sorted(pos)
     adj = set(edges) | {(b, a) for a, b in edges}
@@ -88,10 +110,11 @@ def relax(geo, edges, iters=700):
                     continue
                 dx, dy = pos[b][0] - pos[a][0], pos[b][1] - pos[a][1]
                 d = math.hypot(dx, dy)
-                if d < 1.0:
+                rr = max(repel[a], repel[b])
+                if d < rr:
                     if d < 1e-6:
                         dx, dy, d = 0.01, 0.0, 0.01
-                    f = (1.0 - d) / 2 / d
+                    f = (rr - d) / 2 / d
                     disp[a][0] -= dx * f
                     disp[a][1] -= dy * f
                     disp[b][0] += dx * f
@@ -141,7 +164,7 @@ def refine(pos, geo_n, edges, target, passes=25):
             if d < 0.99:
                 c += 3.0
         for h, q in pos.items():
-            if h != g and h not in near and math.dist(p, q) < 0.99:
+            if h != g and h not in near and math.dist(p, q) < 0.99 * max(_REPEL.get(g, 1.0), _REPEL.get(h, 1.0)):
                 c += 1.5
         return c + 0.08 * math.dist(p, geo_n[g])
 

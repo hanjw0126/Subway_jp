@@ -27,7 +27,7 @@ import io.github.jpsubway.app.ui.theme.parseColor
 
 fun CreationExtras.appContainer(): AppContainer = (this[APPLICATION_KEY] as JpSubwayApp).container
 
-/** 노선 기호 원형 배지 (카카오지하철의 호선 배지와 같은 역할) */
+/** 노선 기호 원형 배지 */
 @Composable
 fun LineBadge(line: Line, size: Dp = 22.dp) {
     Box(

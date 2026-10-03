@@ -21,7 +21,6 @@ import io.github.jpsubway.app.domain.model.Network
 import io.github.jpsubway.app.domain.model.display
 import io.github.jpsubway.app.ui.common.InfoChip
 import io.github.jpsubway.app.ui.common.LineBadge
-import io.github.jpsubway.app.ui.common.StatusBanner
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 
@@ -37,7 +36,6 @@ fun MapScreen(
     vm: MapViewModel = viewModel(factory = MapViewModel.Factory),
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
-    val rt by vm.realtime.collectAsStateWithLifecycle()
     val from by vm.from.collectAsStateWithLifecycle()
     val to by vm.to.collectAsStateWithLifecycle()
     var tapped by remember { mutableStateOf<String?>(null) }
@@ -103,8 +101,7 @@ fun MapScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        StatusBanner(rt.statuses.values.filter { !it.isNormal }, d.network)
-                        if (d.timetable.isDemo) InfoChip("데모 시간표 표시 중 · 설정에서 ODPT 토큰을 입력하세요")
+                        if (d.timetable.isDemo) InfoChip("데모(가상) 시간표 표시 중")
                     }
                     val g = tapped
                     if (g != null) {

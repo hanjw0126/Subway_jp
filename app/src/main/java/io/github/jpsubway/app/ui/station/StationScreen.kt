@@ -120,7 +120,7 @@ fun StationScreen(
     }
 }
 
-/** 카카오지하철식 "이전역 ← 현재역 → 다음역" 띠 */
+/** "이전역 ← 현재역 → 다음역" 띠 */
 @Composable
 private fun StationStrip(u: StationViewModel.Ui, net: Network, color: Color) {
     val left = u.boards.getOrNull(1)?.prevStationId      // asc 방향 열차가 오는 쪽
