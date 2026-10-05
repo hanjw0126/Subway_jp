@@ -18,8 +18,16 @@ class OdptClient(
     /** 키를 보관하는 중계 서버(Cloudflare Worker). 비어 있으면 사용하지 않는다. */
     private val proxyBaseUrl: String = "",
 ) {
-    suspend fun trainTimetables(railway: String, calendar: String, key: String): List<OdptTrainTimetable> =
-        get("odpt:TrainTimetable", mapOf("odpt:railway" to railway, "odpt:calendar" to calendar), key, OdptTrainTimetable.serializer())
+    suspend fun trainTimetables(railway: String, calendar: String, key: String, direction: String? = null): List<OdptTrainTimetable> =
+        get(
+            "odpt:TrainTimetable",
+            buildMap {
+                put("odpt:railway", railway)
+                put("odpt:calendar", calendar)
+                if (direction != null) put("odpt:railDirection", direction)
+            },
+            key, OdptTrainTimetable.serializer(),
+        )
 
     suspend fun stationTimetables(railway: String, calendar: String, key: String): List<OdptStationTimetable> =
         get("odpt:StationTimetable", mapOf("odpt:railway" to railway, "odpt:calendar" to calendar), key, OdptStationTimetable.serializer())
