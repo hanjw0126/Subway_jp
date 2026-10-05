@@ -56,4 +56,5 @@ data class OdptStationTimetableObject(
     @SerialName("odpt:trainNumber") val trainNumber: String? = null,
     @SerialName("odpt:trainType") val trainType: String? = null,
     @SerialName("odpt:destinationStation") val destinationStation: List<String>? = null,
+    @SerialName("odpt:isOrigin") val isOrigin: Boolean? = null,
 )

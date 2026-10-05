@@ -5,7 +5,7 @@ const UPSTREAM = "https://api.odpt.org/api/v4/";
 const UPSTREAM_C2026 = "https://api-challenge.odpt.org/api/v4/";
 const C2026_OPERATORS = ["JR-East", "Tobu", "Seibu", "Tokyu", "Keio", "Keikyu", "Odakyu", "Sotetsu"];
 const TYPES = { "odpt:Train": 20, "odpt:TrainInformation": 60, "odpt:TrainTimetable": 21600, "odpt:StationTimetable": 21600 };
-const PARAMS = ["odpt:railway", "odpt:calendar", "odpt:operator"];
+const PARAMS = ["odpt:railway", "odpt:calendar", "odpt:operator", "odpt:railDirection"];
 const OPERATORS = ["TokyoMetro", "Toei", "MIR", "TWR", "TamaMonorail", "YokohamaMunicipal"];
 const mem = new Map();
 
@@ -20,6 +20,20 @@ function reply(text, status, ttl, src) {
   });
 }
 const err = (msg, status) => reply(JSON.stringify({ error: msg }), status, 0, "");
+
+// 메모리 캐시: 노선이 많아(84개) 큰 시간표(1~3MB)를 모두 담으면 Worker 메모리(128MB)를 넘으므로 크기 제한
+const MEM_MAX_ITEM = 600000;
+const MEM_MAX_TOTAL = 40000000;
+let memBytes = 0;
+function memPut(k, text, exp) {
+  if (text.length > MEM_MAX_ITEM) return;
+  if (memBytes + text.length > MEM_MAX_TOTAL || mem.size > 500) {
+    mem.clear();
+    memBytes = 0;
+  }
+  mem.set(k, { text, exp });
+  memBytes += text.length;
+}
 
 export default {
   async fetch(request, env, ctx) {
@@ -53,7 +67,7 @@ export default {
     const edge = await cache.match(edgeKey);
     if (edge) {
       const text = await edge.text();
-      mem.set(cacheKey, { text, exp: now + ttl * 1000 });
+      memPut(cacheKey, text, now + ttl * 1000);
       return reply(text, 200, ttl, "EDGE");
     }
     q.set("acl:consumerKey", key);
@@ -65,8 +79,7 @@ export default {
     }
     if (!up.ok) return err(`upstream HTTP ${up.status}`, 502);
     const text = await up.text();
-    if (mem.size > 500) mem.clear();
-    mem.set(cacheKey, { text, exp: now + ttl * 1000 });
+    memPut(cacheKey, text, now + ttl * 1000);
     const res = reply(text, 200, ttl, "MISS");
     ctx.waitUntil(cache.put(edgeKey, res.clone()));
     return res;
