@@ -1,93 +1,68 @@
 # 월드 와이드 메트로 (World Wide Metro)
 
-> 구 프로젝트명: jp-subway-now
+## 개요
 
-일본 지하철의 **시간표 + 실시간 지연·운행정보**를 조합해 한국 앱처럼 **"N분 후 도착"** 으로 보여주는 안드로이드 앱입니다.
-노선도는 지역별로 새로 그린 도식 노선도이며, 모든 역명을 **한글**로 표기합니다. 시간표 기반 **최적 경로 검색**을 지원합니다.
+**한국어**
+월드 와이드 메트로는 일본 수도권 철도의 시간표와 실시간 운행정보를 결합해, 한국 지하철 앱처럼 "몇 분 후 도착"으로 알려 주는 안드로이드 앱입니다. 도쿄메트로·도에이·JR·사철 80여 개 노선을 새로 그린 노선도에 담았고, 모든 역명을 한글로 표기합니다. 역을 누르면 방면별 도착정보와 최단시간·최소환승 경로를 바로 확인할 수 있습니다.
 
-> 비공식 개인 프로젝트입니다. 데이터는 공공교통 오픈데이터센터(ODPT)에서 제공받으며 정확성을 보증하지 않습니다. 자세한 내용은 [NOTICE.md](NOTICE.md)를 참고하세요.
+**English**
+World Wide Metro is an Android app that shows "arriving in N min" for Tokyo-area trains by combining timetables with live service data. Over 80 Metro, Toei, JR and private lines appear on a newly drawn map with Korean station names, plus fastest and fewest-transfer route search.
 
-![도쿄 노선도 미리보기](docs/images/map_tokyo.png)
+> 비공식 개인 프로젝트입니다. 데이터의 정확성을 보증하지 않습니다.
+
+![도쿄 노선도](docs/images/map_tokyo.png)
+
+<sub>공개 데이터 노선 기준 미리보기입니다. 공공교통 오픈데이터 챌린지 2026 제공 노선(JR·사철)은 데이터 이용 조건에 따라 앱 안에서만 표시됩니다.</sub>
 
 ## 주요 기능
-| 기능 | 설명 | 구현 |
+
+| 기능 | 설명 |
+|---|---|
+| N분 후 도착 | 시간표에 실시간 지연을 더해 도착 시각을 계산하고, 열차 위치로 "전역 출발 / 전역 도착 / 곧 도착"을 표시합니다. 첫차·막차도 알려 줍니다. |
+| 노선도 | 실제 좌표를 바탕으로 8방향 도식 노선도를 자동 생성합니다. 확대·축소에 맞춰 선과 역명이 함께 커지고 작아지며, 역명은 서로 겹치지 않게 배치됩니다. |
+| 노선 필터 | 상단의 **지하철 / JR / 사철** 버튼으로 원하는 노선만 골라 볼 수 있습니다. |
+| 한글 역명 | 모든 역명을 한국어 외래어 표기법에 맞춰 한글로 표기합니다. |
+| 경로 검색 | 시간표를 반영해 최단시간·최소환승 경로를 한 번에 계산하고, 다음 열차 대안도 보여 줍니다. JR·사철을 포함한 모든 노선 간 환승을 지원합니다. |
+| 역 검색 | 초성(ㅅㅈㅋ), 일본어, 영문, 역번호(G09)로 찾을 수 있습니다. |
+
+## 노선도 디자인
+
+철도회사마다 선 모양을 다르게 그려 한눈에 구분할 수 있습니다.
+
+| 구분 | 선 모양 | 종점 아이콘 |
 |---|---|---|
-| N분 후 도착 | 예정 도착 = 시간표 + 실시간 지연. 열차 위치로 "전역 출발 / 전역 도착 / 곧 도착" 판정, 첫차·막차 표시 | `domain/arrival/ArrivalEstimator.kt` |
-| 노선도 | 좌표 → 8방향 도식화, 역 간격 균일화, 겹치는 구간 평행선, 확대해도 글자 크기 고정 | `tools/layout_schematic.py`, `ui/map/` |
-| 한글 역명 | ODPT 한국어 표기 → 수동 보정표 → 가나 자동 변환 순으로 적용 | `core/i18n/KanaToHangul.kt`, `tools/seed/ko_overrides.csv` |
-| 최적 경로 | RAPTOR 알고리즘. 최단시간 / 최소환승을 한 번에 계산, 다음 열차 대안 | `domain/routing/Raptor.kt` |
-| 역 검색 | 초성(ㅅㅈㅋ), 일본어, 영문, 역번호(G09) | `ui/search/` |
-| 데모 모드 | ODPT 토큰이 없으면 가상 시간표로 동작 | `data/demo/DemoTimetableSource.kt` |
+| 도쿄메트로·시영 지하철 | 실선 | 원 |
+| 도에이 지하철 | 실선 + 가운데 흰 줄 | 원 |
+| JR | 실선 + 흰 점선 | **둥근 사각형** |
+| 사철 | 진한 테두리 실선 | 원 |
+| 모노레일·신교통 | 속이 빈 선 | 원 |
+| 노면전차 | 가는 선 | 원 |
 
-화면 흐름: 노선도 → 역 탭 → 바텀시트(출발 / 도착 / 도착정보) → 방면별 도착 카드 → 경로 결과(최단시간 / 최소환승 탭)
+- 환승역은 노선 수에 따라 공점 모양이 달라집니다. 2개 노선은 2분할 링, 3개 노선은 3분할 링, 4개 이상은 분할 링 가운데에 노선 수를 표시합니다.
+- 각 노선의 양 끝에는 노선 기호가 들어간 아이콘을 표시합니다.
+- 다른 지역과 이어지는 환승역에서는 상대 지역의 노선을 반투명하게 일부 보여 줍니다.
 
-## 수록 노선 (v0.2.0)
+## 수록 노선
 
-총 23개 노선 · 458개 역 (노선별 역 수 합계)
+| 지역 | 노선 | 데이터 |
+|---|---|---|
+| 도쿄 | 도쿄메트로 9개 노선 + 마루노우치선 지선 | ODPT 공개 데이터 |
+| 도쿄 | 도에이 아사쿠사·미타·신주쿠·오에도선, 도덴 아라카와선, 닛포리·도네리 라이너 | ODPT 공개 데이터 |
+| 도쿄 | 쓰쿠바 익스프레스, 린카이선, 다마 모노레일 | ODPT 공개 데이터 |
+| 도쿄 | JR 동일본 29개, 세이부 9개, 도큐 9개, 게이오 5개, 도부 4개, 게이큐 3개, 오다큐 3개, 소테쓰 3개 노선 | 챌린지 2026 데이터 |
+| 요코하마 | 시영 지하철 블루라인·그린라인 | ODPT 공개 데이터 |
+| 오사카 | 미도스지선·주오선 | 데모 시간표 |
 
-| 지역 | 코드 | 노선 | 역 | 데이터 |
-|---|---|---|---|---|
-| 도쿄 | C | 지요다선 | 20 | ODPT |
-| 도쿄 | F | 후쿠토신선 | 16 | ODPT |
-| 도쿄 | G | 긴자선 | 19 | ODPT |
-| 도쿄 | Z | 한조몬선 | 14 | ODPT |
-| 도쿄 | H | 히비야선 | 22 | ODPT |
-| 도쿄 | M | 마루노우치선 | 25 | ODPT |
-| 도쿄 | Mb | 마루노우치선 지선 | 4 | ODPT |
-| 도쿄 | N | 난보쿠선 | 19 | ODPT |
-| 도쿄 | T | 도자이선 | 23 | ODPT |
-| 도쿄 | Y | 유라쿠초선 | 24 | ODPT |
-| 도쿄 | SA | 도덴 아라카와선 | 30 | ODPT |
-| 도쿄 | A | 도에이 아사쿠사선 | 20 | ODPT |
-| 도쿄 | I | 도에이 미타선 | 27 | ODPT |
-| 도쿄 | NT | 닛포리·도네리 라이너 | 13 | ODPT |
-| 도쿄 | E | 도에이 오에도선 | 38 | ODPT |
-| 도쿄 | S | 도에이 신주쿠선 | 21 | ODPT |
-| 도쿄 | TX | 쓰쿠바 익스프레스 | 20 | ODPT |
-| 도쿄 | R | 린카이선 | 8 | ODPT |
-| 요코하마 | B | 요코하마 블루라인 | 32 | ODPT |
-| 요코하마 | G | 요코하마 그린라인 | 10 | ODPT |
-| 다마 | TT | 다마 모노레일 | 19 | ODPT |
-| 오사카 | M | 미도스지선 | 20 | 데모 시간표 |
-| 오사카 | C | 주오선 | 14 | 데모 시간표 |
+- 도쿄 지역은 총 84개 노선입니다. 수도권 밖으로 이어지는 노선은 수도권 구간만 수록했습니다.
+- 실시간 열차 위치는 데이터가 제공되는 사업자에 한해 반영하며, 그 외 노선은 시간표와 운행정보를 기준으로 표시합니다.
 
-- 실시간 열차 위치: 도에이·요코하마 시영 (ODPT 제공 범위). 도쿄메트로 등은 시간표 + 운행정보 기준.
-- JR·사철은 ODPT 일반 API 에 좌표·시간표가 없어 미수록.
-- 노선 데이터 갱신: Actions → *Update network from ODPT* 수동 실행. 중계 서버: [docs/PROXY.md](docs/PROXY.md)
+## 데이터 출처
 
-## 빠른 시작
-1. ODPT 개발자 사이트(developer.odpt.org)에서 무료 토큰을 발급받습니다.
-2. `local.properties.example`을 `local.properties`로 복사하고 `sdk.dir`, `odpt.consumerKey`를 채웁니다. (토큰 없이도 데모 모드로 실행됩니다. 앱 설정 화면에서 토큰을 입력해도 됩니다.)
-3. Android Studio(Ladybug 이상, JDK 17)로 폴더를 엽니다. Gradle Wrapper가 자동 생성됩니다.
-4. `app` 구성을 실행합니다.
+- 공공교통 오픈데이터센터(ODPT) 공개 데이터
+- 공공교통 오픈데이터 챌린지 2026 제공 데이터. 챌린지 기간에만 이용할 수 있으며, 기간이 끝나면 해당 노선은 앱에서 제외됩니다.
 
-명령줄: `gradle wrapper --gradle-version 8.11.1` 후 `./gradlew testDebugUnitTest assembleDebug`
-
-## GitHub 등록과 릴리즈
-1. 저장소를 만들고 이 폴더 전체를 push 합니다.
-2. Actions 탭에서 **Gradle Wrapper** 워크플로를 한 번 수동 실행하면 `gradlew`와 wrapper jar가 커밋됩니다.
-3. Settings → Secrets and variables → Actions에 아래 값을 등록합니다.
-
-| Secret |
-|---|
-| `ANDROID_KEYSTORE_BASE64` |
-| `ANDROID_KEYSTORE_PASSWORD` |
-| `ANDROID_KEY_ALIAS` |
-| `ANDROID_KEY_PASSWORD` |
-| `ODPT_CONSUMER_KEY` |
-
-4. `git tag v0.1.0 && git push origin v0.1.0` → **Release** 워크플로가 서명된 APK·AAB·SHA256SUMS를 GitHub Release에 올립니다.
-
-자세한 내용: [docs/RELEASE.md](docs/RELEASE.md)
-
-## 문서
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md) 전체 구조
-- [ARRIVAL_ALGORITHM.md](docs/ARRIVAL_ALGORITHM.md) 도착 시간 계산
-- [ROUTING.md](docs/ROUTING.md) 경로 탐색
-- [MAP_DESIGN_GUIDE.md](docs/MAP_DESIGN_GUIDE.md) 노선도 설계
-- [KOREAN_NAMING.md](docs/KOREAN_NAMING.md) 역명 한글 표기
-- [DATA_SOURCES.md](docs/DATA_SOURCES.md) 데이터 출처
-- [RELEASE.md](docs/RELEASE.md) 릴리즈
+데이터 이용 조건과 면책 사항은 [NOTICE.md](NOTICE.md)를 참고하세요.
 
 ## 라이선스
-코드는 [MIT](LICENSE). 데이터 이용 조건은 [NOTICE.md](NOTICE.md). UI는 국내 지하철 앱의 사용 흐름을 참고했으나 특정 회사의 명칭·로고·디자인 자산은 사용하지 않습니다.
+
+코드는 [MIT 라이선스](LICENSE)를 따릅니다.
