@@ -1,0 +1,20 @@
+name: C2026 survey
+on:
+  workflow_dispatch:
+  push:
+    paths: ["tools/c2026/survey.py", ".github/workflows/c2026-survey.yml"]
+permissions:
+  contents: read
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Survey challenge API
+        env:
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
+        run: python tools/c2026/survey.py
