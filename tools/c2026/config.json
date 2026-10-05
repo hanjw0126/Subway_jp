@@ -1,0 +1,26 @@
+{
+  "endpoint": "https://api-challenge.odpt.org/api/v4/",
+  "regions": [
+    {
+      "region": "tokyo",
+      "operators": [
+        "JR-East",
+        "Tobu",
+        "Seibu",
+        "Tokyu",
+        "Keio",
+        "Keikyu",
+        "Odakyu",
+        "Sotetsu"
+      ],
+      "bbox": [
+        35.33,
+        139.3,
+        35.92,
+        140.12
+      ],
+      "minStations": 3
+    }
+  ],
+  "excludeLines": []
+}

@@ -16,3 +16,6 @@ tools/raw/
 tools/.venv/
 __pycache__/
 .pytest_cache/
+# 챌린지 2026 데이터는 저장소에 커밋하지 않는다 (라이선스: 앱 내 표시 목적만)
+tools/seed/c2026/
+tools/c2026/raw/

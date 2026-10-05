@@ -15,7 +15,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - id: ver
@@ -56,6 +56,20 @@ jobs:
           else
             echo "::warning::중계 서버 주소를 찾지 못했습니다. 데모/사용자 토큰 모드로 빌드합니다."
           fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Challenge 2026 data (빌드 시에만 주입 · 저장소에 커밋하지 않음)
+        env:
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
+          LAYOUT_REPAIR_BUDGET: "1800"
+        run: |
+          if [ -z "$ODPT_C2026_KEY" ]; then echo "::warning::ODPT_C2026_KEY 가 없어 챌린지 노선 없이 빌드합니다"; exit 0; fi
+          pip install -r tools/requirements.txt
+          python tools/c2026/build_seed.py
+          python tools/build_all.py --no-preview
+          python tools/validate_assets.py
+          python tools/c2026/report.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Build APK / AAB
         env:
           VERSION_NAME: ${{ steps.ver.outputs.name }}

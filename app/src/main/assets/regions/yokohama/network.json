@@ -68,7 +68,8 @@
      }
     }
    },
-   "loop": false
+   "loop": false,
+   "source": ""
   },
   {
    "id": "odpt.Railway:YokohamaMunicipal.Green",
@@ -113,7 +114,8 @@
      }
     }
    },
-   "loop": false
+   "loop": false,
+   "source": ""
   }
  ],
  "stations": [

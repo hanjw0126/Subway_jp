@@ -1,0 +1,362 @@
+{
+ "JR-East.Yamanote": [
+  "JY",
+  "JR 야마노테선",
+  "#80C241"
+ ],
+ "JR-East.KeihinTohokuNegishi": [
+  "JK",
+  "JR 게이힌토호쿠·네기시선",
+  "#00B2E5"
+ ],
+ "JR-East.ChuoRapid": [
+  "JC",
+  "JR 주오선 쾌속",
+  "#F15A22"
+ ],
+ "JR-East.ChuoSobuLocal": [
+  "JB",
+  "JR 주오·소부선 각역정차",
+  "#FFD400"
+ ],
+ "JR-East.SobuRapid": [
+  "JO",
+  "JR 소부선 쾌속",
+  "#1069B4"
+ ],
+ "JR-East.SaikyoKawagoe": [
+  "JA",
+  "JR 사이쿄·가와고에선",
+  "#00AC9A"
+ ],
+ "JR-East.ShonanShinjuku": [
+  "JS",
+  "JR 쇼난신주쿠 라인",
+  "#E21F26"
+ ],
+ "JR-East.Tokaido": [
+  "JT",
+  "JR 도카이도선",
+  "#F68B1E"
+ ],
+ "JR-East.Yokosuka": [
+  "JO",
+  "JR 요코스카선",
+  "#1069B4"
+ ],
+ "JR-East.Keiyo": [
+  "JE",
+  "JR 게이요선",
+  "#C9252F"
+ ],
+ "JR-East.Musashino": [
+  "JM",
+  "JR 무사시노선",
+  "#F15A22"
+ ],
+ "JR-East.Nambu": [
+  "JN",
+  "JR 난부선",
+  "#FFD400"
+ ],
+ "JR-East.Yokohama": [
+  "JH",
+  "JR 요코하마선",
+  "#80C241"
+ ],
+ "JR-East.JobanRapid": [
+  "JJ",
+  "JR 조반선 쾌속",
+  "#00B261"
+ ],
+ "JR-East.JobanLocal": [
+  "JL",
+  "JR 조반선 각역정차",
+  "#339999"
+ ],
+ "JR-East.Utsunomiya": [
+  "JU",
+  "JR 우쓰노미야선",
+  "#F68B1E"
+ ],
+ "JR-East.Takasaki": [
+  "JU",
+  "JR 다카사키선",
+  "#F68B1E"
+ ],
+ "JR-East.Ome": [
+  "JC",
+  "JR 오메선",
+  "#F15A22"
+ ],
+ "JR-East.Itsukaichi": [
+  "JC",
+  "JR 이쓰카이치선",
+  "#F15A22"
+ ],
+ "JR-East.Tsurumi": [
+  "JI",
+  "JR 쓰루미선",
+  "#FFD400"
+ ],
+ "JR-East.Sagami": [
+  "Sg",
+  "JR 사가미선",
+  "#009793"
+ ],
+ "JR-East.Hachiko": [
+  "Hk",
+  "JR 하치코선",
+  "#A8A39D"
+ ],
+ "JR-East.Kawagoe": [
+  "Kw",
+  "JR 가와고에선",
+  "#00AC9A"
+ ],
+ "JR-East.Narita": [
+  "JO",
+  "JR 나리타선",
+  "#00B261"
+ ],
+ "JR-East.Uchibo": [
+  "Ub",
+  "JR 우치보선",
+  "#00B2E5"
+ ],
+ "JR-East.Sotobo": [
+  "Sb",
+  "JR 소토보선",
+  "#DB2027"
+ ],
+ "Tobu.TobuSkytree": [
+  "TS",
+  "도부 스카이트리 라인",
+  "#0F6CC3"
+ ],
+ "Tobu.TobuSkytreeBranch": [
+  "TS",
+  "도부 스카이트리 라인(지선)",
+  "#0F6CC3"
+ ],
+ "Tobu.Isesaki": [
+  "TI",
+  "도부 이세사키선",
+  "#0F6CC3"
+ ],
+ "Tobu.Nikko": [
+  "TN",
+  "도부 닛코선",
+  "#0F6CC3"
+ ],
+ "Tobu.TobuUrbanPark": [
+  "TD",
+  "도부 어번파크 라인",
+  "#0099CC"
+ ],
+ "Tobu.Tojo": [
+  "TJ",
+  "도부 도조선",
+  "#004098"
+ ],
+ "Tobu.Ogose": [
+  "TJ",
+  "도부 오고세선",
+  "#004098"
+ ],
+ "Tobu.Kameido": [
+  "TS",
+  "도부 가메이도선",
+  "#0F6CC3"
+ ],
+ "Tobu.Daishi": [
+  "TS",
+  "도부 다이시선",
+  "#0F6CC3"
+ ],
+ "Seibu.Ikebukuro": [
+  "SI",
+  "세이부 이케부쿠로선",
+  "#F39700"
+ ],
+ "Seibu.SeibuYurakucho": [
+  "SI",
+  "세이부 유라쿠초선",
+  "#F39700"
+ ],
+ "Seibu.Toshima": [
+  "SI",
+  "세이부 도시마선",
+  "#F39700"
+ ],
+ "Seibu.Sayama": [
+  "SI",
+  "세이부 사야마선",
+  "#F39700"
+ ],
+ "Seibu.Shinjuku": [
+  "SS",
+  "세이부 신주쿠선",
+  "#00A7DB"
+ ],
+ "Seibu.Haijima": [
+  "SS",
+  "세이부 하이지마선",
+  "#00A7DB"
+ ],
+ "Seibu.Kokubunji": [
+  "SK",
+  "세이부 고쿠분지선",
+  "#00A7DB"
+ ],
+ "Seibu.Tamako": [
+  "ST",
+  "세이부 다마코선",
+  "#00A7DB"
+ ],
+ "Seibu.Seibuen": [
+  "SS",
+  "세이부엔선",
+  "#00A7DB"
+ ],
+ "Seibu.SeibuTamagawa": [
+  "SW",
+  "세이부 다마가와선",
+  "#00A7DB"
+ ],
+ "Tokyu.Toyoko": [
+  "TY",
+  "도큐 도요코선",
+  "#DA0442"
+ ],
+ "Tokyu.Meguro": [
+  "MG",
+  "도큐 메구로선",
+  "#009CD2"
+ ],
+ "Tokyu.DenEnToshi": [
+  "DT",
+  "도큐 덴엔토시선",
+  "#20A288"
+ ],
+ "Tokyu.Oimachi": [
+  "OM",
+  "도큐 오이마치선",
+  "#F18C43"
+ ],
+ "Tokyu.Ikegami": [
+  "IK",
+  "도큐 이케가미선",
+  "#EE86A7"
+ ],
+ "Tokyu.TokyuTamagawa": [
+  "TM",
+  "도큐 다마가와선",
+  "#AE0378"
+ ],
+ "Tokyu.Setagaya": [
+  "SG",
+  "도큐 세타가야선",
+  "#FCC70D"
+ ],
+ "Tokyu.Kodomonokuni": [
+  "KD",
+  "도큐 고도모노쿠니선",
+  "#0068B7"
+ ],
+ "Tokyu.TokyuShinYokohama": [
+  "SH",
+  "도큐 신요코하마선",
+  "#A0A0A0"
+ ],
+ "Keio.Keio": [
+  "KO",
+  "게이오선",
+  "#DD0077"
+ ],
+ "Keio.KeioNew": [
+  "KO",
+  "게이오 신선",
+  "#DD0077"
+ ],
+ "Keio.Sagamihara": [
+  "KO",
+  "게이오 사가미하라선",
+  "#DD0077"
+ ],
+ "Keio.Takao": [
+  "KO",
+  "게이오 다카오선",
+  "#DD0077"
+ ],
+ "Keio.Dobutsuen": [
+  "KO",
+  "게이오 동물원선",
+  "#DD0077"
+ ],
+ "Keio.Keibajo": [
+  "KO",
+  "게이오 경마장선",
+  "#DD0077"
+ ],
+ "Keio.Inokashira": [
+  "IN",
+  "게이오 이노카시라선",
+  "#1E3F8F"
+ ],
+ "Keikyu.Main": [
+  "KK",
+  "게이큐 본선",
+  "#E5171F"
+ ],
+ "Keikyu.Airport": [
+  "KK",
+  "게이큐 공항선",
+  "#E5171F"
+ ],
+ "Keikyu.Daishi": [
+  "KK",
+  "게이큐 다이시선",
+  "#E5171F"
+ ],
+ "Keikyu.Zushi": [
+  "KK",
+  "게이큐 즈시선",
+  "#E5171F"
+ ],
+ "Keikyu.Kurihama": [
+  "KK",
+  "게이큐 구리하마선",
+  "#E5171F"
+ ],
+ "Odakyu.Odawara": [
+  "OH",
+  "오다큐 오다와라선",
+  "#2288CC"
+ ],
+ "Odakyu.Enoshima": [
+  "OE",
+  "오다큐 에노시마선",
+  "#2288CC"
+ ],
+ "Odakyu.Tama": [
+  "OT",
+  "오다큐 다마선",
+  "#2288CC"
+ ],
+ "Sotetsu.Main": [
+  "SO",
+  "소테쓰 본선",
+  "#00439B"
+ ],
+ "Sotetsu.Izumino": [
+  "SO",
+  "소테쓰 이즈미노선",
+  "#00439B"
+ ],
+ "Sotetsu.SotetsuShinYokohama": [
+  "SO",
+  "소테쓰 신요코하마선",
+  "#00439B"
+ ]
+}

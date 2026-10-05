@@ -1,18 +1,18 @@
 {
- "schemaVersion": 1,
+ "schemaVersion": 2,
  "regionId": "tokyo",
  "unit": 60.0,
- "width": 2700.0,
- "height": 3240.0,
+ "width": 3045.0,
+ "height": 3330.0,
  "nodes": [
   {
    "group": "g.AdachiOdai",
-   "x": 1020.0,
-   "y": 1950.0,
+   "x": 1230.0,
+   "y": 2010.0,
    "labelKo": "아다치오다이",
    "labelJa": "足立小台",
    "labelDx": 1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.AdachiOdai"
@@ -20,12 +20,12 @@
   },
   {
    "group": "g.AkabaneIwabuchi",
-   "x": 660.0,
+   "x": 930.0,
    "y": 1830.0,
    "labelKo": "아카바네이와부치",
    "labelJa": "赤羽岩淵",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.AkabaneIwabuchi"
@@ -33,12 +33,12 @@
   },
   {
    "group": "g.Akabanebashi",
-   "x": 810.0,
-   "y": 2760.0,
+   "x": 990.0,
+   "y": 2850.0,
    "labelKo": "아카바네바시",
    "labelJa": "赤羽橋",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Akabanebashi"
@@ -46,12 +46,12 @@
   },
   {
    "group": "g.AkadoShogakkomae",
-   "x": 960.0,
-   "y": 2100.0,
+   "x": 1140.0,
+   "y": 2160.0,
    "labelKo": "아카도쇼갓코마에",
    "labelJa": "赤土小学校前",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.AkadoShogakkomae"
@@ -59,12 +59,12 @@
   },
   {
    "group": "g.Akasaka",
-   "x": 720.0,
-   "y": 2640.0,
+   "x": 930.0,
+   "y": 2670.0,
    "labelKo": "아카사카",
    "labelJa": "赤坂",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Akasaka"
@@ -72,12 +72,12 @@
   },
   {
    "group": "g.AkasakaMitsuke",
-   "x": 720.0,
-   "y": 2550.0,
+   "x": 930.0,
+   "y": 2580.0,
    "labelKo": "아카사카미쓰케",
    "labelJa": "赤坂見附",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.AkasakaMitsuke",
@@ -86,12 +86,12 @@
   },
   {
    "group": "g.Akebonobashi",
-   "x": 660.0,
+   "x": 870.0,
    "y": 2430.0,
    "labelKo": "아케보노바시",
    "labelJa": "曙橋",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.Akebonobashi"
@@ -99,12 +99,12 @@
   },
   {
    "group": "g.Akihabara",
-   "x": 1080.0,
-   "y": 2310.0,
+   "x": 1290.0,
+   "y": 2460.0,
    "labelKo": "아키하바라",
    "labelJa": "秋葉原",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Akihabara",
@@ -113,8 +113,8 @@
   },
   {
    "group": "g.Aoi",
-   "x": 1200.0,
-   "y": 1860.0,
+   "x": 1440.0,
+   "y": 1920.0,
    "labelKo": "아오이",
    "labelJa": "青井",
    "labelDx": -1,
@@ -126,12 +126,12 @@
   },
   {
    "group": "g.AoyamaItchome",
-   "x": 660.0,
-   "y": 2610.0,
+   "x": 900.0,
+   "y": 2640.0,
    "labelKo": "아오야마잇초메",
    "labelJa": "青山一丁目",
-   "labelDx": -1,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.AoyamaItchome",
@@ -141,12 +141,12 @@
   },
   {
    "group": "g.ArakawaItchumae",
-   "x": 1200.0,
-   "y": 2130.0,
+   "x": 1350.0,
+   "y": 2250.0,
    "labelKo": "아라카와잇추마에",
    "labelJa": "荒川一中前",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.ArakawaItchumae"
@@ -154,12 +154,12 @@
   },
   {
    "group": "g.ArakawaNanachome",
-   "x": 1170.0,
-   "y": 2010.0,
+   "x": 1380.0,
+   "y": 1980.0,
    "labelKo": "아라카와나나초메",
    "labelJa": "荒川七丁目",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.ArakawaNanachome"
@@ -167,11 +167,11 @@
   },
   {
    "group": "g.ArakawaNichome",
-   "x": 1110.0,
-   "y": 2070.0,
+   "x": 1380.0,
+   "y": 2100.0,
    "labelKo": "아라카와니초메",
    "labelJa": "荒川二丁目",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -180,12 +180,12 @@
   },
   {
    "group": "g.ArakawaShakomae",
-   "x": 840.0,
-   "y": 2010.0,
+   "x": 1140.0,
+   "y": 1980.0,
    "labelKo": "아라카와샤코마에",
    "labelJa": "荒川車庫前",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.ArakawaShakomae"
@@ -193,12 +193,12 @@
   },
   {
    "group": "g.ArakawaYuenchimae",
-   "x": 870.0,
+   "x": 1110.0,
    "y": 2070.0,
    "labelKo": "아라카와유엔치마에",
    "labelJa": "荒川遊園地前",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.ArakawaYuenchimae"
@@ -206,8 +206,8 @@
   },
   {
    "group": "g.Arakawakuyakushomae",
-   "x": 1110.0,
-   "y": 2130.0,
+   "x": 1320.0,
+   "y": 2160.0,
    "labelKo": "아라카와쿠야쿠쇼마에",
    "labelJa": "荒川区役所前",
    "labelDx": 0,
@@ -219,8 +219,8 @@
   },
   {
    "group": "g.Asakusa",
-   "x": 1170.0,
-   "y": 2310.0,
+   "x": 1410.0,
+   "y": 2340.0,
    "labelKo": "아사쿠사",
    "labelJa": "浅草",
    "labelDx": 0,
@@ -233,8 +233,8 @@
   },
   {
    "group": "g.Asakusa.TX",
-   "x": 1200.0,
-   "y": 2250.0,
+   "x": 1500.0,
+   "y": 2220.0,
    "labelKo": "아사쿠사",
    "labelJa": "浅草",
    "labelDx": 1,
@@ -246,12 +246,12 @@
   },
   {
    "group": "g.Asakusabashi",
-   "x": 1110.0,
-   "y": 2370.0,
+   "x": 1440.0,
+   "y": 2430.0,
    "labelKo": "아사쿠사바시",
    "labelJa": "浅草橋",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.Asakusabashi"
@@ -259,12 +259,12 @@
   },
   {
    "group": "g.Asukayama",
-   "x": 780.0,
-   "y": 1950.0,
+   "x": 960.0,
+   "y": 2010.0,
    "labelKo": "아스카야마",
    "labelJa": "飛鳥山",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Asukayama"
@@ -272,8 +272,8 @@
   },
   {
    "group": "g.Awajicho",
-   "x": 900.0,
-   "y": 2400.0,
+   "x": 1170.0,
+   "y": 2460.0,
    "labelKo": "아와지초",
    "labelJa": "淡路町",
    "labelDx": 1,
@@ -285,8 +285,8 @@
   },
   {
    "group": "g.Ayase",
-   "x": 1260.0,
-   "y": 1920.0,
+   "x": 1500.0,
+   "y": 1980.0,
    "labelKo": "아야세",
    "labelJa": "綾瀬",
    "labelDx": 1,
@@ -298,12 +298,12 @@
   },
   {
    "group": "g.AzabuJuban",
-   "x": 750.0,
-   "y": 2730.0,
+   "x": 960.0,
+   "y": 2790.0,
    "labelKo": "아자부주반",
    "labelJa": "麻布十番",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.AzabuJuban",
@@ -312,12 +312,12 @@
   },
   {
    "group": "g.BakuroYokoyama",
-   "x": 1110.0,
-   "y": 2460.0,
+   "x": 1380.0,
+   "y": 2520.0,
    "labelKo": "바쿠로요코야마",
    "labelJa": "馬喰横山",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.BakuroYokoyama"
@@ -325,8 +325,8 @@
   },
   {
    "group": "g.BampakuKinenKoen",
-   "x": 2400.0,
-   "y": 210.0,
+   "x": 2640.0,
+   "y": 270.0,
    "labelKo": "반파쿠키넨코엔",
    "labelJa": "万博記念公園",
    "labelDx": -1,
@@ -338,8 +338,8 @@
   },
   {
    "group": "g.BarakiNakayama",
-   "x": 1860.0,
-   "y": 2370.0,
+   "x": 2100.0,
+   "y": 2460.0,
    "labelKo": "바라키나카야마",
    "labelJa": "原木中山",
    "labelDx": 0,
@@ -351,8 +351,8 @@
   },
   {
    "group": "g.ChikatetsuAkatsuka",
-   "x": 300.0,
-   "y": 1890.0,
+   "x": 540.0,
+   "y": 1950.0,
    "labelKo": "지카테쓰아카쓰카",
    "labelJa": "地下鉄赤塚",
    "labelDx": 1,
@@ -365,8 +365,8 @@
   },
   {
    "group": "g.ChikatetsuNarimasu",
-   "x": 210.0,
-   "y": 1890.0,
+   "x": 480.0,
+   "y": 1950.0,
    "labelKo": "지카테쓰나리마스",
    "labelJa": "地下鉄成増",
    "labelDx": 0,
@@ -378,13 +378,26 @@
    ]
   },
   {
+   "group": "g.ChuoDaigakuMeiseiDaigaku",
+   "x": 150.0,
+   "y": 2760.0,
+   "labelKo": "주오다이가쿠·메이세이다이가쿠",
+   "labelJa": "中央大学・明星大学",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.ChuoDaigakuMeiseiDaigaku"
+   ]
+  },
+  {
    "group": "g.Daimon",
-   "x": 930.0,
-   "y": 2790.0,
+   "x": 1170.0,
+   "y": 2850.0,
    "labelKo": "다이몬",
    "labelJa": "大門",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.Daimon",
@@ -393,8 +406,8 @@
   },
   {
    "group": "g.Ebisu",
-   "x": 570.0,
-   "y": 2760.0,
+   "x": 840.0,
+   "y": 2820.0,
    "labelKo": "에비스",
    "labelJa": "恵比寿",
    "labelDx": 0,
@@ -406,12 +419,12 @@
   },
   {
    "group": "g.Edogawabashi",
-   "x": 750.0,
-   "y": 2280.0,
+   "x": 990.0,
+   "y": 2340.0,
    "labelKo": "에도가와바시",
    "labelJa": "江戸川橋",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Edogawabashi"
@@ -419,12 +432,12 @@
   },
   {
    "group": "g.Funabori",
-   "x": 1470.0,
-   "y": 2490.0,
+   "x": 1740.0,
+   "y": 2520.0,
    "labelKo": "후나보리",
    "labelJa": "船堀",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.Funabori"
@@ -432,8 +445,8 @@
   },
   {
    "group": "g.Gaiemmae",
-   "x": 600.0,
-   "y": 2580.0,
+   "x": 840.0,
+   "y": 2640.0,
    "labelKo": "가이엔마에",
    "labelJa": "外苑前",
    "labelDx": -1,
@@ -445,12 +458,12 @@
   },
   {
    "group": "g.Gakushuinshita",
-   "x": 510.0,
-   "y": 2250.0,
+   "x": 780.0,
+   "y": 2340.0,
    "labelKo": "가쿠슈인시타",
    "labelJa": "学習院下",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Gakushuinshita"
@@ -458,8 +471,8 @@
   },
   {
    "group": "g.Ginza",
-   "x": 900.0,
-   "y": 2610.0,
+   "x": 1170.0,
+   "y": 2670.0,
    "labelKo": "긴자",
    "labelJa": "銀座",
    "labelDx": 1,
@@ -473,12 +486,12 @@
   },
   {
    "group": "g.GinzaItchome",
-   "x": 990.0,
-   "y": 2580.0,
+   "x": 1230.0,
+   "y": 2670.0,
    "labelKo": "긴자잇초메",
    "labelJa": "銀座一丁目",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.GinzaItchome"
@@ -486,8 +499,8 @@
   },
   {
    "group": "g.Gokokuji",
-   "x": 690.0,
-   "y": 2220.0,
+   "x": 960.0,
+   "y": 2280.0,
    "labelKo": "고코쿠지",
    "labelJa": "護国寺",
    "labelDx": -1,
@@ -499,12 +512,12 @@
   },
   {
    "group": "g.Gotanda",
-   "x": 660.0,
-   "y": 2910.0,
+   "x": 930.0,
+   "y": 2940.0,
    "labelKo": "고탄다",
    "labelJa": "五反田",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.Gotanda"
@@ -512,12 +525,12 @@
   },
   {
    "group": "g.Gyotoku",
-   "x": 1680.0,
-   "y": 2460.0,
+   "x": 1980.0,
+   "y": 2550.0,
    "labelKo": "교토쿠",
    "labelJa": "行徳",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Gyotoku"
@@ -525,12 +538,12 @@
   },
   {
    "group": "g.Hakusan",
-   "x": 840.0,
-   "y": 2160.0,
+   "x": 1140.0,
+   "y": 2250.0,
    "labelKo": "하쿠산",
    "labelJa": "白山",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Hakusan"
@@ -538,8 +551,8 @@
   },
   {
    "group": "g.Hamacho",
-   "x": 1170.0,
-   "y": 2550.0,
+   "x": 1440.0,
+   "y": 2580.0,
    "labelKo": "하마초",
    "labelJa": "浜町",
    "labelDx": 1,
@@ -551,7 +564,7 @@
   },
   {
    "group": "g.Hanzomon",
-   "x": 750.0,
+   "x": 990.0,
    "y": 2460.0,
    "labelKo": "한조몬",
    "labelJa": "半蔵門",
@@ -564,11 +577,11 @@
   },
   {
    "group": "g.Hasune",
-   "x": 480.0,
-   "y": 1770.0,
+   "x": 660.0,
+   "y": 1890.0,
    "labelKo": "하스네",
    "labelJa": "蓮根",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -577,8 +590,8 @@
   },
   {
    "group": "g.Hatchobori",
-   "x": 1080.0,
-   "y": 2610.0,
+   "x": 1290.0,
+   "y": 2640.0,
    "labelKo": "핫초보리",
    "labelJa": "八丁堀",
    "labelDx": 1,
@@ -590,8 +603,8 @@
   },
   {
    "group": "g.Heiwadai",
-   "x": 300.0,
-   "y": 1950.0,
+   "x": 540.0,
+   "y": 2010.0,
    "labelKo": "헤이와다이",
    "labelJa": "平和台",
    "labelDx": -1,
@@ -604,12 +617,12 @@
   },
   {
    "group": "g.Hibiya",
-   "x": 840.0,
-   "y": 2550.0,
+   "x": 1110.0,
+   "y": 2610.0,
    "labelKo": "히비야",
    "labelJa": "日比谷",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Hibiya",
@@ -619,8 +632,8 @@
   },
   {
    "group": "g.HigashiGinza",
-   "x": 990.0,
-   "y": 2670.0,
+   "x": 1200.0,
+   "y": 2730.0,
    "labelKo": "히가시긴자",
    "labelJa": "東銀座",
    "labelDx": 0,
@@ -633,11 +646,11 @@
   },
   {
    "group": "g.HigashiIkebukuro",
-   "x": 660.0,
+   "x": 810.0,
    "y": 2160.0,
    "labelKo": "히가시이케부쿠로",
    "labelJa": "東池袋",
-   "labelDx": 1,
+   "labelDx": 0,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -646,12 +659,12 @@
   },
   {
    "group": "g.HigashiIkebukuroYonchome",
-   "x": 660.0,
-   "y": 2220.0,
+   "x": 900.0,
+   "y": 2250.0,
    "labelKo": "히가시이케부쿠로욘초메",
    "labelJa": "東池袋四丁目",
-   "labelDx": 1,
-   "labelDy": 1,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.HigashiIkebukuroYonchome"
@@ -659,7 +672,7 @@
   },
   {
    "group": "g.HigashiKoenji",
-   "x": 300.0,
+   "x": 540.0,
    "y": 2400.0,
    "labelKo": "히가시코엔지",
    "labelJa": "東高円寺",
@@ -672,11 +685,11 @@
   },
   {
    "group": "g.HigashiNakano",
-   "x": 420.0,
-   "y": 2310.0,
+   "x": 660.0,
+   "y": 2400.0,
    "labelKo": "히가시나카노",
    "labelJa": "東中野",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -685,12 +698,12 @@
   },
   {
    "group": "g.HigashiNihombashi",
-   "x": 1080.0,
+   "x": 1380.0,
    "y": 2430.0,
    "labelKo": "히가시니혼바시",
    "labelJa": "東日本橋",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.HigashiNihombashi"
@@ -698,12 +711,12 @@
   },
   {
    "group": "g.HigashiOguSanchome",
-   "x": 1020.0,
+   "x": 1290.0,
    "y": 2040.0,
    "labelKo": "히가시오구산초메",
    "labelJa": "東尾久三丁目",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.HigashiOguSanchome"
@@ -711,8 +724,8 @@
   },
   {
    "group": "g.HigashiOjima",
-   "x": 1410.0,
-   "y": 2460.0,
+   "x": 1650.0,
+   "y": 2490.0,
    "labelKo": "히가시오지마",
    "labelJa": "東大島",
    "labelDx": 0,
@@ -724,11 +737,11 @@
   },
   {
    "group": "g.HigashiShinjuku",
-   "x": 570.0,
-   "y": 2400.0,
+   "x": 780.0,
+   "y": 2430.0,
    "labelKo": "히가시신주쿠",
    "labelJa": "東新宿",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": -1,
    "interchange": true,
    "stationIds": [
@@ -738,11 +751,11 @@
   },
   {
    "group": "g.Hikarigaoka",
-   "x": 210.0,
+   "x": 450.0,
    "y": 2040.0,
    "labelKo": "히카리가오카",
    "labelJa": "光が丘",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -751,12 +764,12 @@
   },
   {
    "group": "g.Hikawadai",
-   "x": 390.0,
-   "y": 2040.0,
+   "x": 600.0,
+   "y": 2070.0,
    "labelKo": "히카와다이",
    "labelJa": "氷川台",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.Hikawadai",
@@ -765,8 +778,8 @@
   },
   {
    "group": "g.HiroO",
-   "x": 660.0,
-   "y": 2790.0,
+   "x": 900.0,
+   "y": 2820.0,
    "labelKo": "히로오",
    "labelJa": "広尾",
    "labelDx": 1,
@@ -777,13 +790,26 @@
    ]
   },
   {
+   "group": "g.Hodokubo",
+   "x": 210.0,
+   "y": 2670.0,
+   "labelKo": "호도쿠보",
+   "labelJa": "程久保",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Hodokubo"
+   ]
+  },
+  {
    "group": "g.HonKomagome",
-   "x": 870.0,
-   "y": 2160.0,
+   "x": 1110.0,
+   "y": 2190.0,
    "labelKo": "혼코마고메",
    "labelJa": "本駒込",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.HonKomagome"
@@ -791,8 +817,8 @@
   },
   {
    "group": "g.Honancho",
-   "x": 270.0,
-   "y": 2520.0,
+   "x": 540.0,
+   "y": 2550.0,
    "labelKo": "호난초",
    "labelJa": "方南町",
    "labelDx": 1,
@@ -804,12 +830,12 @@
   },
   {
    "group": "g.HongoSanchome",
-   "x": 900.0,
-   "y": 2280.0,
+   "x": 1110.0,
+   "y": 2340.0,
    "labelKo": "혼고산초메",
    "labelJa": "本郷三丁目",
    "labelDx": 1,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.HongoSanchome",
@@ -818,12 +844,12 @@
   },
   {
    "group": "g.HonjoAzumabashi",
-   "x": 1260.0,
-   "y": 2280.0,
+   "x": 1470.0,
+   "y": 2340.0,
    "labelKo": "혼조아즈마바시",
    "labelJa": "本所吾妻橋",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.HonjoAzumabashi"
@@ -831,8 +857,8 @@
   },
   {
    "group": "g.Ichigaya",
-   "x": 720.0,
-   "y": 2430.0,
+   "x": 930.0,
+   "y": 2490.0,
    "labelKo": "이치가야",
    "labelJa": "市ケ谷",
    "labelDx": 1,
@@ -846,12 +872,12 @@
   },
   {
    "group": "g.Ichinoe",
-   "x": 1590.0,
-   "y": 2490.0,
+   "x": 1800.0,
+   "y": 2520.0,
    "labelKo": "이치노에",
    "labelJa": "一之江",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.Ichinoe"
@@ -859,12 +885,12 @@
   },
   {
    "group": "g.Iidabashi",
-   "x": 750.0,
-   "y": 2340.0,
+   "x": 1020.0,
+   "y": 2370.0,
    "labelKo": "이이다바시",
    "labelJa": "飯田橋",
-   "labelDx": 1,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.Iidabashi",
@@ -875,11 +901,11 @@
   },
   {
    "group": "g.Ikebukuro",
-   "x": 570.0,
-   "y": 2160.0,
+   "x": 810.0,
+   "y": 2250.0,
    "labelKo": "이케부쿠로",
    "labelJa": "池袋",
-   "labelDx": 0,
+   "labelDx": -1,
    "labelDy": 1,
    "interchange": true,
    "stationIds": [
@@ -890,12 +916,12 @@
   },
   {
    "group": "g.Inaricho",
-   "x": 1050.0,
-   "y": 2310.0,
+   "x": 1290.0,
+   "y": 2340.0,
    "labelKo": "이나리초",
    "labelJa": "稲荷町",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Inaricho"
@@ -903,12 +929,12 @@
   },
   {
    "group": "g.Iriya",
-   "x": 1050.0,
-   "y": 2190.0,
+   "x": 1260.0,
+   "y": 2220.0,
    "labelKo": "이리야",
    "labelJa": "入谷",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Iriya"
@@ -916,7 +942,7 @@
   },
   {
    "group": "g.ItabashiKuyakushomae",
-   "x": 570.0,
+   "x": 750.0,
    "y": 2010.0,
    "labelKo": "이타바시쿠야쿠쇼마에",
    "labelJa": "板橋区役所前",
@@ -929,12 +955,12 @@
   },
   {
    "group": "g.Itabashihoncho",
-   "x": 570.0,
-   "y": 1950.0,
+   "x": 810.0,
+   "y": 2010.0,
    "labelKo": "이타바시혼초",
    "labelJa": "板橋本町",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Itabashihoncho"
@@ -942,8 +968,8 @@
   },
   {
    "group": "g.Iwamotocho",
-   "x": 990.0,
-   "y": 2460.0,
+   "x": 1230.0,
+   "y": 2520.0,
    "labelKo": "이와모토초",
    "labelJa": "岩本町",
    "labelDx": 0,
@@ -954,13 +980,26 @@
    ]
   },
   {
+   "group": "g.IzumiTaiikukan",
+   "x": 300.0,
+   "y": 2220.0,
+   "labelKo": "이즈미타이이쿠칸",
+   "labelJa": "泉体育館",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.IzumiTaiikukan"
+   ]
+  },
+  {
    "group": "g.Jimbocho",
-   "x": 810.0,
-   "y": 2400.0,
+   "x": 1080.0,
+   "y": 2520.0,
    "labelKo": "진보초",
    "labelJa": "神保町",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.Jimbocho",
@@ -970,8 +1009,8 @@
   },
   {
    "group": "g.Kachidoki",
-   "x": 1080.0,
-   "y": 2730.0,
+   "x": 1320.0,
+   "y": 2790.0,
    "labelKo": "가치도키",
    "labelJa": "勝どき",
    "labelDx": 1,
@@ -983,12 +1022,12 @@
   },
   {
    "group": "g.Kagurazaka",
-   "x": 690.0,
-   "y": 2340.0,
+   "x": 960.0,
+   "y": 2400.0,
    "labelKo": "가구라자카",
    "labelJa": "神楽坂",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Kagurazaka"
@@ -996,24 +1035,37 @@
   },
   {
    "group": "g.Kajiwara",
-   "x": 900.0,
-   "y": 1950.0,
+   "x": 1080.0,
+   "y": 1980.0,
    "labelKo": "가지와라",
    "labelJa": "梶原",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Kajiwara"
    ]
   },
   {
+   "group": "g.Kamikitadai",
+   "x": 240.0,
+   "y": 1980.0,
+   "labelKo": "가미키타다이",
+   "labelJa": "上北台",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Kamikitadai"
+   ]
+  },
+  {
    "group": "g.Kamiyacho",
-   "x": 720.0,
-   "y": 2730.0,
+   "x": 990.0,
+   "y": 2760.0,
    "labelKo": "가미야초",
    "labelJa": "神谷町",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -1022,12 +1074,12 @@
   },
   {
    "group": "g.Kanamecho",
-   "x": 510.0,
-   "y": 2160.0,
+   "x": 720.0,
+   "y": 2220.0,
    "labelKo": "가나메초",
    "labelJa": "要町",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.Kanamecho",
@@ -1036,12 +1088,12 @@
   },
   {
    "group": "g.Kanda",
-   "x": 990.0,
-   "y": 2430.0,
+   "x": 1260.0,
+   "y": 2460.0,
    "labelKo": "간다",
    "labelJa": "神田",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Kanda"
@@ -1049,8 +1101,8 @@
   },
   {
    "group": "g.Kasai",
-   "x": 1500.0,
-   "y": 2610.0,
+   "x": 1770.0,
+   "y": 2670.0,
    "labelKo": "가사이",
    "labelJa": "葛西",
    "labelDx": 0,
@@ -1062,8 +1114,8 @@
   },
   {
    "group": "g.KashiwaTanaka",
-   "x": 2010.0,
-   "y": 840.0,
+   "x": 2280.0,
+   "y": 870.0,
    "labelKo": "가시와타나카",
    "labelJa": "柏たなか",
    "labelDx": -1,
@@ -1075,8 +1127,8 @@
   },
   {
    "group": "g.KashiwanohaCampus",
-   "x": 2010.0,
-   "y": 990.0,
+   "x": 2280.0,
+   "y": 1020.0,
    "labelKo": "가시와노하캠퍼스",
    "labelJa": "柏の葉キャンパス",
    "labelDx": 1,
@@ -1088,12 +1140,12 @@
   },
   {
    "group": "g.Kasuga",
-   "x": 840.0,
-   "y": 2250.0,
+   "x": 1110.0,
+   "y": 2310.0,
    "labelKo": "가스가",
    "labelJa": "春日",
-   "labelDx": -1,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Mita.Kasuga",
@@ -1102,12 +1154,12 @@
   },
   {
    "group": "g.Kasumigaseki",
-   "x": 810.0,
-   "y": 2610.0,
+   "x": 1080.0,
+   "y": 2670.0,
    "labelKo": "가스미가세키",
    "labelJa": "霞ケ関",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Kasumigaseki",
@@ -1117,12 +1169,12 @@
   },
   {
    "group": "g.Kayabacho",
-   "x": 1080.0,
-   "y": 2550.0,
+   "x": 1320.0,
+   "y": 2580.0,
    "labelKo": "가야바초",
    "labelJa": "茅場町",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Kayabacho",
@@ -1131,8 +1183,8 @@
   },
   {
    "group": "g.KenkyuGakuen",
-   "x": 2490.0,
-   "y": 120.0,
+   "x": 2760.0,
+   "y": 150.0,
    "labelKo": "겐큐가쿠엔",
    "labelJa": "研究学園",
    "labelDx": 0,
@@ -1144,8 +1196,8 @@
   },
   {
    "group": "g.Kiba",
-   "x": 1230.0,
-   "y": 2610.0,
+   "x": 1470.0,
+   "y": 2670.0,
    "labelKo": "기바",
    "labelJa": "木場",
    "labelDx": 0,
@@ -1157,12 +1209,12 @@
   },
   {
    "group": "g.Kikukawa",
-   "x": 1260.0,
-   "y": 2520.0,
+   "x": 1470.0,
+   "y": 2550.0,
    "labelKo": "기쿠카와",
    "labelJa": "菊川",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.Kikukawa"
@@ -1170,12 +1222,12 @@
   },
   {
    "group": "g.Kinshicho",
-   "x": 1260.0,
-   "y": 2460.0,
+   "x": 1500.0,
+   "y": 2400.0,
    "labelKo": "긴시초",
    "labelJa": "錦糸町",
-   "labelDx": -1,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.Kinshicho"
@@ -1183,12 +1235,12 @@
   },
   {
    "group": "g.Kishibojimmae",
-   "x": 570.0,
-   "y": 2250.0,
+   "x": 810.0,
+   "y": 2280.0,
    "labelKo": "기시보진마에",
    "labelJa": "鬼子母神前",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Kishibojimmae"
@@ -1196,8 +1248,8 @@
   },
   {
    "group": "g.KitaAyase",
-   "x": 1260.0,
-   "y": 1860.0,
+   "x": 1500.0,
+   "y": 1920.0,
    "labelKo": "기타아야세",
    "labelJa": "北綾瀬",
    "labelDx": 1,
@@ -1209,12 +1261,12 @@
   },
   {
    "group": "g.KitaSando",
-   "x": 540.0,
-   "y": 2550.0,
+   "x": 720.0,
+   "y": 2610.0,
    "labelKo": "기타산도",
    "labelJa": "北参道",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.KitaSando"
@@ -1222,8 +1274,8 @@
   },
   {
    "group": "g.KitaSenju",
-   "x": 1200.0,
-   "y": 1980.0,
+   "x": 1440.0,
+   "y": 2040.0,
    "labelKo": "기타센주",
    "labelJa": "北千住",
    "labelDx": 1,
@@ -1237,12 +1289,12 @@
   },
   {
    "group": "g.KiyosumiShirakawa",
-   "x": 1170.0,
-   "y": 2520.0,
+   "x": 1410.0,
+   "y": 2610.0,
    "labelKo": "기요스미시라카와",
    "labelJa": "清澄白河",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.KiyosumiShirakawa",
@@ -1251,12 +1303,12 @@
   },
   {
    "group": "g.Kodemmacho",
-   "x": 990.0,
-   "y": 2400.0,
+   "x": 1350.0,
+   "y": 2490.0,
    "labelKo": "고덴마초",
    "labelJa": "小伝馬町",
-   "labelDx": -1,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Kodemmacho"
@@ -1264,11 +1316,11 @@
   },
   {
    "group": "g.Kohoku",
-   "x": 930.0,
+   "x": 1260.0,
    "y": 1860.0,
    "labelKo": "고호쿠",
    "labelJa": "江北",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -1277,12 +1329,12 @@
   },
   {
    "group": "g.Kojimachi",
-   "x": 690.0,
+   "x": 870.0,
    "y": 2520.0,
    "labelKo": "고지마치",
    "labelJa": "麴町",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Kojimachi"
@@ -1290,12 +1342,12 @@
   },
   {
    "group": "g.KokkaiGijidomae",
-   "x": 810.0,
-   "y": 2550.0,
+   "x": 1020.0,
+   "y": 2640.0,
    "labelKo": "곳카이기지도마에",
    "labelJa": "国会議事堂前",
-   "labelDx": 1,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.KokkaiGijidomae",
@@ -1304,11 +1356,11 @@
   },
   {
    "group": "g.KokuritsuKyogijo",
-   "x": 600.0,
-   "y": 2550.0,
+   "x": 870.0,
+   "y": 2580.0,
    "labelKo": "고쿠리쓰쿄기조",
    "labelJa": "国立競技場",
-   "labelDx": -1,
+   "labelDx": 0,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -1317,8 +1369,8 @@
   },
   {
    "group": "g.KokusaiTenjijo",
-   "x": 1050.0,
-   "y": 2820.0,
+   "x": 1290.0,
+   "y": 2880.0,
    "labelKo": "고쿠사이텐지조",
    "labelJa": "国際展示場",
    "labelDx": 1,
@@ -1330,12 +1382,12 @@
   },
   {
    "group": "g.Komagome",
-   "x": 810.0,
+   "x": 1050.0,
    "y": 2130.0,
    "labelKo": "고마고메",
    "labelJa": "駒込",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.Komagome"
@@ -1343,12 +1395,12 @@
   },
   {
    "group": "g.Korakuen",
-   "x": 810.0,
-   "y": 2280.0,
+   "x": 1020.0,
+   "y": 2310.0,
    "labelKo": "고라쿠엔",
    "labelJa": "後楽園",
-   "labelDx": 1,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.Korakuen",
@@ -1357,25 +1409,38 @@
   },
   {
    "group": "g.Koshinzuka",
-   "x": 720.0,
-   "y": 2070.0,
+   "x": 930.0,
+   "y": 2100.0,
    "labelKo": "고신즈카",
    "labelJa": "庚申塚",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Koshinzuka"
    ]
   },
   {
+   "group": "g.Koshukaido",
+   "x": 150.0,
+   "y": 2520.0,
+   "labelKo": "고슈카이도",
+   "labelJa": "甲州街道",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Koshukaido"
+   ]
+  },
+  {
    "group": "g.KotakeMukaihara",
-   "x": 450.0,
-   "y": 2040.0,
+   "x": 660.0,
+   "y": 2130.0,
    "labelKo": "고타케무카이하라",
    "labelJa": "小竹向原",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.KotakeMukaihara",
@@ -1384,11 +1449,11 @@
   },
   {
    "group": "g.Koya",
-   "x": 1020.0,
-   "y": 1830.0,
+   "x": 1170.0,
+   "y": 1890.0,
    "labelKo": "고야",
    "labelJa": "高野",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -1397,12 +1462,12 @@
   },
   {
    "group": "g.Kudanshita",
-   "x": 810.0,
+   "x": 1050.0,
    "y": 2460.0,
    "labelKo": "구단시타",
    "labelJa": "九段下",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.Kudanshita",
@@ -1412,12 +1477,12 @@
   },
   {
    "group": "g.Kumanomae",
-   "x": 960.0,
-   "y": 2010.0,
+   "x": 1230.0,
+   "y": 2070.0,
    "labelKo": "구마노마에",
    "labelJa": "熊野前",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Kumanomae",
@@ -1426,12 +1491,12 @@
   },
   {
    "group": "g.Kuramae",
-   "x": 1170.0,
-   "y": 2370.0,
+   "x": 1380.0,
+   "y": 2400.0,
    "labelKo": "구라마에",
    "labelJa": "蔵前",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.Kuramae",
@@ -1440,12 +1505,12 @@
   },
   {
    "group": "g.Kyobashi",
-   "x": 960.0,
-   "y": 2550.0,
+   "x": 1290.0,
+   "y": 2580.0,
    "labelKo": "교바시",
    "labelJa": "京橋",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Kyobashi"
@@ -1453,12 +1518,12 @@
   },
   {
    "group": "g.Machiya",
-   "x": 1080.0,
-   "y": 2040.0,
+   "x": 1290.0,
+   "y": 2130.0,
    "labelKo": "마치야",
    "labelJa": "町屋",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Machiya"
@@ -1466,11 +1531,11 @@
   },
   {
    "group": "g.MachiyaEkimae",
-   "x": 1110.0,
-   "y": 1950.0,
+   "x": 1320.0,
+   "y": 2040.0,
    "labelKo": "마치야에키마에",
    "labelJa": "町屋駅前",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -1479,11 +1544,11 @@
   },
   {
    "group": "g.MachiyaNichome",
-   "x": 1020.0,
+   "x": 1260.0,
    "y": 2100.0,
    "labelKo": "마치야니초메",
    "labelJa": "町屋二丁目",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -1492,8 +1557,8 @@
   },
   {
    "group": "g.Magome",
-   "x": 660.0,
-   "y": 3120.0,
+   "x": 900.0,
+   "y": 3180.0,
    "labelKo": "마고메",
    "labelJa": "馬込",
    "labelDx": 1,
@@ -1504,9 +1569,35 @@
    ]
   },
   {
+   "group": "g.Manganji",
+   "x": 210.0,
+   "y": 2520.0,
+   "labelKo": "만간지",
+   "labelJa": "万願寺",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Manganji"
+   ]
+  },
+  {
+   "group": "g.Matsugaya",
+   "x": 270.0,
+   "y": 2760.0,
+   "labelKo": "마쓰가야",
+   "labelJa": "松が谷",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Matsugaya"
+   ]
+  },
+  {
    "group": "g.Meguro",
-   "x": 630.0,
-   "y": 2850.0,
+   "x": 870.0,
+   "y": 2970.0,
    "labelKo": "메구로",
    "labelJa": "目黒",
    "labelDx": -1,
@@ -1519,12 +1610,12 @@
   },
   {
    "group": "g.MeijiJingumae",
-   "x": 540.0,
-   "y": 2610.0,
+   "x": 780.0,
+   "y": 2700.0,
    "labelKo": "메이지진구마에(하라주쿠)",
    "labelJa": "明治神宮前〈原宿〉",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.MeijiJingumae",
@@ -1533,8 +1624,8 @@
   },
   {
    "group": "g.Midorino",
-   "x": 2400.0,
-   "y": 390.0,
+   "x": 2640.0,
+   "y": 360.0,
    "labelKo": "미도리노",
    "labelJa": "みどりの",
    "labelDx": 1,
@@ -1546,8 +1637,8 @@
   },
   {
    "group": "g.MinamiAsagaya",
-   "x": 180.0,
-   "y": 2400.0,
+   "x": 420.0,
+   "y": 2430.0,
    "labelKo": "미나미아사가야",
    "labelJa": "南阿佐ケ谷",
    "labelDx": 0,
@@ -1559,12 +1650,12 @@
   },
   {
    "group": "g.MinamiGyotoku",
-   "x": 1680.0,
-   "y": 2550.0,
+   "x": 1920.0,
+   "y": 2610.0,
    "labelKo": "미나미교토쿠",
    "labelJa": "南行徳",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.MinamiGyotoku"
@@ -1572,8 +1663,8 @@
   },
   {
    "group": "g.MinamiNagareyama",
-   "x": 1650.0,
-   "y": 1410.0,
+   "x": 1920.0,
+   "y": 1440.0,
    "labelKo": "미나미나가레야마",
    "labelJa": "南流山",
    "labelDx": 1,
@@ -1585,8 +1676,8 @@
   },
   {
    "group": "g.MinamiSenju",
-   "x": 1200.0,
-   "y": 2100.0,
+   "x": 1440.0,
+   "y": 2160.0,
    "labelKo": "미나미센주",
    "labelJa": "南千住",
    "labelDx": 1,
@@ -1599,12 +1690,12 @@
   },
   {
    "group": "g.MinamiSunamachi",
-   "x": 1350.0,
-   "y": 2610.0,
+   "x": 1590.0,
+   "y": 2670.0,
    "labelKo": "미나미스나마치",
    "labelJa": "南砂町",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.MinamiSunamachi"
@@ -1612,12 +1703,12 @@
   },
   {
    "group": "g.Minowa",
-   "x": 1110.0,
-   "y": 2190.0,
+   "x": 1380.0,
+   "y": 2220.0,
    "labelKo": "미노와",
    "labelJa": "三ノ輪",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Minowa"
@@ -1625,8 +1716,8 @@
   },
   {
    "group": "g.Minowabashi",
-   "x": 1260.0,
-   "y": 2190.0,
+   "x": 1410.0,
+   "y": 2250.0,
    "labelKo": "미노와바시",
    "labelJa": "三ノ輪橋",
    "labelDx": 1,
@@ -1638,8 +1729,8 @@
   },
   {
    "group": "g.MinumadaiShinsuikoen",
-   "x": 930.0,
-   "y": 1560.0,
+   "x": 1200.0,
+   "y": 1650.0,
    "labelKo": "미누마다이신스이코엔",
    "labelJa": "見沼代親水公園",
    "labelDx": 1,
@@ -1651,11 +1742,11 @@
   },
   {
    "group": "g.Miraidaira",
-   "x": 2310.0,
-   "y": 480.0,
+   "x": 2640.0,
+   "y": 510.0,
    "labelKo": "미라이다이라",
    "labelJa": "みらい平",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -1664,8 +1755,8 @@
   },
   {
    "group": "g.MisatoChuo",
-   "x": 1530.0,
-   "y": 1530.0,
+   "x": 1800.0,
+   "y": 1560.0,
    "labelKo": "미사토추오",
    "labelJa": "三郷中央",
    "labelDx": 1,
@@ -1677,11 +1768,11 @@
   },
   {
    "group": "g.Mita",
-   "x": 870.0,
-   "y": 2820.0,
+   "x": 1110.0,
+   "y": 2880.0,
    "labelKo": "미타",
    "labelJa": "三田",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": 1,
    "interchange": true,
    "stationIds": [
@@ -1691,12 +1782,12 @@
   },
   {
    "group": "g.Mitsukoshimae",
-   "x": 960.0,
-   "y": 2490.0,
+   "x": 1200.0,
+   "y": 2550.0,
    "labelKo": "미쓰코시마에",
    "labelJa": "三越前",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Mitsukoshimae",
@@ -1705,8 +1796,8 @@
   },
   {
    "group": "g.Miyanomae",
-   "x": 930.0,
-   "y": 1950.0,
+   "x": 1170.0,
+   "y": 2010.0,
    "labelKo": "미야노마에",
    "labelJa": "宮ノ前",
    "labelDx": 1,
@@ -1718,12 +1809,12 @@
   },
   {
    "group": "g.Mizue",
-   "x": 1590.0,
-   "y": 2430.0,
+   "x": 1860.0,
+   "y": 2490.0,
    "labelKo": "미즈에",
    "labelJa": "瑞江",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.Mizue"
@@ -1731,11 +1822,11 @@
   },
   {
    "group": "g.MonzenNakacho",
-   "x": 1170.0,
-   "y": 2640.0,
+   "x": 1410.0,
+   "y": 2670.0,
    "labelKo": "몬젠나카초",
    "labelJa": "門前仲町",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": 1,
    "interchange": true,
    "stationIds": [
@@ -1745,12 +1836,12 @@
   },
   {
    "group": "g.Morishita",
-   "x": 1170.0,
-   "y": 2430.0,
+   "x": 1410.0,
+   "y": 2520.0,
    "labelKo": "모리시타",
    "labelJa": "森下",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Morishita",
@@ -1759,12 +1850,12 @@
   },
   {
    "group": "g.Moriya",
-   "x": 2160.0,
-   "y": 690.0,
+   "x": 2430.0,
+   "y": 720.0,
    "labelKo": "모리야",
    "labelJa": "守谷",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:MIR.TsukubaExpress.Moriya"
@@ -1772,8 +1863,8 @@
   },
   {
    "group": "g.Motohasunuma",
-   "x": 600.0,
-   "y": 1860.0,
+   "x": 810.0,
+   "y": 1950.0,
    "labelKo": "모토하스누마",
    "labelJa": "本蓮沼",
    "labelDx": 1,
@@ -1785,8 +1876,8 @@
   },
   {
    "group": "g.Motoyawata",
-   "x": 1710.0,
-   "y": 2310.0,
+   "x": 1980.0,
+   "y": 2370.0,
    "labelKo": "모토야와타",
    "labelJa": "本八幡",
    "labelDx": 1,
@@ -1798,8 +1889,8 @@
   },
   {
    "group": "g.Mukohara",
-   "x": 570.0,
-   "y": 2130.0,
+   "x": 840.0,
+   "y": 2190.0,
    "labelKo": "무코하라",
    "labelJa": "向原",
    "labelDx": -1,
@@ -1811,8 +1902,8 @@
   },
   {
    "group": "g.Myoden",
-   "x": 1770.0,
-   "y": 2460.0,
+   "x": 2040.0,
+   "y": 2520.0,
    "labelKo": "묘덴",
    "labelJa": "妙典",
    "labelDx": 0,
@@ -1824,12 +1915,12 @@
   },
   {
    "group": "g.Myogadani",
-   "x": 780.0,
-   "y": 2190.0,
+   "x": 1020.0,
+   "y": 2250.0,
    "labelKo": "묘가다니",
    "labelJa": "茗荷谷",
-   "labelDx": -1,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.Myogadani"
@@ -1837,8 +1928,8 @@
   },
   {
    "group": "g.NagareyamaCentralPark",
-   "x": 1740.0,
-   "y": 1320.0,
+   "x": 2010.0,
+   "y": 1350.0,
    "labelKo": "나가레야마센트럴파크",
    "labelJa": "流山セントラルパーク",
    "labelDx": 1,
@@ -1850,8 +1941,8 @@
   },
   {
    "group": "g.NagareyamaOtakanomori",
-   "x": 1830.0,
-   "y": 1230.0,
+   "x": 2100.0,
+   "y": 1260.0,
    "labelKo": "나가레야마오타카노모리",
    "labelJa": "流山おおたかの森",
    "labelDx": 1,
@@ -1863,12 +1954,12 @@
   },
   {
    "group": "g.Nagatacho",
-   "x": 750.0,
+   "x": 960.0,
    "y": 2520.0,
    "labelKo": "나가타초",
    "labelJa": "永田町",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.Nagatacho",
@@ -1878,8 +1969,8 @@
   },
   {
    "group": "g.NakaMeguro",
-   "x": 510.0,
-   "y": 2760.0,
+   "x": 780.0,
+   "y": 2820.0,
    "labelKo": "나카메구로",
    "labelJa": "中目黒",
    "labelDx": -1,
@@ -1891,12 +1982,12 @@
   },
   {
    "group": "g.NakaOkachimachi",
-   "x": 1020.0,
-   "y": 2310.0,
+   "x": 1230.0,
+   "y": 2280.0,
    "labelKo": "나카오카치마치",
    "labelJa": "仲御徒町",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.NakaOkachimachi"
@@ -1904,8 +1995,8 @@
   },
   {
    "group": "g.Nakai",
-   "x": 360.0,
-   "y": 2250.0,
+   "x": 600.0,
+   "y": 2280.0,
    "labelKo": "나카이",
    "labelJa": "中井",
    "labelDx": -1,
@@ -1917,7 +2008,7 @@
   },
   {
    "group": "g.Nakano",
-   "x": 330.0,
+   "x": 600.0,
    "y": 2340.0,
    "labelKo": "나카노",
    "labelJa": "中野",
@@ -1930,8 +2021,8 @@
   },
   {
    "group": "g.NakanoFujimicho",
-   "x": 270.0,
-   "y": 2460.0,
+   "x": 540.0,
+   "y": 2490.0,
    "labelKo": "나카노후지미초",
    "labelJa": "中野富士見町",
    "labelDx": -1,
@@ -1943,8 +2034,8 @@
   },
   {
    "group": "g.NakanoSakaue",
-   "x": 420.0,
-   "y": 2400.0,
+   "x": 660.0,
+   "y": 2460.0,
    "labelKo": "나카노사카우에",
    "labelJa": "中野坂上",
    "labelDx": 0,
@@ -1958,12 +2049,12 @@
   },
   {
    "group": "g.NakanoShimbashi",
-   "x": 330.0,
-   "y": 2460.0,
+   "x": 600.0,
+   "y": 2490.0,
    "labelKo": "나카노신바시",
    "labelJa": "中野新橋",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.MarunouchiBranch.NakanoShimbashi"
@@ -1971,8 +2062,8 @@
   },
   {
    "group": "g.Nakanobu",
-   "x": 660.0,
-   "y": 3030.0,
+   "x": 900.0,
+   "y": 3090.0,
    "labelKo": "나카노부",
    "labelJa": "中延",
    "labelDx": 1,
@@ -1984,12 +2075,12 @@
   },
   {
    "group": "g.Nerima",
-   "x": 330.0,
-   "y": 2160.0,
+   "x": 510.0,
+   "y": 2220.0,
    "labelKo": "네리마",
    "labelJa": "練馬",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Nerima"
@@ -1997,12 +2088,12 @@
   },
   {
    "group": "g.NerimaKasugacho",
-   "x": 270.0,
-   "y": 2040.0,
+   "x": 450.0,
+   "y": 2100.0,
    "labelKo": "네리마카스가초",
    "labelJa": "練馬春日町",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.NerimaKasugacho"
@@ -2010,12 +2101,12 @@
   },
   {
    "group": "g.Nezu",
-   "x": 900.0,
-   "y": 2250.0,
+   "x": 1170.0,
+   "y": 2280.0,
    "labelKo": "네즈",
    "labelJa": "根津",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Nezu"
@@ -2023,12 +2114,12 @@
   },
   {
    "group": "g.Nihombashi",
-   "x": 1020.0,
-   "y": 2490.0,
+   "x": 1260.0,
+   "y": 2550.0,
    "labelKo": "니혼바시",
    "labelJa": "日本橋",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Nihombashi",
@@ -2038,8 +2129,8 @@
   },
   {
    "group": "g.Nijubashimae",
-   "x": 840.0,
-   "y": 2490.0,
+   "x": 1020.0,
+   "y": 2610.0,
    "labelKo": "니주바시마에<마루노치>",
    "labelJa": "二重橋前〈丸の内〉",
    "labelDx": -1,
@@ -2051,11 +2142,11 @@
   },
   {
    "group": "g.Ningyocho",
-   "x": 1080.0,
+   "x": 1290.0,
    "y": 2490.0,
    "labelKo": "닌교초",
    "labelJa": "人形町",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": true,
    "stationIds": [
@@ -2065,12 +2156,12 @@
   },
   {
    "group": "g.Nippori",
-   "x": 1020.0,
-   "y": 2160.0,
+   "x": 1260.0,
+   "y": 2250.0,
    "labelKo": "닛포리",
    "labelJa": "日暮里",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.Nippori"
@@ -2078,8 +2169,8 @@
   },
   {
    "group": "g.NishiFunabashi",
-   "x": 1920.0,
-   "y": 2370.0,
+   "x": 2160.0,
+   "y": 2460.0,
    "labelKo": "니시후나바시",
    "labelJa": "西船橋",
    "labelDx": 1,
@@ -2091,12 +2182,12 @@
   },
   {
    "group": "g.NishiKasai",
-   "x": 1440.0,
-   "y": 2610.0,
+   "x": 1680.0,
+   "y": 2670.0,
    "labelKo": "니시카사이",
    "labelJa": "西葛西",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.NishiKasai"
@@ -2104,8 +2195,8 @@
   },
   {
    "group": "g.NishiMagome",
-   "x": 600.0,
-   "y": 3120.0,
+   "x": 840.0,
+   "y": 3180.0,
    "labelKo": "니시마고메",
    "labelJa": "西馬込",
    "labelDx": -1,
@@ -2117,12 +2208,12 @@
   },
   {
    "group": "g.NishiNippori",
-   "x": 960.0,
+   "x": 1200.0,
    "y": 2160.0,
    "labelKo": "니시닛포리",
    "labelJa": "西日暮里",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.NishiNippori",
@@ -2131,12 +2222,12 @@
   },
   {
    "group": "g.NishiOjima",
-   "x": 1320.0,
-   "y": 2400.0,
+   "x": 1530.0,
+   "y": 2490.0,
    "labelKo": "니시오지마",
    "labelJa": "西大島",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Shinjuku.NishiOjima"
@@ -2144,12 +2235,12 @@
   },
   {
    "group": "g.NishiShinjuku",
-   "x": 450.0,
-   "y": 2400.0,
+   "x": 750.0,
+   "y": 2460.0,
    "labelKo": "니시신주쿠",
    "labelJa": "西新宿",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.NishiShinjuku"
@@ -2157,12 +2248,12 @@
   },
   {
    "group": "g.NishiShinjukuGochome",
-   "x": 420.0,
-   "y": 2460.0,
+   "x": 660.0,
+   "y": 2520.0,
    "labelKo": "니시신주쿠고초메",
    "labelJa": "西新宿五丁目",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.NishiShinjukuGochome"
@@ -2170,11 +2261,11 @@
   },
   {
    "group": "g.NishiSugamo",
-   "x": 690.0,
-   "y": 1980.0,
+   "x": 870.0,
+   "y": 2070.0,
    "labelKo": "니시스가모",
    "labelJa": "西巣鴨",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -2183,8 +2274,8 @@
   },
   {
    "group": "g.NishiTakashimadaira",
-   "x": 210.0,
-   "y": 1770.0,
+   "x": 450.0,
+   "y": 1800.0,
    "labelKo": "니시타카시마다이라",
    "labelJa": "西高島平",
    "labelDx": -1,
@@ -2196,12 +2287,12 @@
   },
   {
    "group": "g.NishiWaseda",
-   "x": 570.0,
-   "y": 2340.0,
+   "x": 720.0,
+   "y": 2310.0,
    "labelKo": "니시와세다",
    "labelJa": "西早稲田",
    "labelDx": 1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.NishiWaseda"
@@ -2209,12 +2300,12 @@
   },
   {
    "group": "g.NishiaraidaishiNishi",
-   "x": 930.0,
-   "y": 1800.0,
+   "x": 1200.0,
+   "y": 1890.0,
    "labelKo": "니시아라이다이시니시",
    "labelJa": "西新井大師西",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.NishiaraidaishiNishi"
@@ -2222,12 +2313,12 @@
   },
   {
    "group": "g.Nishidai",
-   "x": 420.0,
-   "y": 1770.0,
+   "x": 660.0,
+   "y": 1800.0,
    "labelKo": "니시다이",
    "labelJa": "西台",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Nishidai"
@@ -2235,12 +2326,12 @@
   },
   {
    "group": "g.Nishigahara",
-   "x": 810.0,
-   "y": 1980.0,
+   "x": 1050.0,
+   "y": 2070.0,
    "labelKo": "니시가하라",
    "labelJa": "西ケ原",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.Nishigahara"
@@ -2248,8 +2339,8 @@
   },
   {
    "group": "g.NishigaharaYonchome",
-   "x": 750.0,
-   "y": 2070.0,
+   "x": 1020.0,
+   "y": 2130.0,
    "labelKo": "니시가하라욘초메",
    "labelJa": "西ヶ原四丁目",
    "labelDx": 1,
@@ -2261,11 +2352,11 @@
   },
   {
    "group": "g.Nogizaka",
-   "x": 660.0,
-   "y": 2640.0,
+   "x": 930.0,
+   "y": 2730.0,
    "labelKo": "노기자카",
    "labelJa": "乃木坂",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -2274,12 +2365,12 @@
   },
   {
    "group": "g.Ochanomizu",
-   "x": 900.0,
-   "y": 2340.0,
+   "x": 1170.0,
+   "y": 2370.0,
    "labelKo": "오차노미즈",
    "labelJa": "御茶ノ水",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.Ochanomizu"
@@ -2287,12 +2378,12 @@
   },
   {
    "group": "g.Ochiai",
-   "x": 480.0,
-   "y": 2340.0,
+   "x": 690.0,
+   "y": 2310.0,
    "labelKo": "오치아이",
    "labelJa": "落合",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Ochiai"
@@ -2300,12 +2391,12 @@
   },
   {
    "group": "g.OchiaiMinamiNagasaki",
-   "x": 450.0,
-   "y": 2160.0,
+   "x": 660.0,
+   "y": 2250.0,
    "labelKo": "오치아이미나미나가사키",
    "labelJa": "落合南長崎",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.OchiaiMinamiNagasaki"
@@ -2313,11 +2404,11 @@
   },
   {
    "group": "g.Odai",
-   "x": 930.0,
-   "y": 2010.0,
+   "x": 1170.0,
+   "y": 2070.0,
    "labelKo": "오다이",
    "labelJa": "小台",
-   "labelDx": 1,
+   "labelDx": 0,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -2326,11 +2417,11 @@
   },
   {
    "group": "g.Ogawamachi",
-   "x": 870.0,
-   "y": 2400.0,
+   "x": 1110.0,
+   "y": 2460.0,
    "labelKo": "오가와마치",
    "labelJa": "小川町",
-   "labelDx": 0,
+   "labelDx": 1,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -2339,8 +2430,8 @@
   },
   {
    "group": "g.OgiOhashi",
-   "x": 1020.0,
-   "y": 1890.0,
+   "x": 1230.0,
+   "y": 1950.0,
    "labelKo": "오기오하시",
    "labelJa": "扇大橋",
    "labelDx": 1,
@@ -2352,8 +2443,8 @@
   },
   {
    "group": "g.Ogikubo",
-   "x": 120.0,
-   "y": 2400.0,
+   "x": 360.0,
+   "y": 2430.0,
    "labelKo": "오기쿠보",
    "labelJa": "荻窪",
    "labelDx": -1,
@@ -2365,8 +2456,8 @@
   },
   {
    "group": "g.Oimachi",
-   "x": 840.0,
-   "y": 2970.0,
+   "x": 1080.0,
+   "y": 3030.0,
    "labelKo": "오이마치",
    "labelJa": "大井町",
    "labelDx": 0,
@@ -2378,8 +2469,8 @@
   },
   {
    "group": "g.Oji",
-   "x": 660.0,
-   "y": 1950.0,
+   "x": 930.0,
+   "y": 1920.0,
    "labelKo": "오지",
    "labelJa": "王子",
    "labelDx": -1,
@@ -2391,12 +2482,12 @@
   },
   {
    "group": "g.OjiEkimae",
-   "x": 780.0,
-   "y": 1890.0,
+   "x": 1020.0,
+   "y": 1920.0,
    "labelKo": "오지에키마에",
    "labelJa": "王子駅前",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.OjiEkimae"
@@ -2404,8 +2495,8 @@
   },
   {
    "group": "g.OjiKamiya",
-   "x": 720.0,
-   "y": 1890.0,
+   "x": 990.0,
+   "y": 1920.0,
    "labelKo": "오지카미야",
    "labelJa": "王子神谷",
    "labelDx": 1,
@@ -2417,8 +2508,8 @@
   },
   {
    "group": "g.Ojima",
-   "x": 1350.0,
-   "y": 2460.0,
+   "x": 1590.0,
+   "y": 2490.0,
    "labelKo": "오지마",
    "labelJa": "大島",
    "labelDx": 0,
@@ -2430,11 +2521,11 @@
   },
   {
    "group": "g.Omokagebashi",
-   "x": 600.0,
-   "y": 2250.0,
+   "x": 840.0,
+   "y": 2340.0,
    "labelKo": "오모카게바시",
    "labelJa": "面影橋",
-   "labelDx": -1,
+   "labelDx": 0,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -2443,8 +2534,8 @@
   },
   {
    "group": "g.OmoteSando",
-   "x": 600.0,
-   "y": 2670.0,
+   "x": 840.0,
+   "y": 2700.0,
    "labelKo": "오모테산도",
    "labelJa": "表参道",
    "labelDx": 0,
@@ -2458,8 +2549,8 @@
   },
   {
    "group": "g.Onarimon",
-   "x": 900.0,
-   "y": 2700.0,
+   "x": 1110.0,
+   "y": 2760.0,
    "labelKo": "오나리몬",
    "labelJa": "御成門",
    "labelDx": 1,
@@ -2471,8 +2562,8 @@
   },
   {
    "group": "g.Osaki",
-   "x": 780.0,
-   "y": 2970.0,
+   "x": 1020.0,
+   "y": 3030.0,
    "labelKo": "오사키",
    "labelJa": "大崎",
    "labelDx": -1,
@@ -2484,8 +2575,8 @@
   },
   {
    "group": "g.Oshiage",
-   "x": 1260.0,
-   "y": 2370.0,
+   "x": 1530.0,
+   "y": 2340.0,
    "labelKo": "오시아게(스카이트리마에)",
    "labelJa": "押上〈スカイツリー前〉",
    "labelDx": 1,
@@ -2498,12 +2589,12 @@
   },
   {
    "group": "g.Otemachi",
-   "x": 900.0,
-   "y": 2490.0,
+   "x": 1140.0,
+   "y": 2580.0,
    "labelKo": "오테마치",
    "labelJa": "大手町",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Otemachi",
@@ -2515,21 +2606,34 @@
   },
   {
    "group": "g.OtsukaEkimae",
-   "x": 630.0,
-   "y": 2130.0,
+   "x": 900.0,
+   "y": 2160.0,
    "labelKo": "오쓰카에키마에",
    "labelJa": "大塚駅前",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.OtsukaEkimae"
    ]
   },
   {
+   "group": "g.OtsukaTeikyoDaigaku",
+   "x": 210.0,
+   "y": 2760.0,
+   "labelKo": "오쓰카·데이쿄다이가쿠",
+   "labelJa": "大塚・帝京大学",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.OtsukaTeikyoDaigaku"
+   ]
+  },
+  {
    "group": "g.Rokucho",
-   "x": 1260.0,
-   "y": 1800.0,
+   "x": 1500.0,
+   "y": 1860.0,
    "labelKo": "로쿠초",
    "labelJa": "六町",
    "labelDx": 1,
@@ -2541,8 +2645,8 @@
   },
   {
    "group": "g.Roppongi",
-   "x": 660.0,
-   "y": 2730.0,
+   "x": 900.0,
+   "y": 2760.0,
    "labelKo": "롯폰기",
    "labelJa": "六本木",
    "labelDx": -1,
@@ -2555,12 +2659,12 @@
   },
   {
    "group": "g.RoppongiItchome",
-   "x": 750.0,
-   "y": 2670.0,
+   "x": 990.0,
+   "y": 2730.0,
    "labelKo": "롯폰기잇초메",
    "labelJa": "六本木一丁目",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.RoppongiItchome"
@@ -2568,12 +2672,12 @@
   },
   {
    "group": "g.Ryogoku",
-   "x": 1230.0,
-   "y": 2370.0,
+   "x": 1440.0,
+   "y": 2460.0,
    "labelKo": "료고쿠",
    "labelJa": "両国",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Ryogoku"
@@ -2581,12 +2685,12 @@
   },
   {
    "group": "g.Sakaecho",
-   "x": 840.0,
-   "y": 1950.0,
+   "x": 1020.0,
+   "y": 1980.0,
    "labelKo": "사카에초",
    "labelJa": "栄町",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Sakaecho"
@@ -2594,7 +2698,7 @@
   },
   {
    "group": "g.Sakuradamon",
-   "x": 810.0,
+   "x": 1020.0,
    "y": 2520.0,
    "labelKo": "사쿠라다몬",
    "labelJa": "桜田門",
@@ -2606,13 +2710,26 @@
    ]
   },
   {
+   "group": "g.Sakurakaido",
+   "x": 240.0,
+   "y": 2040.0,
+   "labelKo": "사쿠라카이도",
+   "labelJa": "桜街道",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Sakurakaido"
+   ]
+  },
+  {
    "group": "g.Sendagi",
-   "x": 900.0,
-   "y": 2160.0,
+   "x": 1170.0,
+   "y": 2220.0,
    "labelKo": "센다기",
    "labelJa": "千駄木",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Sendagi"
@@ -2620,11 +2737,11 @@
   },
   {
    "group": "g.Sengakuji",
-   "x": 810.0,
-   "y": 2850.0,
+   "x": 1050.0,
+   "y": 2940.0,
    "labelKo": "센가쿠지",
    "labelJa": "泉岳寺",
-   "labelDx": 1,
+   "labelDx": 0,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -2633,12 +2750,12 @@
   },
   {
    "group": "g.Sengoku",
-   "x": 750.0,
-   "y": 2160.0,
+   "x": 1020.0,
+   "y": 2220.0,
    "labelKo": "센고쿠",
    "labelJa": "千石",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Sengoku"
@@ -2646,12 +2763,12 @@
   },
   {
    "group": "g.Senkawa",
-   "x": 450.0,
-   "y": 2100.0,
+   "x": 720.0,
+   "y": 2130.0,
    "labelKo": "센카와",
    "labelJa": "千川",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.Senkawa",
@@ -2660,21 +2777,34 @@
   },
   {
    "group": "g.Shibakoen",
-   "x": 840.0,
-   "y": 2760.0,
+   "x": 1110.0,
+   "y": 2820.0,
    "labelKo": "시바코엔",
    "labelJa": "芝公園",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Shibakoen"
    ]
   },
   {
+   "group": "g.ShibasakiTaiikukan",
+   "x": 150.0,
+   "y": 2430.0,
+   "labelKo": "시바사키타이이쿠칸",
+   "labelJa": "柴崎体育館",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.ShibasakiTaiikukan"
+   ]
+  },
+  {
    "group": "g.Shibuya",
-   "x": 540.0,
-   "y": 2670.0,
+   "x": 780.0,
+   "y": 2760.0,
    "labelKo": "시부야",
    "labelJa": "渋谷",
    "labelDx": -1,
@@ -2688,11 +2818,11 @@
   },
   {
    "group": "g.Shimbashi",
-   "x": 900.0,
-   "y": 2670.0,
+   "x": 1170.0,
+   "y": 2730.0,
    "labelKo": "신바시",
    "labelJa": "新橋",
-   "labelDx": -1,
+   "labelDx": 0,
    "labelDy": 1,
    "interchange": true,
    "stationIds": [
@@ -2702,7 +2832,7 @@
   },
   {
    "group": "g.Shimo",
-   "x": 720.0,
+   "x": 990.0,
    "y": 1830.0,
    "labelKo": "시모",
    "labelJa": "志茂",
@@ -2715,12 +2845,12 @@
   },
   {
    "group": "g.ShimuraSakaue",
-   "x": 540.0,
-   "y": 1860.0,
+   "x": 810.0,
+   "y": 1890.0,
    "labelKo": "시무라사카우에",
    "labelJa": "志村坂上",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.ShimuraSakaue"
@@ -2728,12 +2858,12 @@
   },
   {
    "group": "g.ShimuraSanchome",
-   "x": 480.0,
-   "y": 1860.0,
+   "x": 720.0,
+   "y": 1890.0,
    "labelKo": "시무라산초메",
    "labelJa": "志村三丁目",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.ShimuraSanchome"
@@ -2741,12 +2871,12 @@
   },
   {
    "group": "g.ShinEgota",
-   "x": 390.0,
+   "x": 570.0,
    "y": 2160.0,
    "labelKo": "신에고타",
    "labelJa": "新江古田",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.ShinEgota"
@@ -2754,12 +2884,12 @@
   },
   {
    "group": "g.ShinItabashi",
-   "x": 630.0,
+   "x": 870.0,
    "y": 1980.0,
    "labelKo": "신이타바시",
    "labelJa": "新板橋",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.ShinItabashi"
@@ -2767,8 +2897,8 @@
   },
   {
    "group": "g.ShinKiba",
-   "x": 1230.0,
-   "y": 2790.0,
+   "x": 1440.0,
+   "y": 2820.0,
    "labelKo": "신키바",
    "labelJa": "新木場",
    "labelDx": 1,
@@ -2781,8 +2911,8 @@
   },
   {
    "group": "g.ShinKoenji",
-   "x": 240.0,
-   "y": 2400.0,
+   "x": 480.0,
+   "y": 2430.0,
    "labelKo": "신코엔지",
    "labelJa": "新高円寺",
    "labelDx": 0,
@@ -2794,12 +2924,12 @@
   },
   {
    "group": "g.ShinKoshinzuka",
-   "x": 660.0,
-   "y": 2070.0,
+   "x": 930.0,
+   "y": 2160.0,
    "labelKo": "신코신즈카",
    "labelJa": "新庚申塚",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.ShinKoshinzuka"
@@ -2807,12 +2937,12 @@
   },
   {
    "group": "g.ShinNakano",
-   "x": 360.0,
-   "y": 2400.0,
+   "x": 600.0,
+   "y": 2460.0,
    "labelKo": "신나카노",
    "labelJa": "新中野",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.ShinNakano"
@@ -2820,12 +2950,12 @@
   },
   {
    "group": "g.ShinOchanomizu",
-   "x": 900.0,
-   "y": 2370.0,
+   "x": 1140.0,
+   "y": 2460.0,
    "labelKo": "신오차노미즈",
    "labelJa": "新御茶ノ水",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.ShinOchanomizu"
@@ -2833,12 +2963,12 @@
   },
   {
    "group": "g.ShinOkachimachi",
-   "x": 1080.0,
-   "y": 2370.0,
+   "x": 1320.0,
+   "y": 2400.0,
    "labelKo": "신오카치마치",
    "labelJa": "新御徒町",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:Toei.Oedo.ShinOkachimachi",
@@ -2847,11 +2977,11 @@
   },
   {
    "group": "g.ShinOtsuka",
-   "x": 720.0,
-   "y": 2160.0,
+   "x": 900.0,
+   "y": 2280.0,
    "labelKo": "신오쓰카",
    "labelJa": "新大塚",
-   "labelDx": 0,
+   "labelDx": -1,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -2860,8 +2990,8 @@
   },
   {
    "group": "g.ShinTakashimadaira",
-   "x": 270.0,
-   "y": 1770.0,
+   "x": 510.0,
+   "y": 1800.0,
    "labelKo": "신타카시마다이라",
    "labelJa": "新高島平",
    "labelDx": 0,
@@ -2873,8 +3003,8 @@
   },
   {
    "group": "g.ShinagawaSeaside",
-   "x": 900.0,
-   "y": 2970.0,
+   "x": 1140.0,
+   "y": 3030.0,
    "labelKo": "시나가와시사이드",
    "labelJa": "品川シーサイド",
    "labelDx": 1,
@@ -2886,12 +3016,12 @@
   },
   {
    "group": "g.Shinjuku",
-   "x": 510.0,
-   "y": 2460.0,
+   "x": 720.0,
+   "y": 2490.0,
    "labelKo": "신주쿠",
    "labelJa": "新宿",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.Shinjuku",
@@ -2901,12 +3031,12 @@
   },
   {
    "group": "g.ShinjukuGyoemmae",
-   "x": 630.0,
-   "y": 2460.0,
+   "x": 810.0,
+   "y": 2610.0,
    "labelKo": "신주쿠교엔마에",
    "labelJa": "新宿御苑前",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.ShinjukuGyoemmae"
@@ -2914,8 +3044,8 @@
   },
   {
    "group": "g.ShinjukuNishiguchi",
-   "x": 510.0,
-   "y": 2400.0,
+   "x": 780.0,
+   "y": 2520.0,
    "labelKo": "신주쿠니시구치",
    "labelJa": "新宿西口",
    "labelDx": 0,
@@ -2927,12 +3057,12 @@
   },
   {
    "group": "g.ShinjukuSanchome",
-   "x": 570.0,
-   "y": 2460.0,
+   "x": 810.0,
+   "y": 2520.0,
    "labelKo": "신주쿠산초메",
    "labelJa": "新宿三丁目",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.ShinjukuSanchome",
@@ -2942,12 +3072,12 @@
   },
   {
    "group": "g.Shinonome",
-   "x": 1110.0,
-   "y": 2790.0,
+   "x": 1380.0,
+   "y": 2880.0,
    "labelKo": "시노노메",
    "labelJa": "東雲",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TWR.Rinkai.Shinonome"
@@ -2955,8 +3085,8 @@
   },
   {
    "group": "g.Shinozaki",
-   "x": 1650.0,
-   "y": 2370.0,
+   "x": 1920.0,
+   "y": 2430.0,
    "labelKo": "시노자키",
    "labelJa": "篠崎",
    "labelDx": 1,
@@ -2968,12 +3098,12 @@
   },
   {
    "group": "g.Shintomicho",
-   "x": 990.0,
-   "y": 2640.0,
+   "x": 1290.0,
+   "y": 2700.0,
    "labelKo": "신토미초",
    "labelJa": "新富町",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Shintomicho"
@@ -2981,11 +3111,11 @@
   },
   {
    "group": "g.Shiodome",
-   "x": 930.0,
-   "y": 2730.0,
+   "x": 1260.0,
+   "y": 2850.0,
    "labelKo": "시오도메",
    "labelJa": "汐留",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -2994,12 +3124,12 @@
   },
   {
    "group": "g.ShirokaneTakanawa",
-   "x": 750.0,
-   "y": 2820.0,
+   "x": 1020.0,
+   "y": 2880.0,
    "labelKo": "시로카네타카나와",
    "labelJa": "白金高輪",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.ShirokaneTakanawa",
@@ -3008,12 +3138,12 @@
   },
   {
    "group": "g.Shirokanedai",
-   "x": 690.0,
-   "y": 2850.0,
+   "x": 960.0,
+   "y": 2880.0,
    "labelKo": "시로카네다이",
    "labelJa": "白金台",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.Shirokanedai",
@@ -3022,11 +3152,11 @@
   },
   {
    "group": "g.Suehirocho",
-   "x": 990.0,
-   "y": 2370.0,
+   "x": 1200.0,
+   "y": 2430.0,
    "labelKo": "스에히로초",
    "labelJa": "末広町",
-   "labelDx": 0,
+   "labelDx": -1,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -3035,12 +3165,12 @@
   },
   {
    "group": "g.Sugamo",
-   "x": 750.0,
-   "y": 2040.0,
+   "x": 1020.0,
+   "y": 2160.0,
    "labelKo": "스가모",
    "labelJa": "巣鴨",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Sugamo"
@@ -3048,8 +3178,8 @@
   },
   {
    "group": "g.Sugamoshinden",
-   "x": 630.0,
-   "y": 2070.0,
+   "x": 870.0,
+   "y": 2100.0,
    "labelKo": "스가모신덴",
    "labelJa": "巣鴨新田",
    "labelDx": -1,
@@ -3061,12 +3191,12 @@
   },
   {
    "group": "g.Suidobashi",
-   "x": 810.0,
-   "y": 2340.0,
+   "x": 1080.0,
+   "y": 2370.0,
    "labelKo": "스이도바시",
    "labelJa": "水道橋",
-   "labelDx": -1,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Suidobashi"
@@ -3074,12 +3204,12 @@
   },
   {
    "group": "g.Suitengumae",
-   "x": 1050.0,
-   "y": 2520.0,
+   "x": 1320.0,
+   "y": 2610.0,
    "labelKo": "스이텐구마에",
    "labelJa": "水天宮前",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hanzomon.Suitengumae"
@@ -3087,8 +3217,8 @@
   },
   {
    "group": "g.Sumiyoshi",
-   "x": 1320.0,
-   "y": 2520.0,
+   "x": 1530.0,
+   "y": 2550.0,
    "labelKo": "스미요시",
    "labelJa": "住吉",
    "labelDx": 1,
@@ -3100,26 +3230,104 @@
    ]
   },
   {
+   "group": "g.SunagawaNanaban",
+   "x": 240.0,
+   "y": 2160.0,
+   "labelKo": "스나가와나나반",
+   "labelJa": "砂川七番",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.SunagawaNanaban"
+   ]
+  },
+  {
+   "group": "g.Tachihi",
+   "x": 240.0,
+   "y": 2220.0,
+   "labelKo": "다치히",
+   "labelJa": "立飛",
+   "labelDx": 0,
+   "labelDy": -1,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Tachihi"
+   ]
+  },
+  {
+   "group": "g.TachikawaKita",
+   "x": 210.0,
+   "y": 2310.0,
+   "labelKo": "다치카와키타",
+   "labelJa": "立川北",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TachikawaKita"
+   ]
+  },
+  {
+   "group": "g.TachikawaMinami",
+   "x": 210.0,
+   "y": 2370.0,
+   "labelKo": "다치카와미나미",
+   "labelJa": "立川南",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TachikawaMinami"
+   ]
+  },
+  {
    "group": "g.Takadanobaba",
-   "x": 540.0,
-   "y": 2340.0,
+   "x": 690.0,
+   "y": 2400.0,
    "labelKo": "다카다노바바",
    "labelJa": "高田馬場",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Takadanobaba"
    ]
   },
   {
+   "group": "g.Takahatafudo",
+   "x": 210.0,
+   "y": 2580.0,
+   "labelKo": "다카하타후도",
+   "labelJa": "高幡不動",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Takahatafudo"
+   ]
+  },
+  {
+   "group": "g.Takamatsu",
+   "x": 150.0,
+   "y": 2310.0,
+   "labelKo": "다카마쓰",
+   "labelJa": "高松",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.Takamatsu"
+   ]
+  },
+  {
    "group": "g.Takanawadai",
-   "x": 750.0,
-   "y": 2910.0,
+   "x": 990.0,
+   "y": 2940.0,
    "labelKo": "다카나와다이",
    "labelJa": "高輪台",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Asakusa.Takanawadai"
@@ -3127,11 +3335,11 @@
   },
   {
    "group": "g.Takaracho",
-   "x": 990.0,
-   "y": 2610.0,
+   "x": 1200.0,
+   "y": 2790.0,
    "labelKo": "다카라초",
    "labelJa": "宝町",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -3140,8 +3348,8 @@
   },
   {
    "group": "g.Takashimadaira",
-   "x": 330.0,
-   "y": 1770.0,
+   "x": 570.0,
+   "y": 1800.0,
    "labelKo": "다카시마다이라",
    "labelJa": "高島平",
    "labelDx": 0,
@@ -3153,12 +3361,12 @@
   },
   {
    "group": "g.Takebashi",
-   "x": 900.0,
-   "y": 2430.0,
+   "x": 1110.0,
+   "y": 2520.0,
    "labelKo": "다케바시",
    "labelJa": "竹橋",
    "labelDx": 1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Takebashi"
@@ -3166,24 +3374,63 @@
   },
   {
    "group": "g.TakinogawaItchome",
-   "x": 720.0,
-   "y": 2010.0,
+   "x": 960.0,
+   "y": 2070.0,
    "labelKo": "다키노가와잇초메",
    "labelJa": "滝野川一丁目",
    "labelDx": -1,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.TakinogawaItchome"
    ]
   },
   {
+   "group": "g.TamaCenter",
+   "x": 270.0,
+   "y": 2820.0,
+   "labelKo": "다마센터",
+   "labelJa": "多摩センター",
+   "labelDx": 1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamaCenter"
+   ]
+  },
+  {
+   "group": "g.TamaDobutsukoen",
+   "x": 150.0,
+   "y": 2670.0,
+   "labelKo": "다마도부쓰코엔",
+   "labelJa": "多摩動物公園",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamaDobutsukoen"
+   ]
+  },
+  {
+   "group": "g.TamagawaJosui",
+   "x": 240.0,
+   "y": 2100.0,
+   "labelKo": "다마가와조스이",
+   "labelJa": "玉川上水",
+   "labelDx": -1,
+   "labelDy": 0,
+   "interchange": false,
+   "stationIds": [
+    "odpt.Station:TamaMonorail.TamaMonorail.TamagawaJosui"
+   ]
+  },
+  {
    "group": "g.TameikeSanno",
-   "x": 750.0,
-   "y": 2610.0,
+   "x": 1050.0,
+   "y": 2700.0,
    "labelKo": "다메이케산노",
    "labelJa": "溜池山王",
-   "labelDx": -1,
+   "labelDx": 1,
    "labelDy": 0,
    "interchange": true,
    "stationIds": [
@@ -3193,12 +3440,12 @@
   },
   {
    "group": "g.Tatsumi",
-   "x": 1170.0,
-   "y": 2790.0,
+   "x": 1380.0,
+   "y": 2820.0,
    "labelKo": "다쓰미",
    "labelJa": "辰巳",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Tatsumi"
@@ -3206,12 +3453,12 @@
   },
   {
    "group": "g.Tawaramachi",
-   "x": 1110.0,
+   "x": 1350.0,
    "y": 2310.0,
    "labelKo": "다와라마치",
    "labelJa": "田原町",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Tawaramachi"
@@ -3219,8 +3466,8 @@
   },
   {
    "group": "g.TennozuIsle",
-   "x": 900.0,
-   "y": 2880.0,
+   "x": 1140.0,
+   "y": 2940.0,
    "labelKo": "덴노즈아일",
    "labelJa": "天王洲アイル",
    "labelDx": 0,
@@ -3232,8 +3479,8 @@
   },
   {
    "group": "g.Tochomae",
-   "x": 480.0,
-   "y": 2460.0,
+   "x": 720.0,
+   "y": 2550.0,
    "labelKo": "도초마에",
    "labelJa": "都庁前",
    "labelDx": 0,
@@ -3245,12 +3492,12 @@
   },
   {
    "group": "g.Todaimae",
-   "x": 870.0,
-   "y": 2220.0,
+   "x": 1080.0,
+   "y": 2280.0,
    "labelKo": "도다이마에",
    "labelJa": "東大前",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Namboku.Todaimae"
@@ -3258,12 +3505,12 @@
   },
   {
    "group": "g.TodenZoshigaya",
-   "x": 600.0,
-   "y": 2220.0,
+   "x": 870.0,
+   "y": 2280.0,
    "labelKo": "도덴조시가야",
    "labelJa": "都電雑司ヶ谷",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.TodenZoshigaya"
@@ -3271,8 +3518,8 @@
   },
   {
    "group": "g.Togoshi",
-   "x": 660.0,
-   "y": 2970.0,
+   "x": 900.0,
+   "y": 3030.0,
    "labelKo": "도고시",
    "labelJa": "戸越",
    "labelDx": 1,
@@ -3284,8 +3531,8 @@
   },
   {
    "group": "g.Tokyo",
-   "x": 900.0,
-   "y": 2550.0,
+   "x": 1200.0,
+   "y": 2610.0,
    "labelKo": "도쿄",
    "labelJa": "東京",
    "labelDx": 1,
@@ -3297,8 +3544,8 @@
   },
   {
    "group": "g.TokyoTeleport",
-   "x": 990.0,
-   "y": 2880.0,
+   "x": 1230.0,
+   "y": 2940.0,
    "labelKo": "도쿄텔레포트",
    "labelJa": "東京テレポート",
    "labelDx": 0,
@@ -3310,8 +3557,8 @@
   },
   {
    "group": "g.Toneri",
-   "x": 930.0,
-   "y": 1620.0,
+   "x": 1200.0,
+   "y": 1710.0,
    "labelKo": "도네리",
    "labelJa": "舎人",
    "labelDx": 1,
@@ -3323,8 +3570,8 @@
   },
   {
    "group": "g.ToneriKoen",
-   "x": 930.0,
-   "y": 1680.0,
+   "x": 1200.0,
+   "y": 1770.0,
    "labelKo": "도네리코엔",
    "labelJa": "舎人公園",
    "labelDx": 1,
@@ -3336,12 +3583,12 @@
   },
   {
    "group": "g.Toranomon",
-   "x": 810.0,
-   "y": 2640.0,
+   "x": 1020.0,
+   "y": 2730.0,
    "labelKo": "도라노몬",
    "labelJa": "虎ノ門",
-   "labelDx": 1,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.Toranomon"
@@ -3349,8 +3596,8 @@
   },
   {
    "group": "g.ToranomonHills",
-   "x": 810.0,
-   "y": 2670.0,
+   "x": 1080.0,
+   "y": 2760.0,
    "labelKo": "도라노몬힐스",
    "labelJa": "虎ノ門ヒルズ",
    "labelDx": 0,
@@ -3362,12 +3609,12 @@
   },
   {
    "group": "g.Toshimaen",
-   "x": 270.0,
-   "y": 2100.0,
+   "x": 510.0,
+   "y": 2160.0,
    "labelKo": "도시마엔",
    "labelJa": "豊島園",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Toshimaen"
@@ -3375,12 +3622,12 @@
   },
   {
    "group": "g.Toyocho",
-   "x": 1290.0,
-   "y": 2610.0,
+   "x": 1530.0,
+   "y": 2670.0,
    "labelKo": "도요초",
    "labelJa": "東陽町",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Tozai.Toyocho"
@@ -3388,7 +3635,7 @@
   },
   {
    "group": "g.Toyosu",
-   "x": 1170.0,
+   "x": 1410.0,
    "y": 2730.0,
    "labelKo": "도요스",
    "labelJa": "豊洲",
@@ -3401,12 +3648,12 @@
   },
   {
    "group": "g.Tsukiji",
-   "x": 1080.0,
-   "y": 2670.0,
+   "x": 1320.0,
+   "y": 2730.0,
    "labelKo": "쓰키지",
    "labelJa": "築地",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Hibiya.Tsukiji"
@@ -3414,12 +3661,12 @@
   },
   {
    "group": "g.Tsukijishijo",
-   "x": 990.0,
-   "y": 2730.0,
+   "x": 1260.0,
+   "y": 2790.0,
    "labelKo": "쓰키지시조",
    "labelJa": "築地市場",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Tsukijishijo"
@@ -3427,12 +3674,12 @@
   },
   {
    "group": "g.Tsukishima",
-   "x": 1080.0,
-   "y": 2640.0,
+   "x": 1350.0,
+   "y": 2730.0,
    "labelKo": "쓰키시마",
    "labelJa": "月島",
    "labelDx": -1,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Tsukishima",
@@ -3441,8 +3688,8 @@
   },
   {
    "group": "g.Tsukuba",
-   "x": 2580.0,
-   "y": 120.0,
+   "x": 2850.0,
+   "y": 150.0,
    "labelKo": "쓰쿠바",
    "labelJa": "つくば",
    "labelDx": 1,
@@ -3454,12 +3701,12 @@
   },
   {
    "group": "g.Uchisaiwaicho",
-   "x": 900.0,
-   "y": 2640.0,
+   "x": 1140.0,
+   "y": 2700.0,
    "labelKo": "우치사이와이초",
    "labelJa": "内幸町",
    "labelDx": 1,
-   "labelDy": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Uchisaiwaicho"
@@ -3467,8 +3714,8 @@
   },
   {
    "group": "g.Ueno",
-   "x": 1050.0,
-   "y": 2250.0,
+   "x": 1290.0,
+   "y": 2280.0,
    "labelKo": "우에노",
    "labelJa": "上野",
    "labelDx": 1,
@@ -3481,12 +3728,12 @@
   },
   {
    "group": "g.UenoHirokoji",
-   "x": 990.0,
-   "y": 2250.0,
+   "x": 1260.0,
+   "y": 2370.0,
    "labelKo": "우에노히로코지",
    "labelJa": "上野広小路",
-   "labelDx": 0,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Ginza.UenoHirokoji"
@@ -3494,12 +3741,12 @@
   },
   {
    "group": "g.UenoOkachimachi",
-   "x": 960.0,
-   "y": 2250.0,
+   "x": 1200.0,
+   "y": 2370.0,
    "labelKo": "우에노카치마치",
    "labelJa": "上野御徒町",
-   "labelDx": 1,
-   "labelDy": -1,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.UenoOkachimachi"
@@ -3507,8 +3754,8 @@
   },
   {
    "group": "g.Urayasu",
-   "x": 1620.0,
-   "y": 2610.0,
+   "x": 1860.0,
+   "y": 2670.0,
    "labelKo": "우라야스",
    "labelJa": "浦安",
    "labelDx": 0,
@@ -3520,12 +3767,12 @@
   },
   {
    "group": "g.UshigomeKagurazaka",
-   "x": 750.0,
-   "y": 2400.0,
+   "x": 1020.0,
+   "y": 2430.0,
    "labelKo": "우시고메카구라자카",
    "labelJa": "牛込神楽坂",
-   "labelDx": -1,
-   "labelDy": -1,
+   "labelDx": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.UshigomeKagurazaka"
@@ -3533,11 +3780,11 @@
   },
   {
    "group": "g.UshigomeYanagicho",
-   "x": 690.0,
-   "y": 2400.0,
+   "x": 930.0,
+   "y": 2430.0,
    "labelKo": "우시고메야나기초",
    "labelJa": "牛込柳町",
-   "labelDx": 0,
+   "labelDx": -1,
    "labelDy": -1,
    "interchange": false,
    "stationIds": [
@@ -3546,12 +3793,12 @@
   },
   {
    "group": "g.WakamatsuKawada",
-   "x": 630.0,
-   "y": 2400.0,
+   "x": 840.0,
+   "y": 2460.0,
    "labelKo": "와카마쓰카와다",
    "labelJa": "若松河田",
    "labelDx": 0,
-   "labelDy": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.WakamatsuKawada"
@@ -3559,8 +3806,8 @@
   },
   {
    "group": "g.Wakoshi",
-   "x": 150.0,
-   "y": 1830.0,
+   "x": 420.0,
+   "y": 1890.0,
    "labelKo": "와코시",
    "labelJa": "和光市",
    "labelDx": -1,
@@ -3573,8 +3820,8 @@
   },
   {
    "group": "g.Waseda",
-   "x": 630.0,
-   "y": 2340.0,
+   "x": 870.0,
+   "y": 2370.0,
    "labelKo": "와세다",
    "labelJa": "早稲田",
    "labelDx": 0,
@@ -3586,8 +3833,8 @@
   },
   {
    "group": "g.Waseda.SA",
-   "x": 660.0,
-   "y": 2310.0,
+   "x": 900.0,
+   "y": 2340.0,
    "labelKo": "와세다",
    "labelJa": "早稲田",
    "labelDx": 1,
@@ -3599,8 +3846,8 @@
   },
   {
    "group": "g.Yashio",
-   "x": 1380.0,
-   "y": 1680.0,
+   "x": 1650.0,
+   "y": 1710.0,
    "labelKo": "야시오",
    "labelJa": "八潮",
    "labelDx": 1,
@@ -3612,8 +3859,8 @@
   },
   {
    "group": "g.Yazaike",
-   "x": 930.0,
-   "y": 1740.0,
+   "x": 1200.0,
+   "y": 1830.0,
    "labelKo": "야자이케",
    "labelJa": "谷在家",
    "labelDx": 1,
@@ -3625,12 +3872,12 @@
   },
   {
    "group": "g.Yotsuya",
-   "x": 660.0,
-   "y": 2490.0,
+   "x": 900.0,
+   "y": 2550.0,
    "labelKo": "요쓰야",
    "labelJa": "四ツ谷",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": true,
    "stationIds": [
     "odpt.Station:TokyoMetro.Marunouchi.Yotsuya",
@@ -3639,8 +3886,8 @@
   },
   {
    "group": "g.YotsuyaSanchome",
-   "x": 630.0,
-   "y": 2520.0,
+   "x": 840.0,
+   "y": 2550.0,
    "labelKo": "요쓰야산초메",
    "labelJa": "四谷三丁目",
    "labelDx": -1,
@@ -3652,12 +3899,12 @@
   },
   {
    "group": "g.Yoyogi",
-   "x": 510.0,
-   "y": 2550.0,
+   "x": 780.0,
+   "y": 2610.0,
    "labelKo": "요요기",
    "labelJa": "代々木",
-   "labelDx": -1,
-   "labelDy": 0,
+   "labelDx": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Yoyogi"
@@ -3665,12 +3912,12 @@
   },
   {
    "group": "g.YoyogiKoen",
-   "x": 480.0,
-   "y": 2610.0,
+   "x": 720.0,
+   "y": 2670.0,
    "labelKo": "요요기코엔",
    "labelJa": "代々木公園",
    "labelDx": 0,
-   "labelDy": 1,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.YoyogiKoen"
@@ -3678,8 +3925,8 @@
   },
   {
    "group": "g.YoyogiUehara",
-   "x": 420.0,
-   "y": 2610.0,
+   "x": 660.0,
+   "y": 2670.0,
    "labelKo": "요요기우에하라",
    "labelJa": "代々木上原",
    "labelDx": -1,
@@ -3691,12 +3938,12 @@
   },
   {
    "group": "g.Yurakucho",
-   "x": 930.0,
-   "y": 2520.0,
+   "x": 1140.0,
+   "y": 2610.0,
    "labelKo": "유라쿠초",
    "labelJa": "有楽町",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Yurakucho.Yurakucho"
@@ -3704,12 +3951,12 @@
   },
   {
    "group": "g.Yushima",
-   "x": 900.0,
-   "y": 2310.0,
+   "x": 1110.0,
+   "y": 2370.0,
    "labelKo": "유시마",
    "labelJa": "湯島",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Chiyoda.Yushima"
@@ -3717,12 +3964,12 @@
   },
   {
    "group": "g.Zoshigaya",
-   "x": 480.0,
-   "y": 2250.0,
+   "x": 750.0,
+   "y": 2220.0,
    "labelKo": "조시가야",
    "labelJa": "雑司が谷",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": -1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.Zoshigaya"
@@ -3733,85 +3980,46 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Chiyoda",
    "color": "#00BB85",
+   "code": "C",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     615.0,
+     2670.0
+    ],
+    [
+     1531.82,
+     1888.18
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       480.0,
-       2610.0
-      ],
-      [
-       420.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       540.0,
-       2610.0
-      ],
-      [
-       480.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       540.0,
-       2610.0
-      ],
-      [
-       600.0,
-       2670.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2640.0
-      ],
-      [
-       630.0,
-       2670.0
-      ],
-      [
-       600.0,
-       2670.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
        720.0,
-       2640.0
+       2670.0
       ],
       [
        660.0,
-       2640.0
+       2670.0
       ]
      ],
      "offset": 0.0
     },
     {
      "points": [
+      [
+       780.0,
+       2700.0
+      ],
+      [
+       750.0,
+       2670.0
+      ],
       [
        720.0,
-       2640.0
-      ],
-      [
-       810.0,
-       2550.0
+       2670.0
       ]
      ],
      "offset": 0.0
@@ -3819,12 +4027,76 @@
     {
      "points": [
       [
-       810.0,
-       2610.0
+       780.0,
+       2700.0
       ],
       [
-       810.0,
-       2550.0
+       840.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2730.0
+      ],
+      [
+       900.0,
+       2700.0
+      ],
+      [
+       840.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2670.0
+      ],
+      [
+       930.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2670.0
+      ],
+      [
+       990.0,
+       2670.0
+      ],
+      [
+       1020.0,
+       2640.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1080.0,
+       2670.0
+      ],
+      [
+       1050.0,
+       2640.0
+      ],
+      [
+       1020.0,
+       2640.0
       ]
      ],
      "offset": -0.5
@@ -3832,29 +4104,46 @@
     {
      "points": [
       [
-       840.0,
-       2550.0
+       1110.0,
+       2610.0
       ],
       [
-       840.0,
+       1080.0,
+       2640.0
+      ],
+      [
+       1080.0,
+       2670.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2610.0
+      ],
+      [
+       1020.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2610.0
+      ],
+      [
+       1050.0,
        2580.0
       ],
       [
-       810.0,
-       2610.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       840.0,
-       2550.0
-      ],
-      [
-       840.0,
-       2490.0
+       1140.0,
+       2580.0
       ]
      ],
      "offset": 0.0
@@ -3862,107 +4151,12 @@
     {
      "points": [
       [
-       840.0,
-       2490.0
-      ],
-      [
-       900.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2490.0
-      ],
-      [
-       900.0,
-       2370.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2370.0
-      ],
-      [
-       900.0,
-       2310.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2250.0
-      ],
-      [
-       900.0,
-       2310.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2250.0
-      ],
-      [
-       900.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       960.0,
-       2160.0
-      ],
-      [
-       900.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2040.0
-      ],
-      [
-       960.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1200.0,
-       1980.0
+       1140.0,
+       2580.0
       ],
       [
        1140.0,
-       2040.0
-      ],
-      [
-       1080.0,
-       2040.0
+       2460.0
       ]
      ],
      "offset": 0.0
@@ -3970,12 +4164,80 @@
     {
      "points": [
       [
+       1140.0,
+       2460.0
+      ],
+      [
+       1110.0,
+       2430.0
+      ],
+      [
+       1110.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2280.0
+      ],
+      [
+       1170.0,
+       2310.0
+      ],
+      [
+       1110.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2280.0
+      ],
+      [
+       1170.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2160.0
+      ],
+      [
+       1170.0,
+       2190.0
+      ],
+      [
+       1170.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2130.0
+      ],
+      [
        1260.0,
-       1920.0
+       2160.0
       ],
       [
        1200.0,
-       1980.0
+       2160.0
       ]
      ],
      "offset": 0.0
@@ -3983,12 +4245,42 @@
     {
      "points": [
       [
-       1260.0,
-       1920.0
+       1440.0,
+       2040.0
       ],
       [
-       1260.0,
-       1860.0
+       1380.0,
+       2040.0
+      ],
+      [
+       1290.0,
+       2130.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1500.0,
+       1980.0
+      ],
+      [
+       1440.0,
+       2040.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1500.0,
+       1980.0
+      ],
+      [
+       1500.0,
+       1920.0
       ]
      ],
      "offset": 0.0
@@ -3998,176 +4290,192 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Fukutoshin",
    "color": "#9C5E31",
+   "code": "F",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     388.18,
+     1858.18
+    ],
+    [
+     811.82,
+     2791.82
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       210.0,
-       1890.0
-      ],
-      [
-       150.0,
-       1830.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       300.0,
-       1890.0
-      ],
-      [
-       210.0,
-       1890.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       300.0,
-       1890.0
-      ],
-      [
-       300.0,
-       1950.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       300.0,
+       480.0,
        1950.0
       ],
       [
-       390.0,
-       2040.0
+       420.0,
+       1890.0
       ]
      ],
      "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       390.0,
-       2040.0
-      ],
-      [
-       450.0,
-       2040.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       450.0,
-       2040.0
-      ],
-      [
-       450.0,
-       2100.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2160.0
-      ],
-      [
-       450.0,
-       2100.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2160.0
-      ],
-      [
-       510.0,
-       2160.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2160.0
-      ],
-      [
-       480.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2340.0
-      ],
-      [
-       480.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2400.0
-      ],
-      [
-       570.0,
-       2340.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2400.0
-      ],
-      [
-       570.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
     },
     {
      "points": [
       [
        540.0,
-       2550.0
+       1950.0
       ],
       [
-       570.0,
+       480.0,
+       1950.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       540.0,
+       1950.0
+      ],
+      [
+       540.0,
+       2010.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       540.0,
+       2010.0
+      ],
+      [
+       600.0,
+       2070.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       600.0,
+       2070.0
+      ],
+      [
+       660.0,
+       2130.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2130.0
+      ],
+      [
+       720.0,
+       2130.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       720.0,
+       2220.0
+      ],
+      [
+       720.0,
+       2130.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       810.0,
+       2250.0
+      ],
+      [
+       750.0,
+       2250.0
+      ],
+      [
+       720.0,
+       2220.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       810.0,
+       2250.0
+      ],
+      [
+       780.0,
+       2220.0
+      ],
+      [
+       750.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       720.0,
+       2310.0
+      ],
+      [
+       750.0,
+       2280.0
+      ],
+      [
+       750.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       2430.0
+      ],
+      [
+       720.0,
+       2370.0
+      ],
+      [
+       720.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       2430.0
+      ],
+      [
+       810.0,
+       2460.0
+      ],
+      [
+       810.0,
        2520.0
-      ],
-      [
-       570.0,
-       2460.0
       ]
      ],
      "offset": 0.0
@@ -4175,12 +4483,12 @@
     {
      "points": [
       [
-       540.0,
-       2550.0
+       720.0,
+       2610.0
       ],
       [
-       540.0,
-       2610.0
+       810.0,
+       2520.0
       ]
      ],
      "offset": 0.0
@@ -4188,12 +4496,29 @@
     {
      "points": [
       [
-       540.0,
+       720.0,
        2610.0
       ],
       [
-       540.0,
+       780.0,
        2670.0
+      ],
+      [
+       780.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       2700.0
+      ],
+      [
+       780.0,
+       2760.0
       ]
      ],
      "offset": 0.0
@@ -4203,16 +4528,29 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Ginza",
    "color": "#FF9500",
+   "code": "G",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     748.18,
+     2791.82
+    ],
+    [
+     1441.82,
+     2371.82
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       600.0,
-       2670.0
+       840.0,
+       2700.0
       ],
       [
-       540.0,
-       2670.0
+       780.0,
+       2760.0
       ]
      ],
      "offset": -0.5
@@ -4220,76 +4558,12 @@
     {
      "points": [
       [
-       600.0,
-       2580.0
-      ],
-      [
-       600.0,
-       2670.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2610.0
-      ],
-      [
-       630.0,
-       2580.0
-      ],
-      [
-       600.0,
-       2580.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2550.0
-      ],
-      [
-       660.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2550.0
-      ],
-      [
-       750.0,
-       2580.0
-      ],
-      [
-       750.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2610.0
-      ],
-      [
-       780.0,
+       840.0,
        2640.0
       ],
       [
-       810.0,
-       2640.0
+       840.0,
+       2700.0
       ]
      ],
      "offset": 0.0
@@ -4298,14 +4572,10 @@
      "points": [
       [
        900.0,
-       2670.0
-      ],
-      [
-       870.0,
        2640.0
       ],
       [
-       810.0,
+       840.0,
        2640.0
       ]
      ],
@@ -4314,12 +4584,16 @@
     {
      "points": [
       [
+       930.0,
+       2580.0
+      ],
+      [
        900.0,
        2610.0
       ],
       [
        900.0,
-       2670.0
+       2640.0
       ]
      ],
      "offset": 0.0
@@ -4327,12 +4601,12 @@
     {
      "points": [
       [
-       900.0,
-       2610.0
+       930.0,
+       2580.0
       ],
       [
-       960.0,
-       2550.0
+       1050.0,
+       2700.0
       ]
      ],
      "offset": 0.0
@@ -4340,107 +4614,12 @@
     {
      "points": [
       [
-       960.0,
-       2550.0
+       1050.0,
+       2700.0
       ],
       [
        1020.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       960.0,
-       2490.0
-      ],
-      [
-       1020.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       990.0,
-       2430.0
-      ],
-      [
-       960.0,
-       2460.0
-      ],
-      [
-       960.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       990.0,
-       2430.0
-      ],
-      [
-       990.0,
-       2370.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       990.0,
-       2370.0
-      ],
-      [
-       990.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1050.0,
-       2250.0
-      ],
-      [
-       990.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1050.0,
-       2310.0
-      ],
-      [
-       1050.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1050.0,
-       2310.0
-      ],
-      [
-       1110.0,
-       2310.0
+       2730.0
       ]
      ],
      "offset": 0.0
@@ -4449,10 +4628,177 @@
      "points": [
       [
        1170.0,
+       2730.0
+      ],
+      [
+       1020.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1170.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1260.0,
+       2580.0
+      ],
+      [
+       1290.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2580.0
+      ],
+      [
+       1260.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2550.0
+      ],
+      [
+       1260.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       2460.0
+      ],
+      [
+       1200.0,
+       2520.0
+      ],
+      [
+       1200.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       2460.0
+      ],
+      [
+       1230.0,
+       2430.0
+      ],
+      [
+       1200.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2430.0
+      ],
+      [
+       1260.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2280.0
+      ],
+      [
+       1260.0,
        2310.0
       ],
       [
-       1110.0,
+       1260.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2340.0
+      ],
+      [
+       1290.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2340.0
+      ],
+      [
+       1320.0,
+       2310.0
+      ],
+      [
+       1350.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2340.0
+      ],
+      [
+       1380.0,
+       2340.0
+      ],
+      [
+       1350.0,
        2310.0
       ]
      ],
@@ -4463,16 +4809,29 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Hanzomon",
    "color": "#8F76D6",
+   "code": "Z",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     735.0,
+     2760.0
+    ],
+    [
+     1530.0,
+     2295.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       600.0,
-       2670.0
+       840.0,
+       2700.0
       ],
       [
-       540.0,
-       2670.0
+       780.0,
+       2760.0
       ]
      ],
      "offset": 0.5
@@ -4480,12 +4839,12 @@
     {
      "points": [
       [
-       660.0,
-       2610.0
+       900.0,
+       2640.0
       ],
       [
-       600.0,
-       2670.0
+       840.0,
+       2700.0
       ]
      ],
      "offset": 0.0
@@ -4493,11 +4852,15 @@
     {
      "points": [
       [
-       660.0,
-       2610.0
+       900.0,
+       2640.0
       ],
       [
-       750.0,
+       960.0,
+       2580.0
+      ],
+      [
+       960.0,
        2520.0
       ]
      ],
@@ -4505,108 +4868,94 @@
     },
     {
      "points": [
-      [
-       750.0,
-       2460.0
-      ],
-      [
-       750.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2460.0
-      ],
-      [
-       810.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2400.0
-      ],
-      [
-       810.0,
-       2460.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2400.0
-      ],
-      [
-       900.0,
-       2490.0
-      ]
-     ],
-     "offset": -0.5
-    },
-    {
-     "points": [
-      [
-       960.0,
-       2490.0
-      ],
-      [
-       900.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       960.0,
-       2490.0
-      ],
       [
        990.0,
+       2460.0
+      ],
+      [
+       960.0,
+       2490.0
+      ],
+      [
+       960.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2460.0
+      ],
+      [
+       1050.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1080.0,
        2520.0
       ],
       [
        1050.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2520.0
+       2490.0
       ],
       [
        1050.0,
-       2520.0
+       2460.0
       ]
      ],
-     "offset": 0.0
+     "offset": -0.5
     },
     {
      "points": [
+      [
+       1080.0,
+       2520.0
+      ],
+      [
+       1140.0,
+       2580.0
+      ]
+     ],
+     "offset": -1.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2550.0
+      ],
       [
        1170.0,
-       2520.0
+       2580.0
+      ],
+      [
+       1140.0,
+       2580.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2550.0
+      ],
+      [
+       1260.0,
+       2610.0
       ],
       [
        1320.0,
-       2520.0
+       2610.0
       ]
      ],
      "offset": 0.0
@@ -4614,12 +4963,12 @@
     {
      "points": [
       [
-       1260.0,
-       2460.0
+       1410.0,
+       2610.0
       ],
       [
        1320.0,
-       2520.0
+       2610.0
       ]
      ],
      "offset": 0.0
@@ -4627,12 +4976,50 @@
     {
      "points": [
       [
-       1260.0,
-       2460.0
+       1410.0,
+       2610.0
       ],
       [
-       1260.0,
+       1470.0,
+       2610.0
+      ],
+      [
+       1530.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1500.0,
+       2400.0
+      ],
+      [
+       1500.0,
+       2520.0
+      ],
+      [
+       1530.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1500.0,
+       2400.0
+      ],
+      [
+       1530.0,
        2370.0
+      ],
+      [
+       1530.0,
+       2340.0
       ]
      ],
      "offset": 0.0
@@ -4642,20 +5029,33 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Hibiya",
    "color": "#B5B5AC",
+   "code": "H",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     748.18,
+     2851.82
+    ],
+    [
+     1408.18,
+     2008.18
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       840.0,
-       2550.0
-      ],
-      [
-       840.0,
-       2580.0
-      ],
-      [
-       810.0,
+       1110.0,
        2610.0
+      ],
+      [
+       1080.0,
+       2640.0
+      ],
+      [
+       1080.0,
+       2670.0
       ]
      ],
      "offset": 0.5
@@ -4663,98 +5063,25 @@
     {
      "points": [
       [
-       570.0,
-       2760.0
-      ],
-      [
-       510.0,
-       2760.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2760.0
-      ],
-      [
-       600.0,
-       2790.0
-      ],
-      [
-       660.0,
-       2790.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2790.0
-      ],
-      [
-       660.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2730.0
-      ],
-      [
-       660.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2730.0
+       840.0,
+       2820.0
       ],
       [
        780.0,
-       2670.0
-      ],
-      [
-       810.0,
-       2670.0
+       2820.0
       ]
      ],
      "offset": 0.0
     },
     {
      "points": [
-      [
-       810.0,
-       2610.0
-      ],
-      [
-       810.0,
-       2670.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2610.0
-      ],
       [
        840.0,
-       2550.0
+       2820.0
+      ],
+      [
+       900.0,
+       2820.0
       ]
      ],
      "offset": 0.0
@@ -4763,15 +5090,11 @@
      "points": [
       [
        900.0,
-       2610.0
+       2820.0
       ],
       [
-       960.0,
-       2670.0
-      ],
-      [
-       990.0,
-       2670.0
+       900.0,
+       2760.0
       ]
      ],
      "offset": 0.0
@@ -4780,11 +5103,24 @@
      "points": [
       [
        990.0,
-       2670.0
+       2760.0
+      ],
+      [
+       900.0,
+       2760.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2760.0
       ],
       [
        1080.0,
-       2670.0
+       2760.0
       ]
      ],
      "offset": 0.0
@@ -4793,11 +5129,88 @@
      "points": [
       [
        1080.0,
+       2670.0
+      ],
+      [
+       1080.0,
+       2760.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1110.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1200.0,
+       2700.0
+      ],
+      [
+       1200.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2730.0
+      ],
+      [
+       1320.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2640.0
+      ],
+      [
+       1320.0,
+       2670.0
+      ],
+      [
+       1320.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2640.0
+      ],
+      [
+       1290.0,
        2610.0
       ],
       [
-       1080.0,
-       2670.0
+       1320.0,
+       2580.0
       ]
      ],
      "offset": 0.0
@@ -4805,24 +5218,15 @@
     {
      "points": [
       [
-       1080.0,
-       2610.0
+       1320.0,
+       2580.0
       ],
       [
-       1080.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2550.0
+       1320.0,
+       2520.0
       ],
       [
-       1080.0,
+       1290.0,
        2490.0
       ]
      ],
@@ -4831,11 +5235,11 @@
     {
      "points": [
       [
-       990.0,
-       2400.0
+       1350.0,
+       2490.0
       ],
       [
-       1080.0,
+       1290.0,
        2490.0
       ]
      ],
@@ -4844,12 +5248,33 @@
     {
      "points": [
       [
-       1080.0,
-       2310.0
+       1290.0,
+       2460.0
       ],
       [
-       990.0,
+       1320.0,
+       2460.0
+      ],
+      [
+       1350.0,
+       2490.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2460.0
+      ],
+      [
+       1230.0,
        2400.0
+      ],
+      [
+       1230.0,
+       2280.0
       ]
      ],
      "offset": 0.0
@@ -4857,29 +5282,29 @@
     {
      "points": [
       [
-       1080.0,
-       2310.0
-      ],
-      [
-       1020.0,
-       2310.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1020.0,
-       2310.0
-      ],
-      [
-       1020.0,
+       1230.0,
        2280.0
       ],
       [
-       1050.0,
+       1290.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       2220.0
+      ],
+      [
+       1290.0,
        2250.0
+      ],
+      [
+       1290.0,
+       2280.0
       ]
      ],
      "offset": 0.0
@@ -4887,12 +5312,12 @@
     {
      "points": [
       [
-       1050.0,
-       2190.0
+       1260.0,
+       2220.0
       ],
       [
-       1050.0,
-       2250.0
+       1380.0,
+       2220.0
       ]
      ],
      "offset": 0.0
@@ -4900,12 +5325,12 @@
     {
      "points": [
       [
-       1050.0,
-       2190.0
+       1440.0,
+       2160.0
       ],
       [
-       1110.0,
-       2190.0
+       1380.0,
+       2220.0
       ]
      ],
      "offset": 0.0
@@ -4913,25 +5338,12 @@
     {
      "points": [
       [
-       1200.0,
-       2100.0
+       1440.0,
+       2040.0
       ],
       [
-       1110.0,
-       2190.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1200.0,
-       1980.0
-      ],
-      [
-       1200.0,
-       2100.0
+       1440.0,
+       2160.0
       ]
      ],
      "offset": -0.5
@@ -4941,16 +5353,33 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Marunouchi",
    "color": "#F62E36",
+   "code": "M",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     315.0,
+     2430.0
+    ],
+    [
+     778.18,
+     2281.82
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       810.0,
-       2610.0
+       1080.0,
+       2670.0
       ],
       [
-       810.0,
-       2550.0
+       1050.0,
+       2640.0
+      ],
+      [
+       1020.0,
+       2640.0
       ]
      ],
      "offset": 0.5
@@ -4958,51 +5387,12 @@
     {
      "points": [
       [
-       180.0,
-       2400.0
-      ],
-      [
-       120.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       180.0,
-       2400.0
-      ],
-      [
-       240.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       300.0,
-       2400.0
-      ],
-      [
-       240.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       300.0,
-       2400.0
+       420.0,
+       2430.0
       ],
       [
        360.0,
-       2400.0
+       2430.0
       ]
      ],
      "offset": 0.0
@@ -5011,11 +5401,11 @@
      "points": [
       [
        420.0,
-       2400.0
+       2430.0
       ],
       [
-       360.0,
-       2400.0
+       480.0,
+       2430.0
       ]
      ],
      "offset": 0.0
@@ -5023,24 +5413,28 @@
     {
      "points": [
       [
-       420.0,
-       2400.0
-      ],
-      [
-       450.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       450.0,
+       540.0,
        2400.0
       ],
       [
        510.0,
+       2430.0
+      ],
+      [
+       480.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       540.0,
+       2400.0
+      ],
+      [
+       600.0,
        2460.0
       ]
      ],
@@ -5049,12 +5443,55 @@
     {
      "points": [
       [
-       510.0,
+       660.0,
        2460.0
       ],
       [
-       570.0,
+       600.0,
        2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2460.0
+      ],
+      [
+       750.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       750.0,
+       2460.0
+      ],
+      [
+       720.0,
+       2490.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       720.0,
+       2490.0
+      ],
+      [
+       780.0,
+       2490.0
+      ],
+      [
+       810.0,
+       2520.0
       ]
      ],
      "offset": -0.5
@@ -5062,24 +5499,11 @@
     {
      "points": [
       [
-       630.0,
-       2460.0
+       810.0,
+       2610.0
       ],
       [
-       570.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       630.0,
-       2460.0
-      ],
-      [
-       630.0,
+       810.0,
        2520.0
       ]
      ],
@@ -5088,51 +5512,16 @@
     {
      "points": [
       [
-       660.0,
-       2490.0
-      ],
-      [
-       630.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2550.0
-      ],
-      [
-       660.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2550.0
-      ],
-      [
-       810.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2610.0
-      ],
-      [
        810.0,
        2610.0
+      ],
+      [
+       840.0,
+       2580.0
+      ],
+      [
+       840.0,
+       2550.0
       ]
      ],
      "offset": 0.0
@@ -5141,11 +5530,105 @@
      "points": [
       [
        900.0,
+       2550.0
+      ],
+      [
+       840.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2580.0
+      ],
+      [
+       900.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2580.0
+      ],
+      [
+       960.0,
+       2580.0
+      ],
+      [
+       1020.0,
+       2640.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1080.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2670.0
+      ],
+      [
+       1170.0,
+       2640.0
+      ],
+      [
+       1200.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       2580.0
+      ],
+      [
+       1170.0,
        2610.0
       ],
       [
-       900.0,
+       1200.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2460.0
+      ],
+      [
+       1170.0,
        2550.0
+      ],
+      [
+       1140.0,
+       2580.0
       ]
      ],
      "offset": 0.0
@@ -5153,12 +5636,12 @@
     {
      "points": [
       [
-       900.0,
-       2490.0
+       1170.0,
+       2460.0
       ],
       [
-       900.0,
-       2550.0
+       1170.0,
+       2370.0
       ]
      ],
      "offset": 0.0
@@ -5166,25 +5649,16 @@
     {
      "points": [
       [
-       900.0,
-       2400.0
-      ],
-      [
-       900.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2400.0
-      ],
-      [
-       900.0,
+       1110.0,
        2340.0
+      ],
+      [
+       1140.0,
+       2370.0
+      ],
+      [
+       1170.0,
+       2370.0
       ]
      ],
      "offset": 0.0
@@ -5192,12 +5666,16 @@
     {
      "points": [
       [
-       900.0,
-       2280.0
-      ],
-      [
-       900.0,
+       1110.0,
        2340.0
+      ],
+      [
+       1050.0,
+       2340.0
+      ],
+      [
+       1020.0,
+       2310.0
       ]
      ],
      "offset": 0.0
@@ -5205,12 +5683,12 @@
     {
      "points": [
       [
-       900.0,
-       2280.0
+       1020.0,
+       2310.0
       ],
       [
-       810.0,
-       2280.0
+       1020.0,
+       2250.0
       ]
      ],
      "offset": 0.0
@@ -5218,16 +5696,16 @@
     {
      "points": [
       [
-       810.0,
-       2280.0
-      ],
-      [
-       780.0,
+       1020.0,
        2250.0
       ],
       [
-       780.0,
-       2190.0
+       930.0,
+       2250.0
+      ],
+      [
+       900.0,
+       2280.0
       ]
      ],
      "offset": 0.0
@@ -5235,29 +5713,16 @@
     {
      "points": [
       [
-       780.0,
-       2190.0
+       810.0,
+       2250.0
       ],
       [
-       750.0,
-       2190.0
+       870.0,
+       2250.0
       ],
       [
-       720.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2160.0
-      ],
-      [
-       720.0,
-       2160.0
+       900.0,
+       2280.0
       ]
      ],
      "offset": 0.0
@@ -5267,16 +5732,25 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.MarunouchiBranch",
    "color": "#F62E36",
+   "code": "Mb",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     540.0,
+     2595.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       270.0,
-       2520.0
+       540.0,
+       2550.0
       ],
       [
-       270.0,
-       2460.0
+       540.0,
+       2490.0
       ]
      ],
      "offset": 0.0
@@ -5284,12 +5758,12 @@
     {
      "points": [
       [
-       270.0,
-       2460.0
+       540.0,
+       2490.0
       ],
       [
-       330.0,
-       2460.0
+       600.0,
+       2490.0
       ]
      ],
      "offset": 0.0
@@ -5297,16 +5771,16 @@
     {
      "points": [
       [
-       420.0,
-       2400.0
-      ],
-      [
-       360.0,
+       660.0,
        2460.0
       ],
       [
-       330.0,
-       2460.0
+       630.0,
+       2490.0
+      ],
+      [
+       600.0,
+       2490.0
       ]
      ],
      "offset": 0.0
@@ -5316,16 +5790,29 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Namboku",
    "color": "#00AC9B",
+   "code": "N",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     838.18,
+     3001.82
+    ],
+    [
+     885.0,
+     1830.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       630.0,
-       2850.0
+       870.0,
+       2970.0
       ],
       [
-       690.0,
-       2850.0
+       960.0,
+       2880.0
       ]
      ],
      "offset": -0.5
@@ -5333,16 +5820,12 @@
     {
      "points": [
       [
-       750.0,
-       2820.0
+       1020.0,
+       2880.0
       ],
       [
-       720.0,
-       2850.0
-      ],
-      [
-       690.0,
-       2850.0
+       960.0,
+       2880.0
       ]
      ],
      "offset": -0.5
@@ -5350,25 +5833,50 @@
     {
      "points": [
       [
-       750.0,
+       960.0,
+       2790.0
+      ],
+      [
+       1020.0,
+       2850.0
+      ],
+      [
+       1020.0,
+       2880.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       960.0,
+       2790.0
+      ],
+      [
+       960.0,
+       2760.0
+      ],
+      [
+       990.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
        2730.0
       ],
       [
-       750.0,
-       2820.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2730.0
+       1020.0,
+       2700.0
       ],
       [
-       750.0,
-       2670.0
+       1050.0,
+       2700.0
       ]
      ],
      "offset": 0.0
@@ -5376,25 +5884,16 @@
     {
      "points": [
       [
-       750.0,
-       2670.0
-      ],
-      [
-       750.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
+       960.0,
        2520.0
       ],
       [
-       750.0,
+       1050.0,
        2610.0
+      ],
+      [
+       1050.0,
+       2700.0
       ]
      ],
      "offset": 0.0
@@ -5402,16 +5901,16 @@
     {
      "points": [
       [
-       750.0,
+       960.0,
        2520.0
       ],
       [
-       720.0,
-       2490.0
+       930.0,
+       2550.0
       ],
       [
-       660.0,
-       2490.0
+       900.0,
+       2550.0
       ]
      ],
      "offset": 0.0
@@ -5419,12 +5918,16 @@
     {
      "points": [
       [
-       720.0,
-       2430.0
+       930.0,
+       2490.0
       ],
       [
-       660.0,
-       2490.0
+       900.0,
+       2520.0
+      ],
+      [
+       900.0,
+       2550.0
       ]
      ],
      "offset": 0.0
@@ -5432,28 +5935,45 @@
     {
      "points": [
       [
-       720.0,
-       2430.0
+       930.0,
+       2490.0
       ],
       [
-       720.0,
+       930.0,
+       2460.0
+      ],
+      [
+       1020.0,
+       2370.0
+      ]
+     ],
+     "offset": -0.5
+    },
+    {
+     "points": [
+      [
+       1020.0,
        2370.0
       ],
       [
-       750.0,
-       2340.0
+       1020.0,
+       2310.0
       ]
      ],
-     "offset": -0.5
+     "offset": 0.0
     },
     {
      "points": [
       [
-       750.0,
-       2340.0
+       1020.0,
+       2310.0
       ],
       [
-       810.0,
+       1050.0,
+       2280.0
+      ],
+      [
+       1080.0,
        2280.0
       ]
      ],
@@ -5462,12 +5982,16 @@
     {
      "points": [
       [
-       810.0,
+       1110.0,
+       2190.0
+      ],
+      [
+       1080.0,
+       2220.0
+      ],
+      [
+       1080.0,
        2280.0
-      ],
-      [
-       870.0,
-       2220.0
       ]
      ],
      "offset": 0.0
@@ -5475,28 +5999,11 @@
     {
      "points": [
       [
-       870.0,
-       2160.0
+       1110.0,
+       2190.0
       ],
       [
-       870.0,
-       2220.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       870.0,
-       2160.0
-      ],
-      [
-       840.0,
-       2130.0
-      ],
-      [
-       810.0,
+       1050.0,
        2130.0
       ]
      ],
@@ -5505,12 +6012,12 @@
     {
      "points": [
       [
-       810.0,
+       1050.0,
        2130.0
       ],
       [
-       810.0,
-       1980.0
+       1050.0,
+       2070.0
       ]
      ],
      "offset": 0.0
@@ -5518,16 +6025,16 @@
     {
      "points": [
       [
-       810.0,
-       1980.0
+       1050.0,
+       2070.0
       ],
       [
-       780.0,
+       930.0,
        1950.0
       ],
       [
-       660.0,
-       1950.0
+       930.0,
+       1920.0
       ]
      ],
      "offset": 0.0
@@ -5535,12 +6042,12 @@
     {
      "points": [
       [
-       660.0,
-       1950.0
+       930.0,
+       1920.0
       ],
       [
-       720.0,
-       1890.0
+       990.0,
+       1920.0
       ]
      ],
      "offset": 0.0
@@ -5548,11 +6055,11 @@
     {
      "points": [
       [
-       720.0,
-       1890.0
+       990.0,
+       1920.0
       ],
       [
-       720.0,
+       990.0,
        1830.0
       ]
      ],
@@ -5561,11 +6068,11 @@
     {
      "points": [
       [
-       660.0,
+       930.0,
        1830.0
       ],
       [
-       720.0,
+       990.0,
        1830.0
       ]
      ],
@@ -5576,42 +6083,33 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Tozai",
    "color": "#009BBF",
+   "code": "T",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     568.18,
+     2371.82
+    ],
+    [
+     2205.0,
+     2460.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       330.0,
-       2340.0
-      ],
-      [
-       480.0,
-       2340.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       480.0,
-       2340.0
-      ],
-      [
-       540.0,
-       2340.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       540.0,
+       600.0,
        2340.0
       ],
       [
        630.0,
-       2340.0
+       2310.0
+      ],
+      [
+       690.0,
+       2310.0
       ]
      ],
      "offset": 0.0
@@ -5620,24 +6118,11 @@
      "points": [
       [
        690.0,
-       2340.0
-      ],
-      [
-       630.0,
-       2340.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2340.0
+       2310.0
       ],
       [
        690.0,
-       2340.0
+       2400.0
       ]
      ],
      "offset": 0.0
@@ -5645,16 +6130,16 @@
     {
      "points": [
       [
-       750.0,
-       2340.0
-      ],
-      [
-       810.0,
+       690.0,
        2400.0
       ],
       [
-       810.0,
-       2460.0
+       720.0,
+       2370.0
+      ],
+      [
+       870.0,
+       2370.0
       ]
      ],
      "offset": 0.0
@@ -5662,29 +6147,16 @@
     {
      "points": [
       [
-       810.0,
-       2460.0
-      ],
-      [
-       840.0,
-       2430.0
+       960.0,
+       2400.0
       ],
       [
        900.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2490.0
+       2400.0
       ],
       [
-       900.0,
-       2430.0
+       870.0,
+       2370.0
       ]
      ],
      "offset": 0.0
@@ -5693,170 +6165,31 @@
      "points": [
       [
        1020.0,
-       2490.0
+       2370.0
       ],
       [
-       900.0,
-       2490.0
+       990.0,
+       2370.0
+      ],
+      [
+       960.0,
+       2400.0
       ]
      ],
      "offset": 0.0
     },
     {
      "points": [
-      [
-       1080.0,
-       2550.0
-      ],
       [
        1020.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2550.0
-      ],
-      [
-       1170.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1230.0,
-       2610.0
-      ],
-      [
-       1200.0,
-       2640.0
-      ],
-      [
-       1170.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1230.0,
-       2610.0
-      ],
-      [
-       1290.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1350.0,
-       2610.0
-      ],
-      [
-       1290.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1350.0,
-       2610.0
-      ],
-      [
-       1440.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1500.0,
-       2610.0
-      ],
-      [
-       1440.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1500.0,
-       2610.0
-      ],
-      [
-       1620.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1680.0,
-       2550.0
-      ],
-      [
-       1620.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1680.0,
-       2460.0
-      ],
-      [
-       1680.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1680.0,
-       2460.0
-      ],
-      [
-       1770.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1860.0,
        2370.0
       ],
       [
-       1770.0,
+       1050.0,
+       2400.0
+      ],
+      [
+       1050.0,
        2460.0
       ]
      ],
@@ -5865,12 +6198,223 @@
     {
      "points": [
       [
+       1050.0,
+       2460.0
+      ],
+      [
+       1110.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       2580.0
+      ],
+      [
+       1110.0,
+       2550.0
+      ],
+      [
+       1110.0,
+       2520.0
+      ]
+     ],
+     "offset": 1.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       2550.0
+      ],
+      [
+       1230.0,
+       2580.0
+      ],
+      [
+       1140.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2580.0
+      ],
+      [
+       1290.0,
+       2550.0
+      ],
+      [
+       1260.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2580.0
+      ],
+      [
+       1410.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1470.0,
+       2670.0
+      ],
+      [
+       1410.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1470.0,
+       2670.0
+      ],
+      [
+       1530.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1590.0,
+       2670.0
+      ],
+      [
+       1530.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1590.0,
+       2670.0
+      ],
+      [
+       1680.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1770.0,
+       2670.0
+      ],
+      [
+       1680.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1770.0,
+       2670.0
+      ],
+      [
        1860.0,
-       2370.0
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1920.0,
+       2610.0
+      ],
+      [
+       1860.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1980.0,
+       2550.0
       ],
       [
        1920.0,
-       2370.0
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1980.0,
+       2550.0
+      ],
+      [
+       2010.0,
+       2520.0
+      ],
+      [
+       2040.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       2100.0,
+       2460.0
+      ],
+      [
+       2040.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       2100.0,
+       2460.0
+      ],
+      [
+       2160.0,
+       2460.0
       ]
      ],
      "offset": 0.0
@@ -5880,28 +6424,28 @@
   {
    "lineId": "odpt.Railway:TokyoMetro.Yurakucho",
    "color": "#C1A470",
+   "code": "Y",
+   "category": "metro",
+   "filter": "subway",
+   "terminals": [
+    [
+     375.0,
+     1890.0
+    ],
+    [
+     1485.0,
+     2820.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       210.0,
-       1890.0
+       480.0,
+       1950.0
       ],
       [
-       150.0,
-       1830.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       300.0,
-       1890.0
-      ],
-      [
-       210.0,
+       420.0,
        1890.0
       ]
      ],
@@ -5910,11 +6454,11 @@
     {
      "points": [
       [
-       300.0,
-       1890.0
+       540.0,
+       1950.0
       ],
       [
-       300.0,
+       480.0,
        1950.0
       ]
      ],
@@ -5923,12 +6467,12 @@
     {
      "points": [
       [
-       300.0,
+       540.0,
        1950.0
       ],
       [
-       390.0,
-       2040.0
+       540.0,
+       2010.0
       ]
      ],
      "offset": 0.5
@@ -5936,12 +6480,12 @@
     {
      "points": [
       [
-       390.0,
-       2040.0
+       540.0,
+       2010.0
       ],
       [
-       450.0,
-       2040.0
+       600.0,
+       2070.0
       ]
      ],
      "offset": 0.5
@@ -5949,55 +6493,12 @@
     {
      "points": [
       [
-       450.0,
-       2040.0
+       600.0,
+       2070.0
       ],
       [
-       450.0,
-       2100.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2160.0
-      ],
-      [
-       450.0,
-       2100.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2160.0
-      ],
-      [
-       510.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2430.0
-      ],
-      [
-       720.0,
-       2370.0
-      ],
-      [
-       750.0,
-       2340.0
+       660.0,
+       2130.0
       ]
      ],
      "offset": 0.5
@@ -6006,109 +6507,134 @@
      "points": [
       [
        660.0,
-       2160.0
+       2130.0
       ],
       [
-       570.0,
-       2160.0
+       720.0,
+       2130.0
       ]
      ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       690.0,
-       2220.0
-      ],
-      [
-       690.0,
-       2190.0
-      ],
-      [
-       660.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2280.0
-      ],
-      [
-       690.0,
-       2220.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2280.0
-      ],
-      [
-       750.0,
-       2340.0
-      ]
-     ],
-     "offset": 0.0
+     "offset": 0.5
     },
     {
      "points": [
       [
        720.0,
-       2430.0
+       2220.0
       ],
       [
-       690.0,
+       720.0,
+       2130.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       810.0,
+       2250.0
+      ],
+      [
+       750.0,
+       2250.0
+      ],
+      [
+       720.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2490.0
+      ],
+      [
+       930.0,
        2460.0
       ],
       [
-       690.0,
-       2520.0
+       1020.0,
+       2370.0
       ]
      ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       690.0,
-       2520.0
-      ],
-      [
-       750.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2520.0
-      ],
-      [
-       810.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
+     "offset": 0.5
     },
     {
      "points": [
       [
        810.0,
-       2520.0
+       2160.0
       ],
+      [
+       810.0,
+       2250.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       960.0,
+       2280.0
+      ],
+      [
+       840.0,
+       2160.0
+      ],
+      [
+       810.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2340.0
+      ],
+      [
+       960.0,
+       2310.0
+      ],
+      [
+       960.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2340.0
+      ],
+      [
+       1020.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
       [
        930.0,
+       2490.0
+      ],
+      [
+       900.0,
+       2490.0
+      ],
+      [
+       870.0,
        2520.0
       ]
      ],
@@ -6117,11 +6643,11 @@
     {
      "points": [
       [
-       990.0,
-       2580.0
+       870.0,
+       2520.0
       ],
       [
-       930.0,
+       960.0,
        2520.0
       ]
      ],
@@ -6130,12 +6656,12 @@
     {
      "points": [
       [
-       990.0,
-       2580.0
+       960.0,
+       2520.0
       ],
       [
-       990.0,
-       2640.0
+       1020.0,
+       2520.0
       ]
      ],
      "offset": 0.0
@@ -6143,38 +6669,16 @@
     {
      "points": [
       [
-       990.0,
-       2640.0
+       1020.0,
+       2520.0
       ],
       [
-       1080.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2730.0
+       1050.0,
+       2520.0
       ],
       [
-       1080.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2790.0
-      ],
-      [
-       1170.0,
-       2730.0
+       1140.0,
+       2610.0
       ]
      ],
      "offset": 0.0
@@ -6183,11 +6687,92 @@
      "points": [
       [
        1230.0,
-       2790.0
+       2670.0
       ],
       [
        1170.0,
+       2610.0
+      ],
+      [
+       1140.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1230.0,
+       2670.0
+      ],
+      [
+       1260.0,
+       2700.0
+      ],
+      [
+       1290.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2700.0
+      ],
+      [
+       1320.0,
+       2700.0
+      ],
+      [
+       1350.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2730.0
+      ],
+      [
+       1350.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       2820.0
+      ],
+      [
+       1410.0,
        2790.0
+      ],
+      [
+       1410.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1440.0,
+       2820.0
+      ],
+      [
+       1380.0,
+       2820.0
       ]
      ],
      "offset": 0.0
@@ -6197,16 +6782,98 @@
   {
    "lineId": "odpt.Railway:Toei.Arakawa",
    "color": "#EE86A7",
+   "code": "SA",
+   "category": "tram",
+   "filter": "subway",
+   "terminals": [
+    [
+     1441.82,
+     2218.18
+    ],
+    [
+     945.0,
+     2340.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       1200.0,
-       2130.0
+       1350.0,
+       2250.0
+      ],
+      [
+       1410.0,
+       2250.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1350.0,
+       2250.0
+      ],
+      [
+       1320.0,
+       2220.0
+      ],
+      [
+       1320.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       2100.0
+      ],
+      [
+       1320.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       1980.0
+      ],
+      [
+       1380.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       1980.0
+      ],
+      [
+       1320.0,
+       2040.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2040.0
       ],
       [
        1260.0,
-       2190.0
+       2100.0
       ]
      ],
      "offset": 0.0
@@ -6214,25 +6881,46 @@
     {
      "points": [
       [
-       1200.0,
-       2130.0
+       1290.0,
+       2040.0
       ],
       [
-       1110.0,
-       2130.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1110.0,
+       1260.0,
        2070.0
       ],
       [
-       1110.0,
-       2130.0
+       1260.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2040.0
+      ],
+      [
+       1260.0,
+       2040.0
+      ],
+      [
+       1230.0,
+       2070.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1230.0,
+       2070.0
+      ],
+      [
+       1170.0,
+       2010.0
       ]
      ],
      "offset": 0.0
@@ -6244,6 +6932,36 @@
        2010.0
       ],
       [
+       1170.0,
+       2070.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2070.0
+      ],
+      [
+       1170.0,
+       2070.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       1980.0
+      ],
+      [
+       1110.0,
+       2010.0
+      ],
+      [
        1110.0,
        2070.0
       ]
@@ -6253,12 +6971,12 @@
     {
      "points": [
       [
-       1170.0,
-       2010.0
+       1140.0,
+       1980.0
       ],
       [
-       1110.0,
-       1950.0
+       1080.0,
+       1980.0
       ]
      ],
      "offset": 0.0
@@ -6266,29 +6984,12 @@
     {
      "points": [
       [
-       1110.0,
-       1950.0
-      ],
-      [
-       1110.0,
-       2010.0
+       1080.0,
+       1980.0
       ],
       [
        1020.0,
-       2100.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1020.0,
-       2040.0
-      ],
-      [
-       1020.0,
-       2100.0
+       1980.0
       ]
      ],
      "offset": 0.0
@@ -6297,15 +6998,11 @@
      "points": [
       [
        1020.0,
-       2040.0
+       1920.0
       ],
       [
-       990.0,
-       2040.0
-      ],
-      [
-       960.0,
-       2010.0
+       1020.0,
+       1980.0
       ]
      ],
      "offset": 0.0
@@ -6321,8 +7018,8 @@
        1980.0
       ],
       [
-       930.0,
-       1950.0
+       1020.0,
+       1920.0
       ]
      ],
      "offset": 0.0
@@ -6330,41 +7027,11 @@
     {
      "points": [
       [
-       930.0,
-       1950.0
-      ],
-      [
-       930.0,
-       2010.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       870.0,
-       2070.0
-      ],
-      [
-       930.0,
-       2010.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       840.0,
+       960.0,
        2010.0
       ],
       [
-       870.0,
-       2040.0
-      ],
-      [
-       870.0,
+       960.0,
        2070.0
       ]
      ],
@@ -6373,12 +7040,89 @@
     {
      "points": [
       [
+       1020.0,
+       2130.0
+      ],
+      [
+       960.0,
+       2070.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2130.0
+      ],
+      [
+       990.0,
+       2160.0
+      ],
+      [
+       930.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2100.0
+      ],
+      [
+       930.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2100.0
+      ],
+      [
+       870.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       2160.0
+      ],
+      [
+       870.0,
+       2130.0
+      ],
+      [
+       870.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
        840.0,
-       2010.0
+       2190.0
+      ],
+      [
+       870.0,
+       2190.0
       ],
       [
        900.0,
-       1950.0
+       2160.0
       ]
      ],
      "offset": 0.0
@@ -6387,11 +7131,37 @@
      "points": [
       [
        900.0,
-       1950.0
+       2250.0
       ],
       [
        840.0,
-       1950.0
+       2190.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       2250.0
+      ],
+      [
+       870.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       2280.0
+      ],
+      [
+       870.0,
+       2280.0
       ]
      ],
      "offset": 0.0
@@ -6400,197 +7170,41 @@
      "points": [
       [
        780.0,
-       1890.0
+       2340.0
       ],
       [
-       840.0,
-       1950.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       780.0,
-       1950.0
-      ],
-      [
-       780.0,
-       1890.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       780.0,
-       1950.0
-      ],
-      [
-       720.0,
-       2010.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2070.0
-      ],
-      [
-       720.0,
-       2040.0
-      ],
-      [
-       720.0,
-       2010.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2070.0
-      ],
-      [
-       660.0,
-       2070.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2070.0
-      ],
-      [
-       660.0,
-       2070.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2070.0
-      ],
-      [
-       630.0,
-       2070.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       630.0,
-       2130.0
-      ],
-      [
-       630.0,
-       2070.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2130.0
-      ],
-      [
-       630.0,
-       2130.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2220.0
-      ],
-      [
-       570.0,
-       2130.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2220.0
-      ],
-      [
-       600.0,
-       2220.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2250.0
-      ],
-      [
-       600.0,
-       2220.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2250.0
-      ],
-      [
-       570.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2250.0
-      ],
-      [
-       600.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       600.0,
-       2250.0
-      ],
-      [
-       660.0,
+       810.0,
        2310.0
+      ],
+      [
+       810.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       2340.0
+      ],
+      [
+       840.0,
+       2340.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       840.0,
+       2340.0
+      ],
+      [
+       900.0,
+       2340.0
       ]
      ],
      "offset": 0.0
@@ -6600,98 +7214,55 @@
   {
    "lineId": "odpt.Railway:Toei.Asakusa",
    "color": "#FF535F",
+   "code": "A",
+   "category": "toei",
+   "filter": "subway",
+   "terminals": [
+    [
+     795.0,
+     3180.0
+    ],
+    [
+     1575.0,
+     2340.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       660.0,
-       3120.0
-      ],
-      [
-       600.0,
-       3120.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       3120.0
-      ],
-      [
-       660.0,
-       3030.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       3030.0
-      ],
-      [
-       660.0,
-       2970.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2910.0
-      ],
-      [
-       660.0,
-       2970.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2910.0
-      ],
-      [
-       750.0,
-       2910.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2850.0
-      ],
-      [
-       750.0,
-       2910.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       870.0,
-       2820.0
+       900.0,
+       3180.0
       ],
       [
        840.0,
-       2850.0
+       3180.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       3180.0
       ],
       [
-       810.0,
-       2850.0
+       900.0,
+       3090.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       3090.0
+      ],
+      [
+       900.0,
+       3030.0
       ]
      ],
      "offset": 0.0
@@ -6700,15 +7271,15 @@
      "points": [
       [
        930.0,
-       2790.0
+       2940.0
       ],
       [
        900.0,
-       2790.0
+       2970.0
       ],
       [
-       870.0,
-       2820.0
+       900.0,
+       3030.0
       ]
      ],
      "offset": 0.0
@@ -6717,15 +7288,93 @@
      "points": [
       [
        930.0,
+       2940.0
+      ],
+      [
+       990.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1050.0,
+       2940.0
+      ],
+      [
+       990.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2880.0
+      ],
+      [
+       1050.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2850.0
+      ],
+      [
+       1140.0,
+       2880.0
+      ],
+      [
+       1110.0,
+       2880.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2850.0
+      ],
+      [
+       1170.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2730.0
+      ],
+      [
+       1170.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       2730.0
+      ],
+      [
+       1200.0,
        2790.0
-      ],
-      [
-       900.0,
-       2760.0
-      ],
-      [
-       900.0,
-       2670.0
       ]
      ],
      "offset": 0.0
@@ -6733,12 +7382,16 @@
     {
      "points": [
       [
-       990.0,
-       2670.0
+       1260.0,
+       2550.0
       ],
       [
-       900.0,
-       2670.0
+       1260.0,
+       2730.0
+      ],
+      [
+       1200.0,
+       2790.0
       ]
      ],
      "offset": 0.0
@@ -6746,41 +7399,15 @@
     {
      "points": [
       [
-       990.0,
-       2670.0
+       1260.0,
+       2550.0
       ],
       [
-       990.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1020.0,
-       2490.0
-      ],
-      [
-       990.0,
+       1290.0,
        2520.0
       ],
       [
-       990.0,
-       2610.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1020.0,
-       2490.0
-      ],
-      [
-       1080.0,
+       1290.0,
        2490.0
       ]
      ],
@@ -6789,11 +7416,15 @@
     {
      "points": [
       [
-       1080.0,
+       1380.0,
        2430.0
       ],
       [
-       1080.0,
+       1350.0,
+       2430.0
+      ],
+      [
+       1290.0,
        2490.0
       ]
      ],
@@ -6802,16 +7433,29 @@
     {
      "points": [
       [
-       1110.0,
-       2370.0
+       1440.0,
+       2430.0
       ],
       [
-       1110.0,
+       1380.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1440.0,
+       2430.0
+      ],
+      [
+       1410.0,
        2400.0
       ],
       [
-       1080.0,
-       2430.0
+       1380.0,
+       2400.0
       ]
      ],
      "offset": 0.0
@@ -6819,12 +7463,16 @@
     {
      "points": [
       [
-       1110.0,
+       1410.0,
+       2340.0
+      ],
+      [
+       1380.0,
        2370.0
       ],
       [
-       1170.0,
-       2370.0
+       1380.0,
+       2400.0
       ]
      ],
      "offset": 0.0
@@ -6832,12 +7480,12 @@
     {
      "points": [
       [
-       1170.0,
-       2310.0
+       1410.0,
+       2340.0
       ],
       [
-       1170.0,
-       2370.0
+       1470.0,
+       2340.0
       ]
      ],
      "offset": 0.0
@@ -6845,29 +7493,12 @@
     {
      "points": [
       [
-       1170.0,
-       2310.0
+       1470.0,
+       2340.0
       ],
       [
-       1230.0,
-       2310.0
-      ],
-      [
-       1260.0,
-       2280.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1260.0,
-       2280.0
-      ],
-      [
-       1260.0,
-       2370.0
+       1530.0,
+       2340.0
       ]
      ],
      "offset": 0.0
@@ -6877,119 +7508,29 @@
   {
    "lineId": "odpt.Railway:Toei.Mita",
    "color": "#0067B0",
+   "code": "I",
+   "category": "toei",
+   "filter": "subway",
+   "terminals": [
+    [
+     870.0,
+     3015.0
+    ],
+    [
+     405.0,
+     1800.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       810.0,
-       2400.0
+       1080.0,
+       2520.0
       ],
       [
-       900.0,
-       2490.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       630.0,
-       2850.0
-      ],
-      [
-       690.0,
-       2850.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2820.0
-      ],
-      [
-       720.0,
-       2850.0
-      ],
-      [
-       690.0,
-       2850.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       870.0,
-       2820.0
-      ],
-      [
-       750.0,
-       2820.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       870.0,
-       2820.0
-      ],
-      [
-       870.0,
-       2790.0
-      ],
-      [
-       840.0,
-       2760.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2700.0
-      ],
-      [
-       840.0,
-       2760.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2700.0
-      ],
-      [
-       900.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       840.0,
-       2550.0
-      ],
-      [
-       840.0,
+       1140.0,
        2580.0
-      ],
-      [
-       900.0,
-       2640.0
       ]
      ],
      "offset": 0.0
@@ -6997,12 +7538,38 @@
     {
      "points": [
       [
-       840.0,
-       2550.0
+       870.0,
+       2970.0
       ],
       [
-       900.0,
-       2490.0
+       960.0,
+       2880.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2880.0
+      ],
+      [
+       960.0,
+       2880.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2880.0
+      ],
+      [
+       1020.0,
+       2880.0
       ]
      ],
      "offset": 0.0
@@ -7010,12 +7577,12 @@
     {
      "points": [
       [
-       810.0,
-       2400.0
+       1110.0,
+       2880.0
       ],
       [
-       810.0,
-       2340.0
+       1110.0,
+       2820.0
       ]
      ],
      "offset": 0.0
@@ -7023,16 +7590,89 @@
     {
      "points": [
       [
-       840.0,
-       2250.0
+       1110.0,
+       2760.0
       ],
       [
-       840.0,
+       1110.0,
+       2820.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2760.0
+      ],
+      [
+       1140.0,
+       2730.0
+      ],
+      [
+       1140.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2610.0
+      ],
+      [
+       1110.0,
+       2670.0
+      ],
+      [
+       1140.0,
+       2700.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2610.0
+      ],
+      [
+       1140.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1080.0,
+       2520.0
+      ],
+      [
+       1080.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
        2310.0
       ],
       [
-       810.0,
+       1080.0,
        2340.0
+      ],
+      [
+       1080.0,
+       2370.0
       ]
      ],
      "offset": 0.0
@@ -7040,12 +7680,16 @@
     {
      "points": [
       [
-       840.0,
-       2160.0
-      ],
-      [
-       840.0,
+       1140.0,
        2250.0
+      ],
+      [
+       1110.0,
+       2280.0
+      ],
+      [
+       1110.0,
+       2310.0
       ]
      ],
      "offset": 0.0
@@ -7053,11 +7697,45 @@
     {
      "points": [
       [
-       840.0,
+       1140.0,
+       2250.0
+      ],
+      [
+       1110.0,
+       2220.0
+      ],
+      [
+       1020.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2220.0
+      ],
+      [
+       1020.0,
        2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       870.0,
+       2070.0
       ],
       [
-       750.0,
+       930.0,
+       2070.0
+      ],
+      [
+       1020.0,
        2160.0
       ]
      ],
@@ -7066,37 +7744,11 @@
     {
      "points": [
       [
-       750.0,
-       2160.0
+       870.0,
+       2070.0
       ],
       [
-       750.0,
-       2040.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       690.0,
-       1980.0
-      ],
-      [
-       750.0,
-       2040.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       690.0,
-       1980.0
-      ],
-      [
-       630.0,
+       870.0,
        1980.0
       ]
      ],
@@ -7105,15 +7757,15 @@
     {
      "points": [
       [
-       570.0,
+       750.0,
        2010.0
       ],
       [
-       600.0,
-       2010.0
+       780.0,
+       1980.0
       ],
       [
-       630.0,
+       870.0,
        1980.0
       ]
      ],
@@ -7122,11 +7774,24 @@
     {
      "points": [
       [
-       570.0,
+       750.0,
        2010.0
       ],
       [
-       570.0,
+       810.0,
+       2010.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       810.0,
+       2010.0
+      ],
+      [
+       810.0,
        1950.0
       ]
      ],
@@ -7135,16 +7800,12 @@
     {
      "points": [
       [
-       570.0,
+       810.0,
        1950.0
       ],
       [
-       600.0,
-       1920.0
-      ],
-      [
-       600.0,
-       1860.0
+       810.0,
+       1890.0
       ]
      ],
      "offset": 0.0
@@ -7152,12 +7813,12 @@
     {
      "points": [
       [
-       600.0,
-       1860.0
+       810.0,
+       1890.0
       ],
       [
-       540.0,
-       1860.0
+       720.0,
+       1890.0
       ]
      ],
      "offset": 0.0
@@ -7165,12 +7826,12 @@
     {
      "points": [
       [
-       540.0,
-       1860.0
+       660.0,
+       1890.0
       ],
       [
-       480.0,
-       1860.0
+       720.0,
+       1890.0
       ]
      ],
      "offset": 0.0
@@ -7178,12 +7839,12 @@
     {
      "points": [
       [
-       480.0,
-       1770.0
+       660.0,
+       1890.0
       ],
       [
-       480.0,
-       1860.0
+       660.0,
+       1800.0
       ]
      ],
      "offset": 0.0
@@ -7191,12 +7852,12 @@
     {
      "points": [
       [
-       480.0,
-       1770.0
+       660.0,
+       1800.0
       ],
       [
-       420.0,
-       1770.0
+       570.0,
+       1800.0
       ]
      ],
      "offset": 0.0
@@ -7204,12 +7865,12 @@
     {
      "points": [
       [
-       420.0,
-       1770.0
+       510.0,
+       1800.0
       ],
       [
-       330.0,
-       1770.0
+       570.0,
+       1800.0
       ]
      ],
      "offset": 0.0
@@ -7217,25 +7878,12 @@
     {
      "points": [
       [
-       270.0,
-       1770.0
+       450.0,
+       1800.0
       ],
       [
-       330.0,
-       1770.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       210.0,
-       1770.0
-      ],
-      [
-       270.0,
-       1770.0
+       510.0,
+       1800.0
       ]
      ],
      "offset": 0.0
@@ -7245,28 +7893,32 @@
   {
    "lineId": "odpt.Railway:Toei.NipporiToneri",
    "color": "#C1272D",
+   "code": "NT",
+   "category": "monorail",
+   "filter": "subway",
+   "terminals": [
+    [
+     1215.0,
+     2250.0
+    ],
+    [
+     1200.0,
+     1605.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       1020.0,
-       2160.0
+       1260.0,
+       2250.0
       ],
       [
-       960.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       960.0,
-       2100.0
+       1200.0,
+       2190.0
       ],
       [
-       960.0,
+       1200.0,
        2160.0
       ]
      ],
@@ -7275,12 +7927,38 @@
     {
      "points": [
       [
-       960.0,
-       2100.0
+       1140.0,
+       2160.0
       ],
       [
-       960.0,
+       1200.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       2160.0
+      ],
+      [
+       1230.0,
+       2070.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1230.0,
        2010.0
+      ],
+      [
+       1230.0,
+       2070.0
       ]
      ],
      "offset": 0.0
@@ -7288,12 +7966,12 @@
     {
      "points": [
       [
-       1020.0,
-       1950.0
-      ],
-      [
-       960.0,
+       1230.0,
        2010.0
+      ],
+      [
+       1230.0,
+       1950.0
       ]
      ],
      "offset": 0.0
@@ -7301,11 +7979,28 @@
     {
      "points": [
       [
-       1020.0,
-       1950.0
+       1170.0,
+       1890.0
       ],
       [
-       1020.0,
+       1230.0,
+       1950.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       1860.0
+      ],
+      [
+       1200.0,
+       1860.0
+      ],
+      [
+       1170.0,
        1890.0
       ]
      ],
@@ -7314,11 +8009,15 @@
     {
      "points": [
       [
-       1020.0,
-       1830.0
+       1260.0,
+       1860.0
       ],
       [
-       1020.0,
+       1230.0,
+       1890.0
+      ],
+      [
+       1200.0,
        1890.0
       ]
      ],
@@ -7327,15 +8026,11 @@
     {
      "points": [
       [
-       930.0,
-       1860.0
+       1200.0,
+       1890.0
       ],
       [
-       960.0,
-       1830.0
-      ],
-      [
-       1020.0,
+       1200.0,
        1830.0
       ]
      ],
@@ -7344,12 +8039,12 @@
     {
      "points": [
       [
-       930.0,
-       1860.0
+       1200.0,
+       1770.0
       ],
       [
-       930.0,
-       1800.0
+       1200.0,
+       1830.0
       ]
      ],
      "offset": 0.0
@@ -7357,12 +8052,12 @@
     {
      "points": [
       [
-       930.0,
-       1800.0
+       1200.0,
+       1710.0
       ],
       [
-       930.0,
-       1740.0
+       1200.0,
+       1770.0
       ]
      ],
      "offset": 0.0
@@ -7370,38 +8065,12 @@
     {
      "points": [
       [
-       930.0,
-       1680.0
+       1200.0,
+       1650.0
       ],
       [
-       930.0,
-       1740.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       930.0,
-       1620.0
-      ],
-      [
-       930.0,
-       1680.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       930.0,
-       1560.0
-      ],
-      [
-       930.0,
-       1620.0
+       1200.0,
+       1710.0
       ]
      ],
      "offset": 0.0
@@ -7411,292 +8080,25 @@
   {
    "lineId": "odpt.Railway:Toei.Oedo",
    "color": "#CF3366",
+   "code": "E",
+   "category": "toei",
+   "filter": "subway",
+   "terminals": [
+    [
+     450.0,
+     1995.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       570.0,
-       2400.0
-      ],
-      [
-       510.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       570.0,
-       2400.0
-      ],
-      [
-       630.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       690.0,
-       2400.0
-      ],
-      [
-       630.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2400.0
-      ],
-      [
-       690.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2340.0
-      ],
-      [
-       750.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       750.0,
-       2340.0
-      ],
-      [
-       840.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2280.0
-      ],
-      [
-       870.0,
-       2280.0
-      ],
-      [
-       840.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       900.0,
-       2280.0
-      ],
-      [
-       930.0,
-       2280.0
-      ],
-      [
-       960.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2370.0
-      ],
-      [
-       960.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2370.0
-      ],
-      [
-       1080.0,
-       2370.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2370.0
-      ],
-      [
-       1230.0,
-       2370.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
+       780.0,
        2430.0
-      ],
-      [
-       1230.0,
-       2370.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2520.0
-      ],
-      [
-       1170.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2520.0
-      ],
-      [
-       1170.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2640.0
-      ],
-      [
-       1080.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2730.0
-      ],
-      [
-       1080.0,
-       2640.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1080.0,
-       2730.0
-      ],
-      [
-       990.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       930.0,
-       2730.0
-      ],
-      [
-       990.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       930.0,
-       2790.0
-      ],
-      [
-       930.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2760.0
-      ],
-      [
-       900.0,
-       2760.0
-      ],
-      [
-       930.0,
-       2790.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2760.0
       ],
       [
        780.0,
-       2730.0
-      ],
-      [
-       750.0,
-       2730.0
+       2520.0
       ]
      ],
      "offset": 0.0
@@ -7704,224 +8106,544 @@
     {
      "points": [
       [
-       750.0,
-       2730.0
-      ],
-      [
-       660.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2610.0
-      ],
-      [
-       660.0,
-       2730.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2610.0
-      ],
-      [
-       600.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       600.0,
-       2550.0
-      ],
-      [
-       510.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2460.0
-      ],
-      [
-       510.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2460.0
-      ],
-      [
-       480.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       420.0,
-       2460.0
-      ],
-      [
-       480.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       420.0,
-       2400.0
-      ],
-      [
-       420.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       420.0,
-       2310.0
-      ],
-      [
-       420.0,
-       2400.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       420.0,
-       2310.0
-      ],
-      [
-       360.0,
-       2250.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       360.0,
-       2250.0
-      ],
-      [
-       450.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       450.0,
-       2160.0
-      ],
-      [
-       390.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       330.0,
-       2160.0
-      ],
-      [
-       390.0,
-       2160.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       330.0,
-       2160.0
-      ],
-      [
-       270.0,
-       2100.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       270.0,
-       2040.0
-      ],
-      [
-       270.0,
-       2100.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       210.0,
-       2040.0
-      ],
-      [
-       270.0,
-       2040.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       510.0,
-       2400.0
-      ],
-      [
-       480.0,
+       780.0,
        2430.0
       ],
       [
-       480.0,
+       810.0,
+       2430.0
+      ],
+      [
+       840.0,
        2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       930.0,
+       2430.0
+      ],
+      [
+       900.0,
+       2460.0
+      ],
+      [
+       840.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2430.0
+      ],
+      [
+       930.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2370.0
+      ],
+      [
+       1020.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1020.0,
+       2370.0
+      ],
+      [
+       1080.0,
+       2310.0
+      ],
+      [
+       1110.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2340.0
+      ],
+      [
+       1110.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1110.0,
+       2340.0
+      ],
+      [
+       1170.0,
+       2340.0
+      ],
+      [
+       1200.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2400.0
+      ],
+      [
+       1230.0,
+       2400.0
+      ],
+      [
+       1200.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       2400.0
+      ],
+      [
+       1320.0,
+       2400.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       2400.0
+      ],
+      [
+       1440.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2520.0
+      ],
+      [
+       1440.0,
+       2490.0
+      ],
+      [
+       1440.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2610.0
+      ],
+      [
+       1410.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2610.0
+      ],
+      [
+       1410.0,
+       2670.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1410.0,
+       2670.0
+      ],
+      [
+       1350.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2790.0
+      ],
+      [
+       1350.0,
+       2760.0
+      ],
+      [
+       1350.0,
+       2730.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1320.0,
+       2790.0
+      ],
+      [
+       1260.0,
+       2790.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1260.0,
+       2850.0
+      ],
+      [
+       1260.0,
+       2790.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1170.0,
+       2850.0
+      ],
+      [
+       1260.0,
+       2850.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2850.0
+      ],
+      [
+       1170.0,
+       2850.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       990.0,
+       2850.0
+      ],
+      [
+       960.0,
+       2820.0
+      ],
+      [
+       960.0,
+       2790.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       960.0,
+       2790.0
+      ],
+      [
+       930.0,
+       2790.0
+      ],
+      [
+       900.0,
+       2760.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       2640.0
+      ],
+      [
+       900.0,
+       2760.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       900.0,
+       2640.0
+      ],
+      [
+       870.0,
+       2610.0
+      ],
+      [
+       870.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       870.0,
+       2580.0
+      ],
+      [
+       810.0,
+       2580.0
+      ],
+      [
+       780.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       720.0,
+       2490.0
+      ],
+      [
+       780.0,
+       2550.0
+      ],
+      [
+       780.0,
+       2610.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       720.0,
+       2490.0
+      ],
+      [
+       720.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2520.0
+      ],
+      [
+       690.0,
+       2550.0
+      ],
+      [
+       720.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2460.0
+      ],
+      [
+       660.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2400.0
+      ],
+      [
+       660.0,
+       2460.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2400.0
+      ],
+      [
+       660.0,
+       2340.0
+      ],
+      [
+       600.0,
+       2280.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       600.0,
+       2280.0
+      ],
+      [
+       630.0,
+       2250.0
+      ],
+      [
+       660.0,
+       2250.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       660.0,
+       2250.0
+      ],
+      [
+       570.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       510.0,
+       2220.0
+      ],
+      [
+       570.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       510.0,
+       2220.0
+      ],
+      [
+       510.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       450.0,
+       2100.0
+      ],
+      [
+       510.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       450.0,
+       2040.0
+      ],
+      [
+       450.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       780.0,
+       2520.0
+      ],
+      [
+       750.0,
+       2550.0
+      ],
+      [
+       720.0,
+       2550.0
       ]
      ],
      "offset": 0.0
@@ -7931,15 +8653,32 @@
   {
    "lineId": "odpt.Railway:Toei.Shinjuku",
    "color": "#9FB01C",
+   "code": "S",
+   "category": "toei",
+   "filter": "subway",
+   "terminals": [
+    [
+     675.0,
+     2490.0
+    ],
+    [
+     2011.82,
+     2338.18
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       810.0,
-       2400.0
+       1080.0,
+       2520.0
       ],
       [
-       810.0,
+       1050.0,
+       2490.0
+      ],
+      [
+       1050.0,
        2460.0
       ]
      ],
@@ -7948,72 +8687,33 @@
     {
      "points": [
       [
-       510.0,
-       2460.0
-      ],
-      [
-       570.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.5
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2430.0
-      ],
-      [
-       600.0,
-       2430.0
-      ],
-      [
-       570.0,
-       2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       660.0,
-       2430.0
-      ],
-      [
        720.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       720.0,
-       2430.0
+       2490.0
       ],
       [
        780.0,
+       2490.0
+      ],
+      [
+       810.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.5
+    },
+    {
+     "points": [
+      [
+       870.0,
        2430.0
       ],
       [
-       810.0,
+       870.0,
        2460.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       810.0,
-       2400.0
       ],
       [
-       870.0,
-       2400.0
+       810.0,
+       2520.0
       ]
      ],
      "offset": 0.0
@@ -8021,16 +8721,12 @@
     {
      "points": [
       [
-       990.0,
-       2460.0
+       870.0,
+       2430.0
       ],
       [
        930.0,
-       2460.0
-      ],
-      [
-       870.0,
-       2400.0
+       2490.0
       ]
      ],
      "offset": 0.0
@@ -8038,11 +8734,15 @@
     {
      "points": [
       [
-       1110.0,
-       2460.0
+       930.0,
+       2490.0
       ],
       [
-       990.0,
+       1020.0,
+       2490.0
+      ],
+      [
+       1050.0,
        2460.0
       ]
      ],
@@ -8051,84 +8751,15 @@
     {
      "points": [
       [
-       1110.0,
-       2460.0
+       1080.0,
+       2520.0
       ],
       [
        1110.0,
        2490.0
       ],
       [
-       1170.0,
-       2550.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1170.0,
-       2550.0
-      ],
-      [
-       1170.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1260.0,
-       2520.0
-      ],
-      [
-       1170.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1260.0,
-       2520.0
-      ],
-      [
-       1320.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1320.0,
-       2400.0
-      ],
-      [
-       1320.0,
-       2520.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1320.0,
-       2400.0
-      ],
-      [
-       1350.0,
-       2430.0
-      ],
-      [
-       1350.0,
+       1110.0,
        2460.0
       ]
      ],
@@ -8137,11 +8768,15 @@
     {
      "points": [
       [
-       1410.0,
-       2460.0
+       1230.0,
+       2520.0
       ],
       [
-       1350.0,
+       1170.0,
+       2520.0
+      ],
+      [
+       1110.0,
        2460.0
       ]
      ],
@@ -8150,16 +8785,42 @@
     {
      "points": [
       [
-       1470.0,
-       2490.0
+       1380.0,
+       2520.0
+      ],
+      [
+       1230.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1380.0,
+       2520.0
       ],
       [
        1440.0,
-       2490.0
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1440.0,
+       2580.0
+      ],
+      [
+       1440.0,
+       2550.0
       ],
       [
        1410.0,
-       2460.0
+       2520.0
       ]
      ],
      "offset": 0.0
@@ -8168,6 +8829,49 @@
      "points": [
       [
        1470.0,
+       2550.0
+      ],
+      [
+       1440.0,
+       2520.0
+      ],
+      [
+       1410.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1470.0,
+       2550.0
+      ],
+      [
+       1530.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1530.0,
+       2490.0
+      ],
+      [
+       1530.0,
+       2550.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1530.0,
        2490.0
       ],
       [
@@ -8179,39 +8883,86 @@
     },
     {
      "points": [
-      [
-       1590.0,
-       2490.0
-      ],
-      [
-       1590.0,
-       2430.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1590.0,
-       2430.0
-      ],
       [
        1650.0,
-       2370.0
+       2490.0
+      ],
+      [
+       1590.0,
+       2490.0
       ]
      ],
      "offset": 0.0
     },
     {
      "points": [
+      [
+       1740.0,
+       2520.0
+      ],
       [
        1710.0,
-       2310.0
+       2490.0
       ],
       [
        1650.0,
+       2490.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1740.0,
+       2520.0
+      ],
+      [
+       1800.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1800.0,
+       2520.0
+      ],
+      [
+       1830.0,
+       2490.0
+      ],
+      [
+       1860.0,
+       2490.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1860.0,
+       2490.0
+      ],
+      [
+       1920.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1980.0,
        2370.0
+      ],
+      [
+       1920.0,
+       2430.0
       ]
      ],
      "offset": 0.0
@@ -8221,16 +8972,29 @@
   {
    "lineId": "odpt.Railway:MIR.TsukubaExpress",
    "color": "#E60012",
+   "code": "TX",
+   "category": "private",
+   "filter": "private",
+   "terminals": [
+    [
+     1258.18,
+     2491.82
+    ],
+    [
+     2895.0,
+     150.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       1200.0,
-       1980.0
+       1440.0,
+       2040.0
       ],
       [
-       1200.0,
-       2100.0
+       1440.0,
+       2160.0
       ]
      ],
      "offset": 0.5
@@ -8238,12 +9002,16 @@
     {
      "points": [
       [
-       1080.0,
-       2310.0
+       1290.0,
+       2460.0
       ],
       [
-       1080.0,
-       2370.0
+       1320.0,
+       2430.0
+      ],
+      [
+       1320.0,
+       2400.0
       ]
      ],
      "offset": 0.0
@@ -8251,12 +9019,12 @@
     {
      "points": [
       [
-       1200.0,
-       2250.0
+       1500.0,
+       2220.0
       ],
       [
-       1080.0,
-       2370.0
+       1320.0,
+       2400.0
       ]
      ],
      "offset": 0.0
@@ -8264,12 +9032,12 @@
     {
      "points": [
       [
-       1200.0,
-       2250.0
+       1500.0,
+       2220.0
       ],
       [
-       1200.0,
-       2100.0
+       1440.0,
+       2160.0
       ]
      ],
      "offset": 0.0
@@ -8277,12 +9045,38 @@
     {
      "points": [
       [
-       1200.0,
+       1440.0,
+       1920.0
+      ],
+      [
+       1440.0,
+       2040.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1440.0,
+       1920.0
+      ],
+      [
+       1500.0,
+       1860.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1500.0,
        1860.0
       ],
       [
-       1200.0,
-       1980.0
+       1650.0,
+       1710.0
       ]
      ],
      "offset": 0.0
@@ -8290,51 +9084,12 @@
     {
      "points": [
       [
-       1200.0,
-       1860.0
+       1800.0,
+       1560.0
       ],
-      [
-       1260.0,
-       1800.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1260.0,
-       1800.0
-      ],
-      [
-       1380.0,
-       1680.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1530.0,
-       1530.0
-      ],
-      [
-       1380.0,
-       1680.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
       [
        1650.0,
-       1410.0
-      ],
-      [
-       1530.0,
-       1530.0
+       1710.0
       ]
      ],
      "offset": 0.0
@@ -8342,12 +9097,12 @@
     {
      "points": [
       [
-       1650.0,
-       1410.0
+       1920.0,
+       1440.0
       ],
       [
-       1740.0,
-       1320.0
+       1800.0,
+       1560.0
       ]
      ],
      "offset": 0.0
@@ -8355,12 +9110,12 @@
     {
      "points": [
       [
-       1740.0,
-       1320.0
+       1920.0,
+       1440.0
       ],
       [
-       1830.0,
-       1230.0
+       2010.0,
+       1350.0
       ]
      ],
      "offset": 0.0
@@ -8369,15 +9124,11 @@
      "points": [
       [
        2010.0,
-       990.0
+       1350.0
       ],
       [
-       2010.0,
-       1050.0
-      ],
-      [
-       1830.0,
-       1230.0
+       2100.0,
+       1260.0
       ]
      ],
      "offset": 0.0
@@ -8385,12 +9136,16 @@
     {
      "points": [
       [
-       2010.0,
-       840.0
+       2280.0,
+       1020.0
       ],
       [
-       2010.0,
-       990.0
+       2100.0,
+       1200.0
+      ],
+      [
+       2100.0,
+       1260.0
       ]
      ],
      "offset": 0.0
@@ -8398,12 +9153,12 @@
     {
      "points": [
       [
-       2010.0,
-       840.0
+       2280.0,
+       870.0
       ],
       [
-       2160.0,
-       690.0
+       2280.0,
+       1020.0
       ]
      ],
      "offset": 0.0
@@ -8411,16 +9166,12 @@
     {
      "points": [
       [
-       2310.0,
-       480.0
+       2280.0,
+       870.0
       ],
       [
-       2160.0,
-       630.0
-      ],
-      [
-       2160.0,
-       690.0
+       2430.0,
+       720.0
       ]
      ],
      "offset": 0.0
@@ -8428,12 +9179,12 @@
     {
      "points": [
       [
-       2400.0,
-       390.0
+       2640.0,
+       510.0
       ],
       [
-       2310.0,
-       480.0
+       2430.0,
+       720.0
       ]
      ],
      "offset": 0.0
@@ -8441,12 +9192,12 @@
     {
      "points": [
       [
-       2400.0,
-       210.0
+       2640.0,
+       360.0
       ],
       [
-       2400.0,
-       390.0
+       2640.0,
+       510.0
       ]
      ],
      "offset": 0.0
@@ -8454,12 +9205,12 @@
     {
      "points": [
       [
-       2400.0,
-       210.0
+       2640.0,
+       270.0
       ],
       [
-       2490.0,
-       120.0
+       2640.0,
+       360.0
       ]
      ],
      "offset": 0.0
@@ -8467,12 +9218,25 @@
     {
      "points": [
       [
-       2490.0,
-       120.0
+       2640.0,
+       270.0
       ],
       [
-       2580.0,
-       120.0
+       2760.0,
+       150.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       2760.0,
+       150.0
+      ],
+      [
+       2850.0,
+       150.0
       ]
      ],
      "offset": 0.0
@@ -8482,16 +9246,29 @@
   {
    "lineId": "odpt.Railway:TWR.Rinkai",
    "color": "#222D65",
+   "code": "R",
+   "category": "private",
+   "filter": "private",
+   "terminals": [
+    [
+     1471.82,
+     2788.18
+    ],
+    [
+     975.0,
+     3030.0
+    ]
+   ],
    "segments": [
     {
      "points": [
       [
-       1230.0,
-       2790.0
+       1440.0,
+       2820.0
       ],
       [
-       1110.0,
-       2790.0
+       1380.0,
+       2880.0
       ]
      ],
      "offset": 0.0
@@ -8499,16 +9276,109 @@
     {
      "points": [
       [
-       1050.0,
-       2820.0
+       1290.0,
+       2880.0
       ],
+      [
+       1380.0,
+       2880.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1290.0,
+       2880.0
+      ],
+      [
+       1230.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       2940.0
+      ],
+      [
+       1230.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1140.0,
+       3030.0
+      ],
+      [
+       1140.0,
+       2940.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
       [
        1080.0,
+       3030.0
+      ],
+      [
+       1140.0,
+       3030.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1080.0,
+       3030.0
+      ],
+      [
+       1020.0,
+       3030.0
+      ]
+     ],
+     "offset": 0.0
+    }
+   ]
+  },
+  {
+   "lineId": "odpt.Railway:TamaMonorail.TamaMonorail",
+   "color": "#286460",
+   "code": "TT",
+   "category": "monorail",
+   "filter": "private",
+   "terminals": [
+    [
+     270.0,
+     2865.0
+    ],
+    [
+     240.0,
+     1935.0
+    ]
+   ],
+   "segments": [
+    {
+     "points": [
+      [
+       270.0,
+       2760.0
+      ],
+      [
+       270.0,
        2820.0
-      ],
-      [
-       1110.0,
-       2790.0
       ]
      ],
      "offset": 0.0
@@ -8516,12 +9386,12 @@
     {
      "points": [
       [
-       1050.0,
-       2820.0
+       270.0,
+       2760.0
       ],
       [
-       990.0,
-       2880.0
+       210.0,
+       2760.0
       ]
      ],
      "offset": 0.0
@@ -8529,12 +9399,12 @@
     {
      "points": [
       [
-       900.0,
-       2880.0
+       150.0,
+       2760.0
       ],
       [
-       990.0,
-       2880.0
+       210.0,
+       2760.0
       ]
      ],
      "offset": 0.0
@@ -8542,12 +9412,12 @@
     {
      "points": [
       [
-       900.0,
-       2970.0
+       150.0,
+       2760.0
       ],
       [
-       900.0,
-       2880.0
+       150.0,
+       2670.0
       ]
      ],
      "offset": 0.0
@@ -8555,12 +9425,12 @@
     {
      "points": [
       [
-       840.0,
-       2970.0
+       210.0,
+       2670.0
       ],
       [
-       900.0,
-       2970.0
+       150.0,
+       2670.0
       ]
      ],
      "offset": 0.0
@@ -8568,17 +9438,174 @@
     {
      "points": [
       [
-       840.0,
-       2970.0
+       210.0,
+       2670.0
       ],
       [
-       780.0,
-       2970.0
+       210.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       2520.0
+      ],
+      [
+       210.0,
+       2580.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       150.0,
+       2520.0
+      ],
+      [
+       210.0,
+       2520.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       150.0,
+       2520.0
+      ],
+      [
+       150.0,
+       2430.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       150.0,
+       2430.0
+      ],
+      [
+       210.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       2310.0
+      ],
+      [
+       210.0,
+       2370.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       210.0,
+       2310.0
+      ],
+      [
+       150.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       2220.0
+      ],
+      [
+       150.0,
+       2310.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       300.0,
+       2220.0
+      ],
+      [
+       240.0,
+       2220.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       300.0,
+       2220.0
+      ],
+      [
+       240.0,
+       2160.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       2160.0
+      ],
+      [
+       240.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       2040.0
+      ],
+      [
+       240.0,
+       2100.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       240.0,
+       1980.0
+      ],
+      [
+       240.0,
+       2040.0
       ]
      ],
      "offset": 0.0
     }
    ]
   }
- ]
+ ],
+ "ghosts": []
 }

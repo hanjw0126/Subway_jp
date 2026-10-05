@@ -68,10 +68,22 @@ class TimetableRepository(
         val known = network.stationById.keys
         val trips = mutableListOf<Trip>()
         for (line in network.lines) {
+            var got = false
             for (cal in dayType.odptCalendars) {
-                val dtos = odpt.trainTimetables(line.id, cal, token)
+                // 노선 하나가 실패해도(미제공·일시 오류) 나머지 노선은 계속 받는다
+                val dtos = runCatching { odpt.trainTimetables(line.id, cal, token) }.getOrDefault(emptyList())
                 if (dtos.isNotEmpty()) {
                     dtos.mapNotNullTo(trips) { OdptMapper.toTrip(it, line, known) }
+                    got = true
+                    break
+                }
+            }
+            if (got) continue
+            // 열차 시간표가 없는 노선(챌린지 2026 일부 사철 등): 역 시간표로 열차를 재구성
+            for (cal in dayType.odptCalendars) {
+                val st = runCatching { odpt.stationTimetables(line.id, cal, token) }.getOrDefault(emptyList())
+                if (st.isNotEmpty()) {
+                    trips += OdptMapper.fromStationTimetables(st, line, known)
                     break
                 }
             }

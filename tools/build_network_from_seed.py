@@ -41,7 +41,7 @@ def build(seed, overrides):
             return {"id": x["id"], "name": {"ja": x["ja"], "ko": x["ko"], "en": x["en"], "kana": ""}}
         lines.append({"id": L["id"], "operator": L["operator"], "code": L["code"],
                       "name": {**L["name"], "kana": ""}, "color": L["color"], "stations": ids,
-                      "directions": {"asc": d(L["asc"]), "desc": d(L["desc"])}, "loop": bool(L.get("loop", False))})
+                      "directions": {"asc": d(L["asc"]), "desc": d(L["desc"])}, "loop": bool(L.get("loop", False)), "source": L.get("source", "")})
         if L.get("extraEdges"):
             lines[-1]["extraEdges"] = [[en2sid[a], en2sid[b]] for a, b in L["extraEdges"]]
     by_group = {}
