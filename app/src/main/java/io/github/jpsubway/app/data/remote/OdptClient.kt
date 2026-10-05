@@ -21,6 +21,9 @@ class OdptClient(
     suspend fun trainTimetables(railway: String, calendar: String, key: String): List<OdptTrainTimetable> =
         get("odpt:TrainTimetable", mapOf("odpt:railway" to railway, "odpt:calendar" to calendar), key, OdptTrainTimetable.serializer())
 
+    suspend fun stationTimetables(railway: String, calendar: String, key: String): List<OdptStationTimetable> =
+        get("odpt:StationTimetable", mapOf("odpt:railway" to railway, "odpt:calendar" to calendar), key, OdptStationTimetable.serializer())
+
     suspend fun trains(railway: String, key: String): List<OdptTrain> =
         get("odpt:Train", mapOf("odpt:railway" to railway), key, OdptTrain.serializer())
 

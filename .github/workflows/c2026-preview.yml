@@ -1,0 +1,37 @@
+name: C2026 preview
+
+# 챌린지 2026 데이터로 노선도를 만들어 지표만 출력한다. 데이터·결과물은 커밋/업로드하지 않는다.
+on:
+  push:
+    branches: ["ui-*"]
+    paths:
+      - "tools/**"
+      - ".github/workflows/c2026-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c2026-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/requirements.txt
+      - name: Build with challenge data
+        env:
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
+          LAYOUT_REPAIR_BUDGET: "1800"
+        run: |
+          python tools/c2026/build_seed.py
+          time python tools/build_all.py --no-preview
+          python tools/validate_assets.py
+          python tools/c2026/report.py | tee -a "$GITHUB_STEP_SUMMARY"

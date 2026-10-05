@@ -73,6 +73,16 @@ jobs:
           ODPT_CONSUMER_KEY: ${{ secrets.ODPT_CONSUMER_KEY }}
         run: printf '%s' "$ODPT_CONSUMER_KEY" | npx --yes "wrangler@$WRANGLER_VERSION" secret put ODPT_CONSUMER_KEY
 
+      - name: Upload challenge 2026 key as worker secret
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
+        run: |
+          if [ -z "$ODPT_C2026_KEY" ]; then echo "::warning::ODPT_C2026_KEY 없음 — 챌린지 노선 중계 비활성"; exit 0; fi
+          printf '%s' "$ODPT_C2026_KEY" | npx --yes "wrangler@$WRANGLER_VERSION" secret put ODPT_C2026_KEY
+
       - name: Smoke test
         run: |
           SUB=$(curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')

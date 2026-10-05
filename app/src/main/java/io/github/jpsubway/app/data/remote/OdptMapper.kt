@@ -35,6 +35,42 @@ object OdptMapper {
         )
     }
 
+    /** 역 시간표 → Trip. 같은 열차번호(방향별)의 발차 시각을 모아 역 순서대로 정렬한다. 열차 식별자가 없으면 버린다 */
+    fun fromStationTimetables(dtos: List<OdptStationTimetable>, line: Line, known: Set<String>): List<Trip> {
+        val idx = line.stations.withIndex().associate { it.value to it.index }
+        val byTrain = LinkedHashMap<String, MutableList<StopTime>>()
+        val meta = HashMap<String, Triple<String, String, String>>()
+        for (st in dtos) {
+            if (st.station !in known) continue
+            val asc = st.railDirection == line.directions.asc.id
+            val dir = if (asc) line.directions.asc else line.directions.desc
+            for (o in st.objects) {
+                val tStr = o.departureTime ?: o.arrivalTime ?: continue
+                val train = o.trainNumber?.takeIf { it.isNotBlank() } ?: o.train?.substringAfterLast('.')?.takeIf { it.isNotBlank() } ?: continue
+                val t = ServiceClock.parse(tStr, null)
+                val key = dir.id + "#" + train
+                byTrain.getOrPut(key) { mutableListOf() }.add(StopTime(st.station, t, t))
+                if (key !in meta) meta[key] = Triple(dir.id, o.destinationStation?.firstOrNull().orEmpty(), trainTypeKo(o.trainType))
+            }
+        }
+        val out = ArrayList<Trip>(byTrain.size)
+        for ((key, stops) in byTrain) {
+            val m = meta[key] ?: continue
+            val sign = if (m.first == line.directions.asc.id) 1 else -1
+            val sorted = stops.distinctBy { it.stationId }.sortedBy { (idx[it.stationId] ?: 0) * sign }
+            out += Trip(
+                id = line.id + ".st." + key,
+                lineId = line.id,
+                trainNumber = key.substringAfter('#'),
+                directionId = m.first,
+                destinationId = m.second.ifBlank { sorted.last().stationId },
+                trainType = m.third,
+                stops = sorted,
+            )
+        }
+        return out
+    }
+
     fun trainTypeKo(t: String?): String = when {
         t == null -> ""
         t.endsWith("LimitedExpress") -> "특급"

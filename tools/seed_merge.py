@@ -3,6 +3,8 @@ import json
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# 공공교통 오픈데이터 챌린지 2026 데이터 (빌드 시 tools/c2026/build_seed.py 가 생성, 커밋 금지)
+C2026_DIR = os.path.join(HERE, "seed", "c2026")
 
 
 def load_regions():
@@ -36,4 +38,12 @@ def load_region_seed(region):
             merged["lines"] += s["lines"]
             merged["extraTransfers"] += s.get("extraTransfers", [])
     merged["regionId"] = region["id"]
+    # --- 챌린지 2026 노선 병합 (챌린지 종료 후 이 블록과 tools/c2026/ 삭제) ---
+    p = os.path.join(C2026_DIR, region["id"] + ".json")
+    if os.path.exists(p) and not os.environ.get("C2026_DISABLE"):
+        with open(p, encoding="utf-8") as f:
+            c = json.load(f)
+        have = {L["id"] for L in merged["lines"]}
+        merged["lines"] += [L for L in c["lines"] if L["id"] not in have]
+        merged["extraTransfers"] += c.get("extraTransfers", [])
     return merged

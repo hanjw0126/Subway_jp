@@ -27,11 +27,12 @@ DETACHED_GAP_KM = 2.5
 # 충돌 복구 비용
 W_ON_EDGE = 60.0
 W_OVERLAP = 60.0
-W_CROSS = 6.0
+W_CROSS = 14.0
 W_CLOSE = 30.0
 W_BEND = 1.0
 ON_EDGE_DIST = 0.2
-REPAIR_BUDGET_S = 60.0
+REPAIR_BUDGET_S = float(os.environ.get("LAYOUT_REPAIR_BUDGET", "900"))
+ESCAPE_PASSES = int(os.environ.get("LAYOUT_ESCAPE_PASSES", "12"))
 _REPEL = {}
 
 SUBWAY_OPERATORS = {"TokyoMetro", "Toei", "YokohamaMunicipal", "OsakaMetro"}
@@ -187,10 +188,20 @@ def relax(geo, edges, iters=700):
         for g in nodes:
             disp[g][0] += 0.02 * (geo_n[g][0] - pos[g][0])
             disp[g][1] += 0.02 * (geo_n[g][1] - pos[g][1])
-        for i in range(len(nodes)):
-            a = nodes[i]
-            for j in range(i + 1, len(nodes)):
-                b = nodes[j]
+        # 격자 해시로 가까운 쌍만 계산 (정렬해서 기존 i<j 순서와 동일한 결과)
+        rmax = max(repel.values())
+        cells = defaultdict(list)
+        for g in nodes:
+            cells[(math.floor(pos[g][0] / rmax), math.floor(pos[g][1] / rmax))].append(g)
+        pairs = []
+        for (cx, cy), members in cells.items():
+            near = [h for ddx in (-1, 0, 1) for ddy in (-1, 0, 1) for h in cells.get((cx + ddx, cy + ddy), ())]
+            for a in members:
+                for b in near:
+                    if b > a:
+                        pairs.append((a, b))
+        for a, b in sorted(pairs):
+            if True:
                 if (a, b) in adj:
                     continue
                 dx, dy = pos[b][0] - pos[a][0], pos[b][1] - pos[a][1]
@@ -445,7 +456,7 @@ def _node_eval(g, p, pos, inc, nbrs, paths, boxes, geo_n, target):
     return c, local
 
 
-def repair(pos, geo_n, edges, target, passes=16, budget_s=REPAIR_BUDGET_S):
+def repair(pos, geo_n, edges, target, passes=int(os.environ.get("LAYOUT_REPAIR_PASSES", "48")), budget_s=REPAIR_BUDGET_S):
     """충돌 복구. pos 를 직접 고치고 구간별 경로(꺾임점 포함)를 돌려준다"""
     t0 = time.monotonic()
     edges = list(edges)
@@ -495,7 +506,76 @@ def repair(pos, geo_n, edges, target, passes=16, budget_s=REPAIR_BUDGET_S):
                 boxes[e] = _bbox(q)
         if not moved and radius == 3:
             break
+    # 국소 최소에 갇힌 충돌: 충돌 역과 이웃 역을 더 넓은 범위(반경 4~6)에서 다시 찾는다
+    for it in range(ESCAPE_PASSES):
+        if time.monotonic() - t0 > budget_s:
+            break
+        _, hard, _ = violations(paths, pos)
+        if not hard:
+            break
+        work = set(hard)
+        for g in hard:
+            work |= nbrs[g]
+        radius = 4 + min(it // 3, 2)
+        for g in sorted(work):
+            if time.monotonic() - t0 > budget_s:
+                break
+            cur_c, cur_local = _node_eval(g, pos[g], pos, inc, nbrs, paths, boxes, geo_n, target)
+            best = (cur_c, None, cur_local)
+            cx, cy = _cell(pos[g])
+            for dx in range(-radius, radius + 1):
+                for dy in range(-radius, radius + 1):
+                    cell = (cx + dx, cy + dy)
+                    if cell in taken:
+                        continue
+                    c, local = _node_eval(g, (cell[0] * GRID, cell[1] * GRID), pos, inc, nbrs, paths, boxes, geo_n, target)
+                    if c < best[0] - 1e-6:
+                        best = (c, cell, local)
+            if best[1] is not None:
+                del taken[(cx, cy)]
+                taken[best[1]] = g
+                pos[g] = (best[1][0] * GRID, best[1][1] * GRID)
+            for e, q in best[2].items():
+                paths[e] = q
+                boxes[e] = _bbox(q)
     return paths
+
+
+def bundle_lanes(paths, edges, line_order):
+    """같은 역에서 출발해 포개지는 서로 다른 구간을 평행선 다발로 묶어 노선별 오프셋을 정한다.
+
+    8방향 노선도에서는 한 역에서 나갈 수 있는 방향이 8개뿐이라, 이웃 역이 9곳 이상인 역(오테마치 등)은
+    포개짐을 피할 수 없다. 실제 노선도처럼 나란히 그려 구분한다. 반환: {(edge, lineId): offset}"""
+    keys = list(paths)
+    parent = {e: e for e in keys}
+
+    def find(e):
+        while parent[e] != e:
+            parent[e] = parent[parent[e]]
+            e = parent[e]
+        return e
+    inc = defaultdict(list)
+    for e in keys:
+        inc[e[0]].append(e)
+        inc[e[1]].append(e)
+    for g in sorted(inc, key=str):
+        es = inc[g]
+        for i in range(len(es)):
+            for j in range(i + 1, len(es)):
+                if _seg_conflicts(paths[es[i]], paths[es[j]])[0]:
+                    parent[find(es[i])] = find(es[j])
+    groups = defaultdict(list)
+    for e in keys:
+        groups[find(e)].append(e)
+    rank = {l: i for i, l in enumerate(line_order)}
+    lanes = {}
+    for es in groups.values():
+        es.sort(key=lambda e: (min(rank.get(l, 1 << 20) for l in edges[e]), str(e)))
+        slots = [(e, l) for e in es for l in sorted(edges[e], key=lambda l: rank.get(l, 1 << 20))]
+        n = len(slots)
+        for k, (e, l) in enumerate(slots):
+            lanes[(e, l)] = k - (n - 1) / 2
+    return lanes
 
 
 # ---------------------------------------------------------------- 라벨·아이콘
@@ -620,14 +700,14 @@ def build_layout(net):
     names = {g: ss[0]["name"]["ko"] for g, ss in groups.items()}
     labels = place_labels(pos, edges, names, list(paths.values()))
     line_order = [l["id"] for l in net["lines"]]
+    lanes = bundle_lanes(paths, edges, line_order)
     lines_out = []
     for line in net["lines"]:
         segs = []
         for e, lids in edges.items():
             if line["id"] not in lids:
                 continue
-            ordered = sorted(lids, key=line_order.index)
-            off = ordered.index(line["id"]) - (len(ordered) - 1) / 2
+            off = lanes[(e, line["id"])]
             segs.append({"points": [[round(x * UNIT, 2), round(y * UNIT, 2)] for x, y in paths[e]], "offset": off})
         cat, flt = classify(line.get("operator", ""), line["id"])
         lines_out.append({"lineId": line["id"], "color": line["color"], "code": line.get("code", ""),
@@ -649,17 +729,38 @@ def build_layout(net):
 def metrics(layout):
     u = layout["unit"]
     polys, bends, octo = {}, 0, True
+    offs = defaultdict(set)
     for l in layout["lines"]:
         for s in l["segments"]:
             pts = [(round(p[0] / u, 3), round(p[1] / u, 3)) for p in s["points"]]
             bends += len(pts) - 2
             octo = octo and all(_is_oct(b[0] - a[0], b[1] - a[1], 1e-3) for a, b in zip(pts, pts[1:]))
-            polys[(min(pts[0], pts[-1]), max(pts[0], pts[-1]))] = pts
+            k = (min(pts[0], pts[-1]), max(pts[0], pts[-1]))
+            polys[k] = pts
+            offs[k].add(round(float(s.get("offset", 0)), 2))
     pos = {}
     for n in layout["nodes"]:
         p = (round(n["x"] / u, 3), round(n["y"] / u, 3))
         pos[p] = p
     v, _, _ = violations(polys, pos)
+    # 포개짐 재계산: 같은 역에서 출발해 서로 다른 오프셋(평행선 다발)으로 그려지는 것은 bundled 로 따로 센다
+    items = list(polys.items())
+    bxs = [_bbox(q, 0.05) for _, q in items]
+    ov = bundled = 0
+    for i, (e, q) in enumerate(items):
+        for j in range(i + 1, len(items)):
+            if not _bbhit(bxs[i], bxs[j]):
+                continue
+            f, r = items[j]
+            o, _x = _seg_conflicts(q, r)
+            if not o:
+                continue
+            if (set(e) & set(f)) and not (offs[e] & offs[f]):
+                bundled += o
+            else:
+                ov += o
+    v["overlaps"] = ov
+    v["bundled"] = bundled
     pl = list(pos)
     mind = min(math.dist(pl[i], pl[j]) for i in range(len(pl)) for j in range(i + 1, len(pl)))
     icons = sum(len(l.get("terminals", [])) for l in layout["lines"])

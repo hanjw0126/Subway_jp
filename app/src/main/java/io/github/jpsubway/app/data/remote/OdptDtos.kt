@@ -38,3 +38,22 @@ data class OdptTrainInformation(
     @SerialName("odpt:operator") val operator: String? = null,
     @SerialName("odpt:trainInformationText") val text: Map<String, String>? = null,
 )
+
+/** 역 시간표 (열차 시간표가 없는 노선은 역 시간표의 열차번호로 열차를 재구성한다) */
+@Serializable
+data class OdptStationTimetable(
+    @SerialName("odpt:station") val station: String = "",
+    @SerialName("odpt:railway") val railway: String = "",
+    @SerialName("odpt:railDirection") val railDirection: String? = null,
+    @SerialName("odpt:stationTimetableObject") val objects: List<OdptStationTimetableObject> = emptyList(),
+)
+
+@Serializable
+data class OdptStationTimetableObject(
+    @SerialName("odpt:departureTime") val departureTime: String? = null,
+    @SerialName("odpt:arrivalTime") val arrivalTime: String? = null,
+    @SerialName("odpt:train") val train: String? = null,
+    @SerialName("odpt:trainNumber") val trainNumber: String? = null,
+    @SerialName("odpt:trainType") val trainType: String? = null,
+    @SerialName("odpt:destinationStation") val destinationStation: List<String>? = null,
+)

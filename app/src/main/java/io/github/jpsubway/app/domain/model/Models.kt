@@ -24,6 +24,8 @@ data class Line(
     val stations: List<String>,
     val directions: LineDirections,
     val loop: Boolean = false,
+    /** "" = 공개 데이터, "c2026" = 공공교통 오픈데이터 챌린지 2026 제공 노선 */
+    val source: String = "",
 )
 
 @Serializable
