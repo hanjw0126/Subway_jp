@@ -24,7 +24,11 @@ import io.github.jpsubway.app.ui.common.LineBadge
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 
-/** 메인 화면: 전체 노선도 + 상단 검색창 + 역 탭 시 바텀시트(출발/도착/도착정보) + 하단 경로 선택 바 */
+/** 노선 필터 그룹 (layout.json 의 lines[].filter) */
+private val FilterOrder = listOf("subway", "jr", "private")
+private val FilterLabels = mapOf("subway" to "지하철", "jr" to "JR", "private" to "사철")
+
+/** 메인 화면: 전체 노선도 + 상단 검색창 + 노선 필터 + 역 탭 시 바텀시트(출발/도착/도착정보) + 하단 경로 선택 바 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(
@@ -39,6 +43,7 @@ fun MapScreen(
     val from by vm.from.collectAsStateWithLifecycle()
     val to by vm.to.collectAsStateWithLifecycle()
     var tapped by remember { mutableStateOf<String?>(null) }
+    var filters by remember { mutableStateOf(FilterOrder.toSet()) }
     val data = (state as? RegionSession.State.Ready)?.data
 
     Scaffold(
@@ -87,6 +92,9 @@ fun MapScreen(
                 )
                 is RegionSession.State.Ready -> {
                     val d = s.data
+                    val available = remember(d.layout) {
+                        FilterOrder.filter { f -> d.layout.lines.any { it.filter == f } }
+                    }
                     SubwayMapCanvas(
                         layout = d.layout,
                         network = d.network,
@@ -95,12 +103,29 @@ fun MapScreen(
                         highlighted = tapped,
                         onStationTap = { tapped = it },
                         modifier = Modifier.fillMaxSize(),
+                        visibleFilters = filters,
                     )
                     Column(
                         Modifier.align(Alignment.TopCenter).padding(12.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
+                        if (available.size > 1) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                available.forEach { f ->
+                                    val on = f in filters
+                                    FilterChip(
+                                        selected = on,
+                                        onClick = {
+                                            val next = if (on) filters - f else filters + f
+                                            if (next.any { it in available }) filters = next
+                                        },
+                                        label = { Text(FilterLabels[f] ?: f) },
+                                        colors = FilterChipDefaults.filterChipColors(containerColor = MaterialTheme.colorScheme.surface),
+                                    )
+                                }
+                            }
+                        }
                         if (d.timetable.isDemo) InfoChip("데모(가상) 시간표 표시 중")
                     }
                     val g = tapped

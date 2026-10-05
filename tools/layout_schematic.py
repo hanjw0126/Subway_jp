@@ -1,28 +1,60 @@
 """network.json → layout.json : 역 좌표로 8방향(octilinear) 도식 노선도를 자동 생성
 
-1) 환승역 묶음(group)을 하나의 노드로 보고 위경도를 평면 좌표로 투영
-2) 스프링 완화: 각 구간을 가장 가까운 45° 방향 + 균일 길이로 당기고, 원래 위치로 약하게 복원, 가까운 노드는 밀어냄
-3) 0.5 격자에 스냅 후 국소 탐색으로 45° 정렬 구간 수를 최대화
-4) 45°가 아닌 구간은 꺾임점 1개로 분해 (대각선 + 직선)
-5) 여러 노선이 공유하는 구간은 평행 오프셋, 역명 라벨은 겹침이 최소인 방향에 배치
+1) 환승역 묶음(group)을 하나의 노드로 보고 위경도를 평면 좌표로 투영 (떨어진 노선 묶음은 본 노선망 가까이로 이동)
+2) 스프링 완화 → 0.5 격자 스냅 → 국소 탐색으로 45° 정렬 구간 최대화
+3) 충돌 복구(repair): '정차하지 않는 역 위를 지나감', '다른 구간과 포개짐', '교차' 를 비용으로 두고
+   문제가 된 역을 주변 격자 칸으로 옮긴다. 45°가 아닌 구간의 꺾임 방향도 충돌이 적은 쪽을 고른다.
+4) 평행 오프셋, 역명 방향, 종점 아이콘 위치, 노선 분류(선 디자인 / 필터 그룹)를 함께 출력
 """
 import argparse
 import json
 import math
 import os
+import time
 from collections import defaultdict
 
 UNIT = 60.0
 GRID = 0.5
-MARGIN = 2.0
-# 복잡 구간 완화: 반경 CROWD_RADIUS 안에 역이 CROWD_START 개 넘게 몰린 곳은
-# 구간 목표 길이를 최대 +CROWD_EXTRA, 비인접 역 최소 간격을 최대 +CROWD_REPEL 만큼 늘린다.
+MARGIN = 2.5
+# 복잡 구간 완화
 CROWD_RADIUS = 1.6
 CROWD_START = 4
 CROWD_SPAN = 8
 CROWD_EXTRA = 0.3
 CROWD_REPEL = 0.25
+# 떨어진 노선 묶음(예: 다마 모노레일)을 본 노선망에서 이 거리(km)까지 당긴다
+DETACHED_GAP_KM = 2.5
+# 충돌 복구 비용
+W_ON_EDGE = 60.0
+W_OVERLAP = 60.0
+W_CROSS = 6.0
+W_CLOSE = 30.0
+W_BEND = 1.0
+ON_EDGE_DIST = 0.2
+REPAIR_BUDGET_S = 60.0
 _REPEL = {}
+
+SUBWAY_OPERATORS = {"TokyoMetro", "Toei", "YokohamaMunicipal", "OsakaMetro"}
+MONORAIL_OPERATORS = {"TamaMonorail", "TokyoMonorail", "Yurikamome", "ShonanMonorail", "ChibaUrbanMonorail"}
+
+
+def classify(operator, line_id):
+    """노선 분류 → (선 디자인 category, 필터 그룹). 필터 그룹: subway / jr / private"""
+    op = operator.split(":", 1)[-1]
+    path = line_id.split(":", 1)[-1]
+    if op.startswith("JR"):
+        return "jr", "jr"
+    if op == "Toei":
+        if path.endswith(".Arakawa"):
+            return "tram", "subway"
+        if path.endswith(".NipporiToneri"):
+            return "monorail", "subway"
+        return "toei", "subway"
+    if op in SUBWAY_OPERATORS:
+        return "metro", "subway"
+    if op in MONORAIL_OPERATORS:
+        return "monorail", "private"
+    return "private", "private"
 
 
 def _crowding(geo_n, r=CROWD_RADIUS):
@@ -64,6 +96,59 @@ def edges_of(net):
             if line["id"] not in edges[k]:
                 edges[k].append(line["id"])
     return edges
+
+
+def _components(nodes, edges):
+    adj = defaultdict(set)
+    for a, b in edges:
+        adj[a].add(b)
+        adj[b].add(a)
+    seen, comps = set(), []
+    for n in sorted(nodes):
+        if n in seen:
+            continue
+        seen.add(n)
+        stack, comp = [n], []
+        while stack:
+            u = stack.pop()
+            comp.append(u)
+            for v in adj[u]:
+                if v not in seen:
+                    seen.add(v)
+                    stack.append(v)
+        comps.append(comp)
+    return sorted(comps, key=len, reverse=True)
+
+
+def pull_detached(geo, edges, gap=DETACHED_GAP_KM):
+    """본 노선망과 연결되지 않은 노선 묶음을 본 노선망 쪽으로 평행 이동해 빈 공간을 줄인다"""
+    comps = _components(geo, edges)
+    if len(comps) < 2:
+        return geo
+    geo = dict(geo)
+    main = list(comps[0])
+    for comp in comps[1:]:
+        cm = (sum(geo[g][0] for g in main) / len(main), sum(geo[g][1] for g in main) / len(main))
+        cc = (sum(geo[g][0] for g in comp) / len(comp), sum(geo[g][1] for g in comp) / len(comp))
+        vx, vy = cc[0] - cm[0], cc[1] - cm[1]
+        d = math.hypot(vx, vy) or 1.0
+        ux, uy = vx / d, vy / d
+
+        def mind(t):
+            return min(math.dist((geo[a][0] - ux * t, geo[a][1] - uy * t), geo[b]) for a in comp for b in main)
+
+        if mind(0.0) > gap:
+            lo, hi = 0.0, d
+            for _ in range(30):
+                mid = (lo + hi) / 2
+                if mind(mid) >= gap:
+                    lo = mid
+                else:
+                    hi = mid
+            for a in comp:
+                geo[a] = (geo[a][0] - ux * lo, geo[a][1] - uy * lo)
+        main += comp
+    return geo
 
 
 def relax(geo, edges, iters=700):
@@ -124,6 +209,10 @@ def relax(geo, edges, iters=700):
     return pos, geo_n, target
 
 
+def _cell(p):
+    return (round(p[0] / GRID), round(p[1] / GRID))
+
+
 def snap(pos, edges):
     deg = defaultdict(int)
     for a, b in edges:
@@ -150,7 +239,7 @@ def refine(pos, geo_n, edges, target, passes=25):
     for (a, b) in edges:
         nbrs[a].append((b, target[(a, b)]))
         nbrs[b].append((a, target[(a, b)]))
-    taken = {(round(x / GRID), round(y / GRID)): g for g, (x, y) in pos.items()}
+    taken = {_cell(p): g for g, p in pos.items()}
 
     def cost(g, p):
         c = 0.0
@@ -171,7 +260,7 @@ def refine(pos, geo_n, edges, target, passes=25):
     for _ in range(passes):
         moved = 0
         for g in sorted(pos):
-            cx, cy = round(pos[g][0] / GRID), round(pos[g][1] / GRID)
+            cx, cy = _cell(pos[g])
             best_c, best_cell = cost(g, pos[g]), (cx, cy)
             for dx in (-1, 0, 1):
                 for dy in (-1, 0, 1):
@@ -191,17 +280,225 @@ def refine(pos, geo_n, edges, target, passes=25):
     return pos
 
 
-def route_edge(a, b, pos):
+# ---------------------------------------------------------------- 기하 판정
+
+def _seg_point_dist(p, a, b):
+    ax, ay = a
+    bx, by = b
+    dx, dy = bx - ax, by - ay
+    L2 = dx * dx + dy * dy
+    if L2 < 1e-12:
+        return math.dist(p, a)
+    t = max(0.0, min(1.0, ((p[0] - ax) * dx + (p[1] - ay) * dy) / L2))
+    return math.hypot(ax + t * dx - p[0], ay + t * dy - p[1])
+
+
+def _ccw(a, b, c):
+    return (c[1] - a[1]) * (b[0] - a[0]) - (b[1] - a[1]) * (c[0] - a[0])
+
+
+def _cross(s1, s2):
+    (p1, p2), (p3, p4) = s1, s2
+    return _ccw(p3, p4, p1) * _ccw(p3, p4, p2) < -1e-9 and _ccw(p1, p2, p3) * _ccw(p1, p2, p4) < -1e-9
+
+
+def _overlap(s1, s2, eps=0.05):
+    """두 선분이 같은 직선 위에서 eps 보다 길게 겹치는가 (서로 다른 구간이 포개짐)"""
+    (a, b), (c, d) = s1, s2
+    ux, uy = b[0] - a[0], b[1] - a[1]
+    vx, vy = d[0] - c[0], d[1] - c[1]
+    L, M = math.hypot(ux, uy), math.hypot(vx, vy)
+    if L < 1e-9 or M < 1e-9:
+        return False
+    if abs(ux * vy - uy * vx) / (L * M) > 1e-3:
+        return False
+    if abs((c[0] - a[0]) * uy - (c[1] - a[1]) * ux) / L > eps:
+        return False
+    t1 = ((c[0] - a[0]) * ux + (c[1] - a[1]) * uy) / L
+    t2 = ((d[0] - a[0]) * ux + (d[1] - a[1]) * uy) / L
+    return min(max(t1, t2), L) - max(min(t1, t2), 0.0) > eps
+
+
+def _bbox(pts, pad=0.0):
+    xs = [p[0] for p in pts]
+    ys = [p[1] for p in pts]
+    return (min(xs) - pad, min(ys) - pad, max(xs) + pad, max(ys) + pad)
+
+
+def _bbhit(a, b):
+    return a[0] <= b[2] and b[0] <= a[2] and a[1] <= b[3] and b[1] <= a[3]
+
+
+def _seg_conflicts(pts, q):
+    ov = cr = 0
+    for s in zip(pts, pts[1:]):
+        for t in zip(q, q[1:]):
+            if _overlap(s, t):
+                ov += 1
+            elif _cross(s, t):
+                cr += 1
+    return ov, cr
+
+
+def _on_path(p, q, d=ON_EDGE_DIST):
+    return any(_seg_point_dist(p, a, b) < d for a, b in zip(q, q[1:]))
+
+
+def route_options(a, b):
+    """두 역을 잇는 8방향 경로 후보 (45°가 아니면 꺾임점 1개, 대각선 먼저/나중 두 가지)"""
     (ax, ay), (bx, by) = a, b
     dx, dy = bx - ax, by - ay
     if _is_oct(dx, dy):
-        return [a, b]
+        return [[a, b]]
     d = min(abs(dx), abs(dy))
     sx, sy = math.copysign(1, dx), math.copysign(1, dy)
-    opts = [(ax + sx * d, ay + sy * d), (bx - sx * d, by - sy * d)]
-    others = [p for p in pos.values() if p != a and p != b]
-    return [a, max(opts, key=lambda o: min([math.dist(o, p) for p in others] or [9])), b]
+    return [[a, (ax + sx * d, ay + sy * d), b], [a, (bx - sx * d, by - sy * d), b]]
 
+
+def _score(on, ov, cr):
+    return W_ON_EDGE * on + W_OVERLAP * ov + W_CROSS * cr
+
+
+def _conf(e, pts, paths, boxes, pos, skip):
+    on = ov = cr = 0
+    bb = _bbox(pts, 0.3)
+    for f, q in paths.items():
+        if f == e or f in skip or not _bbhit(bb, boxes[f]):
+            continue
+        o, c = _seg_conflicts(pts, q)
+        ov += o
+        cr += c
+    for h, p in pos.items():
+        if h in e:
+            continue
+        if bb[0] <= p[0] <= bb[2] and bb[1] <= p[1] <= bb[3] and _on_path(p, pts):
+            on += 1
+    return on, ov, cr
+
+
+def violations(paths, pos):
+    """(지표, 정차하지 않는 역 통과·포개짐 관련 역, 교차 관련 역)"""
+    items = list(paths.items())
+    boxes = [_bbox(q, 0.05) for _, q in items]
+    on = ov = cr = 0
+    hard, soft = set(), set()
+    for i, (e, q) in enumerate(items):
+        for j in range(i + 1, len(items)):
+            if not _bbhit(boxes[i], boxes[j]):
+                continue
+            f, r = items[j]
+            o, x = _seg_conflicts(q, r)
+            if o:
+                ov += o
+                hard.update(e)
+                hard.update(f)
+            if x:
+                cr += x
+                soft.update(e)
+                soft.update(f)
+        bb = _bbox(q, ON_EDGE_DIST)
+        for h, p in pos.items():
+            if h in e:
+                continue
+            if bb[0] <= p[0] <= bb[2] and bb[1] <= p[1] <= bb[3] and _on_path(p, q):
+                on += 1
+                hard.add(h)
+                hard.update(e)
+    return {"nodeOnEdge": on, "overlaps": ov, "crossings": cr}, hard, soft
+
+
+def _node_eval(g, p, pos, inc, nbrs, paths, boxes, geo_n, target):
+    old = pos[g]
+    pos[g] = p
+    skip = set(inc[g])
+    local = {}
+    c = 0.0
+    for e in inc[g]:
+        best = None
+        for pts in route_options(pos[e[0]], pos[e[1]]):
+            on, ov, cr = _conf(e, pts, paths, boxes, pos, skip)
+            for q in local.values():
+                o, x = _seg_conflicts(pts, q)
+                ov += o
+                cr += x
+            s = _score(on, ov, cr) + (W_BEND if len(pts) > 2 else 0.0)
+            if best is None or s < best[0]:
+                best = (s, pts)
+        local[e] = best[1]
+        c += best[0]
+        d = math.dist(pos[e[0]], pos[e[1]])
+        c += 0.35 * abs(d - target[e])
+        if d < 0.99:
+            c += W_CLOSE
+    for f, q in paths.items():
+        if f in skip:
+            continue
+        b = boxes[f]
+        if b[0] - 0.2 <= p[0] <= b[2] + 0.2 and b[1] - 0.2 <= p[1] <= b[3] + 0.2 and _on_path(p, q):
+            c += W_ON_EDGE
+    rg = _REPEL.get(g, 1.0)
+    for h, q in pos.items():
+        if h != g and h not in nbrs[g] and math.dist(p, q) < 0.99 * max(rg, _REPEL.get(h, 1.0)):
+            c += W_CLOSE / 3
+    c += 0.08 * math.dist(p, geo_n[g])
+    pos[g] = old
+    return c, local
+
+
+def repair(pos, geo_n, edges, target, passes=16, budget_s=REPAIR_BUDGET_S):
+    """충돌 복구. pos 를 직접 고치고 구간별 경로(꺾임점 포함)를 돌려준다"""
+    t0 = time.monotonic()
+    edges = list(edges)
+    inc = defaultdict(list)
+    nbrs = defaultdict(set)
+    for e in edges:
+        inc[e[0]].append(e)
+        inc[e[1]].append(e)
+        nbrs[e[0]].add(e[1])
+        nbrs[e[1]].add(e[0])
+    paths, boxes = {}, {}
+    for _ in range(2):
+        for e in edges:
+            opts = route_options(pos[e[0]], pos[e[1]])
+            best = min(opts, key=lambda pts: _score(*_conf(e, pts, paths, boxes, pos, ())))
+            paths[e] = best
+            boxes[e] = _bbox(best)
+    taken = {_cell(p): g for g, p in pos.items()}
+    for it in range(passes):
+        _, hard, soft = violations(paths, pos)
+        work = hard or soft
+        if not work or time.monotonic() - t0 > budget_s:
+            break
+        radius = 2 if it < passes // 2 else 3
+        moved = 0
+        for g in sorted(work):
+            if time.monotonic() - t0 > budget_s:
+                break
+            cur_c, cur_local = _node_eval(g, pos[g], pos, inc, nbrs, paths, boxes, geo_n, target)
+            best = (cur_c, None, cur_local)
+            cx, cy = _cell(pos[g])
+            for dx in range(-radius, radius + 1):
+                for dy in range(-radius, radius + 1):
+                    cell = (cx + dx, cy + dy)
+                    if cell in taken:
+                        continue
+                    c, local = _node_eval(g, (cell[0] * GRID, cell[1] * GRID), pos, inc, nbrs, paths, boxes, geo_n, target)
+                    if c < best[0] - 1e-6:
+                        best = (c, cell, local)
+            if best[1] is not None:
+                del taken[(cx, cy)]
+                taken[best[1]] = g
+                pos[g] = (best[1][0] * GRID, best[1][1] * GRID)
+                moved += 1
+            for e, q in best[2].items():
+                paths[e] = q
+                boxes[e] = _bbox(q)
+        if not moved and radius == 3:
+            break
+    return paths
+
+
+# ---------------------------------------------------------------- 라벨·아이콘
 
 def place_labels(pos, edges, names, polylines):
     dirs = [(1, 0), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 1), (-1, -1), (-1, 1)]
@@ -246,21 +543,83 @@ def place_labels(pos, edges, names, polylines):
     return out
 
 
+def terminal_icons(net, pos, paths, dist=0.75):
+    """노선 양 끝(종점) 바깥쪽에 노선 아이콘 자리를 잡는다. 같은 색 노선이 이어지는 분기점(지선 끝)은 제외"""
+    sid2g = {s["id"]: s["group"] for s in net["stations"]}
+    at = defaultdict(set)
+    for line in net["lines"]:
+        for s in line["stations"]:
+            at[sid2g[s]].add((line["id"], line["color"].upper()))
+    allsegs = [s for q in paths.values() for s in zip(q, q[1:])]
+    placed, out = [], {}
+    for line in net["lines"]:
+        out[line["id"]] = []
+        if line.get("loop"):
+            continue
+        gs = [sid2g[s] for s in line["stations"]]
+        adj = defaultdict(set)
+        for a, b in zip(gs, gs[1:]):
+            if a != b:
+                adj[a].add(b)
+                adj[b].add(a)
+        for a, b in line.get("extraEdges", []):
+            ga, gb = sid2g[a], sid2g[b]
+            if ga != gb:
+                adj[ga].add(gb)
+                adj[gb].add(ga)
+        color = line["color"].upper()
+        for g in dict.fromkeys([gs[0], gs[-1]]):
+            if len(adj[g]) != 1:
+                continue
+            if any(lid != line["id"] and col == color for lid, col in at[g]):
+                continue
+            n = next(iter(adj[g]))
+            q = paths.get((g, n)) or paths.get((n, g))
+            if q is None:
+                continue
+            prev = q[1] if q[0] == pos[g] else q[-2]
+            ang = math.atan2(pos[g][1] - prev[1], pos[g][0] - prev[0])
+            order = sorted(range(8), key=lambda k: abs(math.remainder(k * math.pi / 4 - ang, 2 * math.pi)))
+            best = None
+            for k in order:
+                p = (pos[g][0] + math.cos(k * math.pi / 4) * dist, pos[g][1] + math.sin(k * math.pi / 4) * dist)
+                if all(math.dist(p, q2) >= 0.5 for h, q2 in pos.items() if h != g) \
+                        and all(math.dist(p, q2) >= 0.55 for q2 in placed) \
+                        and all(_seg_point_dist(p, a, b) >= 0.3 for a, b in allsegs):
+                    best = p
+                    break
+            if best is None:
+                k = order[0]
+                best = (pos[g][0] + math.cos(k * math.pi / 4) * dist, pos[g][1] + math.sin(k * math.pi / 4) * dist)
+            placed.append(best)
+            out[line["id"]].append(best)
+    return out
+
+
 def build_layout(net):
     groups, geo = project(net)
     edges = edges_of(net)
+    geo = pull_detached(geo, edges)
     pos, geo_n, target = relax(geo, edges)
     pos = snap(pos, edges)
     pos = refine(pos, geo_n, edges, target)
-    minx = min(x for x, _ in pos.values()) - MARGIN
-    miny = min(y for _, y in pos.values()) - MARGIN
-    pos = {g: (x - minx, y - miny) for g, (x, y) in pos.items()}
-    maxx = max(x for x, _ in pos.values()) + MARGIN
-    maxy = max(y for _, y in pos.values()) + MARGIN
-    line_order = [l["id"] for l in net["lines"]]
-    routed = {e: route_edge(pos[e[0]], pos[e[1]], pos) for e in edges}
+    paths = repair(pos, geo_n, edges, target)
+    icons = terminal_icons(net, pos, paths)
+    pts_all = list(pos.values()) + [p for v in icons.values() for p in v]
+    minx = min(x for x, _ in pts_all) - MARGIN
+    miny = min(y for _, y in pts_all) - MARGIN
+    maxx = max(x for x, _ in pts_all) - minx + MARGIN
+    maxy = max(y for _, y in pts_all) - miny + MARGIN
+
+    def sh(p):
+        return (p[0] - minx, p[1] - miny)
+
+    pos = {g: sh(p) for g, p in pos.items()}
+    paths = {e: [sh(p) for p in q] for e, q in paths.items()}
+    icons = {k: [sh(p) for p in v] for k, v in icons.items()}
     names = {g: ss[0]["name"]["ko"] for g, ss in groups.items()}
-    labels = place_labels(pos, edges, names, list(routed.values()))
+    labels = place_labels(pos, edges, names, list(paths.values()))
+    line_order = [l["id"] for l in net["lines"]]
     lines_out = []
     for line in net["lines"]:
         segs = []
@@ -269,8 +628,12 @@ def build_layout(net):
                 continue
             ordered = sorted(lids, key=line_order.index)
             off = ordered.index(line["id"]) - (len(ordered) - 1) / 2
-            segs.append({"points": [[round(x * UNIT, 2), round(y * UNIT, 2)] for x, y in routed[e]], "offset": off})
-        lines_out.append({"lineId": line["id"], "color": line["color"], "segments": segs})
+            segs.append({"points": [[round(x * UNIT, 2), round(y * UNIT, 2)] for x, y in paths[e]], "offset": off})
+        cat, flt = classify(line.get("operator", ""), line["id"])
+        lines_out.append({"lineId": line["id"], "color": line["color"], "code": line.get("code", ""),
+                          "category": cat, "filter": flt,
+                          "terminals": [[round(x * UNIT, 2), round(y * UNIT, 2)] for x, y in icons.get(line["id"], [])],
+                          "segments": segs})
     nodes = []
     for g in sorted(pos):
         ss = groups[g]
@@ -278,37 +641,29 @@ def build_layout(net):
                       "labelKo": ss[0]["name"]["ko"], "labelJa": ss[0]["name"]["ja"],
                       "labelDx": labels[g][0], "labelDy": labels[g][1],
                       "interchange": len({s["lineId"] for s in ss}) > 1, "stationIds": [s["id"] for s in ss]})
-    return {"schemaVersion": 1, "regionId": net["regionId"], "unit": UNIT,
-            "width": round(maxx * UNIT, 2), "height": round(maxy * UNIT, 2), "nodes": nodes, "lines": lines_out}
+    return {"schemaVersion": 2, "regionId": net["regionId"], "unit": UNIT,
+            "width": round(maxx * UNIT, 2), "height": round(maxy * UNIT, 2), "nodes": nodes, "lines": lines_out,
+            "ghosts": []}
 
 
 def metrics(layout):
-    segs, bends = [], 0
+    u = layout["unit"]
+    polys, bends, octo = {}, 0, True
     for l in layout["lines"]:
         for s in l["segments"]:
-            pts = s["points"]
+            pts = [(round(p[0] / u, 3), round(p[1] / u, 3)) for p in s["points"]]
             bends += len(pts) - 2
-            segs += list(zip(pts, pts[1:]))
-    octo = all(_is_oct(b[0] - a[0], b[1] - a[1], 1e-3) for a, b in segs)
-    uniq = {}
-    for a, b in segs:
-        uniq[tuple(sorted((tuple(a), tuple(b))))] = (a, b)
-    segs = list(uniq.values())
-
-    def ccw(a, b, c):
-        return (c[1] - a[1]) * (b[0] - a[0]) - (b[1] - a[1]) * (c[0] - a[0])
-
-    cross = 0
-    for i in range(len(segs)):
-        for j in range(i + 1, len(segs)):
-            (p1, p2), (p3, p4) = segs[i], segs[j]
-            if {tuple(p1), tuple(p2)} & {tuple(p3), tuple(p4)}:
-                continue
-            if ccw(p1, p2, p3) * ccw(p1, p2, p4) < 0 and ccw(p3, p4, p1) * ccw(p3, p4, p2) < 0:
-                cross += 1
-    pts = [(n["x"], n["y"]) for n in layout["nodes"]]
-    mind = min(math.dist(pts[i], pts[j]) for i in range(len(pts)) for j in range(i + 1, len(pts))) / layout["unit"]
-    return {"nodes": len(pts), "bends": bends, "allOctilinear": octo, "crossings": cross, "minNodeDist": round(mind, 2)}
+            octo = octo and all(_is_oct(b[0] - a[0], b[1] - a[1], 1e-3) for a, b in zip(pts, pts[1:]))
+            polys[(min(pts[0], pts[-1]), max(pts[0], pts[-1]))] = pts
+    pos = {}
+    for n in layout["nodes"]:
+        p = (round(n["x"] / u, 3), round(n["y"] / u, 3))
+        pos[p] = p
+    v, _, _ = violations(polys, pos)
+    pl = list(pos)
+    mind = min(math.dist(pl[i], pl[j]) for i in range(len(pl)) for j in range(i + 1, len(pl)))
+    icons = sum(len(l.get("terminals", [])) for l in layout["lines"])
+    return {"nodes": len(pl), "bends": bends, "allOctilinear": octo, **v, "minNodeDist": round(mind, 2), "icons": icons}
 
 
 def main():
@@ -318,12 +673,13 @@ def main():
     a = ap.parse_args()
     with open(a.network, encoding="utf-8") as f:
         net = json.load(f)
+    t0 = time.monotonic()
     lay = build_layout(net)
     out = a.out or os.path.join(os.path.dirname(a.network), "layout.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump(lay, f, ensure_ascii=False, indent=1)
         f.write("\n")
-    print(f"[layout] {net['regionId']}: {metrics(lay)}")
+    print(f"[layout] {net['regionId']}: {metrics(lay)} ({time.monotonic() - t0:.0f}s)")
 
 
 if __name__ == "__main__":

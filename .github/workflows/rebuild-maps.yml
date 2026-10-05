@@ -1,0 +1,43 @@
+name: Rebuild maps
+
+# tools/ (노선도 생성기·seed) 가 바뀌면 network.json / layout.json 을 다시 만들고 검증한 뒤 커밋한다.
+on:
+  push:
+    branches: [main, "ui-*"]
+    paths:
+      - "tools/**"
+      - ".github/workflows/rebuild-maps.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-maps-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -r tools/requirements.txt pytest
+      - name: Build network + layout
+        run: python tools/build_all.py --no-preview
+      - name: Validate
+        run: |
+          python tools/validate_assets.py
+          cd tools && python -m pytest -q tests
+      - name: Commit assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A app/src/main/assets
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "chore(maps): 노선도 레이아웃 재생성 (${GITHUB_SHA::7})"
+          git push
