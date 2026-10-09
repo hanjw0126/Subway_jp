@@ -1,8 +1,14 @@
 name: Release
 
+# 릴리즈 방법 (셋 중 하나)
+#  1) VERSION 파일을 올린 커밋이 main 에 들어오면 → v<VERSION> 태그 + Release 자동 생성
+#  2) v*.*.* 태그 push
+#  3) 수동 실행(workflow_dispatch) → 드래프트 릴리즈
 on:
   push:
     tags: [ "v*.*.*" ]
+    branches: [ main ]
+    paths: [ "VERSION" ]   # 태그 push 에는 paths 가 적용되지 않는다
   workflow_dispatch:
     inputs:
       version:
@@ -20,7 +26,19 @@ jobs:
       - uses: actions/checkout@v4
       - id: ver
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then NAME="${{ github.event.inputs.version }}"; else NAME="${GITHUB_REF_NAME#v}"; fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            NAME="${{ github.event.inputs.version }}"
+          elif [ "${{ github.ref_type }}" = "tag" ]; then
+            NAME="${GITHUB_REF_NAME#v}"
+          else
+            NAME="$(tr -d ' \r\n\t' < VERSION)"
+            if ! printf '%s' "$NAME" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+              echo "::error::VERSION 파일 형식이 올바르지 않습니다: '$NAME' (예: 0.4.2)"; exit 1
+            fi
+            if git ls-remote --exit-code --tags origin "refs/tags/v$NAME" > /dev/null; then
+              echo "::error::v$NAME 태그가 이미 있습니다. VERSION 을 올려 주세요."; exit 1
+            fi
+          fi
           echo "name=$NAME" >> "$GITHUB_OUTPUT"
           echo "code=$(( 100 + ${{ github.run_number }} ))" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-java@v4
@@ -86,7 +104,9 @@ jobs:
           (cd dist && sha256sum * > SHA256SUMS.txt)
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event_name == 'workflow_dispatch' && format('v{0}', steps.ver.outputs.name) || github.ref_name }}
+          # 태그 push 면 그 태그, VERSION/수동 실행이면 v<버전> 태그를 이 커밋에 새로 만든다
+          tag_name: ${{ format('v{0}', steps.ver.outputs.name) }}
+          target_commitish: ${{ github.sha }}
           draft: ${{ github.event_name == 'workflow_dispatch' }}
           prerelease: ${{ contains(steps.ver.outputs.name, '-') }}
           generate_release_notes: true
