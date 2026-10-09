@@ -623,8 +623,11 @@ def place_labels(pos, edges, names, polylines):
     return out
 
 
-def terminal_icons(net, pos, paths, dist=0.75):
-    """노선 양 끝(종점) 바깥쪽에 노선 아이콘 자리를 잡는다. 같은 색 노선이 이어지는 분기점(지선 끝)은 제외"""
+def terminal_icons(net, pos, paths, dists=(0.45, 0.6, 0.75)):
+    """노선 양 끝(종점) 바깥쪽에 노선 아이콘 자리를 잡는다. 같은 색 노선이 이어지는 분기점(지선 끝)은 제외.
+
+    아이콘은 종점 구간을 그대로 연장한 직선 위에만 둔다(가까운 거리부터 dists 순서로 시도).
+    연장선상에 둘 자리가 없으면 다른 방향으로 옮기지 않고 그 아이콘은 만들지 않는다."""
     sid2g = {s["id"]: s["group"] for s in net["stations"]}
     at = defaultdict(set)
     for line in net["lines"]:
@@ -659,18 +662,20 @@ def terminal_icons(net, pos, paths, dist=0.75):
                 continue
             prev = q[1] if q[0] == pos[g] else q[-2]
             ang = math.atan2(pos[g][1] - prev[1], pos[g][0] - prev[0])
-            order = sorted(range(8), key=lambda k: abs(math.remainder(k * math.pi / 4 - ang, 2 * math.pi)))
+            k = round(ang / (math.pi / 4))
+            if abs(math.remainder(ang - k * math.pi / 4, 2 * math.pi)) > 1e-3:
+                continue  # 8방향이 아니면 연장선을 정할 수 없다
+            ux, uy = math.cos(k * math.pi / 4), math.sin(k * math.pi / 4)
             best = None
-            for k in order:
-                p = (pos[g][0] + math.cos(k * math.pi / 4) * dist, pos[g][1] + math.sin(k * math.pi / 4) * dist)
+            for d in dists:
+                p = (pos[g][0] + ux * d, pos[g][1] + uy * d)
                 if all(math.dist(p, q2) >= 0.5 for h, q2 in pos.items() if h != g) \
                         and all(math.dist(p, q2) >= 0.55 for q2 in placed) \
                         and all(_seg_point_dist(p, a, b) >= 0.3 for a, b in allsegs):
                     best = p
                     break
             if best is None:
-                k = order[0]
-                best = (pos[g][0] + math.cos(k * math.pi / 4) * dist, pos[g][1] + math.sin(k * math.pi / 4) * dist)
+                continue  # 연장선상에 둘 자리가 없으면 아이콘 삭제
             placed.append(best)
             out[line["id"]].append(best)
     return out

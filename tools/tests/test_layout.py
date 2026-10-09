@@ -1,3 +1,5 @@
+import math
+
 from build_network_from_seed import build
 from kana_to_hangul import load_overrides
 from layout_schematic import build_layout, classify, metrics
@@ -62,8 +64,41 @@ def test_categories_and_terminal_icons():
     by = {l["lineId"]: l for l in lay["lines"]}
     ginza = by["odpt.Railway:TokyoMetro.Ginza"]
     assert ginza["category"] == "metro" and ginza["filter"] == "subway" and ginza["code"] == "G"
-    assert len(ginza["terminals"]) == 2
-    assert sum(len(l["terminals"]) for l in lay["lines"]) >= 25
+    # 종점 아이콘은 연장선상에 자리가 있을 때만 둔다 (자리가 없으면 삭제) → 노선당 최대 2개
+    assert all(len(l["terminals"]) <= 2 for l in lay["lines"])
+    # 아이콘이 통째로 사라지지 않았는지만 확인 (연장선 규칙으로 일부는 삭제될 수 있다)
+    assert sum(len(l["terminals"]) for l in lay["lines"]) >= 15
+
+
+def _on_extension(l, t, nodes, u):
+    """t 가 노선 l 의 어느 종단 구간(끝 역 g)을 그대로 연장한 직선 위, g 에서 0.8칸 이내에 있는가"""
+    ends = [(s["points"][0], s["points"][1]) for s in l["segments"]] + \
+           [(s["points"][-1], s["points"][-2]) for s in l["segments"]]
+    for g in nodes:
+        if math.dist(g, t) > 0.8 * u:
+            continue
+        for end, prev in ends:
+            if math.dist(end, g) > 0.05:
+                continue
+            v1 = (g[0] - prev[0], g[1] - prev[1])
+            v2 = (t[0] - g[0], t[1] - g[1])
+            n1, n2 = math.hypot(*v1), math.hypot(*v2)
+            if n1 < 1e-6 or n2 < 1e-6:
+                continue
+            if abs(v1[0] * v2[1] - v1[1] * v2[0]) / (n1 * n2) < 0.02 and v1[0] * v2[0] + v1[1] * v2[1] > 0:
+                return True
+    return False
+
+
+def test_terminal_icons_on_line_extension():
+    """종점 아이콘은 해당 노선 종단 구간을 연장한 직선 위, 종점 가까이에 있어야 한다"""
+    for region in LIMITS:
+        _, lay = _lay(region)
+        u = lay["unit"]
+        nodes = [(n["x"], n["y"]) for n in lay["nodes"]]
+        for l in lay["lines"]:
+            for t in l["terminals"]:
+                assert _on_extension(l, t, nodes, u), (region, l["lineId"], t)
 
 
 def test_auto_transfer_and_oedo_closure():
