@@ -4,8 +4,19 @@ import io.github.jpsubway.app.core.i18n.AppLanguage
 import io.github.jpsubway.app.core.i18n.Lang
 import kotlinx.serialization.Serializable
 
+/**
+ * 다국어 이름.
+ * koAlt: 한국어 위키백과(위키데이터) 표기가 앱 표기(ko)와 다를 때만 들어 있다.
+ *   역 상세정보에서는 괄호로 함께 보여 주고, 역 검색에도 쓴다 (노선도에는 표시하지 않음).
+ */
 @Serializable
-data class LocalizedName(val ja: String = "", val ko: String = "", val en: String = "", val kana: String = "")
+data class LocalizedName(
+    val ja: String = "",
+    val ko: String = "",
+    val en: String = "",
+    val kana: String = "",
+    val koAlt: String = "",
+)
 
 /** 현재 역명 언어(Lang.names)로 표시. 비어 있으면 다른 언어로 대체 */
 fun LocalizedName.display(): String = inLanguage(Lang.names.value)
@@ -14,6 +25,12 @@ fun LocalizedName.inLanguage(lang: AppLanguage): String = when (lang) {
     AppLanguage.JA -> ja.ifBlank { ko.ifBlank { en } }
     AppLanguage.EN -> en.ifBlank { ja.ifBlank { ko } }
     else -> ko.ifBlank { ja.ifBlank { en } }
+}
+
+/** 상세정보용: 한국어 역명이면 위키백과 표기를 괄호로 덧붙인다 (예: 혼마치 (혼초)) */
+fun LocalizedName.detailed(lang: AppLanguage): String {
+    val main = inLanguage(lang)
+    return if (lang == AppLanguage.KO && koAlt.isNotBlank() && koAlt != main) "$main ($koAlt)" else main
 }
 
 @Serializable
