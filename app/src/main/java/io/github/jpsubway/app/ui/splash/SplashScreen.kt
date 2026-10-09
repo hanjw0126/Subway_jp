@@ -69,7 +69,7 @@ fun SplashScreen(modifier: Modifier = Modifier) {
             Text(
                 stringResource(R.string.app_name),
                 color = Color.White,
-                fontSize = 26.sp,
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.graphicsLayer {
                     alpha = enter.value
@@ -78,7 +78,7 @@ fun SplashScreen(modifier: Modifier = Modifier) {
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                "WORLD WIDE METRO",
+                "REAL-TIME METRO · WORLDWIDE",
                 color = Color.White.copy(alpha = 0.6f),
                 fontSize = 12.sp,
                 letterSpacing = 3.sp,
@@ -105,7 +105,7 @@ fun SplashScreen(modifier: Modifier = Modifier) {
             }
         }
         Text(
-            "Data: ODPT · 비공식 앱",
+            "Unofficial app · Data: ODPT",
             color = Color.White.copy(alpha = 0.45f),
             fontSize = 11.sp,
             modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 20.dp),
