@@ -175,6 +175,9 @@ private fun DrawScope.drawStation(c: Offset, colors: List<Color>, lw: Float, fil
  * 확대할수록 더 많은 역명이 보인다. 역명은 매 프레임 겹침 검사(다른 역명·공점·아이콘)를 거쳐
  * 빈 방향에 놓고, 자리가 없으면 그 배율에서는 숨긴다 (환승 노선이 많은 역 우선).
  * visibleFilters: 표시할 필터 그룹 (subway / jr / private)
+ * focusLines: 지정하면 이 노선들만 그린다 (노선 단독 보기). 필터·다른 지역 노선은 무시하고,
+ *   이 노선의 역만 보이되 환승역 공점에는 다른 환승 노선 색도 표시한다. 역명은 읽을 수 있는 최소 크기를 유지한다.
+ * initialFocus: 처음 화면에 맞춰 보여 줄 영역 (지도 좌표). null 이면 지도 중심을 기본 배율로 보여 준다.
  */
 @Composable
 fun SubwayMapCanvas(
@@ -186,22 +189,33 @@ fun SubwayMapCanvas(
     onStationTap: (String) -> Unit,
     modifier: Modifier = Modifier,
     visibleFilters: Set<String> = setOf("subway", "jr", "private"),
+    focusLines: Set<String>? = null,
+    initialFocus: Rect? = null,
 ) {
     val density = LocalDensity.current
     val measurer = rememberTextMeasurer()
     val tapCallback by rememberUpdatedState(onStationTap)
     val bounds = remember(layout) { layoutBounds(layout) }
     val lineColors = remember(layout) { layout.lines.associate { it.lineId to parseColor(it.color) } }
-    val visibleLines = remember(layout, visibleFilters) {
-        layout.lines.filter { it.filter in visibleFilters }.map { it.lineId }.toSet()
+    val focusMode = focusLines != null
+    val visibleLines = remember(layout, visibleFilters, focusLines) {
+        if (focusLines != null) {
+            layout.lines.map { it.lineId }.filter { it in focusLines }.toSet()
+        } else {
+            layout.lines.filter { it.filter in visibleFilters }.map { it.lineId }.toSet()
+        }
     }
     // 역(환승그룹)별 표시 중인 노선 색 — 같은 색(본선/지선)은 하나로 친다
-    val nodeColors = remember(layout, network, visibleLines) {
+    val nodeColors = remember(layout, network, visibleLines, focusLines) {
         layout.nodes.associate { n ->
-            val cols = n.stationIds
-                .mapNotNull { network.stationById[it]?.lineId }
-                .distinct()
-                .filter { it in visibleLines }
+            val ids = n.stationIds.mapNotNull { network.stationById[it]?.lineId }.distinct()
+            val shown = when {
+                focusLines == null -> ids.filter { it in visibleLines }
+                // 노선 단독 보기: 이 노선의 역만 보이고, 환승역에는 다른 노선 색도 함께 표시
+                ids.any { it in visibleLines } -> ids.sortedBy { if (it in visibleLines) 0 else 1 }
+                else -> emptyList()
+            }
+            val cols = shown
                 .mapNotNull { network.lineById[it]?.color }
                 .map { parseColor(it) }
                 .distinct()
@@ -247,11 +261,20 @@ fun SubwayMapCanvas(
         }
         val minScale = fit * 0.8f
         val maxScale = max(fit * 4f, 150f * dpPx / unit)
-        // 처음에는 역명이 읽히는 배율(역 간격 ≈ 44dp)로 지도 중심을 보여 준다
-        val initScale = (44f * dpPx / unit).coerceIn(fit, maxScale)
-        var scale by remember(layout.regionId, fit) { mutableFloatStateOf(initScale) }
-        var pan by remember(layout.regionId, fit) {
-            mutableStateOf(Offset(wPx / 2 - bounds.center.x * initScale, hPx / 2 - bounds.center.y * initScale))
+        // 처음에는 역명이 읽히는 배율(역 간격 ≈ 44dp)로 지도 중심을 보여 준다.
+        // initialFocus 가 있으면 그 영역이 화면에 꽉 차도록 맞춘다.
+        val initScale = if (initialFocus != null) {
+            min(
+                (wPx - pad) / initialFocus.width.coerceAtLeast(unit),
+                (hPx - pad) / initialFocus.height.coerceAtLeast(unit),
+            ).coerceIn(minScale, maxScale)
+        } else {
+            (44f * dpPx / unit).coerceIn(fit, maxScale)
+        }
+        val initCenter = initialFocus?.center ?: bounds.center
+        var scale by remember(layout.regionId, fit, initialFocus) { mutableFloatStateOf(initScale) }
+        var pan by remember(layout.regionId, fit, initialFocus) {
+            mutableStateOf(Offset(wPx / 2 - initCenter.x * initScale, hPx / 2 - initCenter.y * initScale))
         }
 
         val gestures = Modifier
@@ -287,11 +310,13 @@ fun SubwayMapCanvas(
             fun tr(x: Float, y: Float) = Offset(x * scale + pan.x, y * scale + pan.y)
             fun onScreen(c: Offset, m: Float) = c.x > -m && c.y > -m && c.x < size.width + m && c.y < size.height + m
 
-            // 0) 다른 지역의 환승 노선 (반투명)
-            layout.ghosts.forEach { g ->
-                val pts = g.points.mapNotNull { if (it.size >= 2) tr(it[0], it[1]) else null }
-                if (pts.size >= 2) {
-                    drawStyledPath(polylinePath(offsetPolyline(pts, 0f)), parseColor(g.color), g.category, lw * 0.9f, alpha = 0.35f)
+            // 0) 다른 지역의 환승 노선 (반투명) — 노선 단독 보기에서는 그리지 않는다
+            if (!focusMode) {
+                layout.ghosts.forEach { g ->
+                    val pts = g.points.mapNotNull { if (it.size >= 2) tr(it[0], it[1]) else null }
+                    if (pts.size >= 2) {
+                        drawStyledPath(polylinePath(offsetPolyline(pts, 0f)), parseColor(g.color), g.category, lw * 0.9f, alpha = 0.35f)
+                    }
                 }
             }
 
@@ -353,14 +378,19 @@ fun SubwayMapCanvas(
             order.forEach { n ->
                 val k = nodeColors[n.group]?.size ?: 1
                 val selected = n.group == fromGroup || n.group == toGroup || n.group == highlighted
-                val show = selected ||
+                val show = selected || focusMode ||
                     fontPx >= 7f * spPx ||
                     (k >= 3 && fontPx >= 4.5f * spPx) ||
                     (k == 2 && fontPx >= 5.5f * spPx)
                 val tl = labels[n.group]
                 val c = tr(n.x, n.y)
                 if (!show || tl == null || !onScreen(c, 300f)) return@forEach
-                val fp = if (selected) max(fontPx, 11f * spPx) else fontPx
+                // 노선 단독 보기는 역 수가 적으니 축소 상태에서도 읽을 수 있는 글자 크기를 유지 (겹치면 숨김)
+                val fp = when {
+                    selected -> max(fontPx, 11f * spPx)
+                    focusMode -> max(fontPx, 9f * spPx)
+                    else -> fontPx
+                }
                 val f = fp / labelBasePx
                 val w = tl.size.width * f
                 val h = tl.size.height * f

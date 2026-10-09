@@ -54,3 +54,24 @@ internal fun layoutBounds(layout: MapLayout): Rect {
     if (minX > maxX) return Rect(0f, 0f, layout.width.coerceAtLeast(1f), layout.height.coerceAtLeast(1f))
     return Rect(minX, minY, maxX, maxY)
 }
+
+/** 지정한 노선들(구간 + 종점 아이콘)을 감싸는 영역. 해당 노선이 노선도에 없으면 null */
+internal fun linesBounds(layout: MapLayout, lineIds: Set<String>): Rect? {
+    var minX = Float.MAX_VALUE
+    var minY = Float.MAX_VALUE
+    var maxX = -Float.MAX_VALUE
+    var maxY = -Float.MAX_VALUE
+    fun acc(p: List<Float>) {
+        if (p.size < 2) return
+        if (p[0] < minX) minX = p[0]
+        if (p[1] < minY) minY = p[1]
+        if (p[0] > maxX) maxX = p[0]
+        if (p[1] > maxY) maxY = p[1]
+    }
+    layout.lines.filter { it.lineId in lineIds }.forEach { l ->
+        l.segments.forEach { s -> s.points.forEach(::acc) }
+        l.terminals.forEach(::acc)
+    }
+    if (minX > maxX) return null
+    return Rect(minX, minY, maxX, maxY)
+}
