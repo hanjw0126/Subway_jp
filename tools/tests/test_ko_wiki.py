@@ -1,4 +1,5 @@
 from build_network_from_seed import build
+from kana_to_hangul import load_overrides
 from ko_wiki import lookup, norm_ja, norm_ko, same_ko
 
 
@@ -33,9 +34,12 @@ def test_build_adds_ko_alt_only_when_different():
             ],
         }],
     }
-    overrides = {"新宿": "신주쿠", "本町": "혼마치"}
-    wiki = {"新宿": [(35.6896, 139.7006, "신주쿠")], "本町": [(35.6900, 139.6900, "혼초")]}
-    net = build(seed, overrides, wiki)
+    first = build(seed, load_overrides(), {})
+    app_ko = {s["code"]: s["name"]["ko"] for s in first["stations"]}
+    assert all("koAlt" not in s["name"] for s in first["stations"])  # 색인이 비면 그대로
+    # 위키 표기가 앱 표기와 같으면 koAlt 없음, 다르면 koAlt
+    wiki = {"新宿": [(35.6896, 139.7006, app_ko["A01"])], "本町": [(35.6900, 139.6900, app_ko["A02"] + "다른표기")]}
+    net = build(seed, load_overrides(), wiki)
     by = {s["code"]: s["name"] for s in net["stations"]}
     assert "koAlt" not in by["A01"]
-    assert by["A02"]["koAlt"] == "혼초"
+    assert by["A02"]["koAlt"] == app_ko["A02"] + "다른표기"
