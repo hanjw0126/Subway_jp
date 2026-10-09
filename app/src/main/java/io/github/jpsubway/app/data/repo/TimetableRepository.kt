@@ -136,7 +136,8 @@ class TimetableRepository(
 
     private companion object {
         const val MAX_AGE_MS = 7L * 24 * 3600 * 1000
-        const val CACHE_VERSION = 2
+        // 3: 순환선 방향 판정 수정 — 이전 캐시에 잘못 분류된 열차가 남아 있으므로 다시 받는다
+        const val CACHE_VERSION = 3
         const val PARALLEL = 6
         const val PAGE_LIMIT = 1000
     }
