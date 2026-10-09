@@ -16,19 +16,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.github.jpsubway.app.core.i18n.AppLanguage
+import io.github.jpsubway.app.core.i18n.Lang
+import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.di.RegionSession
 import io.github.jpsubway.app.domain.model.Network
-import io.github.jpsubway.app.domain.model.display
+import io.github.jpsubway.app.domain.model.inLanguage
 import io.github.jpsubway.app.ui.common.InfoChip
 import io.github.jpsubway.app.ui.common.LineBadge
+import io.github.jpsubway.app.ui.common.MapLanguageDialog
+import io.github.jpsubway.app.ui.common.nameLanguage
+import io.github.jpsubway.app.ui.common.strings
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 
 /** 노선 필터 그룹 (layout.json 의 lines[].filter) */
 private val FilterOrder = listOf("subway", "jr", "private")
-private val FilterLabels = mapOf("subway" to "지하철", "jr" to "JR", "private" to "사철")
 
-/** 메인 화면: 전체 노선도 + 상단 검색창 + 노선 필터 + 역 탭 시 바텀시트(출발/도착/도착정보) + 하단 경로 선택 바 */
+private fun filterLabel(s: Strings, f: String) = when (f) {
+    "subway" -> s.filterSubway
+    "jr" -> s.filterJr
+    "private" -> s.filterPrivate
+    else -> f
+}
+
+/** 노선도 화면: 전체 노선도 + 상단 검색창·언어·설정 + 노선 필터 + 역 탭 시 바텀시트(출발/도착/도착정보) + 하단 경로 선택 바 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(
@@ -42,8 +54,12 @@ fun MapScreen(
     val state by vm.state.collectAsStateWithLifecycle()
     val from by vm.from.collectAsStateWithLifecycle()
     val to by vm.to.collectAsStateWithLifecycle()
+    val s = strings()
+    val names = nameLanguage()
+    val ui by Lang.ui.collectAsState()
     var tapped by remember { mutableStateOf<String?>(null) }
     var filters by remember { mutableStateOf(FilterOrder.toSet()) }
+    var showLanguage by remember { mutableStateOf(false) }
     val data = (state as? RegionSession.State.Ready)?.data
 
     Scaffold(
@@ -51,7 +67,7 @@ fun MapScreen(
             TopAppBar(
                 navigationIcon = {
                     TextButton(onClick = onRegion) {
-                        Text((data?.region?.name?.display() ?: "지역") + " ▾", fontWeight = FontWeight.Bold)
+                        Text((data?.region?.name?.inLanguage(names) ?: s.region) + " ▾", fontWeight = FontWeight.Bold)
                     }
                 },
                 title = {
@@ -63,20 +79,25 @@ fun MapScreen(
                         Row(Modifier.padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Filled.Search, contentDescription = null, Modifier.size(18.dp))
                             Spacer(Modifier.width(8.dp))
-                            Text("역 검색 (초성 가능)", fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(s.searchHint, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
                         }
                     }
                 },
                 actions = {
-                    IconButton(onClick = onSettings) { Icon(Icons.Filled.Settings, contentDescription = "설정") }
+                    // 언어: 현재 화면 언어 코드(KO / JA / EN)를 보여 주고 누르면 언어 선택
+                    TextButton(onClick = { showLanguage = true }) {
+                        Text(languageMark(ui), fontWeight = FontWeight.Bold)
+                    }
+                    IconButton(onClick = onSettings) { Icon(Icons.Filled.Settings, contentDescription = s.settings) }
                 },
             )
         },
         bottomBar = {
             if (data != null && (from != null || to != null)) {
                 RouteSelectionBar(
-                    fromName = from?.let { data.network.groupName(it).display() },
-                    toName = to?.let { data.network.groupName(it).display() },
+                    s = s,
+                    fromName = from?.let { data.network.groupName(it).inLanguage(names) },
+                    toName = to?.let { data.network.groupName(it).inLanguage(names) },
                     onRoute = onRoute,
                     onClear = vm::clearRoute,
                 )
@@ -84,14 +105,14 @@ fun MapScreen(
         },
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
-            when (val s = state) {
+            when (val st = state) {
                 RegionSession.State.Loading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                 is RegionSession.State.Error -> Text(
-                    "노선 데이터를 불러오지 못했습니다\n${s.message}",
+                    "${s.loadError}\n${st.message}",
                     Modifier.align(Alignment.Center).padding(24.dp),
                 )
                 is RegionSession.State.Ready -> {
-                    val d = s.data
+                    val d = st.data
                     val available = remember(d.layout) {
                         FilterOrder.filter { f -> d.layout.lines.any { it.filter == f } }
                     }
@@ -104,6 +125,7 @@ fun MapScreen(
                         onStationTap = { tapped = it },
                         modifier = Modifier.fillMaxSize(),
                         visibleFilters = filters,
+                        nameLanguage = names,
                     )
                     Column(
                         Modifier.align(Alignment.TopCenter).padding(12.dp),
@@ -120,18 +142,20 @@ fun MapScreen(
                                             val next = if (on) filters - f else filters + f
                                             if (next.any { it in available }) filters = next
                                         },
-                                        label = { Text(FilterLabels[f] ?: f) },
+                                        label = { Text(filterLabel(s, f)) },
                                         colors = FilterChipDefaults.filterChipColors(containerColor = MaterialTheme.colorScheme.surface),
                                     )
                                 }
                             }
                         }
-                        if (d.timetable.isDemo) InfoChip("데모(가상) 시간표 표시 중")
+                        if (d.timetable.isDemo) InfoChip(s.demoTimetable)
                     }
                     val g = tapped
                     if (g != null) {
                         ModalBottomSheet(onDismissRequest = { tapped = null }) {
                             StationSheet(
+                                s = s,
+                                names = names,
                                 network = d.network,
                                 group = g,
                                 onFrom = {
@@ -153,42 +177,61 @@ fun MapScreen(
             }
         }
     }
+    if (showLanguage) MapLanguageDialog(onDismiss = { showLanguage = false })
+}
+
+private fun languageMark(l: AppLanguage) = when (l) {
+    AppLanguage.JA -> "あ"
+    AppLanguage.KO -> "가"
+    else -> "A"
 }
 
 @Composable
-private fun StationSheet(network: Network, group: String, onFrom: () -> Unit, onTo: () -> Unit, onInfo: () -> Unit) {
+private fun StationSheet(
+    s: Strings,
+    names: AppLanguage,
+    network: Network,
+    group: String,
+    onFrom: () -> Unit,
+    onTo: () -> Unit,
+    onInfo: () -> Unit,
+) {
     val name = network.groupName(group)
     Column(Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, bottom = 28.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             network.linesOfGroup(group).distinctBy { it.id }.forEach { LineBadge(it) }
             Spacer(Modifier.width(4.dp))
-            Text(name.display(), fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Text(name.inLanguage(names), fontSize = 22.sp, fontWeight = FontWeight.Bold)
         }
-        if (name.ja.isNotBlank()) {
-            Text("${name.ja}  ${name.en}", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        // 보조 표기: 지금 역명 언어가 아닌 나머지 표기
+        val others = listOf(AppLanguage.JA to name.ja, AppLanguage.KO to name.ko, AppLanguage.EN to name.en)
+            .filter { (l, v) -> l != names && v.isNotBlank() }
+            .joinToString("  ") { it.second }
+        if (others.isNotBlank()) {
+            Text(others, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Spacer(Modifier.height(16.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = onFrom, Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = FromGreen)) { Text("출발") }
-            Button(onClick = onTo, Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = ToRed)) { Text("도착") }
-            OutlinedButton(onClick = onInfo, Modifier.weight(1f)) { Text("도착정보") }
+            Button(onClick = onFrom, Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = FromGreen)) { Text(s.from) }
+            Button(onClick = onTo, Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = ToRed)) { Text(s.to) }
+            OutlinedButton(onClick = onInfo, Modifier.weight(1f)) { Text(s.arrivalInfo, maxLines = 1) }
         }
     }
 }
 
 @Composable
-private fun RouteSelectionBar(fromName: String?, toName: String?, onRoute: () -> Unit, onClear: () -> Unit) {
+private fun RouteSelectionBar(s: Strings, fromName: String?, toName: String?, onRoute: () -> Unit, onClear: () -> Unit) {
     Surface(tonalElevation = 3.dp, shadowElevation = 8.dp) {
         Row(
             Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(Modifier.weight(1f)) {
-                Text("출발  " + (fromName ?: "선택 안 됨"), color = FromGreen, fontWeight = FontWeight.SemiBold)
-                Text("도착  " + (toName ?: "선택 안 됨"), color = ToRed, fontWeight = FontWeight.SemiBold)
+                Text(s.from + "  " + (fromName ?: s.notSelected), color = FromGreen, fontWeight = FontWeight.SemiBold)
+                Text(s.to + "  " + (toName ?: s.notSelected), color = ToRed, fontWeight = FontWeight.SemiBold)
             }
-            IconButton(onClick = onClear) { Icon(Icons.Filled.Close, contentDescription = "선택 해제") }
-            Button(onClick = onRoute, enabled = fromName != null && toName != null) { Text("경로 찾기") }
+            IconButton(onClick = onClear) { Icon(Icons.Filled.Close, contentDescription = s.clearSelection) }
+            Button(onClick = onRoute, enabled = fromName != null && toName != null) { Text(s.findRoute) }
         }
     }
 }

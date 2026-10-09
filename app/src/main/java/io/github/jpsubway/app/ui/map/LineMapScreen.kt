@@ -23,6 +23,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.jpsubway.app.di.RegionSession
 import io.github.jpsubway.app.ui.common.InfoChip
 import io.github.jpsubway.app.ui.common.LinePill
+import io.github.jpsubway.app.ui.common.nameLanguage
+import io.github.jpsubway.app.ui.common.strings
 
 /**
  * 노선 전체 지도: 한 노선(같은 회사·같은 색 지선 포함)만 노선도에 그려 화면에 맞춰 보여 준다.
@@ -40,27 +42,29 @@ fun LineMapScreen(
     val state by vm.state.collectAsStateWithLifecycle()
     val from by vm.from.collectAsStateWithLifecycle()
     val to by vm.to.collectAsStateWithLifecycle()
+    val s = strings()
+    val names = nameLanguage()
     val line = (state as? RegionSession.State.Ready)?.data?.network?.lineById?.get(lineId)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { if (line != null) LinePill(line) else Text("노선도") },
+                title = { if (line != null) LinePill(line) else Text(s.lineMap) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "뒤로") }
+                    IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = s.back) }
                 },
             )
         },
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
-            when (val s = state) {
+            when (val st = state) {
                 RegionSession.State.Loading -> CircularProgressIndicator(Modifier.align(Alignment.Center))
                 is RegionSession.State.Error -> Text(
-                    "노선 데이터를 불러오지 못했습니다\n${s.message}",
+                    "${s.loadError}\n${st.message}",
                     Modifier.align(Alignment.Center).padding(24.dp),
                 )
                 is RegionSession.State.Ready -> {
-                    val d = s.data
+                    val d = st.data
                     // 같은 회사·같은 색 노선(본선/지선)은 한 노선으로 보고 함께 그린다
                     val focus = remember(d.network, lineId) {
                         val base = d.network.lineById[lineId]
@@ -75,7 +79,7 @@ fun LineMapScreen(
                     }
                     val box = remember(d.layout, focus) { linesBounds(d.layout, focus) }
                     if (box == null) {
-                        Text("이 노선의 노선도 정보가 없습니다", Modifier.align(Alignment.Center).padding(24.dp))
+                        Text(s.noLineLayout, Modifier.align(Alignment.Center).padding(24.dp))
                     } else {
                         SubwayMapCanvas(
                             layout = d.layout,
@@ -90,8 +94,9 @@ fun LineMapScreen(
                             modifier = Modifier.fillMaxSize(),
                             focusLines = focus,
                             initialFocus = box,
+                            nameLanguage = names,
                         )
-                        InfoChip("역을 누르면 도착정보를 볼 수 있습니다", Modifier.align(Alignment.BottomCenter).padding(16.dp))
+                        InfoChip(s.tapStationForArrivals, Modifier.align(Alignment.BottomCenter).padding(16.dp))
                     }
                 }
             }

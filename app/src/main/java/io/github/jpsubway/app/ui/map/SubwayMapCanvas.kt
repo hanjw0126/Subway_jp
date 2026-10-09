@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.jpsubway.app.core.i18n.AppLanguage
 import io.github.jpsubway.app.domain.model.LayoutNode
 import io.github.jpsubway.app.domain.model.MapLayout
 import io.github.jpsubway.app.domain.model.Network
@@ -178,6 +179,7 @@ private fun DrawScope.drawStation(c: Offset, colors: List<Color>, lw: Float, fil
  * focusLines: 지정하면 이 노선들만 그린다 (노선 단독 보기). 필터·다른 지역 노선은 무시하고,
  *   이 노선의 역만 보이되 환승역 공점에는 다른 환승 노선 색도 표시한다. 역명은 읽을 수 있는 최소 크기를 유지한다.
  * initialFocus: 처음 화면에 맞춰 보여 줄 영역 (지도 좌표). null 이면 지도 중심을 기본 배율로 보여 준다.
+ * nameLanguage: 역명 언어 (한국어 / 일본어 / 영어)
  */
 @Composable
 fun SubwayMapCanvas(
@@ -191,6 +193,7 @@ fun SubwayMapCanvas(
     visibleFilters: Set<String> = setOf("subway", "jr", "private"),
     focusLines: Set<String>? = null,
     initialFocus: Rect? = null,
+    nameLanguage: AppLanguage = AppLanguage.KO,
 ) {
     val density = LocalDensity.current
     val measurer = rememberTextMeasurer()
@@ -225,7 +228,7 @@ fun SubwayMapCanvas(
     val visibleNodes = remember(layout, nodeColors) { layout.nodes.filter { nodeColors[it.group].orEmpty().isNotEmpty() } }
     val tapNodes by rememberUpdatedState(visibleNodes)
     val labelBasePx = with(density) { 12.sp.toPx() }
-    val labels = remember(layout, measurer, nodeColors) {
+    val labels = remember(layout, network, measurer, nodeColors, nameLanguage) {
         val base = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Medium, color = Ink)
         layout.nodes.associate { n ->
             val k = nodeColors[n.group]?.size ?: 1
@@ -234,7 +237,12 @@ fun SubwayMapCanvas(
                 k == 2 -> base.copy(fontWeight = FontWeight.Bold)
                 else -> base
             }
-            n.group to measurer.measure(AnnotatedString(n.labelKo), style = st)
+            val text = when (nameLanguage) {
+                AppLanguage.JA -> n.labelJa.ifBlank { n.labelKo }
+                AppLanguage.EN -> network.groupName(n.group).en.ifBlank { n.labelJa.ifBlank { n.labelKo } }
+                else -> n.labelKo
+            }
+            n.group to measurer.measure(AnnotatedString(text), style = st)
         }
     }
     val countLabels = remember(measurer) {
