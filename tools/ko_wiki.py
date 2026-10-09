@@ -12,6 +12,8 @@ import math
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -89,11 +91,22 @@ def lookup(index, ja, lat, lon):
     return best[1] if best else None
 
 
-def _query(sparql):
+def _query(sparql, retries=2):
+    """위키데이터 SPARQL. 요청 과다(429)·일시 장애(5xx)는 잠시 기다렸다 다시 시도한다"""
     url = ENDPOINT + "?" + urllib.parse.urlencode({"query": sparql, "format": "json"})
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/sparql-results+json"})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        return json.load(r)["results"]["bindings"]
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                return json.load(r)["results"]["bindings"]
+        except urllib.error.HTTPError as e:
+            if attempt < retries and (e.code == 429 or e.code >= 500):
+                wait = int(e.headers.get("Retry-After") or 30)
+                print(f"[ko_wiki] HTTP {e.code} → {wait}초 후 다시 시도", file=sys.stderr)
+                time.sleep(min(wait, 120))
+                continue
+            raise
+    return []
 
 
 def fetch():
