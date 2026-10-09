@@ -12,6 +12,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import io.github.jpsubway.app.di.RegionSession
+import io.github.jpsubway.app.ui.home.Countries
+import io.github.jpsubway.app.ui.home.HomeScreen
 import io.github.jpsubway.app.ui.map.LineMapScreen
 import io.github.jpsubway.app.ui.map.MapScreen
 import io.github.jpsubway.app.ui.region.RegionPickerScreen
@@ -21,6 +23,7 @@ import io.github.jpsubway.app.ui.settings.SettingsScreen
 import io.github.jpsubway.app.ui.station.StationScreen
 
 object Routes {
+    const val HOME = "home"
     const val MAP = "map"
     const val STATION = "station/{group}?line={line}"
     const val LINE_MAP = "line/{line}?group={group}"
@@ -43,7 +46,16 @@ fun AppNavHost(session: RegionSession) {
     LaunchedEffect(owner) {
         owner.repeatOnLifecycle(Lifecycle.State.STARTED) { session.pollRealtime() }
     }
-    NavHost(navController = nav, startDestination = Routes.MAP) {
+    NavHost(navController = nav, startDestination = Routes.HOME) {
+        composable(Routes.HOME) {
+            HomeScreen(
+                onOpenCountry = { id ->
+                    when (id) {
+                        Countries.JAPAN -> nav.navigate(Routes.MAP) { launchSingleTop = true }
+                    }
+                },
+            )
+        }
         composable(Routes.MAP) {
             MapScreen(
                 onOpenStation = { nav.navigate(Routes.station(it)) },

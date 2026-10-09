@@ -1,0 +1,42 @@
+name: Auto PR
+
+# 작업 브랜치를 push 하면 main 으로 가는 PR 을 자동으로 연다 (이미 열려 있으면 건너뜀).
+# 필요: 저장소 Settings → Actions → General → Workflow permissions →
+#       "Allow GitHub Actions to create and approve pull requests" 체크
+# Actions 가 만든 PR 에서는 pull_request 워크플로가 돌지 않으므로, CI 는 같은 브랜치 push 로 돈다.
+on:
+  push:
+    branches: [ "feat-*", "fix-*", "ui-*", "release-*", "ci-*", "docs-*", "chore-*" ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Open PR if missing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')" ]; then
+            echo "이미 열린 PR 이 있습니다"; exit 0
+          fi
+          git fetch origin main
+          TITLE="$(git log origin/main..HEAD --reverse --format=%s | head -n 1)"
+          [ -z "$TITLE" ] && { echo "main 과 차이가 없어 PR 을 만들지 않습니다"; exit 0; }
+          {
+            echo "자동 생성된 PR (브랜치 \`$BRANCH\`)"
+            echo
+            echo "## 커밋"
+            git log origin/main..HEAD --reverse --format='- %s%n%n%b' | sed '/^$/N;/^\n$/D'
+          } > "$RUNNER_TEMP/body.md"
+          if ! gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"; then
+            echo "::error::PR 을 만들지 못했습니다. Settings → Actions → General → Workflow permissions 에서 'Allow GitHub Actions to create and approve pull requests' 를 켜 주세요."
+            exit 1
+          fi
