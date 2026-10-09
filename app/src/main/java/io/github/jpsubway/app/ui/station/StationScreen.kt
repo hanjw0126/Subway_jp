@@ -42,6 +42,7 @@ import io.github.jpsubway.app.domain.arrival.phaseLabel
 import io.github.jpsubway.app.domain.model.Arrival
 import io.github.jpsubway.app.domain.model.DirectionBoard
 import io.github.jpsubway.app.domain.model.Network
+import io.github.jpsubway.app.domain.model.detailed
 import io.github.jpsubway.app.domain.model.display
 import io.github.jpsubway.app.ui.common.LinePill
 import io.github.jpsubway.app.ui.common.StatusBanner
@@ -57,6 +58,7 @@ import io.github.jpsubway.app.ui.theme.parseColor
  * 역 도착정보 화면: 노선 탭(환승역) 또는 노선 이름(단일 노선 역) → 이전역·현재역·다음역 띠 → 방면별 "N분 후" 카드 2개.
  *  - 역명(상단 제목 또는 역 띠 가운데)을 누르면 선택한 노선의 전체 지도
  *  - 좌우로 밀거나 역 띠 양옆 역명을 누르면 같은 노선의 이웃 역으로 이동
+ *  - 한국어 역명일 때 한국어 위키백과 표기가 다르면 제목에 괄호로 함께 표시
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,7 +92,7 @@ fun StationScreen(
             TopAppBar(
                 title = {
                     Column(Modifier.clickable(enabled = u.line != null, onClick = openLineMap)) {
-                        Text(u.name.display(), fontWeight = FontWeight.Bold)
+                        Text(u.name.detailed(names), fontWeight = FontWeight.Bold)
                         // 보조 표기: 역명 언어가 일본어면 한국어, 아니면 일본어
                         val sub = if (names == AppLanguage.JA) u.name.ko else u.name.ja
                         if (sub.isNotBlank()) Text(sub, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
