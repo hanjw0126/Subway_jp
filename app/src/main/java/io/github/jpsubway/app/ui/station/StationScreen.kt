@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.github.jpsubway.app.core.i18n.AppLanguage
+import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.time.ServiceClock
 import io.github.jpsubway.app.domain.arrival.delayLabel
 import io.github.jpsubway.app.domain.arrival.minutesLabel
@@ -43,7 +45,9 @@ import io.github.jpsubway.app.domain.model.Network
 import io.github.jpsubway.app.domain.model.display
 import io.github.jpsubway.app.ui.common.LinePill
 import io.github.jpsubway.app.ui.common.StatusBanner
-import io.github.jpsubway.app.ui.common.trainTypeKo
+import io.github.jpsubway.app.ui.common.nameLanguage
+import io.github.jpsubway.app.ui.common.strings
+import io.github.jpsubway.app.ui.common.trainTypeLabel
 import io.github.jpsubway.app.ui.theme.DelayOrange
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
@@ -68,6 +72,8 @@ fun StationScreen(
     ),
 ) {
     val u by vm.ui.collectAsStateWithLifecycle()
+    val s = strings()
+    val names = nameLanguage()
     // 다음 화면 전환 방향: 1 = 오른쪽 역으로, -1 = 왼쪽 역으로, 0 = 제자리(노선 변경 등)
     var slide by remember { mutableIntStateOf(0) }
     val openLineMap: () -> Unit = {
@@ -85,11 +91,13 @@ fun StationScreen(
                 title = {
                     Column(Modifier.clickable(enabled = u.line != null, onClick = openLineMap)) {
                         Text(u.name.display(), fontWeight = FontWeight.Bold)
-                        if (u.name.ja.isNotBlank()) Text(u.name.ja, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        // 보조 표기: 역명 언어가 일본어면 한국어, 아니면 일본어
+                        val sub = if (names == AppLanguage.JA) u.name.ko else u.name.ja
+                        if (sub.isNotBlank()) Text(sub, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "뒤로") }
+                    IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = s.back) }
                 },
             )
         },
@@ -103,12 +111,12 @@ fun StationScreen(
                         onClick = { if (vm.setFrom()) onRoute() else onBack() },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(containerColor = FromGreen),
-                    ) { Text("출발") }
+                    ) { Text(s.from) }
                     Button(
                         onClick = { if (vm.setTo()) onRoute() else onBack() },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(containerColor = ToRed),
-                    ) { Text("도착") }
+                    ) { Text(s.to) }
                 }
             }
         },
@@ -116,7 +124,7 @@ fun StationScreen(
         when {
             u.loading -> Box(Modifier.fillMaxSize().padding(padding), Alignment.Center) { CircularProgressIndicator() }
             u.error != null || u.network == null -> Box(Modifier.fillMaxSize().padding(padding), Alignment.Center) {
-                Text(u.error ?: "데이터 없음")
+                Text(u.error ?: s.noData)
             }
             else -> Box(
                 Modifier
@@ -159,12 +167,13 @@ fun StationScreen(
                     },
                     modifier = Modifier.fillMaxSize(),
                     label = "station",
-                ) { s ->
-                    val net = s.network
+                ) { st ->
+                    val net = st.network
                     if (net != null) {
                         StationBody(
-                            u = s,
+                            u = st,
                             net = net,
+                            s = s,
                             onSelectLine = { id ->
                                 slide = 0
                                 vm.selectLine(id)
@@ -183,6 +192,7 @@ fun StationScreen(
 private fun StationBody(
     u: StationViewModel.Ui,
     net: Network,
+    s: Strings,
     onSelectLine: (String) -> Unit,
     onMove: (stationId: String, dir: Int) -> Unit,
     onOpenLineMap: () -> Unit,
@@ -214,7 +224,7 @@ private fun StationBody(
         item { StationStrip(u, net, lineColor, onMove, onOpenLineMap) }
         item {
             Text(
-                "역명을 누르면 노선 전체 지도 · 좌우로 밀면 이웃 역",
+                s.stationHint,
                 Modifier.fillMaxWidth(),
                 fontSize = 11.sp,
                 color = hintColor,
@@ -223,9 +233,9 @@ private fun StationBody(
         }
         val st = u.status
         if (st != null && !st.isNormal) item { StatusBanner(listOf(st), net) }
-        items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec) }
+        items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec, s) }
         item {
-            val extra = u.realtimeError?.let { " · 실시간 정보 오류: $it" }.orEmpty()
+            val extra = u.realtimeError?.let { " · ${s.realtimeError}: $it" }.orEmpty()
             Text(u.sourceLabel + extra, fontSize = 12.sp, color = hintColor)
         }
     }
@@ -280,34 +290,34 @@ private fun StationStrip(
 }
 
 @Composable
-private fun DirectionCard(b: DirectionBoard, net: Network, color: Color, nowSec: Int) {
+private fun DirectionCard(b: DirectionBoard, net: Network, color: Color, nowSec: Int, s: Strings) {
     Card(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp)) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(Modifier.size(10.dp).clip(CircleShape).background(color))
                 Spacer(Modifier.width(8.dp))
                 val dirName = b.direction.name.display().ifBlank { b.nextStationId?.let { net.stationName(it) } ?: "" }
-                Text("$dirName 방면", fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.weight(1f))
+                Text(s.bound(dirName), fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.weight(1f))
                 b.nextStationId?.let {
-                    Text("다음 역 ${net.stationName(it)}", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(s.nextStation(net.stationName(it)), fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
             HorizontalDivider(Modifier.padding(vertical = 10.dp))
             if (b.arrivals.isEmpty()) {
                 val ended = b.lastDepSec != null && nowSec > b.lastDepSec
-                Text(if (ended) "오늘 운행이 종료되었습니다" else "도착 예정 열차가 없습니다", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(if (ended) s.serviceEnded else s.noUpcoming, color = MaterialTheme.colorScheme.onSurfaceVariant)
             } else {
                 b.arrivals.forEachIndexed { i, a ->
                     if (i > 0) Spacer(Modifier.height(10.dp))
-                    ArrivalRow(a, net, first = i == 0)
+                    ArrivalRow(a, net, first = i == 0, s = s)
                 }
             }
             if (b.firstDepSec != null || b.lastDepSec != null) {
                 Spacer(Modifier.height(10.dp))
                 Text(
                     listOfNotNull(
-                        b.firstDepSec?.let { "첫차 ${ServiceClock.format(it)}" },
-                        b.lastDepSec?.let { "막차 ${ServiceClock.format(it)}" },
+                        b.firstDepSec?.let { s.firstTrain(ServiceClock.format(it)) },
+                        b.lastDepSec?.let { s.lastTrain(ServiceClock.format(it)) },
                     ).joinToString("  ·  "),
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -318,17 +328,17 @@ private fun DirectionCard(b: DirectionBoard, net: Network, color: Color, nowSec:
 }
 
 @Composable
-private fun ArrivalRow(a: Arrival, net: Network, first: Boolean) {
+private fun ArrivalRow(a: Arrival, net: Network, first: Boolean, s: Strings) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
-            val type = trainTypeKo(a.trip.trainType)
+            val type = trainTypeLabel(a.trip.trainType)
             Text(
-                (if (type.isNotBlank()) "[$type] " else "") + net.stationName(a.trip.destinationId) + "행",
+                (if (type.isNotBlank()) "[$type] " else "") + s.destination(net.stationName(a.trip.destinationId)),
                 fontWeight = if (first) FontWeight.SemiBold else FontWeight.Normal,
                 maxLines = 1, overflow = TextOverflow.Ellipsis,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("${a.phaseLabel()} · 예정 ${ServiceClock.format(a.scheduledSec)}", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("${a.phaseLabel()} · ${s.scheduled(ServiceClock.format(a.scheduledSec))}", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 a.delayLabel()?.let {
                     Spacer(Modifier.width(6.dp))
                     Text(it, fontSize = 12.sp, color = DelayOrange, fontWeight = FontWeight.SemiBold)

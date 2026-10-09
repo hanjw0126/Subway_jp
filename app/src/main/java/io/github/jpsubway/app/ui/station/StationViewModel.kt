@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.di.AppContainer
 import io.github.jpsubway.app.di.RegionSession
 import io.github.jpsubway.app.domain.arrival.ArrivalEstimator
@@ -55,10 +56,11 @@ class StationViewModel(
     }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), Ui())
 
     private fun build(d: RegionSession.Data, rt: RealtimeSnapshot, now: Int, group: String, sel: String?): Ui {
+        val str = Strings.current
         val net = d.network
         val stations = net.stationsByGroup[group].orEmpty()
         val lines = stations.mapNotNull { net.lineById[it.lineId] }.distinctBy { it.id }
-        if (lines.isEmpty()) return Ui(loading = false, error = "역 정보를 찾을 수 없습니다", group = group)
+        if (lines.isEmpty()) return Ui(loading = false, error = str.stationNotFound, group = group)
         val line = lines.firstOrNull { it.id == sel } ?: lines.first()
         val station = stations.first { it.lineId == line.id }
         val boards = estimator.boards(line, station.id, d.tripsByLine[line.id].orEmpty(), rt, now)
@@ -72,9 +74,9 @@ class StationViewModel(
             else -> null
         }
         val label = when {
-            d.timetable.isDemo -> "데모 시간표 기준 (실제 운행과 다를 수 있음)"
-            rt.available -> "시간표 + 실시간 지연 반영"
-            else -> "시간표 기준"
+            d.timetable.isDemo -> str.sourceDemo
+            rt.available -> str.sourceRealtime
+            else -> str.sourceSchedule
         }
         return Ui(
             loading = false, group = group, name = station.name, lines = lines, line = line, station = station, boards = boards,

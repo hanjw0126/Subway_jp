@@ -1,5 +1,6 @@
 package io.github.jpsubway.app.domain.arrival
 
+import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.domain.model.Arrival
 import io.github.jpsubway.app.domain.model.ArrivalPhase
 import io.github.jpsubway.app.domain.model.ArrivalSource
@@ -136,25 +137,34 @@ class ArrivalEstimator(private val perDirection: Int = 2, private val graceSec: 
     }
 }
 
-/** 카드 큰 글씨 */
-fun Arrival.minutesLabel(): String = when {
-    phase == ArrivalPhase.ARRIVED -> "도착"
-    minutes <= 0 || phase == ArrivalPhase.APPROACHING -> "곧 도착"
-    else -> "${minutes}분 후"
+/** 카드 큰 글씨 (현재 화면 언어) */
+fun Arrival.minutesLabel(): String {
+    val s = Strings.current
+    return when {
+        phase == ArrivalPhase.ARRIVED -> s.arrived
+        minutes <= 0 || phase == ArrivalPhase.APPROACHING -> s.arrivingSoon
+        else -> s.minutesLater(minutes)
+    }
 }
 
 /** 카드 보조 문구 */
-fun Arrival.phaseLabel(): String = when (phase) {
-    ArrivalPhase.ARRIVED -> "승강장 도착"
-    ArrivalPhase.APPROACHING -> "전역 출발 · 진입 중"
-    ArrivalPhase.LEFT_PREVIOUS -> "전역 출발"
-    ArrivalPhase.AT_PREVIOUS -> "전역 도착"
-    ArrivalPhase.EN_ROUTE -> stopsAway?.let { "${it}번째 전역" } ?: "운행 중"
-    ArrivalPhase.WAITING_AT_ORIGIN -> "출발 대기"
+fun Arrival.phaseLabel(): String {
+    val s = Strings.current
+    return when (phase) {
+        ArrivalPhase.ARRIVED -> s.phaseArrived
+        ArrivalPhase.APPROACHING -> s.phaseApproaching
+        ArrivalPhase.LEFT_PREVIOUS -> s.phaseLeftPrevious
+        ArrivalPhase.AT_PREVIOUS -> s.phaseAtPrevious
+        ArrivalPhase.EN_ROUTE -> stopsAway?.let { s.phaseStopsAway(it) } ?: s.phaseEnRoute
+        ArrivalPhase.WAITING_AT_ORIGIN -> s.phaseWaiting
+    }
 }
 
-fun Arrival.delayLabel(): String? = when {
-    source == ArrivalSource.SCHEDULE -> null
-    delaySec >= 60 -> "${delaySec / 60}분 지연"
-    else -> "정시"
+fun Arrival.delayLabel(): String? {
+    val s = Strings.current
+    return when {
+        source == ArrivalSource.SCHEDULE -> null
+        delaySec >= 60 -> s.delayed(delaySec / 60)
+        else -> s.onTime
+    }
 }
