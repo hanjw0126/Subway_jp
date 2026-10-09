@@ -69,9 +69,9 @@ class LoopDirectionTest {
         val outerBoard = boards.first { it.direction == outer }
         assertEquals("B8", outerBoard.prevStationId)
         assertEquals("B6", outerBoard.nextStationId)
-        // 해당 방면 열차가 없으면 기본(asc = 순번 증가) 표시
+        // 해당 방면 열차가 없으면 기본값: desc(내선) = 순번이 줄어드는 쪽 (i+1 에서 와서 i-1 로)
         val innerBoard = boards.first { it.direction == inner }
-        assertEquals("B6", innerBoard.prevStationId)
-        assertEquals("B8", innerBoard.nextStationId)
+        assertEquals("B8", innerBoard.prevStationId)
+        assertEquals("B6", innerBoard.nextStationId)
     }
 }
