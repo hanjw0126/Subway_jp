@@ -39,7 +39,7 @@ import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 import io.github.jpsubway.app.ui.theme.parseColor
 
-/** 역 도착정보 화면: 노선 탭 → 이전역·현재역·다음역 띠 → 방면별 "N분 후" 카드 2개 */
+/** 역 도착정보 화면: 노선 탭(환승역) 또는 노선 이름(단일 노선 역) → 이전역·현재역·다음역 띠 → 방면별 "N분 후" 카드 2개 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StationScreen(
@@ -105,6 +105,12 @@ fun StationScreen(
                                 }
                             }
                         }
+                    }
+                } else {
+                    // 환승역이 아닌 역: 선택할 탭은 없지만 노선 이름은 보여 준다
+                    val only = u.lines.firstOrNull()
+                    if (only != null) {
+                        item { Row { LinePill(only) } }
                     }
                 }
                 item { StationStrip(u, net, lineColor) }
