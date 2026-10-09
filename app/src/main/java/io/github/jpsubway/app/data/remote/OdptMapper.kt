@@ -1,13 +1,14 @@
 package io.github.jpsubway.app.data.remote
 
 import io.github.jpsubway.app.core.time.ServiceClock
+import io.github.jpsubway.app.domain.model.Direction
 import io.github.jpsubway.app.domain.model.Line
 import io.github.jpsubway.app.domain.model.StopTime
 import io.github.jpsubway.app.domain.model.Trip
 import kotlin.math.abs
 
 object OdptMapper {
-    /** ODPT 열차 시간표 → Trip. 네트워크에 없는 역(직통 운행 구간)은 제외하고, 방향은 역 순서로 판정 */
+    /** ODPT 열차 시간표 → Trip. 네트워크에 없는 역(직통 운행 구간)은 제외한다. 방향 판정은 [directionOf] */
     fun toTrip(dto: OdptTrainTimetable, line: Line, known: Set<String>): Trip? {
         val stops = ArrayList<StopTime>(dto.objects.size)
         var prev: Int? = null
@@ -21,10 +22,7 @@ object OdptMapper {
             if (sid in known) stops += StopTime(sid, arr, dep)
         }
         if (stops.size < 2) return null
-        val i0 = line.stations.indexOf(stops[0].stationId)
-        val i1 = line.stations.indexOf(stops[1].stationId)
-        val asc = if (i0 >= 0 && i1 >= 0) i1 > i0 else dto.railDirection == line.directions.asc.id
-        val dir = if (asc) line.directions.asc else line.directions.desc
+        val dir = directionOf(stops.map { it.stationId }, line, dto.railDirection)
         return Trip(
             id = dto.id.ifBlank { "${line.id}.${dto.trainNumber}" },
             lineId = line.id,
@@ -34,6 +32,45 @@ object OdptMapper {
             trainType = trainTypeKo(dto.trainType),
             stops = stops,
         )
+    }
+
+    /**
+     * 열차 방향(asc/desc) 판정.
+     *  - 순환선(야마노테선 등): ODPT railDirection(내선/외선)이 노선 방향과 일치하면 그대로 따른다.
+     *  - 역 순번이 한쪽으로만 움직이는 열차(일자선): 기존처럼 역 순서로 판정.
+     *    순환선은 끝 ↔ 처음 경계를 이웃으로 본다.
+     *  - 순번이 오르내리는 열차(오에도선처럼 지선에서 순환 구간으로 들어가는 6자형): railDirection 우선,
+     *    없으면 더 많이 움직인 쪽.
+     */
+    internal fun directionOf(stationIds: List<String>, line: Line, railDirection: String?): Direction {
+        val byRail = when (railDirection) {
+            null -> null
+            line.directions.asc.id -> line.directions.asc
+            line.directions.desc.id -> line.directions.desc
+            else -> null
+        }
+        if (line.loop && byRail != null) return byRail
+        val idx = line.stations.withIndex().associate { it.value to it.index }
+        val n = line.stations.size
+        var up = 0
+        var down = 0
+        for (k in 0 until stationIds.size - 1) {
+            val i = idx[stationIds[k]] ?: continue
+            val j = idx[stationIds[k + 1]] ?: continue
+            var d = j - i
+            if (line.loop && n > 0) {
+                d = ((d % n) + n) % n
+                if (d > n / 2) d -= n
+            }
+            if (d > 0) up++ else if (d < 0) down++
+        }
+        return when {
+            up > 0 && down == 0 -> line.directions.asc
+            down > 0 && up == 0 -> line.directions.desc
+            byRail != null -> byRail
+            up >= down -> line.directions.asc
+            else -> line.directions.desc
+        }
     }
 
     /**
@@ -73,7 +110,10 @@ object OdptMapper {
         for ((key, stops) in byTrain) {
             val m = meta[key] ?: continue
             val sign = if (m.first == line.directions.asc.id) 1 else -1
-            val sorted = stops.distinctBy { it.stationId }.sortedBy { (idx[it.stationId] ?: 0) * sign }
+            // 정차 순서는 시각으로 정한다 (순환선은 역 순번이 끝→처음으로 넘어가므로 순번 정렬이 틀린다)
+            val sorted = stops
+                .sortedWith(compareBy<StopTime>({ it.dep }, { (idx[it.stationId] ?: 0) * sign }))
+                .distinctBy { it.stationId }
             if (sorted.size < 2) continue
             out += Trip(
                 id = line.id + ".st." + key,
