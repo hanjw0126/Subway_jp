@@ -24,6 +24,7 @@ import io.github.jpsubway.app.core.i18n.Choseong
 import io.github.jpsubway.app.di.AppContainer
 import io.github.jpsubway.app.di.RegionSession
 import io.github.jpsubway.app.domain.model.Network
+import io.github.jpsubway.app.domain.model.detailed
 import io.github.jpsubway.app.domain.model.inLanguage
 import io.github.jpsubway.app.ui.common.LineBadge
 import io.github.jpsubway.app.ui.common.appContainer
@@ -45,13 +46,15 @@ class SearchViewModel(private val c: AppContainer) : ViewModel() {
     }
 }
 
-/** 한글·초성(ㅅㅈㅋ → 신주쿠)·일본어·가나·영문·역번호(G09) 검색 */
+/** 한글·초성(ㅅㅈㅋ → 신주쿠)·한국어 위키백과 표기·일본어·가나·영문·역번호(G09) 검색 */
 internal fun searchGroups(net: Network, groups: List<String>, query: String): List<String> {
     val q = query.trim()
     if (q.isEmpty()) return groups
     return groups.filter { g ->
         val n = net.groupName(g)
-        Choseong.matches(n.ko, q) || n.ja.contains(q) || n.kana.contains(q) ||
+        Choseong.matches(n.ko, q) ||
+            (n.koAlt.isNotBlank() && Choseong.matches(n.koAlt, q)) ||
+            n.ja.contains(q) || n.kana.contains(q) ||
             n.en.contains(q, ignoreCase = true) ||
             net.stationsByGroup[g].orEmpty().any { it.code.equals(q, ignoreCase = true) }
     }
@@ -113,7 +116,8 @@ fun StationSearchScreen(
                                     net.linesOfGroup(g).distinctBy { it.id }.forEach { LineBadge(it) }
                                 }
                             },
-                            headlineContent = { Text(name.inLanguage(names)) },
+                            // 한국어 역명이면 위키백과 표기를 괄호로 (위키백과 표기로 검색해도 왜 나왔는지 알 수 있게)
+                            headlineContent = { Text(name.detailed(names)) },
                             supportingContent = { Text(others) },
                         )
                     }

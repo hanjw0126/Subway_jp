@@ -6,6 +6,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ko_wiki  # noqa: E402
 from kana_to_hangul import load_overrides, resolve_ko  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
@@ -19,7 +20,10 @@ def dist_m(a, b):
     return 2 * 6371000 * math.asin(math.sqrt(h))
 
 
-def build(seed, overrides):
+def build(seed, overrides, wiki=None):
+    """wiki: 한국어 위키백과 역명 색인 (None 이면 tools/seed/ko_wiki.json). 앱 표기와 다르면 name.koAlt 로 넣는다"""
+    if wiki is None:
+        wiki = ko_wiki.load_index()
     lines, stations, group_pos = [], [], {}
     for L in seed["lines"]:
         path = L["id"].split(":", 1)[1]
@@ -32,8 +36,13 @@ def build(seed, overrides):
             if g in group_pos and dist_m(group_pos[g], (lat, lon)) > GROUP_RADIUS_M:
                 g = f"g.{en}.{L['code']}"
             group_pos.setdefault(g, (lat, lon))
+            ko = resolve_ko(ja, kana, overrides)
+            name = {"ja": ja, "ko": ko, "en": en, "kana": kana}
+            alt = ko_wiki.lookup(wiki, ja, lat, lon)
+            if alt and not ko_wiki.same_ko(alt, ko):
+                name["koAlt"] = alt
             stations.append({"id": sid, "lineId": L["id"], "code": code,
-                             "name": {"ja": ja, "ko": resolve_ko(ja, kana, overrides), "en": en, "kana": kana},
+                             "name": name,
                              "lat": lat, "lon": lon, "group": g})
             ids.append(sid)
 
