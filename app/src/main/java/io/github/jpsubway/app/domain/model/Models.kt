@@ -1,11 +1,20 @@
 package io.github.jpsubway.app.domain.model
 
+import io.github.jpsubway.app.core.i18n.AppLanguage
+import io.github.jpsubway.app.core.i18n.Lang
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class LocalizedName(val ja: String = "", val ko: String = "", val en: String = "", val kana: String = "")
 
-fun LocalizedName.display(): String = ko.ifBlank { ja.ifBlank { en } }
+/** 현재 역명 언어(Lang.names)로 표시. 비어 있으면 다른 언어로 대체 */
+fun LocalizedName.display(): String = inLanguage(Lang.names.value)
+
+fun LocalizedName.inLanguage(lang: AppLanguage): String = when (lang) {
+    AppLanguage.JA -> ja.ifBlank { ko.ifBlank { en } }
+    AppLanguage.EN -> en.ifBlank { ja.ifBlank { ko } }
+    else -> ko.ifBlank { ja.ifBlank { en } }
+}
 
 @Serializable
 data class Direction(val id: String, val name: LocalizedName = LocalizedName())

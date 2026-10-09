@@ -19,13 +19,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import io.github.jpsubway.app.core.i18n.AppLanguage
 import io.github.jpsubway.app.core.i18n.Choseong
 import io.github.jpsubway.app.di.AppContainer
 import io.github.jpsubway.app.di.RegionSession
 import io.github.jpsubway.app.domain.model.Network
-import io.github.jpsubway.app.domain.model.display
+import io.github.jpsubway.app.domain.model.inLanguage
 import io.github.jpsubway.app.ui.common.LineBadge
 import io.github.jpsubway.app.ui.common.appContainer
+import io.github.jpsubway.app.ui.common.nameLanguage
+import io.github.jpsubway.app.ui.common.strings
 
 class SearchViewModel(private val c: AppContainer) : ViewModel() {
     val state = c.session.state
@@ -63,9 +66,11 @@ fun StationSearchScreen(
     vm: SearchViewModel = viewModel(factory = SearchViewModel.Factory),
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
+    val s = strings()
+    val names = nameLanguage()
     val net = (state as? RegionSession.State.Ready)?.data?.network
     var q by rememberSaveable { mutableStateOf("") }
-    val groups = remember(net) { net?.let { n -> n.stationsByGroup.keys.sortedBy { n.groupName(it).display() } }.orEmpty() }
+    val groups = remember(net, names) { net?.let { n -> n.stationsByGroup.keys.sortedBy { n.groupName(it).inLanguage(names) } }.orEmpty() }
     val results = remember(net, groups, q) { if (net == null) emptyList() else searchGroups(net, groups, q) }
     val focus = remember { FocusRequester() }
     LaunchedEffect(Unit) { runCatching { focus.requestFocus() } }
@@ -73,8 +78,8 @@ fun StationSearchScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(when (mode) { "from" -> "출발역 선택"; "to" -> "도착역 선택"; else -> "역 검색" }) },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "뒤로") } },
+                title = { Text(when (mode) { "from" -> s.pickFrom; "to" -> s.pickTo; else -> s.stationSearch }) },
+                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = s.back) } },
             )
         },
     ) { padding ->
@@ -84,13 +89,17 @@ fun StationSearchScreen(
                 onValueChange = { q = it },
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).focusRequester(focus),
                 leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                placeholder = { Text("예: 신주쿠, ㅅㅈㅋ, 新宿, G09") },
+                placeholder = { Text(s.searchPlaceholder) },
                 singleLine = true,
             )
             if (net != null) {
                 LazyColumn(Modifier.fillMaxSize()) {
                     items(results, key = { it }) { g ->
                         val name = net.groupName(g)
+                        // 보조 표기: 지금 역명 언어가 아닌 나머지 표기
+                        val others = listOf(AppLanguage.JA to name.ja, AppLanguage.KO to name.ko, AppLanguage.EN to name.en)
+                            .filter { (l, v) -> l != names && v.isNotBlank() }
+                            .joinToString("  ") { it.second }
                         ListItem(
                             modifier = Modifier.clickable {
                                 when (mode) {
@@ -104,8 +113,8 @@ fun StationSearchScreen(
                                     net.linesOfGroup(g).distinctBy { it.id }.forEach { LineBadge(it) }
                                 }
                             },
-                            headlineContent = { Text(name.display()) },
-                            supportingContent = { Text(listOf(name.ja, name.en).filter { it.isNotBlank() }.joinToString("  ")) },
+                            headlineContent = { Text(name.inLanguage(names)) },
+                            supportingContent = { Text(others) },
                         )
                     }
                 }
