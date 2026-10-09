@@ -1,7 +1,15 @@
 package io.github.jpsubway.app.ui.station
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,23 +49,41 @@ import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 import io.github.jpsubway.app.ui.theme.parseColor
 
-/** 역 도착정보 화면: 노선 탭(환승역) 또는 노선 이름(단일 노선 역) → 이전역·현재역·다음역 띠 → 방면별 "N분 후" 카드 2개 */
+/**
+ * 역 도착정보 화면: 노선 탭(환승역) 또는 노선 이름(단일 노선 역) → 이전역·현재역·다음역 띠 → 방면별 "N분 후" 카드 2개.
+ *  - 역명(상단 제목 또는 역 띠 가운데)을 누르면 선택한 노선의 전체 지도
+ *  - 좌우로 밀거나 역 띠 양옆 역명을 누르면 같은 노선의 이웃 역으로 이동
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StationScreen(
     group: String,
     onBack: () -> Unit,
     onRoute: () -> Unit,
-    vm: StationViewModel = viewModel(key = "station-$group", factory = StationViewModel.factory(group)),
+    onOpenLineMap: (lineId: String, group: String) -> Unit,
+    initialLine: String? = null,
+    vm: StationViewModel = viewModel(
+        key = "station-$group-${initialLine.orEmpty()}",
+        factory = StationViewModel.factory(group, initialLine),
+    ),
 ) {
     val u by vm.ui.collectAsStateWithLifecycle()
-    val lineColor = u.line?.let { parseColor(it.color) } ?: MaterialTheme.colorScheme.primary
+    // 다음 화면 전환 방향: 1 = 오른쪽 역으로, -1 = 왼쪽 역으로, 0 = 제자리(노선 변경 등)
+    var slide by remember { mutableIntStateOf(0) }
+    val openLineMap: () -> Unit = {
+        val cur = vm.ui.value
+        cur.line?.let { onOpenLineMap(it.id, cur.group) }
+    }
+    val move: (String, Int) -> Unit = { stationId, dir ->
+        slide = dir
+        vm.moveTo(stationId)
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Column {
+                    Column(Modifier.clickable(enabled = u.line != null, onClick = openLineMap)) {
                         Text(u.name.display(), fontWeight = FontWeight.Bold)
                         if (u.name.ja.isNotBlank()) Text(u.name.ja, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
@@ -85,57 +113,152 @@ fun StationScreen(
             }
         },
     ) { padding ->
-        val net = u.network
         when {
             u.loading -> Box(Modifier.fillMaxSize().padding(padding), Alignment.Center) { CircularProgressIndicator() }
-            u.error != null || net == null -> Box(Modifier.fillMaxSize().padding(padding), Alignment.Center) {
+            u.error != null || u.network == null -> Box(Modifier.fillMaxSize().padding(padding), Alignment.Center) {
                 Text(u.error ?: "데이터 없음")
             }
-            else -> LazyColumn(
-                Modifier.fillMaxSize().padding(padding),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                if (u.lines.size > 1) {
-                    item {
-                        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            u.lines.forEach { l ->
-                                Box(Modifier.clip(RoundedCornerShape(50)).clickable { vm.selectLine(l.id) }) {
-                                    LinePill(l, selected = l.id == u.line?.id)
+            else -> Box(
+                Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .pointerInput(Unit) {
+                        val threshold = 72.dp.toPx()
+                        var total = 0f
+                        detectHorizontalDragGestures(
+                            onDragStart = { total = 0f },
+                            onDragEnd = {
+                                val cur = vm.ui.value
+                                val toRight = total <= -threshold // 손가락을 왼쪽으로 밀면 오른쪽(다음) 역
+                                val toLeft = total >= threshold
+                                val target = when {
+                                    toRight -> cur.rightStationId
+                                    toLeft -> cur.leftStationId
+                                    else -> null
                                 }
-                            }
+                                if (target != null) move(target, if (toRight) 1 else -1)
+                            },
+                            onHorizontalDrag = { change, amount ->
+                                total += amount
+                                change.consume()
+                            },
+                        )
+                    },
+            ) {
+                AnimatedContent(
+                    targetState = u,
+                    contentKey = { it.station?.id ?: it.group },
+                    transitionSpec = {
+                        val d = slide
+                        if (d == 0) {
+                            fadeIn(tween(150)) togetherWith fadeOut(tween(150))
+                        } else {
+                            slideInHorizontally(tween(220)) { w -> w * d } togetherWith
+                                slideOutHorizontally(tween(220)) { w -> -w * d }
                         }
+                    },
+                    modifier = Modifier.fillMaxSize(),
+                    label = "station",
+                ) { s ->
+                    val net = s.network
+                    if (net != null) {
+                        StationBody(
+                            u = s,
+                            net = net,
+                            onSelectLine = { id ->
+                                slide = 0
+                                vm.selectLine(id)
+                            },
+                            onMove = move,
+                            onOpenLineMap = openLineMap,
+                        )
                     }
-                } else {
-                    // 환승역이 아닌 역: 선택할 탭은 없지만 노선 이름은 보여 준다
-                    val only = u.lines.firstOrNull()
-                    if (only != null) {
-                        item { Row { LinePill(only) } }
-                    }
-                }
-                item { StationStrip(u, net, lineColor) }
-                val st = u.status
-                if (st != null && !st.isNormal) item { StatusBanner(listOf(st), net) }
-                items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec) }
-                item {
-                    val extra = u.realtimeError?.let { " · 실시간 정보 오류: $it" }.orEmpty()
-                    Text(u.sourceLabel + extra, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }
     }
 }
 
-/** "이전역 ← 현재역 → 다음역" 띠 */
 @Composable
-private fun StationStrip(u: StationViewModel.Ui, net: Network, color: Color) {
-    val left = u.boards.getOrNull(1)?.prevStationId      // asc 방향 열차가 오는 쪽
-    val right = u.boards.getOrNull(1)?.nextStationId
+private fun StationBody(
+    u: StationViewModel.Ui,
+    net: Network,
+    onSelectLine: (String) -> Unit,
+    onMove: (stationId: String, dir: Int) -> Unit,
+    onOpenLineMap: () -> Unit,
+) {
+    val lineColor = u.line?.let { parseColor(it.color) } ?: MaterialTheme.colorScheme.primary
+    val hintColor = MaterialTheme.colorScheme.onSurfaceVariant
+    LazyColumn(
+        Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        if (u.lines.size > 1) {
+            item {
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    u.lines.forEach { l ->
+                        Box(Modifier.clip(RoundedCornerShape(50)).clickable { onSelectLine(l.id) }) {
+                            LinePill(l, selected = l.id == u.line?.id)
+                        }
+                    }
+                }
+            }
+        } else {
+            // 환승역이 아닌 역: 선택할 탭은 없지만 노선 이름은 보여 준다
+            val only = u.lines.firstOrNull()
+            if (only != null) {
+                item { Row { LinePill(only) } }
+            }
+        }
+        item { StationStrip(u, net, lineColor, onMove, onOpenLineMap) }
+        item {
+            Text(
+                "역명을 누르면 노선 전체 지도 · 좌우로 밀면 이웃 역",
+                Modifier.fillMaxWidth(),
+                fontSize = 11.sp,
+                color = hintColor,
+                textAlign = TextAlign.Center,
+            )
+        }
+        val st = u.status
+        if (st != null && !st.isNormal) item { StatusBanner(listOf(st), net) }
+        items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec) }
+        item {
+            val extra = u.realtimeError?.let { " · 실시간 정보 오류: $it" }.orEmpty()
+            Text(u.sourceLabel + extra, fontSize = 12.sp, color = hintColor)
+        }
+    }
+}
+
+/** "이전역 ← 현재역 → 다음역" 띠. 양옆 역명 = 이웃 역으로 이동, 가운데 역명 = 노선 전체 지도 */
+@Composable
+private fun StationStrip(
+    u: StationViewModel.Ui,
+    net: Network,
+    color: Color,
+    onMove: (stationId: String, dir: Int) -> Unit,
+    onOpenLineMap: () -> Unit,
+) {
+    val left = u.leftStationId
+    val right = u.rightStationId
     Box(Modifier.fillMaxWidth().height(56.dp), contentAlignment = Alignment.Center) {
         Box(Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)).background(color))
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Text(left?.let { "‹ " + net.stationName(it) }.orEmpty(), Modifier.weight(1f).padding(top = 32.dp), fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            Surface(shape = RoundedCornerShape(50), color = Color.White, border = androidx.compose.foundation.BorderStroke(3.dp, color)) {
+            Text(
+                left?.let { "‹ " + net.stationName(it) }.orEmpty(),
+                Modifier
+                    .weight(1f)
+                    .clickable(enabled = left != null) { if (left != null) onMove(left, -1) }
+                    .padding(top = 32.dp),
+                fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis,
+            )
+            Surface(
+                modifier = Modifier.clip(RoundedCornerShape(50)).clickable(onClick = onOpenLineMap),
+                shape = RoundedCornerShape(50),
+                color = Color.White,
+                border = androidx.compose.foundation.BorderStroke(3.dp, color),
+            ) {
                 Text(
                     (u.station?.code?.let { if (it.isNotBlank()) "$it " else "" } ?: "") + u.name.display(),
                     Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
@@ -145,9 +268,12 @@ private fun StationStrip(u: StationViewModel.Ui, net: Network, color: Color) {
             }
             Text(
                 right?.let { net.stationName(it) + " ›" }.orEmpty(),
-                Modifier.weight(1f).padding(top = 32.dp),
+                Modifier
+                    .weight(1f)
+                    .clickable(enabled = right != null) { if (right != null) onMove(right, 1) }
+                    .padding(top = 32.dp),
                 fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis,
-                textAlign = androidx.compose.ui.text.style.TextAlign.End,
+                textAlign = TextAlign.End,
             )
         }
     }
