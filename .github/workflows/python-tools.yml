@@ -2,7 +2,8 @@ name: Data tools
 
 on:
   push:
-    branches: [ main ]
+    # main + 작업 브랜치 (Auto PR 이 만든 PR 에서는 pull_request 이벤트가 오지 않으므로 push 로 검사)
+    branches: [ main, "feat-*", "fix-*", "ui-*", "release-*", "ci-*", "docs-*", "chore-*" ]
     paths: [ "tools/**", "app/src/main/assets/**" ]
   pull_request:
     paths: [ "tools/**", "app/src/main/assets/**" ]
