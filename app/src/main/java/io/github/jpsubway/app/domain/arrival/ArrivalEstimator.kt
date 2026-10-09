@@ -25,12 +25,13 @@ class ArrivalEstimator(private val perDirection: Int = 2, private val graceSec: 
             k in 0 until n -> line.stations[k]
             else -> null
         }
-        // desc(순번 감소) 열차는 i+1 에서 와서 i-1 로 간다. asc 는 반대.
-        return listOf(
-            Triple(line.directions.desc, at(i + 1), at(i - 1)),
-            Triple(line.directions.asc, at(i - 1), at(i + 1)),
-        ).map { (dir, prev, next) ->
+        // 기본: desc(순번 감소) 열차는 i+1 에서 와서 i-1 로 간다. asc 는 반대.
+        // 단, 오에도선(6자형)처럼 같은 방면이라도 구간에 따라 순번 방향이 다르면 이 역에서 실제로 달리는 방향을 따른다.
+        return listOf(line.directions.desc to false, line.directions.asc to true).map { (dir, ascDefault) ->
             val dirTrips = trips.filter { it.lineId == line.id && it.directionId == dir.id }
+            val up = movesUp(line, stationId, dirTrips) ?: ascDefault
+            val prev = if (up) at(i - 1) else at(i + 1)
+            val next = if (up) at(i + 1) else at(i - 1)
             val arrivals = dirTrips.asSequence()
                 .mapNotNull { estimate(it, stationId, rt, nowSec) }
                 .sortedBy { it.predictedSec }
@@ -41,6 +42,43 @@ class ArrivalEstimator(private val perDirection: Int = 2, private val graceSec: 
                 if (si < 0 || si == t.stops.lastIndex) null else t.stops[si].dep
             }
             DirectionBoard(dir, prev, next, arrivals, deps.minOrNull(), deps.maxOrNull())
+        }
+    }
+
+    /**
+     * 이 방면 열차들이 이 역에서 역 순번이 커지는 쪽으로 달리는가 (열차별 다수결).
+     * 순환선은 끝 ↔ 처음을 이웃으로 본다. 판단할 열차가 없으면 null.
+     */
+    private fun movesUp(line: Line, stationId: String, dirTrips: List<Trip>): Boolean? {
+        val i = line.stations.indexOf(stationId)
+        if (i < 0) return null
+        val n = line.stations.size
+        val idx = HashMap<String, Int>(n * 2)
+        line.stations.forEachIndexed { k, s -> idx[s] = k }
+        fun delta(from: Int, to: Int): Int {
+            var d = to - from
+            if (line.loop && n > 0) {
+                d = ((d % n) + n) % n
+                if (d > n / 2) d -= n
+            }
+            return d
+        }
+        var up = 0
+        var down = 0
+        for (t in dirTrips) {
+            val si = t.stops.indexOfFirst { it.stationId == stationId }
+            if (si < 0) continue
+            val d = when {
+                si < t.stops.lastIndex -> idx[t.stops[si + 1].stationId]?.let { delta(i, it) }
+                si > 0 -> idx[t.stops[si - 1].stationId]?.let { delta(it, i) }
+                else -> null
+            } ?: continue
+            if (d > 0) up++ else if (d < 0) down++
+        }
+        return when {
+            up > down -> true
+            down > up -> false
+            else -> null
         }
     }
 

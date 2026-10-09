@@ -62,7 +62,15 @@ class StationViewModel(
         val line = lines.firstOrNull { it.id == sel } ?: lines.first()
         val station = stations.first { it.lineId == line.id }
         val boards = estimator.boards(line, station.id, d.tripsByLine[line.id].orEmpty(), rt, now)
-        val asc = boards.getOrNull(1) // asc 방향: prev = 순번 이전 역, next = 다음 역
+        // 역 띠·스와이프의 좌우는 열차 방향과 관계없이 노선 순번으로 고정 (순환선은 끝↔처음 연결)
+        val i = line.stations.indexOf(station.id)
+        val n = line.stations.size
+        fun at(k: Int): String? = when {
+            i < 0 -> null
+            line.loop -> line.stations[((k % n) + n) % n]
+            k in 0 until n -> line.stations[k]
+            else -> null
+        }
         val label = when {
             d.timetable.isDemo -> "데모 시간표 기준 (실제 운행과 다를 수 있음)"
             rt.available -> "시간표 + 실시간 지연 반영"
@@ -70,7 +78,7 @@ class StationViewModel(
         }
         return Ui(
             loading = false, group = group, name = station.name, lines = lines, line = line, station = station, boards = boards,
-            leftStationId = asc?.prevStationId, rightStationId = asc?.nextStationId,
+            leftStationId = at(i - 1), rightStationId = at(i + 1),
             status = rt.statuses[line.id], sourceLabel = label, realtimeError = rt.error, network = net, nowSec = now,
         )
     }
