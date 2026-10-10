@@ -1,15 +1,18 @@
+import importlib.util
 import os
-import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "seoul"))
+from build_network_from_seed import build
+from kana_to_hangul import load_overrides
 
-import build_seed  # noqa: E402
-from build_network_from_seed import build  # noqa: E402
-from kana_to_hangul import load_overrides  # noqa: E402
+# tools/c2026/build_seed.py 와 모듈 이름이 겹치지 않도록 파일 경로로 불러온다
+_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "seoul", "build_seed.py")
+_spec = importlib.util.spec_from_file_location("seoul_build_seed", _PATH)
+seoul_seed = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(seoul_seed)
 
 
 def _seed():
-    return build_seed.build()
+    return seoul_seed.build()
 
 
 def test_seed_shape():
