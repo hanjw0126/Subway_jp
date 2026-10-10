@@ -74,6 +74,21 @@ def ko_line_name(L, overrides):
     return L["name"].get("ko") or L["id"].split(".")[-1]
 
 
+def public_seed_lines(seed_dir):
+    """tools/seed/*.json 중 노선 seed({"lines": [...]}) 만 골라 노선을 돌려준다.
+    같은 폴더의 다른 데이터(ko_wiki.json 같은 목록)나 다른 나라 seed(kr: 노선)는 건너뛴다."""
+    for fn in sorted(os.listdir(seed_dir)):
+        if not fn.endswith(".json"):
+            continue
+        with open(os.path.join(seed_dir, fn), encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, dict):
+            continue
+        for L in data.get("lines", []):
+            if str(L.get("id", "")).startswith("odpt."):
+                yield L
+
+
 def main():
     key = os.environ.get("ODPT_C2026_KEY", "")
     if not key:
@@ -83,13 +98,11 @@ def main():
     overrides = load_overrides()
     known_kana, public_ids = {}, set()
     seed_dir = os.path.join(TOOLS, "seed")
-    for fn in sorted(os.listdir(seed_dir)):
-        if fn.endswith(".json"):
-            for L in json.load(open(os.path.join(seed_dir, fn), encoding="utf-8")).get("lines", []):
-                public_ids.add(L["id"])
-                for st in L["stations"]:
-                    if st[3]:
-                        known_kana.setdefault(st[2], st[3])
+    for L in public_seed_lines(seed_dir):
+        public_ids.add(L["id"])
+        for st in L["stations"]:
+            if st[3]:
+                known_kana.setdefault(st[2], st[3])
     os.makedirs(OUT, exist_ok=True)
     for reg in CFG["regions"]:
         raw = {}
