@@ -4,6 +4,7 @@
 1) 노선도 생성과 같은 투영(geo_projection: 방사 압축 포함)으로 강과 역을 평면에 옮기고,
 2) 강의 각 점마다 가까운 역 K곳의 '평면 위치 → 노선도 위치'를 거리 가중 평균해 옮긴다.
 가장 가까운 역에서 TRIM_KM 보다 먼 강 양 끝은 잘라 낸다 (역이 드문 외곽에서 크게 튀는 것 방지).
+마지막에 이동 평균(SMOOTH_WIN)으로 노선도 격자 때문에 생긴 굴곡을 펴 준다.
 """
 import json
 import math
@@ -14,6 +15,7 @@ import geo_projection
 K = 6
 WIDTH_UNITS = 0.55  # 강 폭 (역 간격 배수)
 TRIM_KM = 3.0
+SMOOTH_WIN = 3  # 앞뒤 점 개수 (점 간격 약 350 m)
 
 
 def _km(la1, lo1, la2, lo2):
@@ -22,7 +24,7 @@ def _km(la1, lo1, la2, lo2):
     return math.hypot(dx, dy)
 
 
-def _smooth(pts, win=1):
+def _smooth(pts, win=SMOOTH_WIN):
     if len(pts) < 3:
         return pts
     out = []
