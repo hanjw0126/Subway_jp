@@ -28,6 +28,9 @@ class RegionSession(private val c: AppContainer) {
     ) {
         val tripsByLine: Map<String, List<Trip>> = timetable.trips.groupBy { it.lineId }
         val router: RaptorRouter by lazy { RaptorRouter(RaptorIndex.build(network, timetable)) }
+
+        /** 한국(서울) 지역: 시간표 없이 역별 실시간 도착정보 API 를 쓴다 */
+        val isLiveArrivals: Boolean get() = region.country == "kr"
     }
 
     sealed interface State {
@@ -73,15 +76,21 @@ class RegionSession(private val c: AppContainer) {
             val region = c.networks.region(regionId)
             val network = c.networks.network(region.id)
             val layout = c.networks.layout(region.id)
-            val day = DayType.of(ServiceClock.now().serviceDate)
+            val now = ServiceClock.now()
+            val day = DayType.of(now.serviceDate)
             var err: String? = null
-            val tt = try {
-                c.timetables.get(region, network, day, force)
-            } catch (e: CancellationException) {
-                throw e
-            } catch (e: Exception) {
-                err = e.message ?: e.javaClass.simpleName
-                DemoTimetableSource.generate(network, day)
+            val tt = if (region.country == "kr") {
+                // 서울: 시간표 없음 (도착정보는 역 화면에서 실시간 API 로)
+                Timetable(region.id, day.name, "live", now.epochSec, emptyList())
+            } else {
+                try {
+                    c.timetables.get(region, network, day, force)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    err = e.message ?: e.javaClass.simpleName
+                    DemoTimetableSource.generate(network, day)
+                }
             }
             _state.value = State.Ready(Data(region, network, layout, tt, day, err))
         } catch (e: CancellationException) {
@@ -101,7 +110,8 @@ class RegionSession(private val c: AppContainer) {
                     reload()
                     return@collectLatest
                 }
-                if (d.region.realtime && c.settings.hasToken()) {
+                // ODPT 실시간은 일본 지역만 (서울은 역 화면이 도착정보를 직접 받는다)
+                if (!d.isLiveArrivals && d.region.realtime && c.settings.hasToken()) {
                     _realtime.value = try {
                         c.realtime.snapshot(d.region, d.network, now.epochSec)
                     } catch (e: CancellationException) {
