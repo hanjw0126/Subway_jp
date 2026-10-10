@@ -1,6 +1,7 @@
 [
   {
     "id": "tokyo",
+    "country": "jp",
     "name": {
       "ko": "도쿄",
       "ja": "東京",
@@ -19,6 +20,7 @@
   },
   {
     "id": "yokohama",
+    "country": "jp",
     "name": {
       "ko": "요코하마",
       "ja": "横浜",
@@ -34,6 +36,7 @@
   },
   {
     "id": "tama",
+    "country": "jp",
     "mergeInto": "tokyo",
     "name": {
       "ko": "다마",
@@ -50,6 +53,7 @@
   },
   {
     "id": "osaka",
+    "country": "jp",
     "name": {
       "ko": "오사카",
       "ja": "大阪",
@@ -62,5 +66,21 @@
     "seed": "osaka.json",
     "generator": "manual",
     "note": "미도스지·주오선 · 실시간 미제공 → 데모 시간표"
+  },
+  {
+    "id": "seoul",
+    "country": "kr",
+    "name": {
+      "ko": "서울",
+      "ja": "ソウル",
+      "en": "Seoul"
+    },
+    "realtime": true,
+    "operators": [
+      "kr:Seoul"
+    ],
+    "seed": "seoul.json",
+    "generator": "seoul",
+    "note": "수도권 전철 19개 노선 (서울 열린데이터광장)"
   }
 ]

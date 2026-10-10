@@ -1,4 +1,7 @@
-"""모든 지역: seed(병합 포함) → network.json → layout.json → 지역 간 환승 표시 → (선택) docs/images/map_<region>.png"""
+"""모든 지역: seed(병합 포함) → network.json → layout.json → 지역 간 환승 표시 → (선택) docs/images/map_<region>.png
+
+서울 seed(tools/seed/seoul.json)는 tools/seoul/raw 원본에서 매번 다시 만든다 (네트워크 불필요).
+"""
 import argparse
 import json
 import os
@@ -25,12 +28,14 @@ def main():
     ap.add_argument("--no-preview", action="store_true")
     ap.add_argument("--font")
     a = ap.parse_args()
-    regions = app_regions()
+    if os.path.exists(os.path.join(HERE, "seoul", "raw", "SearchSTNBySubwayLineInfo.json")):
+        run(os.path.join(HERE, "seoul", "build_seed.py"))
+    regions = [r for r in app_regions() if os.path.exists(os.path.join(HERE, "seed", r["seed"]))]
     ids = [r["id"] for r in regions]
     os.makedirs(ASSETS, exist_ok=True)
     with open(os.path.join(ASSETS, "regions.json"), "w", encoding="utf-8") as f:
-        json.dump([{k: r[k] for k in ("id", "name", "realtime", "operators", "note")} for r in regions],
-                  f, ensure_ascii=False, indent=2)
+        json.dump([{**{k: r[k] for k in ("id", "name", "realtime", "operators", "note")}, "country": r.get("country", "jp")}
+                   for r in regions], f, ensure_ascii=False, indent=2)
         f.write("\n")
     for d in sorted(os.listdir(ASSETS)):
         p = os.path.join(ASSETS, d)
