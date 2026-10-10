@@ -23,8 +23,8 @@ import io.github.jpsubway.app.ui.common.nameLanguage
 import io.github.jpsubway.app.ui.common.strings
 
 class RegionViewModel(private val c: AppContainer) : ViewModel() {
-    /** 일본 지역만 (한국 등 다른 나라는 메인 화면에서 국가를 골라 들어간다) */
-    val regions = c.networks.regions.filter { it.country == "jp" }
+    /** 현재 국가의 지역만 (다른 나라는 메인 화면에서 국가를 골라 들어간다) */
+    val regions = c.networks.regions.filter { it.country == c.settings.country.value }
     val current = c.settings.regionId
     fun select(id: String) {
         if (id != current.value) {
@@ -53,8 +53,12 @@ fun RegionPickerScreen(onBack: () -> Unit, vm: RegionViewModel = viewModel(facto
     ) { padding ->
         LazyColumn(Modifier.fillMaxSize().padding(padding)) {
             items(vm.regions, key = { it.id }) { r ->
-                // 보조 줄: 한국어 화면이면 지역 설명(note), 아니면 일본어 지역명
-                val sub = if (names == AppLanguage.JA) r.name.en.ifBlank { r.name.ko } else r.note.takeIf { names == AppLanguage.KO }.orEmpty().ifBlank { r.name.ja }
+                // 보조 줄: 한국어 화면이면 지역 설명(note), 아니면 다른 표기
+                val sub = when {
+                    names == AppLanguage.KO -> r.note.ifBlank { r.name.en }
+                    names == AppLanguage.JA -> r.name.en.ifBlank { r.name.ko }
+                    else -> r.name.ko.ifBlank { r.name.ja }
+                }
                 ListItem(
                     modifier = Modifier.clickable { vm.select(r.id); onBack() },
                     headlineContent = { Text(r.name.inLanguage(names)) },

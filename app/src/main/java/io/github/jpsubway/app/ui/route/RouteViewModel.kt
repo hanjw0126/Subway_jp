@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import io.github.jpsubway.app.core.i18n.KoreaStrings
 import io.github.jpsubway.app.core.i18n.Lang
 import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.time.ServiceClock
@@ -50,6 +51,8 @@ class RouteViewModel(private val c: AppContainer) : ViewModel() {
             toName = t?.let { net.groupName(it).display() }.orEmpty(),
             offsetMin = off, network = net, isDemo = d.timetable.isDemo,
         )
+        // 한국(서울): 시간표가 없어 경로 검색을 할 수 없다
+        if (d.isLiveArrivals) return base.copy(message = KoreaStrings.routeNotSupported(Lang.ui.value))
         if (f == null || t == null) return base.copy(message = str.chooseFromTo)
         if (f == t) return base.copy(message = str.sameFromTo)
         val depart = ServiceClock.now().seconds + off * 60
