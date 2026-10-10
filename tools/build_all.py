@@ -1,6 +1,7 @@
-"""모든 지역: seed(병합 포함) → network.json → layout.json → 지역 간 환승 표시 → (선택) docs/images/map_<region>.png
+"""모든 지역: seed(병합 포함) → network.json → layout.json(+강) → 지역 간 환승 표시 → (선택) docs/images/map_<region>.png
 
 서울 seed(tools/seed/seoul.json)는 tools/seoul/raw 원본에서 매번 다시 만든다 (네트워크 불필요).
+강: regions.json 의 "rivers" (tools/ 기준 경로) 파일이 있으면 노선도 좌표로 옮겨 layout.json 에 넣는다.
 """
 import argparse
 import json
@@ -15,6 +16,7 @@ ROOT = os.path.dirname(HERE)
 ASSETS = os.path.join(ROOT, "app", "src", "main", "assets", "regions")
 sys.path.insert(0, HERE)
 
+import rivers  # noqa: E402
 from cross_region import add_ghosts  # noqa: E402
 from seed_merge import app_regions, load_region_seed  # noqa: E402
 
@@ -53,6 +55,8 @@ def main():
         finally:
             os.unlink(tmp)
         run(os.path.join(HERE, "layout_schematic.py"), os.path.join(rd, "network.json"))
+        if r.get("rivers"):
+            rivers.attach(rd, [os.path.join(HERE, p) for p in r["rivers"]])
     add_ghosts(ASSETS, ids)
     if not a.no_preview:
         extra = ["--font", a.font] if a.font else []
