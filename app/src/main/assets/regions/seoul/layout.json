@@ -7522,8 +7522,8 @@
    "lineId": "kr.Seoul.1",
    "color": "#0052A4",
    "code": "1",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2490.0,
@@ -8437,8 +8437,8 @@
    "lineId": "kr.Seoul.1.Gyeongbu",
    "color": "#0052A4",
    "code": "1",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2223.0,
@@ -8935,8 +8935,8 @@
    "lineId": "kr.Seoul.1.Gwangmyeong",
    "color": "#0052A4",
    "code": "1",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1720.91,
@@ -8963,8 +8963,8 @@
    "lineId": "kr.Seoul.1.Seodongtan",
    "color": "#0052A4",
    "code": "1",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2389.09,
@@ -8991,8 +8991,8 @@
    "lineId": "kr.Seoul.2",
    "color": "#00A84D",
    "code": "2",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [],
    "segments": [
     {
@@ -9632,8 +9632,8 @@
    "lineId": "kr.Seoul.2.Seongsu",
    "color": "#00A84D",
    "code": "2",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [],
    "segments": [
     {
@@ -9702,8 +9702,8 @@
    "lineId": "kr.Seoul.2.Sinjeong",
    "color": "#00A84D",
    "code": "2",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [],
    "segments": [
     {
@@ -9764,8 +9764,8 @@
    "lineId": "kr.Seoul.3",
    "color": "#EF7C1C",
    "code": "3",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1173.0,
@@ -10390,8 +10390,8 @@
    "lineId": "kr.Seoul.4",
    "color": "#00A5DE",
    "code": "4",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2907.0,
@@ -11079,8 +11079,8 @@
    "lineId": "kr.Seoul.5",
    "color": "#996CAC",
    "code": "5",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1489.09,
@@ -11794,8 +11794,8 @@
    "lineId": "kr.Seoul.5.Macheon",
    "color": "#996CAC",
    "code": "5",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2967.0,
@@ -11900,8 +11900,8 @@
    "lineId": "kr.Seoul.6",
    "color": "#CD7C2F",
    "code": "6",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2730.0,
@@ -12486,8 +12486,8 @@
    "lineId": "kr.Seoul.7",
    "color": "#747F00",
    "code": "7",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2509.09,
@@ -13233,8 +13233,8 @@
    "lineId": "kr.Seoul.8",
    "color": "#E6186C",
    "code": "8",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2850.0,
@@ -13571,8 +13571,8 @@
    "lineId": "kr.Seoul.9",
    "color": "#BDB092",
    "code": "9",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1300.91,
@@ -14127,8 +14127,8 @@
    "lineId": "kr.Seoul.KJ",
    "color": "#77C4A3",
    "code": "경의",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      4617.0,
@@ -14908,8 +14908,8 @@
    "lineId": "kr.Seoul.KJ.Seoul",
    "color": "#77C4A3",
    "code": "경의",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [],
    "segments": [
     {
@@ -14952,8 +14952,8 @@
    "lineId": "kr.Seoul.AREX",
    "color": "#0090D2",
    "code": "공항",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      150.0,
@@ -15160,8 +15160,8 @@
    "lineId": "kr.Seoul.GC",
    "color": "#0C8E72",
    "code": "경춘",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2569.09,
@@ -15486,8 +15486,8 @@
    "lineId": "kr.Seoul.GC.Kwangwoon",
    "color": "#0C8E72",
    "code": "경춘",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2518.18,
@@ -15518,8 +15518,8 @@
    "lineId": "kr.Seoul.SB",
    "color": "#FABE00",
    "code": "수인",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2550.0,
@@ -16375,8 +16375,8 @@
    "lineId": "kr.Seoul.SBD",
    "color": "#D4003B",
    "code": "신분",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2248.18,
@@ -16613,8 +16613,8 @@
    "lineId": "kr.Seoul.GG",
    "color": "#003DA5",
    "code": "경강",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2583.0,
@@ -16779,8 +16779,8 @@
    "lineId": "kr.Seoul.WS",
    "color": "#8FC31F",
    "code": "서해",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1323.0,
@@ -17070,8 +17070,8 @@
    "lineId": "kr.Seoul.UI",
    "color": "#B0CE18",
    "code": "우이",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2280.0,
@@ -17249,8 +17249,8 @@
    "lineId": "kr.Seoul.SL",
    "color": "#6789CA",
    "code": "신림",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      2007.0,
@@ -17402,8 +17402,8 @@
    "lineId": "kr.Seoul.GTXA",
    "color": "#9A6292",
    "code": "A",
-   "category": "private",
-   "filter": "private",
+   "category": "metro",
+   "filter": "subway",
    "terminals": [
     [
      1440.0,
