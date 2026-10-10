@@ -38,7 +38,7 @@ jobs:
           ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
           LAYOUT_REPAIR_BUDGET: "1800"
         run: |
-          mkdir -p ci-logs
+          mkdir -p "$RUNNER_TEMP/logs"
           set -o pipefail
           {
             echo "== start $(date -u +%H:%M:%S)"
@@ -51,7 +51,7 @@ jobs:
             python tools/validate_assets.py
             python tools/c2026/report.py
             echo "== done $(date -u +%H:%M:%S)"
-          } 2>&1 | tee ci-logs/full-data.log
+          } 2>&1 | tee "$RUNNER_TEMP/logs/data.log"
       - name: Build release APK (debug key)
         id: build
         continue-on-error: true
@@ -60,21 +60,28 @@ jobs:
           VERSION_CODE: "999"
         run: |
           set -o pipefail
-          gradle --no-daemon testReleaseUnitTest assembleRelease --stacktrace 2>&1 | tee ci-logs/full-gradle.log
+          gradle --no-daemon testReleaseUnitTest assembleRelease --stacktrace 2>&1 | tee "$RUNNER_TEMP/logs/gradle.log"
       - name: Commit logs
         if: always()
         run: |
+          # 빌드가 바꾼 노선도 등은 버리고 (rebase 를 막지 않도록) 로그만 커밋한다
+          git reset --hard -q HEAD
+          git clean -fdq
           mkdir -p ci-logs
           {
             echo "data: ${{ steps.data.outcome }}"
             echo "build: ${{ steps.build.outcome }}"
+            echo "at: $(date -u +%H:%M:%S)"
           } > ci-logs/RESULT.txt
-          # 커밋할 것은 끝부분만 (앞부분은 설치 로그)
-          [ -f ci-logs/full-data.log ] && tail -n 150 ci-logs/full-data.log > ci-logs/data-tail.log
-          [ -f ci-logs/full-gradle.log ] && { grep -n -E "FAILED|error:|e: |Exception|What went wrong" ci-logs/full-gradle.log | head -n 80; echo ----; tail -n 80 ci-logs/full-gradle.log; } > ci-logs/gradle-tail.log
-          rm -f ci-logs/full-*.log
+          L="$RUNNER_TEMP/logs"
+          [ -f "$L/data.log" ] && tail -n 150 "$L/data.log" > ci-logs/data-tail.log
+          [ -f "$L/gradle.log" ] && { grep -n -E "FAILED|error:|e: |Exception|What went wrong" "$L/gradle.log" | head -n 80; echo ----; tail -n 80 "$L/gradle.log"; } > ci-logs/gradle-tail.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A ci-logs
-          git commit -m "chore(ci): 릴리즈 진단 로그" || exit 0
-          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
+          git commit -q -m "chore(ci): 릴리즈 진단 로그" || exit 0
+          for i in 1 2 3; do
+            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
+          done
+          exit 1
