@@ -7,6 +7,7 @@ on:
     branches: [main, "feat-*", "fix-*", "ui-*"]
     paths:
       - "tools/seoul/fetch_raw.py"
+      - "tools/seoul/summarize_raw.py"
       - ".github/workflows/fetch-seoul.yml"
   workflow_dispatch:
 
@@ -30,6 +31,8 @@ jobs:
         env:
           SEOUL_NORMAL_SECRET: ${{ secrets.SEOUL_NORMAL_SECRET }}
         run: python tools/seoul/fetch_raw.py
+      - name: Summarize
+        run: python tools/seoul/summarize_raw.py >> "$GITHUB_STEP_SUMMARY"
       - name: Commit raw data
         run: |
           git config user.name "github-actions[bot]"
