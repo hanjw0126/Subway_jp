@@ -55,29 +55,30 @@ private fun homeText(lang: AppLanguage) = when (lang) {
         language = "언어",
         chooseCountry = "국가를 선택하세요",
         comingSoon = "준비 중",
-        footer = "비공식 앱 · 데이터: ODPT",
+        footer = "비공식 앱 · 데이터: ODPT, 서울 열린데이터광장",
     )
     AppLanguage.ES -> HomeText(
         tagline = "Llegadas del metro en tiempo real en todo el mundo",
         language = "Idioma",
         chooseCountry = "Elige un país",
         comingSoon = "Próximamente",
-        footer = "App no oficial · Datos: ODPT",
+        footer = "App no oficial · Datos: ODPT, Seoul Open Data",
     )
     else -> HomeText(
         tagline = "Real-time metro arrivals worldwide",
         language = "Language",
         chooseCountry = "Choose a country",
         comingSoon = "Coming soon",
-        footer = "Unofficial app · Data: ODPT",
+        footer = "Unofficial app · Data: ODPT, Seoul Open Data",
     )
 }
 
-/** 메인 화면: 언어 선택 + 국가 선택 버튼 */
+/** 메인 화면: 언어 선택 + 국가 선택 버튼. 국가를 고르면 그 나라에서 마지막으로 본 지역의 노선도로 */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(onOpenCountry: (String) -> Unit) {
-    val settings = (LocalContext.current.applicationContext as JpSubwayApp).container.settings
+    val container = (LocalContext.current.applicationContext as JpSubwayApp).container
+    val settings = container.settings
     val lang by settings.appLanguage.collectAsStateWithLifecycle()
     val t = homeText(lang)
 
@@ -119,7 +120,9 @@ fun HomeScreen(onOpenCountry: (String) -> Unit) {
             Text(t.chooseCountry, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(12.dp))
             Countries.all.forEach { c ->
-                CountryButton(c, lang, t.comingSoon) { onOpenCountry(c.id) }
+                CountryButton(c, lang, t.comingSoon) {
+                    if (container.selectCountry(c.id)) onOpenCountry(c.id)
+                }
                 Spacer(Modifier.height(12.dp))
             }
 
