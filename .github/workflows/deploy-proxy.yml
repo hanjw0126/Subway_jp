@@ -83,6 +83,16 @@ jobs:
           if [ -z "$ODPT_C2026_KEY" ]; then echo "::warning::ODPT_C2026_KEY 없음 — 챌린지 노선 중계 비활성"; exit 0; fi
           printf '%s' "$ODPT_C2026_KEY" | npx --yes "wrangler@$WRANGLER_VERSION" secret put ODPT_C2026_KEY
 
+      - name: Upload Seoul realtime subway key as worker secret
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          SEOUL_SUBWAY_KEY: ${{ secrets.SEOUL_SUBWAY_KEY }}
+        run: |
+          if [ -z "$SEOUL_SUBWAY_KEY" ]; then echo "::warning::SEOUL_SUBWAY_KEY 없음 — 서울 실시간 중계 비활성"; exit 0; fi
+          printf '%s' "$SEOUL_SUBWAY_KEY" | npx --yes "wrangler@$WRANGLER_VERSION" secret put SEOUL_SUBWAY_KEY
+
       - name: Smoke test
         run: |
           SUB=$(curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')
@@ -98,3 +108,19 @@ jobs:
           [ "$CODE" = "200" ] || exit 1
           BLOCK=$(curl -s -o /dev/null -w '%{http_code}' "$BASE/api/v4/odpt:Station?odpt:operator=odpt.Operator:TokyoMetro")
           echo "허용 외 요청 차단 확인: HTTP $BLOCK"; [ "$BLOCK" = "404" ]
+
+      - name: Smoke test (Seoul)
+        # 서울 API 일일 호출 한도를 아끼려 한 번씩만 확인하고, 실패해도 배포는 유지한다
+        continue-on-error: true
+        run: |
+          SUB=$(curl -fsS -H "Authorization: Bearer $CF_TOKEN" "$CF_API/accounts/$CF_ACCOUNT/workers/subdomain" | jq -r '.result.subdomain // empty')
+          BASE="https://jp-subway-proxy.$SUB.workers.dev"
+          curl -s "$BASE/health"; echo
+          CODE=$(curl -s -o /tmp/s.json -w '%{http_code}' --get --data-urlencode "station=서울" "$BASE/seoul/v1/arrival")
+          echo "서울 도착정보: HTTP $CODE"; head -c 300 /tmp/s.json; echo
+          echo "서울 도착정보: HTTP $CODE" >> "$GITHUB_STEP_SUMMARY"
+          CODE=$(curl -s -o /tmp/p.json -w '%{http_code}' --get --data-urlencode "line=2호선" "$BASE/seoul/v1/position")
+          echo "서울 열차 위치: HTTP $CODE"; head -c 300 /tmp/p.json; echo
+          echo "서울 열차 위치: HTTP $CODE" >> "$GITHUB_STEP_SUMMARY"
+          BLOCK=$(curl -s -o /dev/null -w '%{http_code}' --get --data-urlencode "line=없는선" "$BASE/seoul/v1/position")
+          echo "허용 외 노선 차단: HTTP $BLOCK"; [ "$BLOCK" = "403" ]
