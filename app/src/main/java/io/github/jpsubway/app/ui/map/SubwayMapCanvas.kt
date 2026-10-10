@@ -45,6 +45,7 @@ import kotlin.math.min
 
 private val Ink = Color(0xFF212529)
 private val InkSoft = Color(0xFF495057)
+private val RiverBlue = Color(0xFFCFE6FA)
 
 /** 역명 후보 방향: 레이아웃 생성기가 고른 방향을 먼저 시도하고, 겹치면 나머지 방향 */
 private val LabelDirs = listOf(1 to 0, -1 to 0, 0 to -1, 0 to 1, 1 to -1, 1 to 1, -1 to -1, -1 to 1)
@@ -175,6 +176,7 @@ private fun DrawScope.drawStation(c: Offset, colors: List<Color>, lw: Float, fil
  * 노선 굵기·역 공점·역명은 지도 좌표 기준 크기라 확대/축소에 비례하고, 역명 글자는 상한에서 멈춰
  * 확대할수록 더 많은 역명이 보인다. 역명은 매 프레임 겹침 검사(다른 역명·공점·아이콘)를 거쳐
  * 빈 방향에 놓고, 자리가 없으면 그 배율에서는 숨긴다 (환승 노선이 많은 역 우선).
+ * 강(layout.rivers)은 노선 아래에 하늘색 띠로 그린다.
  * visibleFilters: 표시할 필터 그룹 (subway / jr / private)
  * focusLines: 지정하면 이 노선들만 그린다 (노선 단독 보기). 필터·다른 지역 노선은 무시하고,
  *   이 노선의 역만 보이되 환승역 공점에는 다른 환승 노선 색도 표시한다. 역명은 읽을 수 있는 최소 크기를 유지한다.
@@ -317,6 +319,14 @@ fun SubwayMapCanvas(
             val lw = max(1.2.dp.toPx(), unitPx * 0.075f)
             fun tr(x: Float, y: Float) = Offset(x * scale + pan.x, y * scale + pan.y)
             fun onScreen(c: Offset, m: Float) = c.x > -m && c.y > -m && c.x < size.width + m && c.y < size.height + m
+
+            // -1) 강 (맨 아래)
+            layout.rivers.forEach { rv ->
+                val pts = rv.points.mapNotNull { if (it.size >= 2) tr(it[0], it[1]) else null }
+                if (pts.size >= 2) {
+                    drawPath(polylinePath(pts), RiverBlue, style = stroke(rv.width * scale))
+                }
+            }
 
             // 0) 다른 지역의 환승 노선 (반투명) — 노선 단독 보기에서는 그리지 않는다
             if (!focusMode) {
