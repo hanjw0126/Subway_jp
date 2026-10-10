@@ -12465,5 +12465,8 @@
    "to": "kr.Seoul.KJ.K826",
    "walkSec": 180
   }
- ]
+ ],
+ "layoutHints": {
+  "radialPower": 0.55
+ }
 }
