@@ -1,7 +1,7 @@
 name: Rebuild maps
 
 # tools/ (노선도 생성기·seed) 가 바뀌면 한국어 위키백과 역명을 다시 받고,
-# network.json / layout.json 을 다시 만들고 검증한 뒤 커밋한다.
+# network.json / layout.json 을 다시 만들고 검증한 뒤 커밋한다. 서울 노선도 미리보기도 함께 갱신.
 on:
   push:
     branches: [main, "ui-*", "fix-*", "feat-*"]
@@ -27,25 +27,34 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install
-        run: pip install -r tools/requirements.txt pytest
+        run: |
+          pip install -r tools/requirements.txt pytest
+          sudo apt-get install -y -qq fonts-noto-cjk > /dev/null
       - name: Korean Wikipedia station names (Wikidata)
         # 받지 못하면 기존 tools/seed/ko_wiki.json 을 그대로 쓴다
         continue-on-error: true
         run: python tools/ko_wiki.py
+      - name: Han river centerline (OpenStreetMap)
+        # 한 번 받아 두면 다시 받지 않는다 (갱신하려면 파일을 지우고 실행)
+        continue-on-error: true
+        run: '[ -f tools/seoul/raw/han_river.json ] || python tools/seoul/fetch_river.py'
       - name: Build network + layout
         run: python tools/build_all.py --no-preview
       - name: Validate
         run: |
           python tools/validate_assets.py
           cd tools && python -m pytest -q tests
+      - name: Seoul preview
+        continue-on-error: true
+        run: python tools/render_preview.py app/src/main/assets/regions/seoul --out docs/images/map_seoul.png --max-px 3000
       - name: Commit assets
         # 재생성 도중 브랜치에 새 커밋(앱 코드 등)이 올라와도 그 위에 얹어 올린다
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A app/src/main/assets tools/seed
+          git add -A app/src/main/assets tools/seed tools/seoul/raw docs/images
           if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
-          git commit -m "chore(maps): 노선도·위키백과 역명 재생성 (${GITHUB_SHA::7})"
+          git commit -m "chore(maps): 노선도·위키백과 역명·미리보기 재생성 (${GITHUB_SHA::7})"
           for i in 1 2 3; do
             git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep 5

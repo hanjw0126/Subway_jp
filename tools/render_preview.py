@@ -1,5 +1,6 @@
-"""layout.json → PNG 미리보기. 앱 노선도와 같은 규칙(회사별 선 디자인·환승역 분할 링·종점 아이콘)으로 그린다.
-한글 폰트: --font, KO_FONT 환경변수 또는 tools/fonts/*.ttf"""
+"""layout.json → PNG 미리보기. 앱 노선도와 같은 규칙(회사별 선 디자인·환승역 분할 링·종점 아이콘·강)으로 그린다.
+한글 폰트: --font, KO_FONT 환경변수 또는 tools/fonts/*.ttf
+--max-px: 긴 변의 픽셀 상한 (큰 노선도는 dpi 를 낮춰 맞춘다)"""
 import argparse
 import colorsys
 import glob
@@ -15,6 +16,7 @@ from matplotlib.patches import Circle, FancyBboxPatch, Wedge  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 INK = "#212529"
+RIVER = "#CFE6FA"
 
 
 def find_font(explicit=None):
@@ -81,6 +83,13 @@ def render(layout, network, out, font=None, dpi=90):
     ppw = fig.get_size_inches()[0] * fig.dpi / W
     lw_pt = lw_world * ppw / pt
     fs = u * 0.19 * ppw / pt
+
+    # 강 (맨 아래)
+    for rv in layout.get("rivers") or []:
+        pts = rv.get("points") or []
+        if len(pts) >= 2:
+            ax.plot([p[0] for p in pts], [p[1] for p in pts], color=RIVER, lw=rv.get("width", u * 0.5) * ppw / pt,
+                    solid_capstyle="round", solid_joinstyle="round", zorder=1)
 
     for g in layout.get("ghosts") or []:
         pts = g.get("points") or []
@@ -163,9 +172,14 @@ if __name__ == "__main__":
     ap.add_argument("--out", required=True)
     ap.add_argument("--font")
     ap.add_argument("--dpi", type=int, default=90)
+    ap.add_argument("--max-px", type=int, default=0)
     a = ap.parse_args()
     with open(os.path.join(a.region_dir, "layout.json"), encoding="utf-8") as f:
         lay = json.load(f)
     with open(os.path.join(a.region_dir, "network.json"), encoding="utf-8") as f:
         net = json.load(f)
-    render(lay, net, a.out, a.font, a.dpi)
+    dpi = a.dpi
+    if a.max_px:
+        inches = max(lay["width"], lay["height"]) / lay["unit"] * 0.9
+        dpi = max(10, min(dpi, int(a.max_px / inches)))
+    render(lay, net, a.out, a.font, dpi)
