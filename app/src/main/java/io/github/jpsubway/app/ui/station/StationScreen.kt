@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.jpsubway.app.core.i18n.AppLanguage
+import io.github.jpsubway.app.core.i18n.KoreaStrings
+import io.github.jpsubway.app.core.i18n.Lang
 import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.time.ServiceClock
 import io.github.jpsubway.app.domain.arrival.delayLabel
@@ -59,6 +61,7 @@ import io.github.jpsubway.app.ui.theme.parseColor
  *  - 역명(상단 제목 또는 역 띠 가운데)을 누르면 선택한 노선의 전체 지도
  *  - 좌우로 밀거나 역 띠 양옆 역명을 누르면 같은 노선의 이웃 역으로 이동
  *  - 한국어 역명일 때 한국어 위키백과 표기가 다르면 제목에 괄호로 함께 표시
+ *  - 서울: 시간표 대신 실시간 도착정보(15초마다 갱신) 카드
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,6 +77,7 @@ fun StationScreen(
     ),
 ) {
     val u by vm.ui.collectAsStateWithLifecycle()
+    val live by vm.live.collectAsStateWithLifecycle()
     val s = strings()
     val names = nameLanguage()
     // 다음 화면 전환 방향: 1 = 오른쪽 역으로, -1 = 왼쪽 역으로, 0 = 제자리(노선 변경 등)
@@ -93,8 +97,12 @@ fun StationScreen(
                 title = {
                     Column(Modifier.clickable(enabled = u.line != null, onClick = openLineMap)) {
                         Text(u.name.detailed(names), fontWeight = FontWeight.Bold)
-                        // 보조 표기: 역명 언어가 일본어면 한국어, 아니면 일본어
-                        val sub = if (names == AppLanguage.JA) u.name.ko else u.name.ja
+                        // 보조 표기: 일본 = 일본어(역명 언어가 일본어면 한국어), 한국 = 영어(역명 언어가 영어면 한국어)
+                        val sub = when {
+                            u.isLive -> if (names == AppLanguage.EN) u.name.ko else u.name.en
+                            names == AppLanguage.JA -> u.name.ko
+                            else -> u.name.ja
+                        }
                         if (sub.isNotBlank()) Text(sub, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 },
@@ -174,6 +182,7 @@ fun StationScreen(
                     if (net != null) {
                         StationBody(
                             u = st,
+                            live = live,
                             net = net,
                             s = s,
                             onSelectLine = { id ->
@@ -193,6 +202,7 @@ fun StationScreen(
 @Composable
 private fun StationBody(
     u: StationViewModel.Ui,
+    live: StationViewModel.Live,
     net: Network,
     s: Strings,
     onSelectLine: (String) -> Unit,
@@ -201,6 +211,7 @@ private fun StationBody(
 ) {
     val lineColor = u.line?.let { parseColor(it.color) } ?: MaterialTheme.colorScheme.primary
     val hintColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val nameOf = rememberKoNameLookup(net)
     LazyColumn(
         Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
@@ -233,9 +244,26 @@ private fun StationBody(
                 textAlign = TextAlign.Center,
             )
         }
-        val st = u.status
-        if (st != null && !st.isNormal) item { StatusBanner(listOf(st), net) }
-        items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec, s) }
+        if (u.isLive) {
+            val lang = Lang.ui.value
+            when {
+                live.boards.isEmpty() && (live.loading || live.fetchedEpochSec == 0L && live.error == null) ->
+                    item { Text(s.loading, color = hintColor) }
+                live.boards.isEmpty() && live.error != null ->
+                    item { Text("${KoreaStrings.liveError(lang)} (${live.error})", color = hintColor) }
+                live.boards.isEmpty() ->
+                    item { Text(s.noUpcoming, color = hintColor) }
+                else ->
+                    items(live.boards) { b -> LiveDirectionCard(b, lineColor, u.nowEpochSec, s, nameOf) }
+            }
+            if (live.boards.isNotEmpty() && live.error != null) {
+                item { Text("${KoreaStrings.liveError(lang)} (${live.error})", fontSize = 12.sp, color = DelayOrange) }
+            }
+        } else {
+            val st = u.status
+            if (st != null && !st.isNormal) item { StatusBanner(listOf(st), net) }
+            items(u.boards) { b -> DirectionCard(b, net, lineColor, u.nowSec, s) }
+        }
         item {
             val extra = u.realtimeError?.let { " · ${s.realtimeError}: $it" }.orEmpty()
             Text(u.sourceLabel + extra, fontSize = 12.sp, color = hintColor)

@@ -4,7 +4,7 @@ import io.github.jpsubway.app.core.i18n.AppLanguage
 
 /**
  * 메인 화면의 국가 버튼. available = false 면 "준비 중"으로 표시하고 누를 수 없다.
- * 국가를 늘릴 때는 여기에 한 줄 추가하고, 내비게이션에서 id 로 해당 노선도를 연결한다.
+ * 국가를 늘릴 때는 여기에 한 줄 추가하고, tools/regions.json 에 그 나라(country) 지역을 넣는다.
  */
 data class Country(
     val id: String,
@@ -37,8 +37,8 @@ object Countries {
             id = KOREA,
             flag = "\uD83C\uDDF0\uD83C\uDDF7",
             name = mapOf(AppLanguage.KO to "한국", AppLanguage.EN to "South Korea", AppLanguage.ES to "Corea del Sur"),
-            cities = mapOf(AppLanguage.KO to "서울", AppLanguage.EN to "Seoul", AppLanguage.ES to "Seúl"),
-            available = false,
+            cities = mapOf(AppLanguage.KO to "서울 · 수도권", AppLanguage.EN to "Seoul Metropolitan Area", AppLanguage.ES to "Área metropolitana de Seúl"),
+            available = true,
         ),
     )
 }

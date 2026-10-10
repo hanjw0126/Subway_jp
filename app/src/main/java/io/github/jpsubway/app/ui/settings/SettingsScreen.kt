@@ -18,6 +18,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.jpsubway.app.BuildConfig
 import io.github.jpsubway.app.core.i18n.AppLanguage
+import io.github.jpsubway.app.core.i18n.KoreaStrings
 import io.github.jpsubway.app.core.i18n.Lang
 import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.time.ServiceClock
@@ -60,6 +61,8 @@ fun SettingsScreen(onBack: () -> Unit, vm: SettingsViewModel = viewModel(factory
     val s = strings()
     val ui by Lang.ui.collectAsState()
     val data = (state as? RegionSession.State.Ready)?.data
+    // 한국(서울): 시간표 없이 실시간 도착 API → 시간표 정보·다시 받기 대신 출처만
+    val korea = data?.isLiveArrivals == true
 
     Scaffold(
         topBar = {
@@ -79,26 +82,35 @@ fun SettingsScreen(onBack: () -> Unit, vm: SettingsViewModel = viewModel(factory
             Section(s.currentData)
             Text(s.realtimeSource(vm.realtimeSource(s)), fontSize = 13.sp)
             if (data != null) {
-                val fetched = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-                    .format(Instant.ofEpochSecond(data.timetable.fetchedAtEpochSec).atZone(ServiceClock.JST))
                 Text(s.regionLine(data.region.id, data.dayType.toString()), fontSize = 13.sp)
-                Text(
-                    s.timetableLine(if (data.timetable.isDemo) s.demoSource else data.timetable.source, data.timetable.trips.size, fetched),
-                    fontSize = 13.sp,
-                )
-                data.timetableError?.let { Text(s.timetableError(it), fontSize = 13.sp, color = MaterialTheme.colorScheme.error) }
+                if (korea) {
+                    Text(KoreaStrings.sourceLive(ui), fontSize = 13.sp)
+                } else {
+                    val fetched = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+                        .format(Instant.ofEpochSecond(data.timetable.fetchedAtEpochSec).atZone(ServiceClock.JST))
+                    Text(
+                        s.timetableLine(if (data.timetable.isDemo) s.demoSource else data.timetable.source, data.timetable.trips.size, fetched),
+                        fontSize = 13.sp,
+                    )
+                    data.timetableError?.let { Text(s.timetableError(it), fontSize = 13.sp, color = MaterialTheme.colorScheme.error) }
+                }
             } else {
                 Text(s.loading, fontSize = 13.sp)
             }
-            OutlinedButton(onClick = { vm.refresh() }) { Text(s.refreshTimetable) }
+            if (!korea) OutlinedButton(onClick = { vm.refresh() }) { Text(s.refreshTimetable) }
 
             Section(s.sourcesAndDisclaimer)
-            Text(s.odptNotice, fontSize = 13.sp)
-            if (ui != AppLanguage.JA) {
-                Text(ODPT_NOTICE_JA, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (korea) {
+                Text(KoreaStrings.notice(ui), fontSize = 13.sp)
+                Text(KoreaStrings.osm(ui), fontSize = 13.sp)
+            } else {
+                Text(s.odptNotice, fontSize = 13.sp)
+                if (ui != AppLanguage.JA) {
+                    Text(ODPT_NOTICE_JA, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                Text(s.c2026Notice, fontSize = 13.sp)
+                Text(s.nameNote, fontSize = 13.sp)
             }
-            Text(s.c2026Notice, fontSize = 13.sp)
-            Text(s.nameNote, fontSize = 13.sp)
 
             Section(s.appInfo)
             Text(s.appInfoLine(BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE), fontSize = 13.sp)

@@ -23,10 +23,29 @@ class SettingsRepository(context: Context) {
     private val _regionId = MutableStateFlow(prefs.getString(KEY_REGION, DEFAULT_REGION) ?: DEFAULT_REGION)
     val regionId: StateFlow<String> = _regionId.asStateFlow()
 
-    fun setRegion(id: String) {
-        prefs.edit().putString(KEY_REGION, id).apply()
+    /** 현재 국가 ("jp" / "kr") — 지역과 함께 바뀐다 */
+    private val _country = MutableStateFlow(prefs.getString(KEY_COUNTRY, COUNTRY_JP) ?: COUNTRY_JP)
+    val country: StateFlow<String> = _country.asStateFlow()
+
+    /** 지역 선택. 국가별 마지막 지역을 기억하고, 국가가 바뀌면 그 나라 노선도 언어로 바꾼다 */
+    fun setRegion(id: String, country: String = _country.value) {
+        prefs.edit()
+            .putString(KEY_REGION, id)
+            .putString(KEY_COUNTRY, country)
+            .putString(KEY_LAST_REGION + country, id)
+            .apply()
+        val changed = country != _country.value
+        _country.value = country
+        if (changed) {
+            val langs = loadMapLanguages(country)
+            _mapLanguages.value = langs
+            Lang.set(langs.ui, langs.names)
+        }
         _regionId.value = id
     }
+
+    /** 그 나라에서 마지막으로 본 지역 (없으면 null) */
+    fun lastRegion(country: String): String? = prefs.getString(KEY_LAST_REGION + country, null)
 
     /** 메인(국가 선택) 화면 언어: 한국어/영어/스페인어. 처음에는 기기 언어를 따른다 */
     private val _appLanguage = MutableStateFlow(
@@ -41,25 +60,27 @@ class SettingsRepository(context: Context) {
     }
 
     /**
-     * 일본 노선도 화면 언어 (후보: 일본어/영어/한국어).
-     * 처음에는 메인 화면 언어가 후보에 있으면 그것, 없으면(스페인어) 영어.
+     * 현재 국가 노선도 화면 언어 (일본: 일본어/영어/한국어, 한국: 한국어/영어).
+     * 처음에는 메인 화면 언어가 후보에 있으면 그것, 없으면 영어.
      */
-    private val _mapLanguages = MutableStateFlow(loadMapLanguages(COUNTRY_JP))
+    private val _mapLanguages = MutableStateFlow(loadMapLanguages(_country.value))
     val mapLanguages: StateFlow<MapLanguages> = _mapLanguages.asStateFlow()
 
     init {
         Lang.set(_mapLanguages.value.ui, _mapLanguages.value.names)
     }
 
-    fun setMapLanguages(ui: AppLanguage, names: AppLanguage, country: String = COUNTRY_JP) {
+    fun setMapLanguages(ui: AppLanguage, names: AppLanguage, country: String = _country.value) {
         val opts = Lang.mapOptions(country)
         if (ui !in opts || names !in opts) return
         prefs.edit()
             .putString(KEY_MAP_UI + country, ui.code)
             .putString(KEY_MAP_NAMES + country, names.code)
             .apply()
-        _mapLanguages.value = MapLanguages(ui, names)
-        Lang.set(ui, names)
+        if (country == _country.value) {
+            _mapLanguages.value = MapLanguages(ui, names)
+            Lang.set(ui, names)
+        }
     }
 
     private fun loadMapLanguages(country: String): MapLanguages {
@@ -82,7 +103,10 @@ class SettingsRepository(context: Context) {
 
     companion object {
         const val COUNTRY_JP = "jp"
+        const val COUNTRY_KR = "kr"
         private const val KEY_REGION = "region"
+        private const val KEY_COUNTRY = "country"
+        private const val KEY_LAST_REGION = "region_"
         private const val KEY_APP_LANG = "app_language"
         private const val KEY_MAP_UI = "map_ui_"
         private const val KEY_MAP_NAMES = "map_names_"

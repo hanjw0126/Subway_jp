@@ -12,7 +12,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import io.github.jpsubway.app.di.RegionSession
-import io.github.jpsubway.app.ui.home.Countries
 import io.github.jpsubway.app.ui.home.HomeScreen
 import io.github.jpsubway.app.ui.map.LineMapScreen
 import io.github.jpsubway.app.ui.map.MapScreen
@@ -48,13 +47,8 @@ fun AppNavHost(session: RegionSession) {
     }
     NavHost(navController = nav, startDestination = Routes.HOME) {
         composable(Routes.HOME) {
-            HomeScreen(
-                onOpenCountry = { id ->
-                    when (id) {
-                        Countries.JAPAN -> nav.navigate(Routes.MAP) { launchSingleTop = true }
-                    }
-                },
-            )
+            // 국가 선택은 HomeScreen 이 지역을 바꾼 뒤 알려 준다 → 그 나라 노선도로
+            HomeScreen(onOpenCountry = { nav.navigate(Routes.MAP) { launchSingleTop = true } })
         }
         composable(Routes.MAP) {
             MapScreen(

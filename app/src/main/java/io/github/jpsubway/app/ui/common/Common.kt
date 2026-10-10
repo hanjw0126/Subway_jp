@@ -25,7 +25,6 @@ import io.github.jpsubway.app.core.i18n.AppLanguage
 import io.github.jpsubway.app.core.i18n.Lang
 import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.i18n.TrainType
-import io.github.jpsubway.app.data.repo.SettingsRepository
 import io.github.jpsubway.app.di.AppContainer
 import io.github.jpsubway.app.domain.model.Line
 import io.github.jpsubway.app.domain.model.LineStatus
@@ -50,26 +49,28 @@ fun nameLanguage(): AppLanguage {
     return lang
 }
 
-/** 노선도 화면 언어 선택 (화면 문구 / 역명 각각) */
+/** 노선도 화면 언어 선택 (화면 문구 / 역명 각각). country 를 주지 않으면 현재 국가 (일본: 일/영/한, 한국: 한/영) */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MapLanguageOptions(country: String = SettingsRepository.COUNTRY_JP) {
+fun MapLanguageOptions(country: String? = null) {
     val settings = (LocalContext.current.applicationContext as JpSubwayApp).container.settings
     val cur by settings.mapLanguages.collectAsStateWithLifecycle()
+    val current by settings.country.collectAsStateWithLifecycle()
+    val target = country ?: current
     val s = strings()
-    val opts = Lang.mapOptions(country)
+    val opts = Lang.mapOptions(target)
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text(s.uiLanguage, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             opts.forEach { l ->
-                FilterChip(selected = cur.ui == l, onClick = { settings.setMapLanguages(l, cur.names, country) }, label = { Text(l.label) })
+                FilterChip(selected = cur.ui == l, onClick = { settings.setMapLanguages(l, cur.names, target) }, label = { Text(l.label) })
             }
         }
         Spacer(Modifier.height(4.dp))
         Text(s.nameLanguage, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             opts.forEach { l ->
-                FilterChip(selected = cur.names == l, onClick = { settings.setMapLanguages(cur.ui, l, country) }, label = { Text(l.label) })
+                FilterChip(selected = cur.names == l, onClick = { settings.setMapLanguages(cur.ui, l, target) }, label = { Text(l.label) })
             }
         }
     }
@@ -93,10 +94,11 @@ fun LineBadge(line: Line, size: Dp = 22.dp) {
         Modifier.size(size).clip(CircleShape).background(parseColor(line.color)),
         contentAlignment = Alignment.Center,
     ) {
+        val code = line.code.ifBlank { line.name.display().take(1) }
         Text(
-            line.code.ifBlank { line.name.display().take(1) },
+            code,
             color = Color.White,
-            fontSize = (size.value * 0.5f).sp,
+            fontSize = (size.value * (if (code.length >= 2) 0.36f else 0.5f)).sp,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
         )
