@@ -50,7 +50,7 @@ data class Line(
     val stations: List<String>,
     val directions: LineDirections,
     val loop: Boolean = false,
-    /** "" = 공개 데이터, "c2026" = 공공교통 오픈데이터 챌린지 2026 제공 노선 */
+    /** "" = 공개 데이터, "c2026" = 공공교통 오픈데이터 챌린지 2026 제공 노선, "seoul" = 서울 열린데이터광장 */
     val source: String = "",
 )
 
@@ -87,6 +87,7 @@ data class Network(
     fun linesOfGroup(group: String): List<Line> = stationsByGroup[group].orEmpty().mapNotNull { lineById[it.lineId] }
 }
 
+/** country: "jp" = 일본, "kr" = 한국. 메인 화면에서 고른 국가의 지역만 보여 준다 */
 @Serializable
 data class RegionInfo(
     val id: String,
@@ -94,6 +95,7 @@ data class RegionInfo(
     val realtime: Boolean = false,
     val operators: List<String> = emptyList(),
     val note: String = "",
+    val country: String = "jp",
 )
 
 /** 시각은 "운행일 기준 초". 04:00 이전 시각은 +24h (예: 00:12 → 87120) */
