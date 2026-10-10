@@ -14,6 +14,19 @@ object KoreaStrings {
         else -> "Couldn't get real-time arrivals"
     }
 
+    /** 노선 전체 지도의 실시간 열차 수 */
+    fun liveTrains(l: AppLanguage, n: Int) = when (l) {
+        AppLanguage.KO -> "실시간 열차 ${n}대 · 15초마다 갱신"
+        AppLanguage.JA -> "リアルタイム列車 ${n}本 · 15秒ごとに更新"
+        else -> "$n live trains · updated every 15 s"
+    }
+
+    fun positionError(l: AppLanguage) = when (l) {
+        AppLanguage.KO -> "실시간 열차 위치를 받지 못했습니다"
+        AppLanguage.JA -> "リアルタイムの列車位置を取得できませんでした"
+        else -> "Couldn't get live train positions"
+    }
+
     fun routeNotSupported(l: AppLanguage) = when (l) {
         AppLanguage.KO -> "한국 노선의 경로 검색은 아직 지원하지 않습니다"
         AppLanguage.JA -> "韓国の路線の経路検索にはまだ対応していません"
@@ -22,11 +35,11 @@ object KoreaStrings {
 
     fun notice(l: AppLanguage) = when (l) {
         AppLanguage.KO -> "한국 노선 데이터는 서울 열린데이터광장(data.seoul.go.kr)에서 제공하는 정보를 이용합니다 (공공누리 제1유형). " +
-            "실시간 도착정보는 운영기관이 제공한 값으로 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
+            "실시간 도착정보와 열차 위치는 운영기관이 제공한 값으로 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
         AppLanguage.JA -> "韓国の路線データはソウル市オープンデータ広場（data.seoul.go.kr）の情報を利用しています（公共ヌリ 第1類型）。" +
-            "リアルタイム到着情報は運営事業者の提供値であり、実際の運行と異なる場合があります。"
+            "リアルタイム到着情報と列車位置は運営事業者の提供値であり、実際の運行と異なる場合があります。"
         else -> "Korean line data is provided by Seoul Open Data Plaza (data.seoul.go.kr) under KOGL Type 1. " +
-            "Real-time arrivals come from the operators and may differ from actual service. This is an unofficial app."
+            "Real-time arrivals and train positions come from the operators and may differ from actual service. This is an unofficial app."
     }
 
     fun osm(l: AppLanguage) = when (l) {

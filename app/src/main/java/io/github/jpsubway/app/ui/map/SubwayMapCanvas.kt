@@ -36,6 +36,7 @@ import io.github.jpsubway.app.core.i18n.AppLanguage
 import io.github.jpsubway.app.domain.model.LayoutNode
 import io.github.jpsubway.app.domain.model.MapLayout
 import io.github.jpsubway.app.domain.model.Network
+import io.github.jpsubway.app.domain.seoul.TrainMarker
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.MapBackground
 import io.github.jpsubway.app.ui.theme.ToRed
@@ -182,6 +183,7 @@ private fun DrawScope.drawStation(c: Offset, colors: List<Color>, lw: Float, fil
  *   이 노선의 역만 보이되 환승역 공점에는 다른 환승 노선 색도 표시한다. 역명은 읽을 수 있는 최소 크기를 유지한다.
  * initialFocus: 처음 화면에 맞춰 보여 줄 영역 (지도 좌표). null 이면 지도 중심을 기본 배율로 보여 준다.
  * nameLanguage: 역명 언어 (한국어 / 일본어 / 영어)
+ * trains: 실시간 열차 아이콘과 행선지 라벨 (서울 노선 전체 지도). 역명 위에 trainColor 로 그린다.
  */
 @Composable
 fun SubwayMapCanvas(
@@ -196,6 +198,8 @@ fun SubwayMapCanvas(
     focusLines: Set<String>? = null,
     initialFocus: Rect? = null,
     nameLanguage: AppLanguage = AppLanguage.KO,
+    trains: List<Pair<TrainMarker, String>> = emptyList(),
+    trainColor: Color = Color(0xFF3B5BDB),
 ) {
     val density = LocalDensity.current
     val measurer = rememberTextMeasurer()
@@ -446,6 +450,11 @@ fun SubwayMapCanvas(
                     translate(r.left + padX, r.top)
                     scale(f, f, pivot = Offset.Zero)
                 }) { drawText(tl) }
+            }
+
+            // 5) 실시간 열차 (서울 노선 전체 지도) — 역명 위에 그린다
+            if (trains.isNotEmpty()) {
+                drawTrains(trains, trainColor, measurer, lw) { x, y -> tr(x, y) }
             }
         }
     }
