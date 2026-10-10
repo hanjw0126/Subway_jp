@@ -81,6 +81,9 @@
     ],
     "seed": "seoul.json",
     "generator": "seoul",
+    "layoutHints": {
+      "radialPower": 0.55
+    },
     "rivers": [
       "seoul/raw/han_river.json"
     ],
