@@ -1,6 +1,7 @@
 package io.github.jpsubway.app.data.remote
 
 import io.github.jpsubway.app.domain.seoul.SeoulArrival
+import io.github.jpsubway.app.domain.seoul.SeoulTrainPos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
@@ -26,32 +27,42 @@ class SeoulClient(private val http: OkHttpClient, private val json: Json, proxyA
     val available: Boolean get() = base.isNotBlank()
 
     /** 역명(API 표기, '역' 없이)으로 실시간 도착정보 */
-    suspend fun arrivals(station: String): List<SeoulArrival> = withContext(Dispatchers.IO) {
+    suspend fun arrivals(station: String): List<SeoulArrival> =
+        parseArrivals(json, get("arrival", "station", station))
+
+    /** 노선명(예: 2호선)으로 실시간 열차 위치 */
+    suspend fun positions(line: String): List<SeoulTrainPos> =
+        parsePositions(json, get("position", "line", line))
+
+    private suspend fun get(path: String, key: String, value: String): String = withContext(Dispatchers.IO) {
         if (base.isBlank()) throw IOException("중계 서버 주소가 없습니다")
-        val url = base.toHttpUrl().newBuilder().addPathSegment("arrival").addQueryParameter("station", station).build()
+        val url = base.toHttpUrl().newBuilder().addPathSegment(path).addQueryParameter(key, value).build()
         http.newCall(Request.Builder().url(url).build()).execute().use { resp ->
             if (!resp.isSuccessful) throw IOException("HTTP ${resp.code}")
-            parseArrivals(json, resp.body?.string().orEmpty())
+            resp.body?.string().orEmpty()
         }
     }
 
     companion object {
         /**
-         * 응답 해석. 숫자·문자열이 섞여 와도 되도록 필드를 문자열로 읽는다.
-         * 데이터 없음(INFO-200)은 빈 목록, 그 밖의 오류 코드는 예외.
+         * 응답 목록(listKey)을 꺼낸다. 데이터 없음(INFO-200)은 빈 목록, 그 밖의 오류 코드는 예외.
+         * 숫자·문자열이 섞여 와도 되도록 필드는 문자열로 읽는다.
          */
-        fun parseArrivals(json: Json, text: String): List<SeoulArrival> {
+        private fun listOf(json: Json, text: String, listKey: String): List<JsonObject> {
             if (text.isBlank()) return emptyList()
             val root = json.parseToJsonElement(text) as? JsonObject ?: throw IOException("응답 형식 오류")
-            val list = root["realtimeArrivalList"] as? JsonArray
+            val list = root[listKey] as? JsonArray
             if (list == null) {
                 val err = (root["errorMessage"] as? JsonObject) ?: root
                 val code = err.str("code")
                 if (code == "INFO-200" || code.isBlank() && root.containsKey("error").not()) return emptyList()
                 throw IOException(err.str("message").ifBlank { root.str("error") }.ifBlank { code })
             }
-            return list.mapNotNull { el ->
-                val o = el as? JsonObject ?: return@mapNotNull null
+            return list.mapNotNull { it as? JsonObject }
+        }
+
+        fun parseArrivals(json: Json, text: String): List<SeoulArrival> =
+            listOf(json, text, "realtimeArrivalList").map { o ->
                 SeoulArrival(
                     subwayId = o.str("subwayId"),
                     updnLine = o.str("updnLine"),
@@ -68,7 +79,20 @@ class SeoulClient(private val http: OkHttpClient, private val json: Json, proxyA
                     ordkey = o.str("ordkey"),
                 )
             }
-        }
+
+        fun parsePositions(json: Json, text: String): List<SeoulTrainPos> =
+            listOf(json, text, "realtimePositionList").map { o ->
+                SeoulTrainPos(
+                    subwayId = o.str("subwayId"),
+                    statnNm = o.str("statnNm"),
+                    trainNo = o.str("trainNo"),
+                    updnLine = o.str("updnLine"),
+                    statnTnm = o.str("statnTnm"),
+                    trainSttus = o.str("trainSttus"),
+                    directAt = o.str("directAt"),
+                    lstcarAt = o.str("lstcarAt"),
+                )
+            }
 
         private fun JsonObject.str(key: String): String = (this[key] as? JsonPrimitive)?.contentOrNull.orEmpty()
     }
