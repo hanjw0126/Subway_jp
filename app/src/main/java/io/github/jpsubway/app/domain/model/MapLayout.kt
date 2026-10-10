@@ -14,6 +14,8 @@ data class MapLayout(
     val lines: List<LayoutLine>,
     /** 다른 지역 노선 중 이 지역 환승역을 지나는 부분 (반투명 표시) */
     val ghosts: List<GhostLine> = emptyList(),
+    /** 강 (예: 서울 한강). 노선 아래에 그린다 — tools/rivers.py */
+    val rivers: List<RiverPath> = emptyList(),
 )
 
 @Serializable
@@ -57,4 +59,13 @@ data class GhostLine(
     val code: String = "",
     val category: String = "metro",
     val points: List<List<Float>>,
+)
+
+/** 강 중심선 [[x, y], ...] 과 폭(world px) */
+@Serializable
+data class RiverPath(
+    val id: String = "",
+    val name: LocalizedName = LocalizedName(),
+    val width: Float = 30f,
+    val points: List<List<Float>> = emptyList(),
 )

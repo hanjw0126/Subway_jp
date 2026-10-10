@@ -30,6 +30,12 @@
 - 실시간 API 는 중계 서버(`/seoul/v1/…`)를 거치며, 키는 앱에 들어가지 않습니다 (docs/PROXY.md).
 - 출처 표시: "서울 열린데이터광장(data.seoul.go.kr), 공공누리 제1유형"을 앱 설정 화면과 NOTICE.md 에 표시합니다.
 
+### 노선도 배치·한강
+- 서울 노선도는 도심을 넓히는 방사 압축(`tools/regions.json` 의 `layoutHints.radialPower`, `tools/geo_projection.py`)을 거쳐 생성합니다.
+- 한강 중심선: OpenStreetMap(`waterway=river`, `name=한강`) — **© OpenStreetMap contributors, ODbL**.
+  `tools/seoul/fetch_river.py` 가 받아 `tools/seoul/raw/han_river.json` 에 저장하고, `tools/rivers.py` 가 도식 좌표로 옮깁니다.
+- 미리보기: `docs/images/map_seoul.png`(전체), `docs/images/map_seoul_center.png`(도심) — 노선도 재생성 때 갱신.
+
 ## 공통 — 위키데이터 (CC0)
 
 일본 역의 한국어 위키백과 표기 (`tools/seed/ko_wiki.json`, docs/KOREAN_NAMING.md).

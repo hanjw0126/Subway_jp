@@ -81,6 +81,12 @@
     ],
     "seed": "seoul.json",
     "generator": "seoul",
+    "layoutHints": {
+      "radialPower": 0.55
+    },
+    "rivers": [
+      "seoul/raw/han_river.json"
+    ],
     "note": "수도권 전철 19개 노선 (서울 열린데이터광장)"
   }
 ]
