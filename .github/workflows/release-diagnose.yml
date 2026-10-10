@@ -1,0 +1,87 @@
+name: Release diagnose
+
+# 릴리즈와 같은 빌드 단계를 게시 없이 실행하고, 단계별 출력 끝부분을 ci-logs/ 에 커밋한다.
+# (Actions 로그를 볼 수 없는 환경에서 실패 원인을 확인하기 위한 진단용)
+on:
+  push:
+    branches: [ "fix-release-*" ]
+    paths: [ ".github/workflows/release-diagnose.yml", "ci-logs/TRIGGER" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-diagnose-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+      - name: Challenge 2026 data + all maps
+        id: data
+        continue-on-error: true
+        env:
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
+          LAYOUT_REPAIR_BUDGET: "1800"
+        run: |
+          mkdir -p "$RUNNER_TEMP/logs"
+          set -o pipefail
+          {
+            echo "== start $(date -u +%H:%M:%S)"
+            echo "c2026 key present: $([ -n "$ODPT_C2026_KEY" ] && echo yes || echo no)"
+            pip install -q -r tools/requirements.txt
+            python tools/c2026/build_seed.py
+            echo "== build_all $(date -u +%H:%M:%S)"
+            python tools/build_all.py --no-preview
+            echo "== validate $(date -u +%H:%M:%S)"
+            python tools/validate_assets.py
+            python tools/c2026/report.py
+            echo "== done $(date -u +%H:%M:%S)"
+          } 2>&1 | tee "$RUNNER_TEMP/logs/data.log"
+      - name: Build release APK (debug key)
+        id: build
+        continue-on-error: true
+        env:
+          VERSION_NAME: "0.5.0-diag"
+          VERSION_CODE: "999"
+        run: |
+          set -o pipefail
+          gradle --no-daemon testReleaseUnitTest assembleRelease --stacktrace 2>&1 | tee "$RUNNER_TEMP/logs/gradle.log"
+      - name: Commit logs
+        if: always()
+        run: |
+          # 빌드가 바꾼 노선도 등은 버리고 (rebase 를 막지 않도록) 로그만 커밋한다
+          git reset --hard -q HEAD
+          git clean -fdq
+          mkdir -p ci-logs
+          {
+            echo "data: ${{ steps.data.outcome }}"
+            echo "build: ${{ steps.build.outcome }}"
+            echo "at: $(date -u +%H:%M:%S)"
+          } > ci-logs/RESULT.txt
+          L="$RUNNER_TEMP/logs"
+          [ -f "$L/data.log" ] && tail -n 150 "$L/data.log" > ci-logs/data-tail.log
+          [ -f "$L/gradle.log" ] && { grep -n -E "FAILED|error:|e: |Exception|What went wrong" "$L/gradle.log" | head -n 80; echo ----; tail -n 80 "$L/gradle.log"; } > ci-logs/gradle-tail.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A ci-logs
+          git commit -q -m "chore(ci): 릴리즈 진단 로그" || exit 0
+          for i in 1 2 3; do
+            git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
+          done
+          exit 1
