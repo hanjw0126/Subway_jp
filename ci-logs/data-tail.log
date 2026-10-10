@@ -1,9 +1,103 @@
-== start 11:20:27
+== start 11:52:49
 c2026 key present: yes
-Traceback (most recent call last):
-  File "/home/runner/work/Subway_jp/Subway_jp/tools/c2026/build_seed.py", line 126, in <module>
-    main()
-  File "/home/runner/work/Subway_jp/Subway_jp/tools/c2026/build_seed.py", line 88, in main
-    for L in json.load(open(os.path.join(seed_dir, fn), encoding="utf-8")).get("lines", []):
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'list' object has no attribute 'get'
+[c2026] JR-East: 노선 88개 중 29개 사용
+[c2026] Tobu: 노선 15개 중 4개 사용
+[c2026] Seibu: 노선 12개 중 9개 사용
+[c2026] Tokyu: 노선 9개 중 9개 사용
+[c2026] Keio: 노선 7개 중 5개 사용
+[c2026] Keikyu: 노선 5개 중 3개 사용
+[c2026] Odakyu: 노선 3개 중 3개 사용
+[c2026] Sotetsu: 노선 3개 중 3개 사용
+[c2026] tokyo: 노선 65개, 역 907개, 한글 변환 실패 0개
+== build_all 11:53:15
+[seoul] seed: lines=27 stations=707 → tools/seed/seoul.json
+[network] tokyo: lines=84 stations=1289 transfers=751
+[layout] tokyo: {'nodes': 947, 'bends': 434, 'allOctilinear': True, 'nodeOnEdge': 5, 'overlaps': 0, 'crossings': 101, 'bundled': 23, 'minNodeDist': 0.5, 'icons': 64} (531s)
+[network] yokohama: lines=2 stations=42 transfers=2
+[layout] yokohama: {'nodes': 40, 'bends': 1, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 0, 'bundled': 0, 'minNodeDist': 1.0, 'icons': 4} (0s)
+[network] osaka: lines=2 stations=34 transfers=1
+[layout] osaka: {'nodes': 33, 'bends': 3, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 0, 'bundled': 0, 'minNodeDist': 0.5, 'icons': 4} (0s)
+[network] seoul: lines=27 stations=707 transfers=175
+[layout] seoul: {'nodes': 567, 'bends': 162, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 16, 'bundled': 0, 'minNodeDist': 0.5, 'icons': 32} (44s)
+[rivers] seoul: han(84점)
+[cross-region] tokyo: ghosts=20
+[cross-region] yokohama: ghosts=43
+[cross-region] osaka: ghosts=0
+[cross-region] seoul: ghosts=0
+== validate 12:02:53
+[tokyo] lines=84 stations=1289 -> OK
+[yokohama] lines=2 stations=42 -> OK
+[osaka] lines=2 stations=34 -> OK
+[seoul] lines=27 stations=707 -> OK
+| 지역 | 노선 (챌린지) | 역 | 노선도 지표 |
+|---|---|---|---|
+| osaka | 2 (0) | 34 | {'nodes': 33, 'bends': 3, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 0, 'bundled': 0, 'minNodeDist': 0.5, 'icons': 4} |
+| seoul | 27 (0) | 707 | {'nodes': 567, 'bends': 162, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 16, 'bundled': 0, 'minNodeDist': 0.5, 'icons': 32} |
+| tokyo | 84 (65) | 1289 | {'nodes': 947, 'bends': 434, 'allOctilinear': True, 'nodeOnEdge': 5, 'overlaps': 0, 'crossings': 101, 'bundled': 23, 'minNodeDist': 0.5, 'icons': 64} |
+- JC JR 주오선 쾌속 · 역 23
+- JB JR 주오·소부선 각역정차 · 역 39
+- Hk JR 하치코선 · 역 9
+- JC JR 이쓰카이치선 · 역 3
+- JL JR 조반선 각역정차 · 역 14
+- JJ JR 조반선 쾌속 · 역 13
+- Kw JR 가와고에선 · 역 6
+- JK JR 게이힌토호쿠·네기시선 · 역 47
+- JE JR 게이요선 · 역 18
+- Ku 구루리선 · 역 8
+- JM JR 무사시노선 · 역 26
+- JN JR 난부선 · 역 26
+- JN JR 난부선 · 역 5
+- JO JR 나리타선 · 역 4
+- JC JR 오메선 · 역 10
+- Sg JR 사가미선 · 역 18
+- JA JR 사이쿄·가와고에선 · 역 19
+- JS JR 쇼난신주쿠 라인 · 역 16
+- JO JR 소부선 쾌속 · 역 10
+- So 소테쓰지레온네치온선 · 역 4
+- JU JR 다카사키선 · 역 7
+- JT JR 도카이도선 · 역 10
+- JI JR 쓰루미선 · 역 10
+- JI JR 쓰루미선 · 역 3
+- Ub JR 우치보선 · 역 8
+- JU JR 우쓰노미야선 · 역 7
+- JY JR 야마노테선 · 역 30
+- JH JR 요코하마선 · 역 20
+- JO JR 요코스카선 · 역 12
+- TS 도부 가메이도선 · 역 5
+- TS 도부 스카이트리 라인 · 역 21
+- TD 도부 어번파크 라인 · 역 17
+- TJ 도부 도조선 · 역 22
+- SS 세이부 하이지마선 · 역 8
+- SI 세이부 이케부쿠로선 · 역 28
+- SK 세이부 고쿠분지선 · 역 5
+- SI 세이부 사야마선 · 역 3
+- SI 세이부 유라쿠초선 · 역 3
+- SS 세이부 신주쿠선 · 역 29
+- SW 다마가와선 · 역 6
+- ST 세이부 다마코선 · 역 7
+- SY 야마구치선 · 역 3
+- DT 도큐 덴엔토시선 · 역 27
+- IK 도큐 이케가미선 · 역 15
+- KD 도큐 고도모노쿠니선 · 역 3
+- MG 도큐 메구로선 · 역 13
+- OM 도큐 오이마치선 · 역 16
+- SG 도큐 세타가야선 · 역 10
+- SH 도큐 신요코하마선 · 역 3
+- TM 도큐 다마가와선 · 역 7
+- TY 도큐 도요코선 · 역 21
+- IN 게이오 이노카시라선 · 역 17
+- KO 게이오선 · 역 32
+- KO 게이오 신선 · 역 4
+- KO 게이오 사가미하라선 · 역 12
+- KO 게이오 다카오선 · 역 4
+- KK 게이큐 공항선 · 역 7
+- KK 게이큐 다이시선 · 역 7
+- KK 게이큐 본선 · 역 39
+- OE 오다큐 에노시마선 · 역 15
+- OH 오다큐 오다와라선 · 역 36
+- OT 오다큐 다마선 · 역 8
+- SO 소테쓰 이즈미노선 · 역 8
+- SO 소테쓰 본선 · 역 18
+- SO 소테쓰 신요코하마선 · 역 3
+| yokohama | 2 (0) | 42 | {'nodes': 40, 'bends': 1, 'allOctilinear': True, 'nodeOnEdge': 0, 'overlaps': 0, 'crossings': 0, 'bundled': 0, 'minNodeDist': 1.0, 'icons': 4} |
+== done 12:02:54
