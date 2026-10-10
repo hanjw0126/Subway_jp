@@ -1,19 +1,25 @@
 """지리 좌표의 강 중심선을 도식 노선도 좌표로 옮겨 layout.json 에 rivers 로 넣는다.
 
 노선도는 실제 지도를 크게 변형한 것이라 하나의 변환식으로 옮길 수 없다.
-강의 각 점마다 가까운 역 K곳의 '실제 위치 → 노선도 위치'를 거리 가중 평균해 옮긴다
-(각 역에서 강 점까지의 실제 변위를 노선도 축척으로 더함). 그래서 역과 강의 남북 관계가 대체로 유지된다.
+1) 노선도 생성과 같은 투영(geo_projection: 방사 압축 포함)으로 강과 역을 평면에 옮기고,
+2) 강의 각 점마다 가까운 역 K곳의 '평면 위치 → 노선도 위치'를 거리 가중 평균해 옮긴다.
+가장 가까운 역에서 TRIM_KM 보다 먼 강 양 끝은 잘라 낸다 (역이 드문 외곽에서 크게 튀는 것 방지).
 """
 import json
 import math
 import os
 
+import geo_projection
+
 K = 6
 WIDTH_UNITS = 0.55  # 강 폭 (역 간격 배수)
+TRIM_KM = 3.0
 
 
-def _proj(lat, lon, lat0, lon0):
-    return ((lon - lon0) * math.cos(math.radians(lat0)) * 111.32, -(lat - lat0) * 110.57)
+def _km(la1, lo1, la2, lo2):
+    dx = (lo2 - lo1) * math.cos(math.radians((la1 + la2) / 2)) * 111.32
+    dy = (la2 - la1) * 110.57
+    return math.hypot(dx, dy)
 
 
 def _smooth(pts, win=1):
@@ -22,31 +28,25 @@ def _smooth(pts, win=1):
     out = []
     for i in range(len(pts)):
         lo, hi = max(0, i - win), min(len(pts), i + win + 1)
-        xs = [p[0] for p in pts[lo:hi]]
-        ys = [p[1] for p in pts[lo:hi]]
-        out.append((sum(xs) / len(xs), sum(ys) / len(ys)))
+        out.append((sum(p[0] for p in pts[lo:hi]) / (hi - lo), sum(p[1] for p in pts[lo:hi]) / (hi - lo)))
     return out
 
 
 def warp(layout, network, latlon):
-    """[[위도, 경도], ...] → 노선도 좌표 [(x, y), ...]"""
+    """[[위도, 경도], ...] → 노선도 좌표 [(x, y), ...] (양 끝 잘라냄)"""
+    groups, geo = geo_projection.project(network)
+    proj = geo_projection.projection(network)
     st = network["stations"]
-    lat0 = sum(s["lat"] for s in st) / len(st)
-    lon0 = sum(s["lon"] for s in st) / len(st)
-    acc = {}
-    for s in st:
-        a = acc.setdefault(s["group"], [0.0, 0.0, 0])
-        a[0] += s["lat"]
-        a[1] += s["lon"]
-        a[2] += 1
-    nodes = []
-    for n in layout["nodes"]:
-        a = acc.get(n["group"])
-        if a:
-            nodes.append((_proj(a[0] / a[2], a[1] / a[2], lat0, lon0), (n["x"], n["y"])))
+    # 실제 거리로 강 양 끝 자르기
+    near_km = [min(_km(la, lo, s["lat"], s["lon"]) for s in st) for la, lo in latlon]
+    idx = [i for i, d in enumerate(near_km) if d <= TRIM_KM]
+    if len(idx) < 2:
+        return []
+    latlon = latlon[idx[0]: idx[-1] + 1]
+    nodes = [(geo[n["group"]], (n["x"], n["y"])) for n in layout["nodes"] if n["group"] in geo]
     if len(nodes) < 2:
         return []
-    # 노선도 축척: 각 역과 실제로 가장 가까운 역 사이의 (노선도 거리 / 실제 거리) 중앙값
+    # 노선도 축척: 각 역과 평면상 가장 가까운 역 사이의 (노선도 거리 / 평면 거리) 중앙값
     ratios = []
     for i, (g, l) in enumerate(nodes):
         j = min((k for k in range(len(nodes)) if k != i), key=lambda k: math.dist(g, nodes[k][0]))
@@ -57,7 +57,7 @@ def warp(layout, network, latlon):
     scale = ratios[len(ratios) // 2]
     out = []
     for lat, lon in latlon:
-        p = _proj(lat, lon, lat0, lon0)
+        p = geo_projection.to_xy(lat, lon, proj)
         near = sorted(nodes, key=lambda nd: math.dist(p, nd[0]))[:K]
         sw = sx = sy = 0.0
         for g, l in near:

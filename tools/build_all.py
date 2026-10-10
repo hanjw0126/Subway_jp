@@ -1,7 +1,9 @@
 """모든 지역: seed(병합 포함) → network.json → layout.json(+강) → 지역 간 환승 표시 → (선택) docs/images/map_<region>.png
 
 서울 seed(tools/seed/seoul.json)는 tools/seoul/raw 원본에서 매번 다시 만든다 (네트워크 불필요).
-강: regions.json 의 "rivers" (tools/ 기준 경로) 파일이 있으면 노선도 좌표로 옮겨 layout.json 에 넣는다.
+regions.json 의 지역별 설정:
+  layoutHints: network.json 에 넣어 노선도 생성에 쓴다 (예: radialPower — tools/geo_projection.py)
+  rivers: 강 중심선 파일(tools/ 기준) → 노선도 좌표로 옮겨 layout.json 에 넣는다
 """
 import argparse
 import json
@@ -23,6 +25,15 @@ from seed_merge import app_regions, load_region_seed  # noqa: E402
 
 def run(*args):
     subprocess.run([sys.executable, *args], check=True, cwd=ROOT)
+
+
+def _add_hints(path, hints):
+    with open(path, encoding="utf-8") as f:
+        net = json.load(f)
+    net["layoutHints"] = hints
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(net, f, ensure_ascii=False, indent=1)
+        f.write("\n")
 
 
 def main():
@@ -50,11 +61,14 @@ def main():
         with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as tf:
             json.dump(load_region_seed(r), tf, ensure_ascii=False)
             tmp = tf.name
+        net_path = os.path.join(rd, "network.json")
         try:
-            run(os.path.join(HERE, "build_network_from_seed.py"), tmp, "--out", os.path.join(rd, "network.json"))
+            run(os.path.join(HERE, "build_network_from_seed.py"), tmp, "--out", net_path)
         finally:
             os.unlink(tmp)
-        run(os.path.join(HERE, "layout_schematic.py"), os.path.join(rd, "network.json"))
+        if r.get("layoutHints"):
+            _add_hints(net_path, r["layoutHints"])
+        run(os.path.join(HERE, "layout_schematic.py"), net_path)
         if r.get("rivers"):
             rivers.attach(rd, [os.path.join(HERE, p) for p in r["rivers"]])
     add_ghosts(ASSETS, ids)
