@@ -1,6 +1,7 @@
 """network.json → layout.json : 역 좌표로 8방향(octilinear) 도식 노선도를 자동 생성
 
-1) 환승역 묶음(group)을 하나의 노드로 보고 위경도를 평면 좌표로 투영 (떨어진 노선 묶음은 본 노선망 가까이로 이동)
+1) 환승역 묶음(group)을 하나의 노드로 보고 위경도를 평면 좌표로 투영 (geo_projection: 지역별 방사 압축 포함,
+   떨어진 노선 묶음은 본 노선망 가까이로 이동)
 2) 스프링 완화 → 0.5 격자 스냅 → 국소 탐색으로 45° 정렬 구간 최대화
 3) 충돌 복구(repair): '정차하지 않는 역 위를 지나감', '다른 구간과 포개짐', '교차' 를 비용으로 두고
    문제가 된 역을 주변 격자 칸으로 옮긴다. 45°가 아닌 구간의 꺾임 방향도 충돌이 적은 쪽을 고른다.
@@ -12,6 +13,8 @@ import math
 import os
 import time
 from collections import defaultdict
+
+import geo_projection
 
 UNIT = 60.0
 GRID = 0.5
@@ -71,17 +74,8 @@ def _is_oct(dx, dy, eps=1e-6):
 
 
 def project(net):
-    groups = defaultdict(list)
-    for s in net["stations"]:
-        groups[s["group"]].append(s)
-    lat0 = sum(s["lat"] for s in net["stations"]) / len(net["stations"])
-    lon0 = sum(s["lon"] for s in net["stations"]) / len(net["stations"])
-    geo = {}
-    for g, ss in groups.items():
-        lat = sum(s["lat"] for s in ss) / len(ss)
-        lon = sum(s["lon"] for s in ss) / len(ss)
-        geo[g] = ((lon - lon0) * math.cos(math.radians(lat0)) * 111.32, -(lat - lat0) * 110.57)
-    return groups, geo
+    """역 좌표 → 평면 좌표(km). 지역별 보정(layoutHints)은 tools/geo_projection.py"""
+    return geo_projection.project(net)
 
 
 def edges_of(net):
