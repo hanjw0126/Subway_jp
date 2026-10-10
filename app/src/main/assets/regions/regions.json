@@ -14,7 +14,8 @@
       "odpt.Operator:TWR",
       "odpt.Operator:TamaMonorail"
     ],
-    "note": "도쿄메트로·도에이·TX·린카이선·다마 모노레일 (19개 노선)"
+    "note": "도쿄메트로·도에이·TX·린카이선·다마 모노레일 (19개 노선)",
+    "country": "jp"
   },
   {
     "id": "yokohama",
@@ -27,7 +28,8 @@
     "operators": [
       "odpt.Operator:YokohamaMunicipal"
     ],
-    "note": "요코하마 시영 지하철 블루·그린라인"
+    "note": "요코하마 시영 지하철 블루·그린라인",
+    "country": "jp"
   },
   {
     "id": "osaka",
@@ -40,6 +42,21 @@
     "operators": [
       "odpt.Operator:OsakaMetro"
     ],
-    "note": "미도스지·주오선 · 실시간 미제공 → 데모 시간표"
+    "note": "미도스지·주오선 · 실시간 미제공 → 데모 시간표",
+    "country": "jp"
+  },
+  {
+    "id": "seoul",
+    "name": {
+      "ko": "서울",
+      "ja": "ソウル",
+      "en": "Seoul"
+    },
+    "realtime": true,
+    "operators": [
+      "kr:Seoul"
+    ],
+    "note": "수도권 전철 19개 노선 (서울 열린데이터광장)",
+    "country": "kr"
   }
 ]
