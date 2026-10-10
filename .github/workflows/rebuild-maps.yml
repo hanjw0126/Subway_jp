@@ -1,7 +1,7 @@
 name: Rebuild maps
 
 # tools/ (노선도 생성기·seed) 가 바뀌면 한국어 위키백과 역명을 다시 받고,
-# network.json / layout.json 을 다시 만들고 검증한 뒤 커밋한다. 서울 노선도 미리보기도 함께 갱신.
+# network.json / layout.json 을 다시 만들고 검증한 뒤 커밋한다. 서울 노선도 미리보기(전체·도심)도 함께 갱신.
 on:
   push:
     branches: [main, "ui-*", "fix-*", "feat-*"]
@@ -46,7 +46,10 @@ jobs:
           cd tools && python -m pytest -q tests
       - name: Seoul preview
         continue-on-error: true
-        run: python tools/render_preview.py app/src/main/assets/regions/seoul --out docs/images/map_seoul.png --max-px 3000
+        run: |
+          python tools/render_preview.py app/src/main/assets/regions/seoul --out docs/images/map_seoul.png --max-px 3000
+          python tools/render_preview.py app/src/main/assets/regions/seoul --out docs/images/map_seoul_center.png \
+            --crop 0.22,0.28,0.68,0.62 --max-px 2600
       - name: Commit assets
         # 재생성 도중 브랜치에 새 커밋(앱 코드 등)이 올라와도 그 위에 얹어 올린다
         run: |
