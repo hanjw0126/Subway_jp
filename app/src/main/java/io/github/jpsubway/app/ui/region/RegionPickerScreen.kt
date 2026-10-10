@@ -23,7 +23,8 @@ import io.github.jpsubway.app.ui.common.nameLanguage
 import io.github.jpsubway.app.ui.common.strings
 
 class RegionViewModel(private val c: AppContainer) : ViewModel() {
-    val regions = c.networks.regions
+    /** 일본 지역만 (한국 등 다른 나라는 메인 화면에서 국가를 골라 들어간다) */
+    val regions = c.networks.regions.filter { it.country == "jp" }
     val current = c.settings.regionId
     fun select(id: String) {
         if (id != current.value) {

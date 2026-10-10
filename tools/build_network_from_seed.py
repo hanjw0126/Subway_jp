@@ -21,26 +21,36 @@ def dist_m(a, b):
 
 
 def build(seed, overrides, wiki=None):
-    """wiki: 한국어 위키백과 역명 색인 (None 이면 tools/seed/ko_wiki.json). 앱 표기와 다르면 name.koAlt 로 넣는다"""
+    """wiki: 한국어 위키백과 역명 색인 (None 이면 tools/seed/ko_wiki.json). 앱 표기와 다르면 name.koAlt 로 넣는다.
+
+    역 항목: [코드, 영문, 일문, 가나, 위도, 경도, (역 ID), (한글명), (환승 묶음 키)]
+      한글명이 있으면(한국 노선) 가나 변환·위키백과 병기 없이 그대로 쓴다.
+      환승 묶음 키가 없으면 영문 역명으로 묶는다.
+    """
     if wiki is None:
         wiki = ko_wiki.load_index()
     lines, stations, group_pos = [], [], {}
     for L in seed["lines"]:
-        path = L["id"].split(":", 1)[1]
+        path = L["id"].split(":", 1)[-1]
         ids = []
         en2sid = {}
         for code, en, ja, kana, lat, lon, *rest in L["stations"]:
             sid = rest[0] if rest else f"odpt.Station:{path}.{en}"
+            ko_given = rest[1] if len(rest) > 1 else None
+            gkey = rest[2] if len(rest) > 2 and rest[2] else en
             en2sid[en] = sid
-            g = f"g.{en}"
+            g = f"g.{gkey}"
             if g in group_pos and dist_m(group_pos[g], (lat, lon)) > GROUP_RADIUS_M:
-                g = f"g.{en}.{L['code']}"
+                g = f"g.{gkey}.{L['code']}"
             group_pos.setdefault(g, (lat, lon))
-            ko = resolve_ko(ja, kana, overrides)
-            name = {"ja": ja, "ko": ko, "en": en, "kana": kana}
-            alt = ko_wiki.lookup(wiki, ja, lat, lon)
-            if alt and not ko_wiki.same_ko(alt, ko):
-                name["koAlt"] = alt
+            if ko_given:
+                name = {"ja": ja, "ko": ko_given, "en": en, "kana": kana}
+            else:
+                ko = resolve_ko(ja, kana, overrides)
+                name = {"ja": ja, "ko": ko, "en": en, "kana": kana}
+                alt = ko_wiki.lookup(wiki, ja, lat, lon)
+                if alt and not ko_wiki.same_ko(alt, ko):
+                    name["koAlt"] = alt
             stations.append({"id": sid, "lineId": L["id"], "code": code,
                              "name": name,
                              "lat": lat, "lon": lon, "group": g})

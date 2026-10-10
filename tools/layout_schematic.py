@@ -41,6 +41,9 @@ MONORAIL_OPERATORS = {"TamaMonorail", "TokyoMonorail", "Yurikamome", "ShonanMono
 
 def classify(operator, line_id):
     """노선 분류 → (선 디자인 category, 필터 그룹). 필터 그룹: subway / jr / private"""
+    # 한국(수도권 전철): 운영사 구분 없이 지하철 실선, 필터는 하나(지하철)
+    if operator.startswith("kr:"):
+        return "metro", "subway"
     op = operator.split(":", 1)[-1]
     path = line_id.split(":", 1)[-1]
     if op.startswith("JR"):
