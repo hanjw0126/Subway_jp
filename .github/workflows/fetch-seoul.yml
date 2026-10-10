@@ -1,0 +1,40 @@
+name: Fetch Seoul data
+
+# 서울 열린데이터광장 일반 API 원본(역 목록·좌표)을 받아 tools/seoul/raw/ 에 커밋한다.
+# 키: SEOUL_NORMAL_SECRET (일반 인증키). 노선 데이터 변환은 별도 단계에서 이 원본을 쓴다.
+on:
+  push:
+    branches: [main, "feat-*", "fix-*", "ui-*"]
+    paths:
+      - "tools/seoul/fetch_raw.py"
+      - ".github/workflows/fetch-seoul.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-seoul-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch raw data
+        env:
+          SEOUL_NORMAL_SECRET: ${{ secrets.SEOUL_NORMAL_SECRET }}
+        run: python tools/seoul/fetch_raw.py
+      - name: Commit raw data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tools/seoul/raw
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "chore(seoul): 서울 열린데이터광장 원본 갱신 (${GITHUB_SHA::7})"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
