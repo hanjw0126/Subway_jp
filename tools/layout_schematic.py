@@ -3,8 +3,9 @@
 1) 환승역 묶음(group)을 하나의 노드로 보고 위경도를 평면 좌표로 투영 (geo_projection: 지역별 방사 압축 포함,
    떨어진 노선 묶음은 본 노선망 가까이로 이동)
 2) 스프링 완화 → 0.5 격자 스냅 → 국소 탐색으로 45° 정렬 구간 최대화
-3) 충돌 복구(repair): '정차하지 않는 역 위를 지나감', '다른 구간과 포개짐', '교차' 를 비용으로 두고
-   문제가 된 역을 주변 격자 칸으로 옮긴다. 45°가 아닌 구간의 꺾임 방향도 충돌이 적은 쪽을 고른다.
+3) 충돌 복구(repair): '정차하지 않는 역 위를 지나감', '다른 구간과 포개짐', '같은 노선끼리 교차'(꼬임)를
+   반드시 없앨 위반으로, '다른 노선과 교차'를 가벼운 비용으로 두고 문제가 된 역을 주변 격자 칸으로 옮긴다.
+   45°가 아닌 구간의 꺾임 방향도 충돌이 적은 쪽을 고른다. (모든 나라 노선도에 같은 조건)
 4) 평행 오프셋, 역명 방향, 종점 아이콘 위치, 노선 분류(선 디자인 / 필터 그룹)를 함께 출력
 """
 import argparse
@@ -30,13 +31,17 @@ DETACHED_GAP_KM = 2.5
 # 충돌 복구 비용
 W_ON_EDGE = 60.0
 W_OVERLAP = 60.0
-W_CROSS = 14.0
+W_SELF_CROSS = 80.0   # 같은 노선의 두 구간이 교차 (노선이 꼬임) — 포개짐처럼 반드시 없앤다
+W_CROSS = 14.0        # 서로 다른 노선끼리 교차 — 피할 수 없는 경우가 많아 가볍게
 W_CLOSE = 30.0
 W_BEND = 1.0
 ON_EDGE_DIST = 0.2
 REPAIR_BUDGET_S = float(os.environ.get("LAYOUT_REPAIR_BUDGET", "900"))
 ESCAPE_PASSES = int(os.environ.get("LAYOUT_ESCAPE_PASSES", "12"))
 _REPEL = {}
+# 구간(edge) → 그 구간을 지나는 노선 ID 집합 (같은 노선끼리 교차 판정용, repair 시작 시 채운다)
+_LINES = {}
+_NO_LINES = frozenset()
 
 SUBWAY_OPERATORS = {"TokyoMetro", "Toei", "YokohamaMunicipal", "OsakaMetro"}
 MONORAIL_OPERATORS = {"TamaMonorail", "TokyoMonorail", "Yurikamome", "ShonanMonorail", "ChibaUrbanMonorail"}
@@ -348,6 +353,12 @@ def _seg_conflicts(pts, q):
     return ov, cr
 
 
+def _same_line(e, f, lines_of=None):
+    """두 구간이 같은 노선에 속하는가 (같은 노선끼리 교차 = 꼬임)"""
+    lo = _LINES if lines_of is None else lines_of
+    return bool(lo.get(e, _NO_LINES) & lo.get(f, _NO_LINES))
+
+
 def _on_path(p, q, d=ON_EDGE_DIST):
     return any(_seg_point_dist(p, a, b) < d for a, b in zip(q, q[1:]))
 
@@ -363,32 +374,36 @@ def route_options(a, b):
     return [[a, (ax + sx * d, ay + sy * d), b], [a, (bx - sx * d, by - sy * d), b]]
 
 
-def _score(on, ov, cr):
-    return W_ON_EDGE * on + W_OVERLAP * ov + W_CROSS * cr
+def _score(on, ov, cr, sc=0):
+    return W_ON_EDGE * on + W_OVERLAP * ov + W_CROSS * cr + W_SELF_CROSS * sc
 
 
 def _conf(e, pts, paths, boxes, pos, skip):
-    on = ov = cr = 0
+    """구간 e 를 pts 로 그릴 때의 (역 위 통과, 포개짐, 다른 노선과 교차, 같은 노선끼리 교차)"""
+    on = ov = cr = sc = 0
     bb = _bbox(pts, 0.3)
     for f, q in paths.items():
         if f == e or f in skip or not _bbhit(bb, boxes[f]):
             continue
         o, c = _seg_conflicts(pts, q)
         ov += o
-        cr += c
+        if c and _same_line(e, f):
+            sc += c
+        else:
+            cr += c
     for h, p in pos.items():
         if h in e:
             continue
         if bb[0] <= p[0] <= bb[2] and bb[1] <= p[1] <= bb[3] and _on_path(p, pts):
             on += 1
-    return on, ov, cr
+    return on, ov, cr, sc
 
 
-def violations(paths, pos):
-    """(지표, 정차하지 않는 역 통과·포개짐 관련 역, 교차 관련 역)"""
+def violations(paths, pos, lines_of=None):
+    """(지표, 반드시 없앨 위반(역 위 통과·포개짐·같은 노선 교차) 관련 역, 다른 노선과 교차 관련 역)"""
     items = list(paths.items())
     boxes = [_bbox(q, 0.05) for _, q in items]
-    on = ov = cr = 0
+    on = ov = cr = sc = 0
     hard, soft = set(), set()
     for i, (e, q) in enumerate(items):
         for j in range(i + 1, len(items)):
@@ -401,9 +416,14 @@ def violations(paths, pos):
                 hard.update(e)
                 hard.update(f)
             if x:
-                cr += x
-                soft.update(e)
-                soft.update(f)
+                if _same_line(e, f, lines_of):
+                    sc += x
+                    hard.update(e)
+                    hard.update(f)
+                else:
+                    cr += x
+                    soft.update(e)
+                    soft.update(f)
         bb = _bbox(q, ON_EDGE_DIST)
         for h, p in pos.items():
             if h in e:
@@ -412,7 +432,7 @@ def violations(paths, pos):
                 on += 1
                 hard.add(h)
                 hard.update(e)
-    return {"nodeOnEdge": on, "overlaps": ov, "crossings": cr}, hard, soft
+    return {"nodeOnEdge": on, "overlaps": ov, "crossings": cr, "selfCrossings": sc}, hard, soft
 
 
 def _node_eval(g, p, pos, inc, nbrs, paths, boxes, geo_n, target):
@@ -424,12 +444,15 @@ def _node_eval(g, p, pos, inc, nbrs, paths, boxes, geo_n, target):
     for e in inc[g]:
         best = None
         for pts in route_options(pos[e[0]], pos[e[1]]):
-            on, ov, cr = _conf(e, pts, paths, boxes, pos, skip)
-            for q in local.values():
+            on, ov, cr, sc = _conf(e, pts, paths, boxes, pos, skip)
+            for e2, q in local.items():
                 o, x = _seg_conflicts(pts, q)
                 ov += o
-                cr += x
-            s = _score(on, ov, cr) + (W_BEND if len(pts) > 2 else 0.0)
+                if x and _same_line(e, e2):
+                    sc += x
+                else:
+                    cr += x
+            s = _score(on, ov, cr, sc) + (W_BEND if len(pts) > 2 else 0.0)
             if best is None or s < best[0]:
                 best = (s, pts)
         local[e] = best[1]
@@ -454,8 +477,12 @@ def _node_eval(g, p, pos, inc, nbrs, paths, boxes, geo_n, target):
 
 
 def repair(pos, geo_n, edges, target, passes=int(os.environ.get("LAYOUT_REPAIR_PASSES", "48")), budget_s=REPAIR_BUDGET_S):
-    """충돌 복구. pos 를 직접 고치고 구간별 경로(꺾임점 포함)를 돌려준다"""
+    """충돌 복구. pos 를 직접 고치고 구간별 경로(꺾임점 포함)를 돌려준다.
+    edges 가 {구간: [노선 ID]} 이면 같은 노선끼리 교차(꼬임)도 반드시 없앨 위반으로 다룬다."""
     t0 = time.monotonic()
+    _LINES.clear()
+    if isinstance(edges, dict):
+        _LINES.update({e: frozenset(lids) for e, lids in edges.items()})
     edges = list(edges)
     inc = defaultdict(list)
     nbrs = defaultdict(set)
@@ -503,7 +530,7 @@ def repair(pos, geo_n, edges, target, passes=int(os.environ.get("LAYOUT_REPAIR_P
                 boxes[e] = _bbox(q)
         if not moved and radius == 3:
             break
-    # 국소 최소에 갇힌 충돌: 충돌 역과 이웃 역을 더 넓은 범위(반경 4~6)에서 다시 찾는다
+    # 국소 최소에 갇힌 위반(역 위 통과·포개짐·같은 노선 교차): 해당 역과 이웃 역을 더 넓은 범위(반경 4~6)에서 다시 찾는다
     for it in range(ESCAPE_PASSES):
         if time.monotonic() - t0 > budget_s:
             break
@@ -732,6 +759,7 @@ def metrics(layout):
     u = layout["unit"]
     polys, bends, octo = {}, 0, True
     offs = defaultdict(set)
+    lines_of = defaultdict(frozenset)
     for l in layout["lines"]:
         for s in l["segments"]:
             pts = [(round(p[0] / u, 3), round(p[1] / u, 3)) for p in s["points"]]
@@ -740,11 +768,12 @@ def metrics(layout):
             k = (min(pts[0], pts[-1]), max(pts[0], pts[-1]))
             polys[k] = pts
             offs[k].add(round(float(s.get("offset", 0)), 2))
+            lines_of[k] = lines_of[k] | {l["lineId"]}
     pos = {}
     for n in layout["nodes"]:
         p = (round(n["x"] / u, 3), round(n["y"] / u, 3))
         pos[p] = p
-    v, _, _ = violations(polys, pos)
+    v, _, _ = violations(polys, pos, dict(lines_of))
     # 포개짐 재계산: 같은 역에서 출발해 서로 다른 오프셋(평행선 다발)으로 그려지는 것은 bundled 로 따로 센다
     items = list(polys.items())
     bxs = [_bbox(q, 0.05) for _, q in items]

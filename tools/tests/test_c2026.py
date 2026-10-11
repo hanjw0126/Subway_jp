@@ -12,10 +12,10 @@ def test_bundle_lanes_parallel():
     assert lanes[(("A", "B"), "L1")] == -0.5 and lanes[(("A", "C"), "L2")] == 0.5
     assert lanes[(("B", "D"), "L1")] == 0
     lay = {"unit": 1.0, "nodes": [{"x": x, "y": y} for x, y in [(0, 0), (2, 1), (2, -1), (3, 1)]],
-           "lines": [{"segments": [{"points": paths[("A", "B")], "offset": -0.5}, {"points": paths[("B", "D")], "offset": 0}]},
-                     {"segments": [{"points": paths[("A", "C")], "offset": 0.5}]}]}
+           "lines": [{"lineId": "L1", "segments": [{"points": paths[("A", "B")], "offset": -0.5}, {"points": paths[("B", "D")], "offset": 0}]},
+                     {"lineId": "L2", "segments": [{"points": paths[("A", "C")], "offset": 0.5}]}]}
     m = metrics(lay)
-    assert m["overlaps"] == 0 and m["bundled"] == 1
+    assert m["overlaps"] == 0 and m["bundled"] == 1 and m["selfCrossings"] == 0
 
 
 def test_c2026_seed_merge(tmp_path, monkeypatch):

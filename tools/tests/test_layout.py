@@ -6,17 +6,23 @@ from layout_schematic import build_layout, classify, metrics
 from seed_merge import app_regions, load_region_seed
 
 # 노선도 품질 상한 (0 이 목표). 값을 올리면 노선도가 나빠진 것이므로 PR 에서 사유를 적을 것
+#  selfCrossings: 같은 노선의 두 구간이 교차(노선이 꼬임) — 모든 나라 노선도에서 0 이어야 한다
 LIMITS = {
-    "tokyo": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 26},
-    "yokohama": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 0},
-    "osaka": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 0},
+    "tokyo": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 26, "selfCrossings": 0},
+    "yokohama": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 0, "selfCrossings": 0},
+    "osaka": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 0, "selfCrossings": 0},
+    "seoul": {"nodeOnEdge": 0, "overlaps": 0, "crossings": 40, "selfCrossings": 0},
 }
 _CACHE = {}
 
 
 def _net(region):
     r = next(x for x in app_regions() if x["id"] == region)
-    return build(load_region_seed(r), load_overrides())
+    net = build(load_region_seed(r), load_overrides())
+    # build_all 과 같은 지역별 노선도 설정 (예: 서울 방사 압축)
+    if r.get("layoutHints"):
+        net["layoutHints"] = r["layoutHints"]
+    return net
 
 
 def _lay(region):
@@ -52,7 +58,19 @@ def test_layout_invariants():
         assert {n["group"] for n in lay["nodes"]} == {s["group"] for s in net["stations"]}
         assert len({(n["x"], n["y"]) for n in lay["nodes"]}) == len(lay["nodes"])
         for k, v in lim.items():
-            assert m[k] <= v, (region, m)
+            assert m[k] <= v, (region, k, m)
+
+
+def test_self_crossing_is_detected():
+    """같은 노선의 두 구간이 X 자로 교차하면 selfCrossings 로, 다른 노선끼리면 crossings 로 센다"""
+    seg = lambda a, b: {"points": [[a[0] * 60, a[1] * 60], [b[0] * 60, b[1] * 60]], "offset": 0}  # noqa: E731
+    nodes = [{"group": f"n{i}", "x": x * 60, "y": y * 60} for i, (x, y) in enumerate([(0, 0), (2, 2), (0, 2), (2, 0)])]
+    same = {"unit": 60, "nodes": nodes, "lines": [
+        {"lineId": "L1", "segments": [seg((0, 0), (2, 2)), seg((0, 2), (2, 0))]}]}
+    diff = {"unit": 60, "nodes": nodes, "lines": [
+        {"lineId": "L1", "segments": [seg((0, 0), (2, 2))]}, {"lineId": "L2", "segments": [seg((0, 2), (2, 0))]}]}
+    assert metrics(same)["selfCrossings"] == 1 and metrics(same)["crossings"] == 0
+    assert metrics(diff)["selfCrossings"] == 0 and metrics(diff)["crossings"] == 1
 
 
 def test_categories_and_terminal_icons():
@@ -60,6 +78,7 @@ def test_categories_and_terminal_icons():
     assert classify("odpt.Operator:Tokyu", "odpt.Railway:Tokyu.Toyoko") == ("private", "private")
     assert classify("odpt.Operator:Toei", "odpt.Railway:Toei.Asakusa") == ("toei", "subway")
     assert classify("odpt.Operator:TamaMonorail", "odpt.Railway:TamaMonorail.TamaMonorail") == ("monorail", "private")
+    assert classify("kr:Seoul", "kr.Seoul.3") == ("metro", "subway")
     _, lay = _lay("tokyo")
     by = {l["lineId"]: l for l in lay["lines"]}
     ginza = by["odpt.Railway:TokyoMetro.Ginza"]
