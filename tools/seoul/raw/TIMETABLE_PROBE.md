@@ -1,0 +1,21 @@
+# 서울 도시철도 열차운행시각표 내려받기 시험
+
+- 상세 페이지 HTTP 200, 211107 bytes
+- uddi 후보: ['uddi:895a541f-19c4-4457-a330-99ae77b0dc4b']
+- 내려받기 함수 호출: ["fn_fileDataDown('15098251', 'uddi:895a541f-19c4-4457-a330-99ae77b0dc4b', '','1', '15')"]
+- 페이지의 atchFileId 후보: ['FILE_000000007671122']
+- selectFileDataDownload POST uddi:895a541f-19c4-4… → HTTP 200: '{"dataSetFileDetailInfo":{"rn":"","searchCondition1":"","searchCondition2":"","searchCondition3":"","searchCondition1Array":null,"searchCondition2Array":null,"searchCondition3Array":null,"searchKeyword1":"","searchKeyword2":"","searchKeyword3":"","searchKeywordFrom1":"","searchKeywordTo1":"","search'
+- selectFileDataDownload GET uddi:895a541f-19c4-4… → HTTP 200: '{"dataSetFileDetailInfo":{"rn":"","searchCondition1":"","searchCondition2":"","searchCondition3":"","searchCondition1Array":null,"searchCondition2Array":null,"searchCondition3Array":null,"searchKeyword1":"","searchKeyword2":"","searchKeyword3":"","searchKeywordFrom1":"","searchKeywordTo1":"","search'
+- 파일 받기 FILE_000000007671122/1 → HTTP 200, 32730124 bytes, application/octet-stream; charset=UTF-8, attachment; filename="ìì¸êµíµê³µì¬_ëìì² ëì´ì°¨ì´íìê°í_20260914.csv"
+- 저장: /home/runner/work/_temp/timetable.csv (32730124 bytes)
+- 인코딩 cp949, 행 423107, 열 ['고유번호', '호선', '역사코드', '역사명', '주중주말', '방향', '급행여부', '열차코드', '열차도착시간', '열차출발시간', '출발역', '도착역']
+- 앞 5행:
+  - ['1', '1', '0150', '서울역', 'DAY', 'UP', '0', 'K802', '05:20:00', '05:20:30', '구로', '동두천']
+  - ['2', '1', '0150', '서울역', 'DAY', 'UP', '0', 'S902', '', '05:24:00', '서울역', '의정부']
+  - ['3', '1', '0150', '서울역', 'DAY', 'UP', '0', 'K804', '05:30:00', '05:30:30', '구로', '청량리']
+  - ['4', '1', '0150', '서울역', 'DAY', 'UP', '0', 'S904', '', '05:35:00', '서울역', '양주']
+  - ['5', '1', '0150', '서울역', 'DAY', 'UP', '0', 'K806', '05:40:00', '05:40:30', '구로', '동두천']
+- 호선: {'1': 88573, '2': 61861, '5': 50124, '7': 49617, '4': 47569, '3': 42753, '9': 33898, '6': 29635, '8': 19077}
+- 주중주말: {'DAY': 159263, 'SAT': 131926, 'END': 131918}
+- 방향: {'DOWN': 185161, 'UP': 182511, 'OUT': 27824, 'IN': 27611}
+- 급행여부: {'0': 393753, '1': 29354}
