@@ -27,19 +27,23 @@ object KoreaStrings {
         else -> "Couldn't get live train positions"
     }
 
+    /** 앱에 서울 시간표가 없을 때 (경로 검색 불가) */
     fun routeNotSupported(l: AppLanguage) = when (l) {
-        AppLanguage.KO -> "한국 노선의 경로 검색은 아직 지원하지 않습니다"
-        AppLanguage.JA -> "韓国の路線の経路検索にはまだ対応していません"
-        else -> "Route search isn't available for Korean lines yet"
+        AppLanguage.KO -> "한국 노선 시간표를 불러오지 못해 경로 검색을 할 수 없습니다"
+        AppLanguage.JA -> "韓国の路線の時刻表を読み込めないため、経路検索ができません"
+        else -> "Route search is unavailable: the Korean timetable couldn't be loaded"
     }
 
     fun notice(l: AppLanguage) = when (l) {
-        AppLanguage.KO -> "한국 노선 데이터는 서울 열린데이터광장(data.seoul.go.kr)에서 제공하는 정보를 이용합니다 (공공누리 제1유형). " +
-            "실시간 도착정보와 열차 위치는 운영기관이 제공한 값으로 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
-        AppLanguage.JA -> "韓国の路線データはソウル市オープンデータ広場（data.seoul.go.kr）の情報を利用しています（公共ヌリ 第1類型）。" +
-            "リアルタイム到着情報と列車位置は運営事業者の提供値であり、実際の運行と異なる場合があります。"
-        else -> "Korean line data is provided by Seoul Open Data Plaza (data.seoul.go.kr) under KOGL Type 1. " +
-            "Real-time arrivals and train positions come from the operators and may differ from actual service. This is an unofficial app."
+        AppLanguage.KO -> "한국 노선 데이터는 서울 열린데이터광장(data.seoul.go.kr)과 서울교통공사(공공데이터포털: 열차운행시각표, " +
+            "환승역 환승 소요시간)가 제공하는 정보를 이용합니다 (공공누리 제1유형). " +
+            "실시간 도착정보·열차 위치·시간표는 운영기관이 제공한 값으로 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
+        AppLanguage.JA -> "韓国の路線データはソウル市オープンデータ広場（data.seoul.go.kr）とソウル交通公社（公共データポータル：列車運行時刻表、" +
+            "乗換駅の乗換所要時間）の情報を利用しています（公共ヌリ 第1類型）。" +
+            "リアルタイム到着情報・列車位置・時刻表は運営事業者の提供値であり、実際の運行と異なる場合があります。"
+        else -> "Korean line data is provided by Seoul Open Data Plaza (data.seoul.go.kr) and Seoul Metro (Public Data Portal: " +
+            "train timetables, transfer walking times) under KOGL Type 1. " +
+            "Real-time arrivals, train positions and timetables come from the operators and may differ from actual service. This is an unofficial app."
     }
 
     fun osm(l: AppLanguage) = when (l) {
