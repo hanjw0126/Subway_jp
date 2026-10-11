@@ -29,6 +29,10 @@
 - 저장: tools/seoul/raw/quick_transfer.csv (49365 chars)
 
 ## 일본 — ODPT odpt:StationFacility (승강장 칸별 환승 정보)
-- TokyoMetro: 실패 HTTP Error 404: Not Found
-- Toei: 실패 HTTP Error 404: Not Found
-- YokohamaMunicipal: 실패 HTTP Error 404: Not Found
+- 일반 조회 TokyoMetro: HTTP 404 'There is no rdf:type : StationFacility'
+- 일반 조회 Toei: HTTP 404 'There is no rdf:type : StationFacility'
+- 일반 조회 YokohamaMunicipal: HTTP 404 'There is no rdf:type : StationFacility'
+- 데이터 덤프 odpt:StationFacility.json: HTTP 404 '\ufeff<?xml version="1.0" encoding="utf-8"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:6ca458c0-201e-0036-1298-594ff3000000\nTime:2026-10-11T15:54:39.8829957Z</M'
+- 챌린지 API TokyoMetro: HTTP 404 'There is no rdf:type : StationFacility'
+- 챌린지 API Toei: HTTP 404 'There is no rdf:type : StationFacility'
+- 챌린지 API YokohamaMunicipal: HTTP 404 'There is no rdf:type : StationFacility'
