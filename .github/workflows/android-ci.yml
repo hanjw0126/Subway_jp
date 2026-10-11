@@ -26,11 +26,11 @@ jobs:
           gradle-version: "8.11.1"
       - name: Unit test · Lint · Debug APK
         run: gradle --no-daemon testDebugUnitTest lintDebug assembleDebug --stacktrace
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: app-debug-apk
           path: app/build/outputs/apk/debug/*.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: reports
