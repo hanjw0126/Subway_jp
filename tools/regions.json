@@ -87,6 +87,7 @@
     "rivers": [
       "seoul/raw/han_river.json"
     ],
-    "note": "수도권 전철 19개 노선 (서울 열린데이터광장)"
+    "transferTimes": "seoul/raw/transfer_times.csv",
+    "note": "수도권 전철 19개 노선 (서울 열린데이터광장·서울교통공사)"
   }
 ]
