@@ -9,6 +9,7 @@ import io.github.jpsubway.app.data.repo.RealtimeRepository
 import io.github.jpsubway.app.data.repo.SettingsRepository
 import io.github.jpsubway.app.data.repo.TimetableRepository
 import io.github.jpsubway.app.data.seoul.SeoulTimetableSource
+import io.github.jpsubway.app.data.transfer.QuickTransferSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,6 +34,7 @@ class AppContainer(context: Context) {
     val networks = NetworkRepository(context, json)
     val timetables = TimetableRepository(context, json, odpt, settings)
     val seoulTimetables = SeoulTimetableSource(context, json)
+    val quickTransfers = QuickTransferSource(context, json)
     val realtime = RealtimeRepository(odpt, settings)
     val routeSelection = RouteSelection()
     val session: RegionSession by lazy { RegionSession(this) }
