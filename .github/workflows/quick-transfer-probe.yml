@@ -28,6 +28,7 @@ jobs:
       - name: Probe
         env:
           ODPT_CONSUMER_KEY: ${{ secrets.ODPT_CONSUMER_KEY }}
+          ODPT_C2026_KEY: ${{ secrets.ODPT_C2026_KEY }}
         run: python tools/probe_quick_transfer.py
       - name: Commit report
         run: |
