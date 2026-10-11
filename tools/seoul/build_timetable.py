@@ -11,6 +11,7 @@
 - 출력(하루 종류별, gzip): {"source", "lines": [노선 ID], "stations": [역 ID],
     "trips": [[노선#, 열차코드, 방향(0=asc,1=desc), 종착역#, 급행(0/1), [역#...], [도착초...], [정차초...]]]}
   도착초는 운행일 기준 초(24시 넘는 값 그대로), 정차초 = 출발 - 도착.
+- 변환 통계: tools/seoul/raw/TIMETABLE_STATS.md (편 수, 앱 역으로 연결하지 못한 역)
 """
 import collections
 import csv
@@ -26,6 +27,7 @@ ROOT = os.path.dirname(TOOLS)
 RAW = os.path.join(HERE, "raw")
 SEED = os.path.join(TOOLS, "seed", "seoul.json")
 OUT_DIR = os.path.join(ROOT, "app", "src", "main", "assets", "regions", "seoul")
+STATS = os.path.join(RAW, "TIMETABLE_STATS.md")
 DAYS = ("DAY", "SAT", "END")
 SPLIT_GAP_SEC = 30 * 60
 
@@ -62,6 +64,7 @@ def station_index(seed, lines_raw):
             line_of[sid] = L["id"]
             by_name[(key, norm(st[7]))].append(sid)
     idx = {k: by_fr.get((k[0], fr), []) for k, fr in fr_by_cd.items()}
+    # 역사코드가 역 목록에 없거나 외부코드가 다르면 역명으로 찾는다
     return idx, line_of, by_name
 
 
@@ -79,10 +82,16 @@ def split_trips(stops):
     return out
 
 
-def choose_sids(line_no, stops, idx, line_of):
-    """정차역마다 앱 역 ID 하나씩 (앞 역과 같은 노선 우선, 없으면 다음 역과 같은 노선)"""
-    cands = [(s, idx.get((line_no, s["cd"]), [])) for s in stops]
-    cands = [(s, c) for s, c in cands if c]
+def choose_sids(line_no, stops, idx, line_of, by_name, missing):
+    """정차역마다 앱 역 ID 하나씩 (앞 역과 같은 노선 우선, 없으면 다음 역과 같은 노선).
+    역사코드로 못 찾으면 같은 호선의 같은 역명으로 찾고, 그래도 없으면 missing 에 센다."""
+    cands = []
+    for s in stops:
+        c = idx.get((line_no, s["cd"])) or by_name.get((line_no, s["name"]), [])
+        if c:
+            cands.append((s, c))
+        else:
+            missing[(line_no, s["cd"], s["name"])] += 1
     chosen, prev_line = [], None
     for i, (s, cs) in enumerate(cands):
         pick = None
@@ -110,18 +119,17 @@ def build(rows, seed, lines_raw):
         arr = dep if arr is None else arr
         dep = arr if dep is None else max(dep, arr)
         groups[(r["호선"].strip(), r["주중주말"].strip(), r["열차코드"].strip())].append({
-            "cd": r["역사코드"].strip(), "arr": arr, "dep": dep, "dir": r["방향"].strip(),
+            "cd": r["역사코드"].strip(), "name": norm(r["역사명"]), "arr": arr, "dep": dep, "dir": r["방향"].strip(),
             "exp": r["급행여부"].strip() == "1", "dest": norm(r["도착역"]),
         })
     out = {d: {"stations": [], "sidx": {}, "trips": []} for d in DAYS}
-    unmatched = collections.Counter()
+    missing = collections.Counter()
     for (line_no, day, code), stops in sorted(groups.items()):
         if day not in out:
             continue
         o = out[day]
         for trip in split_trips(stops):
-            chosen = choose_sids(line_no, trip, idx, line_of)
-            unmatched[line_no] += len(trip) - len(chosen)
+            chosen = choose_sids(line_no, trip, idx, line_of, by_name, missing)
             if len(chosen) < 2:
                 continue
             lid = collections.Counter(line_of[sid] for _, sid in chosen).most_common(1)[0][0]
@@ -144,7 +152,7 @@ def build(rows, seed, lines_raw):
                 [s["arr"] for s, _ in chosen],
                 [s["dep"] - s["arr"] for s, _ in chosen],
             ])
-    return out, line_ids, unmatched
+    return out, line_ids, missing
 
 
 def main():
@@ -160,8 +168,9 @@ def main():
     p = os.path.join(RAW, "timetable_source.txt")
     if os.path.exists(p):
         src = open(p, encoding="utf-8").read().strip()
-    out, line_ids, unmatched = build(rows, seed, lines_raw)
+    out, line_ids, missing = build(rows, seed, lines_raw)
     os.makedirs(OUT_DIR, exist_ok=True)
+    report = ["# 서울 열차운행시각표 변환 통계", "", f"원본: {src}", ""]
     for day, o in out.items():
         doc = {"source": src, "dayType": day, "lines": line_ids, "stations": o["stations"], "trips": o["trips"]}
         data = json.dumps(doc, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
@@ -171,8 +180,17 @@ def main():
             with gzip.GzipFile(fileobj=f, mode="wb", mtime=0, compresslevel=9) as gz:
                 gz.write(data)
         stops = sum(len(t[5]) for t in o["trips"])
-        print(f"[seoul-timetable] {day}: 열차 {len(o['trips'])}편, 정차 {stops}, 역 {len(o['stations'])} → {os.path.relpath(path, ROOT)} ({os.path.getsize(path)} bytes)")
-    print(f"[seoul-timetable] 앱 역으로 연결하지 못한 정차(호선별): {dict(unmatched)}")
+        per_line = collections.Counter(line_ids[t[0]] for t in o["trips"])
+        line = f"- {day}: 열차 {len(o['trips'])}편, 정차 {stops}, 역 {len(o['stations'])}, {os.path.getsize(path)} bytes"
+        print(line)
+        report.append(line)
+        report.append(f"  - 노선별 편 수: {dict(sorted(per_line.items()))}")
+    total = sum(missing.values())
+    report += ["", f"## 앱 역으로 연결하지 못한 정차 {total}건 (호선, 역사코드, 역명: 건수)", ""]
+    report += [f"- {k[0]}호선 {k[1]} {k[2]}: {v}" for k, v in missing.most_common(80)]
+    with open(STATS, "w", encoding="utf-8") as f:
+        f.write("\n".join(report) + "\n")
+    print(f"앱 역으로 연결하지 못한 정차 {total}건")
 
 
 if __name__ == "__main__":
