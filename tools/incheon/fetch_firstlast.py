@@ -1,21 +1,23 @@
 """인천교통공사 인천1·2호선 첫차·막차 열차운행시각표 (공공데이터포털 파일 데이터) 내려받기
 
-파일 데이터라 인증키 없이 받는다. 1호선은 15051200(휴일)·15051201(평일), 2호선은 그 근처 번호를
-차례로 확인해 제목으로 찾는다. 결과:
-  tools/incheon/raw/<호선>_<WEEKDAY|HOLIDAY>.csv (UTF-8), tools/incheon/raw/SOURCES.md (데이터 번호·파일명·열)
+파일 데이터라 인증키 없이 받는다. 데이터 번호는 공공데이터포털 검색 결과와 알려진 번호(1호선 15051200·15051201)에서
+제목으로 찾는다 (인천교통공사 / 인천N호선 / 평일·휴일 / 첫차). 결과:
+  tools/incheon/raw/<IC1|IC2>_<WEEKDAY|HOLIDAY>.csv (UTF-8), tools/incheon/raw/SOURCES.md (데이터 번호·파일명·열)
 """
 import csv
 import io
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from http.cookiejar import CookieJar
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, "raw")
 UA = "Mozilla/5.0 (X11; Linux x86_64) WorldWideMetro/1.0"
-CANDIDATES = list(range(15051195, 15051215))
+KNOWN = [15051200, 15051201]
+QUERIES = ["인천교통공사 첫차 막차", "인천2호선 첫차 막차", "인천1호선 첫차 막차", "인천교통공사 열차운행시각표"]
 
 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(CookieJar()))
 log = []
@@ -49,23 +51,38 @@ def classify(title):
     return (line, day) if line and day else None
 
 
+def search_pks():
+    """공공데이터포털 검색 결과 페이지에서 파일 데이터 번호를 모은다"""
+    pks = set()
+    for q in QUERIES:
+        url = "https://www.data.go.kr/tcs/dss/selectDataSetList.do?" + urllib.parse.urlencode(
+            {"dType": "FILE", "keyword": q, "perPage": 40, "currentPage": 1})
+        try:
+            _, _, html = _req(url, "https://www.data.go.kr/")
+            found = set(int(x) for x in re.findall(r"/data/(\d{8})/fileData\.do", html.decode("utf-8", "replace")))
+            note(f"- 검색 '{q}': {sorted(found)[:30]}")
+            pks |= found
+        except Exception as e:  # noqa: BLE001
+            note(f"- 검색 '{q}' 실패: {e}")
+    return pks
+
+
 def main():
     os.makedirs(RAW, exist_ok=True)
     note("# 인천교통공사 첫차·막차 열차운행시각표 (공공데이터포털)")
     note()
     found = {}
-    for pk in CANDIDATES:
+    for pk in sorted(set(KNOWN) | search_pks()):
         page = f"https://www.data.go.kr/data/{pk}/fileData.do"
         try:
             st, _, html = _req(page, page)
         except Exception as e:  # noqa: BLE001
-            note(f"- {pk}: 실패 {e}")
             continue
         text = html.decode("utf-8", "replace")
         m = re.search(r"<title>([^<]+)</title>", text)
         title = (m.group(1) if m else "").strip()
         kind = classify(title)
-        if not kind:
+        if not kind or kind in found:
             continue
         atch = sorted(set(re.findall(r"FILE_\d{6,}", text)))
         note(f"- {pk}: {title} → {kind}, 첨부파일 {atch[:2]}")
