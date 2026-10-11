@@ -942,8 +942,8 @@
   },
   {
    "group": "g.ItabashiKuyakushomae",
-   "x": 750.0,
-   "y": 2010.0,
+   "x": 780.0,
+   "y": 2070.0,
    "labelKo": "이타바시쿠야쿠쇼마에",
    "labelJa": "板橋区役所前",
    "labelDx": -1,
@@ -959,8 +959,8 @@
    "y": 2010.0,
    "labelKo": "이타바시혼초",
    "labelJa": "板橋本町",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.Itabashihoncho"
@@ -1266,7 +1266,7 @@
    "labelKo": "기타산도",
    "labelJa": "北参道",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:TokyoMetro.Fukutoshin.KitaSando"
@@ -1316,12 +1316,12 @@
   },
   {
    "group": "g.Kohoku",
-   "x": 1260.0,
-   "y": 1860.0,
+   "x": 1200.0,
+   "y": 1920.0,
    "labelKo": "고호쿠",
    "labelJa": "江北",
-   "labelDx": 1,
-   "labelDy": 0,
+   "labelDx": -1,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.Kohoku"
@@ -1449,7 +1449,7 @@
   },
   {
    "group": "g.Koya",
-   "x": 1170.0,
+   "x": 1140.0,
    "y": 1890.0,
    "labelKo": "고야",
    "labelJa": "高野",
@@ -2266,7 +2266,7 @@
    "labelKo": "니시스가모",
    "labelJa": "西巣鴨",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Mita.NishiSugamo"
@@ -2300,12 +2300,12 @@
   },
   {
    "group": "g.NishiaraidaishiNishi",
-   "x": 1200.0,
-   "y": 1890.0,
+   "x": 1260.0,
+   "y": 1860.0,
    "labelKo": "니시아라이다이시니시",
    "labelJa": "西新井大師西",
    "labelDx": 1,
-   "labelDy": 1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.NipporiToneri.NishiaraidaishiNishi"
@@ -3183,7 +3183,7 @@
    "labelKo": "스가모신덴",
    "labelJa": "巣鴨新田",
    "labelDx": -1,
-   "labelDy": 0,
+   "labelDy": 1,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Arakawa.Sugamoshinden"
@@ -3483,7 +3483,7 @@
    "y": 2550.0,
    "labelKo": "도초마에",
    "labelJa": "都庁前",
-   "labelDx": 0,
+   "labelDx": -1,
    "labelDy": 1,
    "interchange": false,
    "stationIds": [
@@ -3863,7 +3863,7 @@
    "y": 1830.0,
    "labelKo": "야자이케",
    "labelJa": "谷在家",
-   "labelDx": 1,
+   "labelDx": -1,
    "labelDy": 0,
    "interchange": false,
    "stationIds": [
@@ -3899,12 +3899,12 @@
   },
   {
    "group": "g.Yoyogi",
-   "x": 780.0,
+   "x": 690.0,
    "y": 2610.0,
    "labelKo": "요요기",
    "labelJa": "代々木",
-   "labelDx": 0,
-   "labelDy": 1,
+   "labelDx": -1,
+   "labelDy": 0,
    "interchange": false,
    "stationIds": [
     "odpt.Station:Toei.Oedo.Yoyogi"
@@ -7728,12 +7728,8 @@
     {
      "points": [
       [
-       750.0,
-       2010.0
-      ],
-      [
        780.0,
-       1980.0
+       2070.0
       ],
       [
        870.0,
@@ -7745,8 +7741,12 @@
     {
      "points": [
       [
-       750.0,
-       2010.0
+       780.0,
+       2070.0
+      ],
+      [
+       780.0,
+       2040.0
       ],
       [
        810.0,
@@ -7946,8 +7946,12 @@
     {
      "points": [
       [
-       1170.0,
+       1140.0,
        1890.0
+      ],
+      [
+       1200.0,
+       1950.0
       ],
       [
        1230.0,
@@ -7959,16 +7963,29 @@
     {
      "points": [
       [
-       1260.0,
-       1860.0
-      ],
-      [
        1200.0,
-       1860.0
+       1920.0
       ],
       [
        1170.0,
        1890.0
+      ],
+      [
+       1140.0,
+       1890.0
+      ]
+     ],
+     "offset": 0.0
+    },
+    {
+     "points": [
+      [
+       1200.0,
+       1920.0
+      ],
+      [
+       1260.0,
+       1860.0
       ]
      ],
      "offset": 0.0
@@ -7981,20 +7998,7 @@
       ],
       [
        1230.0,
-       1890.0
-      ],
-      [
-       1200.0,
-       1890.0
-      ]
-     ],
-     "offset": 0.0
-    },
-    {
-     "points": [
-      [
-       1200.0,
-       1890.0
+       1830.0
       ],
       [
        1200.0,
@@ -8416,11 +8420,11 @@
        2580.0
       ],
       [
-       810.0,
+       720.0,
        2580.0
       ],
       [
-       780.0,
+       690.0,
        2610.0
       ]
      ],
@@ -8433,11 +8437,11 @@
        2490.0
       ],
       [
-       780.0,
-       2550.0
+       690.0,
+       2520.0
       ],
       [
-       780.0,
+       690.0,
        2610.0
       ]
      ],
