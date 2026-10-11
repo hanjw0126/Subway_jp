@@ -29,7 +29,7 @@ class RegionSession(private val c: AppContainer) {
         val tripsByLine: Map<String, List<Trip>> = timetable.trips.groupBy { it.lineId }
         val router: RaptorRouter by lazy { RaptorRouter(RaptorIndex.build(network, timetable)) }
 
-        /** 한국(서울) 지역: 시간표 없이 역별 실시간 도착정보 API 를 쓴다 */
+        /** 한국(서울) 지역: 역 화면은 역별 실시간 도착정보 API, 경로 검색은 서울교통공사 열차운행시각표 */
         val isLiveArrivals: Boolean get() = region.country == "kr"
     }
 
@@ -77,11 +77,12 @@ class RegionSession(private val c: AppContainer) {
             val network = c.networks.network(region.id)
             val layout = c.networks.layout(region.id)
             val now = ServiceClock.now()
-            val day = DayType.of(now.serviceDate)
+            val day = DayType.of(now.serviceDate, region.country)
             var err: String? = null
             val tt = if (region.country == "kr") {
-                // 서울: 시간표 없음 (도착정보는 역 화면에서 실시간 API 로)
-                Timetable(region.id, day.name, "live", now.epochSec, emptyList())
+                // 서울: 서울교통공사 열차운행시각표(앱에 포함) — 없으면 빈 시간표(경로 검색 불가 안내)
+                c.seoulTimetables.load(network, day, now.epochSec)
+                    ?: Timetable(region.id, day.name, "live", now.epochSec, emptyList())
             } else {
                 try {
                     c.timetables.get(region, network, day, force)
@@ -100,17 +101,30 @@ class RegionSession(private val c: AppContainer) {
         }
     }
 
+    /** 일본 지역의 열차 위치·지연·운행정보를 지금 바로 다시 받는다 (당겨서 새로고침) */
+    suspend fun refreshRealtime() {
+        val d = (state.value as? State.Ready)?.data ?: return
+        if (d.isLiveArrivals || !d.region.realtime || !c.settings.hasToken()) return
+        _realtime.value = try {
+            c.realtime.snapshot(d.region, d.network, ServiceClock.now().epochSec)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            RealtimeSnapshot(error = e.message ?: e.javaClass.simpleName)
+        }
+    }
+
     /** 화면이 보이는 동안 호출: 30초마다 열차 위치·지연·운행정보 갱신, 운행일 변경 시 시간표 재로딩 */
     suspend fun pollRealtime() {
         state.collectLatest { s ->
             val d = (s as? State.Ready)?.data ?: return@collectLatest
             while (true) {
                 val now = ServiceClock.now()
-                if (DayType.of(now.serviceDate) != d.dayType) {
+                if (DayType.of(now.serviceDate, d.region.country) != d.dayType) {
                     reload()
                     return@collectLatest
                 }
-                // ODPT 실시간은 일본 지역만 (서울은 역 화면이 도착정보를 직접 받는다)
+                // ODPT 실시간은 일본 지역만 (서울은 역·경로 화면이 도착정보를 직접 받는다)
                 if (!d.isLiveArrivals && d.region.realtime && c.settings.hasToken()) {
                     _realtime.value = try {
                         c.realtime.snapshot(d.region, d.network, now.epochSec)

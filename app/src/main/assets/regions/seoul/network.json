@@ -11593,12 +11593,12 @@
   {
    "from": "kr.Seoul.3.350",
    "to": "kr.Seoul.8.817",
-   "walkSec": 180
+   "walkSec": 29
   },
   {
    "from": "kr.Seoul.1.Gyeongbu.P142",
    "to": "kr.Seoul.7.746",
-   "walkSec": 180
+   "walkSec": 92
   },
   {
    "from": "kr.Seoul.KJ.K315",
@@ -11608,37 +11608,37 @@
   {
    "from": "kr.Seoul.2.222",
    "to": "kr.Seoul.SBD.D7",
-   "walkSec": 180
+   "walkSec": 178
   },
   {
    "from": "kr.Seoul.7.730",
    "to": "kr.Seoul.SB.K213",
-   "walkSec": 180
+   "walkSec": 104
   },
   {
    "from": "kr.Seoul.5.548",
    "to": "kr.Seoul.5.Macheon.548",
-   "walkSec": 180
+   "walkSec": 16
   },
   {
    "from": "kr.Seoul.2.212",
    "to": "kr.Seoul.7.727",
-   "walkSec": 180
+   "walkSec": 64
   },
   {
    "from": "kr.Seoul.3.339",
    "to": "kr.Seoul.7.734",
-   "walkSec": 180
+   "walkSec": 141
   },
   {
    "from": "kr.Seoul.3.339",
    "to": "kr.Seoul.9.923",
-   "walkSec": 180
+   "walkSec": 129
   },
   {
    "from": "kr.Seoul.7.734",
    "to": "kr.Seoul.9.923",
-   "walkSec": 180
+   "walkSec": 262
   },
   {
    "from": "kr.Seoul.4.451",
@@ -11653,27 +11653,27 @@
   {
    "from": "kr.Seoul.5.529",
    "to": "kr.Seoul.6.626",
-   "walkSec": 180
+   "walkSec": 61
   },
   {
    "from": "kr.Seoul.5.529",
    "to": "kr.Seoul.KJ.K312",
-   "walkSec": 180
+   "walkSec": 178
   },
   {
    "from": "kr.Seoul.5.529",
    "to": "kr.Seoul.AREX.A02",
-   "walkSec": 180
+   "walkSec": 229
   },
   {
    "from": "kr.Seoul.6.626",
    "to": "kr.Seoul.KJ.K312",
-   "walkSec": 180
+   "walkSec": 127
   },
   {
    "from": "kr.Seoul.6.626",
    "to": "kr.Seoul.AREX.A02",
-   "walkSec": 180
+   "walkSec": 221
   },
   {
    "from": "kr.Seoul.KJ.K312",
@@ -11688,7 +11688,7 @@
   {
    "from": "kr.Seoul.2.223",
    "to": "kr.Seoul.3.340",
-   "walkSec": 180
+   "walkSec": 63
   },
   {
    "from": "kr.Seoul.1.141",
@@ -11708,7 +11708,7 @@
   {
    "from": "kr.Seoul.5.544",
    "to": "kr.Seoul.7.725",
-   "walkSec": 180
+   "walkSec": 63
   },
   {
    "from": "kr.Seoul.1.Gyeongbu.P149",
@@ -11723,17 +11723,17 @@
   {
    "from": "kr.Seoul.5.512",
    "to": "kr.Seoul.9.902",
-   "walkSec": 180
+   "walkSec": 88
   },
   {
    "from": "kr.Seoul.5.512",
    "to": "kr.Seoul.AREX.A05",
-   "walkSec": 180
+   "walkSec": 282
   },
   {
    "from": "kr.Seoul.5.512",
    "to": "kr.Seoul.WS.S13",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.9.902",
@@ -11753,7 +11753,7 @@
   {
    "from": "kr.Seoul.2.Sinjeong.234-4",
    "to": "kr.Seoul.5.518",
-   "walkSec": 180
+   "walkSec": 14
   },
   {
    "from": "kr.Seoul.1.136",
@@ -11763,12 +11763,12 @@
   {
    "from": "kr.Seoul.4.411",
    "to": "kr.Seoul.7.713",
-   "walkSec": 180
+   "walkSec": 232
   },
   {
    "from": "kr.Seoul.7.732",
    "to": "kr.Seoul.SBD.D5",
-   "walkSec": 180
+   "walkSec": 67
   },
   {
    "from": "kr.Seoul.KJ.K321",
@@ -11778,7 +11778,7 @@
   {
    "from": "kr.Seoul.2.237",
    "to": "kr.Seoul.9.913",
-   "walkSec": 180
+   "walkSec": 88
   },
   {
    "from": "kr.Seoul.3.314",
@@ -11813,7 +11813,7 @@
   {
    "from": "kr.Seoul.2.233",
    "to": "kr.Seoul.7.744",
-   "walkSec": 180
+   "walkSec": 230
   },
   {
    "from": "kr.Seoul.1.137",
@@ -11823,52 +11823,52 @@
   {
    "from": "kr.Seoul.3.344",
    "to": "kr.Seoul.SB.K217",
-   "walkSec": 180
+   "walkSec": 65
   },
   {
    "from": "kr.Seoul.1.113",
    "to": "kr.Seoul.7.710",
-   "walkSec": 180
+   "walkSec": 37
   },
   {
    "from": "kr.Seoul.1.128",
    "to": "kr.Seoul.4.421",
-   "walkSec": 180
+   "walkSec": 162
   },
   {
    "from": "kr.Seoul.2.205",
    "to": "kr.Seoul.4.422",
-   "walkSec": 180
+   "walkSec": 38
   },
   {
    "from": "kr.Seoul.2.205",
    "to": "kr.Seoul.5.536",
-   "walkSec": 180
+   "walkSec": 195
   },
   {
    "from": "kr.Seoul.4.422",
    "to": "kr.Seoul.5.536",
-   "walkSec": 180
+   "walkSec": 89
   },
   {
    "from": "kr.Seoul.1.127",
    "to": "kr.Seoul.6.636",
-   "walkSec": 180
+   "walkSec": 80
   },
   {
    "from": "kr.Seoul.4.431",
    "to": "kr.Seoul.9.920",
-   "walkSec": 180
+   "walkSec": 204
   },
   {
    "from": "kr.Seoul.6.618",
    "to": "kr.Seoul.KJ.K316",
-   "walkSec": 180
+   "walkSec": 46
   },
   {
    "from": "kr.Seoul.6.618",
    "to": "kr.Seoul.AREX.A04",
-   "walkSec": 180
+   "walkSec": 155
   },
   {
    "from": "kr.Seoul.KJ.K316",
@@ -11888,7 +11888,7 @@
   {
    "from": "kr.Seoul.8.827",
    "to": "kr.Seoul.SB.K225",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.SB.K231",
@@ -11913,17 +11913,17 @@
   {
    "from": "kr.Seoul.7.742",
    "to": "kr.Seoul.SL.S404",
-   "walkSec": 180
+   "walkSec": 59
   },
   {
    "from": "kr.Seoul.6.638",
    "to": "kr.Seoul.UI.952",
-   "walkSec": 180
+   "walkSec": 73
   },
   {
    "from": "kr.Seoul.8.820",
    "to": "kr.Seoul.SB.K222",
-   "walkSec": 180
+   "walkSec": 13
   },
   {
    "from": "kr.Seoul.7.752",
@@ -11933,32 +11933,32 @@
   {
    "from": "kr.Seoul.3.322",
    "to": "kr.Seoul.6.612",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.2.226",
    "to": "kr.Seoul.4.433",
-   "walkSec": 180
+   "walkSec": 62
   },
   {
    "from": "kr.Seoul.4.428",
    "to": "kr.Seoul.6.628",
-   "walkSec": 180
+   "walkSec": 129
   },
   {
    "from": "kr.Seoul.7.720",
    "to": "kr.Seoul.KJ.K120",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.7.720",
    "to": "kr.Seoul.GC.P120",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.7.720",
    "to": "kr.Seoul.GC.Kwangwoon.P120",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.KJ.K120",
@@ -11983,37 +11983,37 @@
   {
    "from": "kr.Seoul.1.133",
    "to": "kr.Seoul.4.426",
-   "walkSec": 180
+   "walkSec": 133
   },
   {
    "from": "kr.Seoul.1.133",
    "to": "kr.Seoul.KJ.Seoul.P313",
-   "walkSec": 180
+   "walkSec": 137
   },
   {
    "from": "kr.Seoul.1.133",
    "to": "kr.Seoul.AREX.A01",
-   "walkSec": 180
+   "walkSec": 258
   },
   {
    "from": "kr.Seoul.1.133",
    "to": "kr.Seoul.GTXA.X106",
-   "walkSec": 180
+   "walkSec": 143
   },
   {
    "from": "kr.Seoul.4.426",
    "to": "kr.Seoul.KJ.Seoul.P313",
-   "walkSec": 180
+   "walkSec": 269
   },
   {
    "from": "kr.Seoul.4.426",
    "to": "kr.Seoul.AREX.A01",
-   "walkSec": 180
+   "walkSec": 187
   },
   {
    "from": "kr.Seoul.4.426",
    "to": "kr.Seoul.GTXA.X106",
-   "walkSec": 180
+   "walkSec": 220
   },
   {
    "from": "kr.Seoul.KJ.Seoul.P313",
@@ -12033,17 +12033,17 @@
   {
    "from": "kr.Seoul.1.120",
    "to": "kr.Seoul.6.644",
-   "walkSec": 180
+   "walkSec": 104
   },
   {
    "from": "kr.Seoul.8.815",
    "to": "kr.Seoul.9.933",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.2.220",
    "to": "kr.Seoul.SB.K215",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.9.927",
@@ -12058,12 +12058,12 @@
   {
    "from": "kr.Seoul.2.211",
    "to": "kr.Seoul.2.Seongsu.211",
-   "walkSec": 180
+   "walkSec": 19
   },
   {
    "from": "kr.Seoul.4.418",
    "to": "kr.Seoul.UI.951",
-   "walkSec": 180
+   "walkSec": 6
   },
   {
    "from": "kr.Seoul.1.147",
@@ -12078,7 +12078,7 @@
   {
    "from": "kr.Seoul.3.349",
    "to": "kr.Seoul.GTXA.X108",
-   "walkSec": 180
+   "walkSec": 230
   },
   {
    "from": "kr.Seoul.SB.K221",
@@ -12093,12 +12093,12 @@
   {
    "from": "kr.Seoul.1.132",
    "to": "kr.Seoul.2.201",
-   "walkSec": 180
+   "walkSec": 84
   },
   {
    "from": "kr.Seoul.1.138",
    "to": "kr.Seoul.5.525",
-   "walkSec": 180
+   "walkSec": 202
   },
   {
    "from": "kr.Seoul.4.454",
@@ -12108,7 +12108,7 @@
   {
    "from": "kr.Seoul.6.648",
    "to": "kr.Seoul.GC.P122",
-   "walkSec": 180
+   "walkSec": 42
   },
   {
    "from": "kr.Seoul.9.925",
@@ -12118,47 +12118,47 @@
   {
    "from": "kr.Seoul.2.206",
    "to": "kr.Seoul.6.635",
-   "walkSec": 180
+   "walkSec": 202
   },
   {
    "from": "kr.Seoul.1.140",
    "to": "kr.Seoul.2.234",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.1.140",
    "to": "kr.Seoul.2.Sinjeong.234",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.2.234",
    "to": "kr.Seoul.2.Sinjeong.234",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.2.230",
    "to": "kr.Seoul.SL.S408",
-   "walkSec": 180
+   "walkSec": 73
   },
   {
    "from": "kr.Seoul.3.337",
    "to": "kr.Seoul.SBD.D4",
-   "walkSec": 180
+   "walkSec": 64
   },
   {
    "from": "kr.Seoul.1.126",
    "to": "kr.Seoul.2.Seongsu.211-4",
-   "walkSec": 180
+   "walkSec": 133
   },
   {
    "from": "kr.Seoul.1.126",
    "to": "kr.Seoul.UI.953",
-   "walkSec": 180
+   "walkSec": 108
   },
   {
    "from": "kr.Seoul.2.Seongsu.211-4",
    "to": "kr.Seoul.UI.953",
-   "walkSec": 180
+   "walkSec": 228
   },
   {
    "from": "kr.Seoul.4.453",
@@ -12168,42 +12168,42 @@
   {
    "from": "kr.Seoul.3.333",
    "to": "kr.Seoul.6.633",
-   "walkSec": 180
+   "walkSec": 108
   },
   {
    "from": "kr.Seoul.3.342",
    "to": "kr.Seoul.SBD.D8",
-   "walkSec": 180
+   "walkSec": 78
   },
   {
    "from": "kr.Seoul.5.526",
    "to": "kr.Seoul.9.915",
-   "walkSec": 180
+   "walkSec": 57
   },
   {
    "from": "kr.Seoul.3.321",
    "to": "kr.Seoul.6.614",
-   "walkSec": 180
+   "walkSec": 151
   },
   {
    "from": "kr.Seoul.3.321",
    "to": "kr.Seoul.GTXA.X105",
-   "walkSec": 180
+   "walkSec": 201
   },
   {
    "from": "kr.Seoul.6.614",
    "to": "kr.Seoul.GTXA.X105",
-   "walkSec": 180
+   "walkSec": 156
   },
   {
    "from": "kr.Seoul.2.236",
    "to": "kr.Seoul.5.523",
-   "walkSec": 180
+   "walkSec": 92
   },
   {
    "from": "kr.Seoul.3.352",
    "to": "kr.Seoul.5.Macheon.P552",
-   "walkSec": 180
+   "walkSec": 54
   },
   {
    "from": "kr.Seoul.4.456",
@@ -12213,42 +12213,42 @@
   {
    "from": "kr.Seoul.3.335",
    "to": "kr.Seoul.KJ.K114",
-   "walkSec": 180
+   "walkSec": 129
   },
   {
    "from": "kr.Seoul.1.145",
    "to": "kr.Seoul.7.750",
-   "walkSec": 180
+   "walkSec": 85
   },
   {
    "from": "kr.Seoul.5.Macheon.P550",
    "to": "kr.Seoul.9.936",
-   "walkSec": 180
+   "walkSec": 78
   },
   {
    "from": "kr.Seoul.2.208",
    "to": "kr.Seoul.5.540",
-   "walkSec": 180
+   "walkSec": 72
   },
   {
    "from": "kr.Seoul.2.208",
    "to": "kr.Seoul.KJ.K116",
-   "walkSec": 180
+   "walkSec": 42
   },
   {
    "from": "kr.Seoul.2.208",
    "to": "kr.Seoul.SB.K210",
-   "walkSec": 180
+   "walkSec": 83
   },
   {
    "from": "kr.Seoul.5.540",
    "to": "kr.Seoul.KJ.K116",
-   "walkSec": 180
+   "walkSec": 165
   },
   {
    "from": "kr.Seoul.5.540",
    "to": "kr.Seoul.SB.K210",
-   "walkSec": 180
+   "walkSec": 203
   },
   {
    "from": "kr.Seoul.KJ.K116",
@@ -12263,12 +12263,12 @@
   {
    "from": "kr.Seoul.2.203",
    "to": "kr.Seoul.3.330",
-   "walkSec": 180
+   "walkSec": 124
   },
   {
    "from": "kr.Seoul.2.204",
    "to": "kr.Seoul.5.535",
-   "walkSec": 180
+   "walkSec": 64
   },
   {
    "from": "kr.Seoul.SB.K227",
@@ -12278,7 +12278,7 @@
   {
    "from": "kr.Seoul.4.430",
    "to": "kr.Seoul.KJ.K111",
-   "walkSec": 180
+   "walkSec": 65
   },
   {
    "from": "kr.Seoul.1.161",
@@ -12293,7 +12293,7 @@
   {
    "from": "kr.Seoul.2.216",
    "to": "kr.Seoul.8.814",
-   "walkSec": 180
+   "walkSec": 158
   },
   {
    "from": "kr.Seoul.4.455",
@@ -12308,22 +12308,22 @@
   {
    "from": "kr.Seoul.1.130",
    "to": "kr.Seoul.3.329",
-   "walkSec": 180
+   "walkSec": 98
   },
   {
    "from": "kr.Seoul.1.130",
    "to": "kr.Seoul.5.534",
-   "walkSec": 180
+   "walkSec": 260
   },
   {
    "from": "kr.Seoul.3.329",
    "to": "kr.Seoul.5.534",
-   "walkSec": 180
+   "walkSec": 98
   },
   {
    "from": "kr.Seoul.2.218",
    "to": "kr.Seoul.9.930",
-   "walkSec": 180
+   "walkSec": 78
   },
   {
    "from": "kr.Seoul.KJ.K119",
@@ -12338,32 +12338,32 @@
   {
    "from": "kr.Seoul.1.116",
    "to": "kr.Seoul.4.412",
-   "walkSec": 180
+   "walkSec": 70
   },
   {
    "from": "kr.Seoul.5.547",
    "to": "kr.Seoul.8.811",
-   "walkSec": 180
+   "walkSec": 29
   },
   {
    "from": "kr.Seoul.5.537",
    "to": "kr.Seoul.6.634",
-   "walkSec": 180
+   "walkSec": 87
   },
   {
    "from": "kr.Seoul.1.124",
    "to": "kr.Seoul.KJ.K117",
-   "walkSec": 180
+   "walkSec": 138
   },
   {
    "from": "kr.Seoul.1.124",
    "to": "kr.Seoul.GC.P117",
-   "walkSec": 180
+   "walkSec": 169
   },
   {
    "from": "kr.Seoul.1.124",
    "to": "kr.Seoul.SB.K209",
-   "walkSec": 180
+   "walkSec": 150
   },
   {
    "from": "kr.Seoul.KJ.K117",
@@ -12398,17 +12398,17 @@
   {
    "from": "kr.Seoul.3.331",
    "to": "kr.Seoul.4.423",
-   "walkSec": 180
+   "walkSec": 14
   },
   {
    "from": "kr.Seoul.2.243",
    "to": "kr.Seoul.5.531",
-   "walkSec": 180
+   "walkSec": 177
   },
   {
    "from": "kr.Seoul.6.645",
    "to": "kr.Seoul.7.717",
-   "walkSec": 180
+   "walkSec": 38
   },
   {
    "from": "kr.Seoul.SBD.D11",
@@ -12428,17 +12428,17 @@
   {
    "from": "kr.Seoul.2.238",
    "to": "kr.Seoul.6.622",
-   "walkSec": 180
+   "walkSec": 68
   },
   {
    "from": "kr.Seoul.2.239",
    "to": "kr.Seoul.KJ.K314",
-   "walkSec": 180
+   "walkSec": 254
   },
   {
    "from": "kr.Seoul.2.239",
    "to": "kr.Seoul.AREX.A03",
-   "walkSec": 180
+   "walkSec": 296
   },
   {
    "from": "kr.Seoul.KJ.K314",
@@ -12463,7 +12463,7 @@
   {
    "from": "kr.Seoul.6.627",
    "to": "kr.Seoul.KJ.K826",
-   "walkSec": 180
+   "walkSec": 92
   }
  ],
  "layoutHints": {

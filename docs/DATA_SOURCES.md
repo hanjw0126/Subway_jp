@@ -23,12 +23,31 @@
 |---|---|---|---|
 | 노선별 지하철역 정보 | `SearchSTNBySubwayLineInfo` | 일반 (`SEOUL_NORMAL_SECRET`) | 역 코드·외부코드, 한/영/일/중 역명 |
 | 역사마스터 정보 | `subwayStationMaster` | 일반 | 역 좌표 |
-| 실시간 도착정보 | `realtimeStationArrival` | 실시간 지하철 (`SEOUL_SUBWAY_KEY`) | 도착 예정 |
+| 실시간 도착정보 | `realtimeStationArrival` | 실시간 지하철 (`SEOUL_SUBWAY_KEY`) | 도착 예정 (역 화면·경로 화면) |
 | 실시간 열차 위치 | `realtimePosition` | 실시간 지하철 | 노선도의 열차 위치 |
 
 - 원본: `tools/seoul/raw/` (*Fetch Seoul data* 워크플로가 받아 커밋). 노선 순서·지선 규칙은 `tools/seoul/build_seed.py`.
 - 실시간 API 는 중계 서버(`/seoul/v1/…`)를 거치며, 키는 앱에 들어가지 않습니다 (docs/PROXY.md).
-- 출처 표시: "서울 열린데이터광장(data.seoul.go.kr), 공공누리 제1유형"을 앱 설정 화면과 NOTICE.md 에 표시합니다.
+
+## 한국 — 서울교통공사 (공공데이터포털 파일 데이터)
+
+| 데이터 | 공공데이터포털 | 이용허락 | 용도 |
+|---|---|---|---|
+| 서울교통공사_서울 도시철도 열차운행시각표 | 15098251 (CSV) | 제한 없음 | 경로 검색 시간표 (1~9호선, 평일·토·휴일) |
+| 서울교통공사_환승역거리 소요시간 정보 | 15044419 (CSV) | 공공누리 제1유형 | 환승역별 노선 간 환승 소요시간 |
+
+- *Seoul timetable* 워크플로(매달 1일·수동)가 인증키 없이 파일을 받아 변환합니다 (`tools/seoul/fetch_timetable.py`).
+  - 시각표(32MB)는 저장소에 넣지 않고, 열차코드별로 정차역을 이어 앱 시간표로 바꾼 결과만
+    `app/src/main/assets/regions/seoul/timetable_<DAY|SAT|END>.json.gz` 로 넣습니다 (`tools/seoul/build_timetable.py`).
+    변환 통계(편 수·연결 못한 역)는 `tools/seoul/raw/TIMETABLE_STATS.md`.
+  - 환승시간은 `tools/seoul/raw/transfer_times.csv` 로 저장하고, 노선도 재생성 때 서울 `network.json` 의 환승 시간에
+    "역·출발 노선·도착 노선"별로 적용합니다 (`tools/seoul/transfer_times.py`, `tools/regions.json` 의 `transferTimes`).
+- 범위: 서울교통공사 시각표에 있는 1~9호선(1호선 경부·경인·경원·장항선 직통, 3호선 일산선, 4호선 과천·안산선 포함).
+  경의중앙선·수인분당선·신분당선·공항철도 등은 이 데이터에 없어 아직 경로 검색에 포함되지 않습니다.
+- 휴일 시간표 적용일: 일요일·한국 공휴일·대체공휴일 (`KoreanHolidays.kt`, 음력 공휴일은 2025~2030년 표).
+
+### 출처 표시
+앱 설정 화면과 NOTICE.md: "서울 열린데이터광장(data.seoul.go.kr)·서울교통공사(공공데이터포털), 공공누리 제1유형".
 
 ### 노선도 배치·한강
 - 서울 노선도는 도심을 넓히는 방사 압축(`tools/regions.json` 의 `layoutHints.radialPower`, `tools/geo_projection.py`)을 거쳐 생성합니다.

@@ -1,0 +1,48 @@
+name: Seoul timetable
+
+# 서울교통공사_서울 도시철도 열차운행시각표(공공데이터포털 15098251)와 환승역 환승시간(15044419)을 받아
+# 앱 시간표(assets/regions/seoul/timetable_*.json.gz)와 tools/seoul/raw/transfer_times.csv 를 갱신한다.
+# 매달 1일 + 관련 코드가 바뀔 때 + 수동 실행.
+on:
+  push:
+    branches: [main, "feat-*", "fix-*"]
+    paths:
+      - "tools/seoul/fetch_timetable.py"
+      - "tools/seoul/build_timetable.py"
+      - ".github/workflows/seoul-timetable.yml"
+  schedule:
+    - cron: "0 18 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seoul-timetable-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  timetable:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download
+        run: python tools/seoul/fetch_timetable.py
+      - name: Convert
+        run: python tools/seoul/build_timetable.py "$RUNNER_TEMP/timetable.csv" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A app/src/main/assets/regions/seoul/timetable_*.json.gz tools/seoul/raw
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "chore(seoul): 열차운행시각표·환승시간 갱신 (${GITHUB_SHA::7})"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
+          done
+          exit 1

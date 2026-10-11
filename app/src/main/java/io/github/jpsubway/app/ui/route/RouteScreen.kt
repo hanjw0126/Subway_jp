@@ -9,16 +9,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.github.jpsubway.app.core.i18n.Lang
+import io.github.jpsubway.app.core.i18n.RouteStrings
 import io.github.jpsubway.app.core.i18n.Strings
 import io.github.jpsubway.app.core.time.ServiceClock
 import io.github.jpsubway.app.domain.model.Network
@@ -32,10 +36,17 @@ import io.github.jpsubway.app.ui.common.trainTypeLabel
 import io.github.jpsubway.app.ui.theme.FromGreen
 import io.github.jpsubway.app.ui.theme.ToRed
 import io.github.jpsubway.app.ui.theme.parseColor
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 private val OFFSETS = listOf(0, 10, 30, 60)
+private val LiveGreen = Color(0xFF2B8A3E)
 
-/** 경로 검색: 출발/도착 → 출발 시각 → [최단시간 | 최소환승] 탭 → 경로 카드 */
+/**
+ * 경로 검색: 출발/도착 → 출발 시각 → [최단시간 | 최소환승] 탭 → 경로 카드.
+ * 결과 목록을 아래로 당기면 실시간 정보를 다시 받고 경로를 다시 계산한다.
+ * 경로 카드의 승차역(출발·환승)마다 탈 노선·방면의 다음 열차 실시간 도착을 역명 아래 작게 보여 준다.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RouteScreen(
@@ -46,6 +57,7 @@ fun RouteScreen(
 ) {
     val u by vm.ui.collectAsStateWithLifecycle()
     val s = strings()
+    val lang by Lang.ui.collectAsState()
     var tab by remember { mutableIntStateOf(0) }
     val sorted = remember(u.journeys, tab) {
         if (tab == 0) u.journeys.sortedWith(compareBy<Journey>({ it.arriveSec }, { it.transfers }))
@@ -86,22 +98,49 @@ fun RouteScreen(
                 }
             }
             val net = u.network
-            when {
-                u.loading -> Box(Modifier.fillMaxSize(), Alignment.Center) { CircularProgressIndicator() }
-                u.message != null || net == null -> Box(Modifier.fillMaxSize().padding(24.dp), Alignment.Center) {
-                    Text(u.message ?: "", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                else -> LazyColumn(
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+            if (u.loading) {
+                Box(Modifier.fillMaxSize(), Alignment.Center) { CircularProgressIndicator() }
+            } else {
+                PullToRefreshBox(
+                    isRefreshing = u.refreshing,
+                    onRefresh = vm::refresh,
+                    modifier = Modifier.fillMaxSize(),
                 ) {
-                    itemsIndexed(sorted) { i, j -> JourneyCard(j, net, s, expandedInitially = i == 0) }
-                    item {
-                        Text(
-                            s.routeFootnote(u.isDemo, ServiceClock.format(u.departSec)),
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
+                    LazyColumn(
+                        Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        if (u.message != null || net == null) {
+                            item {
+                                Text(
+                                    u.message ?: "",
+                                    Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        } else {
+                            itemsIndexed(sorted, key = { _, j -> j.legs.hashCode() }) { i, j ->
+                                JourneyCard(j, net, s, u.legLive, expandedInitially = i == 0)
+                            }
+                            item {
+                                Text(
+                                    s.routeFootnote(u.isDemo, ServiceClock.format(u.departSec)),
+                                    fontSize = 12.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                        u.sourceNote?.let { note ->
+                            item { Text(note, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                        }
+                        if (u.updatedEpochSec > 0) {
+                            item {
+                                val t = DateTimeFormatter.ofPattern("HH:mm:ss")
+                                    .format(Instant.ofEpochSecond(u.updatedEpochSec).atZone(ServiceClock.JST))
+                                Text(RouteStrings.updated(lang, t), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                        }
                     }
                 }
             }
@@ -124,7 +163,7 @@ private fun StationField(label: String, name: String, placeholder: String, color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun JourneyCard(j: Journey, net: Network, s: Strings, expandedInitially: Boolean) {
+private fun JourneyCard(j: Journey, net: Network, s: Strings, legLive: Map<String, String>, expandedInitially: Boolean) {
     var expanded by remember(j) { mutableStateOf(expandedInitially) }
     Card(onClick = { expanded = !expanded }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp)) {
         Column(Modifier.padding(16.dp)) {
@@ -143,7 +182,7 @@ private fun JourneyCard(j: Journey, net: Network, s: Strings, expandedInitially:
                 Spacer(Modifier.height(12.dp))
                 j.legs.forEach { leg ->
                     when (leg) {
-                        is RideLeg -> RideRow(leg, net, s)
+                        is RideLeg -> RideRow(leg, net, s, legLive[legLiveKey(leg)])
                         is WalkLeg -> Text(
                             s.walkTransfer(minutesText(leg.durationSec)),
                             Modifier.padding(start = 34.dp, top = 4.dp, bottom = 4.dp),
@@ -157,14 +196,18 @@ private fun JourneyCard(j: Journey, net: Network, s: Strings, expandedInitially:
     }
 }
 
+/** 승차 구간: 승차역·시각 → (실시간 도착: 탈 노선·방면의 다음 열차) → 행선지·정차 수·소요 → 하차역 */
 @Composable
-private fun RideRow(leg: RideLeg, net: Network, s: Strings) {
+private fun RideRow(leg: RideLeg, net: Network, s: Strings, live: String?) {
     val line = net.lineById[leg.trip.lineId]
     Row(Modifier.padding(vertical = 4.dp)) {
         if (line != null) LineBadge(line, 24.dp) else Spacer(Modifier.width(24.dp))
         Spacer(Modifier.width(10.dp))
         Column {
             Text(s.board(net.stationName(leg.fromStationId), ServiceClock.format(leg.depSec)), fontWeight = FontWeight.SemiBold)
+            if (live != null) {
+                Text(live, fontSize = 11.sp, color = LiveGreen, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
             val type = trainTypeLabel(leg.trip.trainType)
             Text(
                 (if (type.isNotBlank()) "[$type] " else "") +
