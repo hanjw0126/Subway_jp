@@ -22,6 +22,7 @@ import io.github.jpsubway.app.domain.routing.RideLeg
 import io.github.jpsubway.app.domain.seoul.LiveArrival
 import io.github.jpsubway.app.domain.seoul.SeoulArrival
 import io.github.jpsubway.app.domain.seoul.SeoulLive
+import io.github.jpsubway.app.domain.transfer.QuickTransfer
 import io.github.jpsubway.app.ui.common.appContainer
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +34,9 @@ import kotlinx.coroutines.launch
 /** 경로의 승차 구간별 실시간 도착 표시 키: 승차역 | 노선 | 다음 정차역 (같은 방면 열차) */
 fun legLiveKey(leg: RideLeg): String =
     "${leg.fromStationId}|${leg.trip.lineId}|${leg.trip.stops.getOrNull(leg.boardIndex + 1)?.stationId}"
+
+/** 환승(앞 승차 구간 a → 다음 승차 구간 b)별 빠른 환승 표시 키 */
+fun quickKey(a: RideLeg, b: RideLeg): String = "${a.trip.id}|${a.alightIndex}|${b.trip.id}|${b.boardIndex}"
 
 /** 서울 실시간 도착 한 건을 짧게 (예: "3분 후", "곧 도착") */
 fun liveShort(a: LiveArrival, nowEpochSec: Long, s: Strings): String {
@@ -67,6 +71,8 @@ class RouteViewModel(private val c: AppContainer) : ViewModel() {
         val refreshing: Boolean = false,
         /** 시간표 출처·범위 안내 (서울) */
         val sourceNote: String? = null,
+        /** 환승(quickKey)별 빠른 환승 위치 (예: "빠른 환승 6-1 (6번 칸 1번 문)") — 데이터가 있는 지역만 */
+        val quick: Map<String, String> = emptyMap(),
     )
 
     private val estimator = ArrivalEstimator(perDirection = 2)
@@ -108,7 +114,12 @@ class RouteViewModel(private val c: AppContainer) : ViewModel() {
         val d = (c.session.state.value as? RegionSession.State.Ready)?.data
         when {
             d == null || b.journeys.isEmpty() -> b.copy(refreshing = r)
-            d.isLiveArrivals -> b.copy(legLive = kr.first, updatedEpochSec = maxOf(b.updatedEpochSec, kr.second), refreshing = r)
+            // 한국: 시간표 예측(실시간 API 가 없는 인천 노선 등) 위에 실시간 도착정보를 덮어쓴다
+            d.isLiveArrivals -> b.copy(
+                legLive = japanLive(d, b.journeys, rt, now.seconds) + kr.first,
+                updatedEpochSec = maxOf(b.updatedEpochSec, kr.second),
+                refreshing = r,
+            )
             else -> b.copy(
                 legLive = japanLive(d, b.journeys, rt, now.seconds),
                 updatedEpochSec = maxOf(b.updatedEpochSec, rt.fetchedAtEpochSec),
@@ -139,14 +150,28 @@ class RouteViewModel(private val c: AppContainer) : ViewModel() {
         val fromIds = net.stationsByGroup[f].orEmpty().map { it.id }
         val toIds = net.stationsByGroup[t].orEmpty().map { it.id }
         val found = d.router.searchAlternatives(fromIds, toIds, depart, count = 3)
+        // 빠른 환승: 연속한 두 승차 구간마다 (사이의 도보 환승과 무관하게)
+        val rows = c.quickTransfers.rows(d.region.id)
+        val quick = HashMap<String, String>()
+        if (rows.isNotEmpty()) {
+            for (j in found) {
+                val rides = j.legs.filterIsInstance<RideLeg>()
+                for (k in 0 until rides.size - 1) {
+                    QuickTransfer.find(rows, net, rides[k], rides[k + 1])?.let {
+                        quick[quickKey(rides[k], rides[k + 1])] = RouteStrings.quickTransfer(lang, it.car, it.door)
+                    }
+                }
+            }
+        }
         return base.copy(
             departSec = depart,
             journeys = found,
             message = if (found.isEmpty()) str.noJourney else null,
+            quick = quick,
         )
     }
 
-    /** 일본: 승차역·노선·방면별 도착 예측 (역 화면과 같은 계산 — 시간표 + 실시간 지연) */
+    /** 시간표 기반 승차역·노선·방면별 도착 예측 (역 화면과 같은 계산 — 시간표 + 실시간 지연이 있으면 반영) */
     private fun japanLive(d: RegionSession.Data, journeys: List<Journey>, rt: RealtimeSnapshot, now: Int): Map<String, String> {
         val s = Strings.current
         val out = HashMap<String, String>()
@@ -171,7 +196,9 @@ class RouteViewModel(private val c: AppContainer) : ViewModel() {
     private suspend fun fetchKorea(journeys: List<Journey>, net: Network): Pair<Map<String, String>, Long> {
         val s = Strings.current
         val fetched = System.currentTimeMillis() / 1000
-        val legs = journeys.flatMap { j -> j.legs.filterIsInstance<RideLeg>() }.distinctBy { legLiveKey(it) }
+        val legs = journeys.flatMap { j -> j.legs.filterIsInstance<RideLeg>() }
+            .filter { SeoulLive.lineKeyBySubwayId.containsValue(SeoulLive.lineKey(it.trip.lineId)) }
+            .distinctBy { legLiveKey(it) }
         val byStation = HashMap<String, List<SeoulArrival>>()
         val out = HashMap<String, String>()
         for (leg in legs) {
