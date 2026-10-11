@@ -4,8 +4,10 @@
 regions.json 의 지역별 설정:
   layoutHints: network.json 에 넣어 노선도 생성에 쓴다 (예: radialPower — tools/geo_projection.py)
   rivers: 강 중심선 파일(tools/ 기준) → 노선도 좌표로 옮겨 layout.json 에 넣는다
+  transferTimes: 환승역 환승 소요시간 CSV(tools/ 기준) → network.json 환승 시간에 적용 (tools/seoul/transfer_times.py)
 """
 import argparse
+import importlib.util
 import json
 import os
 import shutil
@@ -25,6 +27,13 @@ from seed_merge import app_regions, load_region_seed  # noqa: E402
 
 def run(*args):
     subprocess.run([sys.executable, *args], check=True, cwd=ROOT)
+
+
+def _module(path, name):
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def _add_hints(path, hints):
@@ -68,6 +77,9 @@ def main():
             os.unlink(tmp)
         if r.get("layoutHints"):
             _add_hints(net_path, r["layoutHints"])
+        tt = r.get("transferTimes")
+        if tt and os.path.exists(os.path.join(HERE, tt)):
+            _module(os.path.join(HERE, "seoul", "transfer_times.py"), "transfer_times").apply(net_path, os.path.join(HERE, tt))
         run(os.path.join(HERE, "layout_schematic.py"), net_path)
         if r.get("rivers"):
             rivers.attach(rd, [os.path.join(HERE, p) for p in r["rivers"]])
