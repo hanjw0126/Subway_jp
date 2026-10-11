@@ -1,0 +1,17 @@
+[tokyo] lines=19 stations=382 -> OK
+[yokohama] lines=2 stations=42 -> OK
+[osaka] lines=2 stations=34 -> OK
+[seoul] lines=27 stations=707 -> OK
+F...........................................                             [100%]
+=================================== FAILURES ===================================
+__________________________ test_bundle_lanes_parallel __________________________
+tests/test_c2026.py:17: in test_bundle_lanes_parallel
+    m = metrics(lay)
+        ^^^^^^^^^^^^
+layout_schematic.py:771: in metrics
+    lines_of[k] = lines_of[k] | {l["lineId"]}
+                                 ^^^^^^^^^^^
+E   KeyError: 'lineId'
+=========================== short test summary info ============================
+FAILED tests/test_c2026.py::test_bundle_lanes_parallel - KeyError: 'lineId'
+1 failed, 43 passed in 97.07s (0:01:37)
