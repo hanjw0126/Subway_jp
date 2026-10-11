@@ -9,8 +9,9 @@ import java.util.concurrent.ConcurrentHashMap
  *  - 고정: 1/1, 3/1, 5/5, 6/6, 8/15, 10/3, 10/9, 12/25
  *  - 음력: 설날·추석(전날·당일·다음날), 부처님오신날 — 연도별 표 (2025~2030)
  *  - 선거일: 알려진 것만
- *  - 대체공휴일: 설날·추석은 일요일 또는 다른 공휴일과 겹치면, 3·1절·어린이날·광복절·개천절·한글날·
- *    성탄절·부처님오신날은 토·일요일 또는 다른 공휴일과 겹치면 그 뒤 첫 평일을 쉬는 날로 한다.
+ *  - 대체공휴일 (그 뒤 첫 평일):
+ *      설날·추석 연휴의 일요일마다 하루, 3·1절·어린이날·광복절·개천절·한글날·성탄절·부처님오신날이 토·일요일이면 하루,
+ *      공휴일끼리 같은 날 겹치면 겹친 만큼 하루씩 (예: 2025-05-05 어린이날·부처님오신날 → 05-06 하루).
  * 표에 없는 연도는 고정 공휴일만 따진다 (연도를 늘릴 때 여기에 추가).
  */
 object KoreanHolidays {
@@ -34,20 +35,20 @@ object KoreanHolidays {
         val singlesNoSub = fixedNoSubstitute.map { (m, d) -> LocalDate.of(year, m, d) } +
             elections.map(LocalDate::parse).filter { it.year == year }
         val groups = listOfNotNull(seollal[year], chuseok[year]).map(LocalDate::parse).map { c -> (-1L..1L).map { c.plusDays(it) } }
-        val all = singlesSub + singlesNoSub + groups.flatten() // 같은 날이 두 번 나오면 겹침
+        val all = singlesSub + singlesNoSub + groups.flatten()
         val count = all.groupingBy { it }.eachCount()
         val result = all.toMutableSet()
-        fun nextFree(after: LocalDate): LocalDate {
-            var d = after.plusDays(1)
+        // 대체공휴일의 기준일 (그 뒤 첫 평일이 대체공휴일)
+        val anchors = mutableListOf<LocalDate>()
+        for (g in groups) g.filter { it.dayOfWeek == DayOfWeek.SUNDAY }.forEach { _ -> anchors += g.last() }
+        for (d in singlesSub.distinct()) if (weekend(d)) anchors += d
+        for ((d, c) in count) {
+            if (c > 1) repeat(c - 1) { anchors += groups.firstOrNull { d in it }?.last() ?: d }
+        }
+        for (a in anchors.sorted()) {
+            var d = a.plusDays(1)
             while (weekend(d) || d in result) d = d.plusDays(1)
-            return d
-        }
-        for (g in groups) {
-            val need = g.count { it.dayOfWeek == DayOfWeek.SUNDAY || (count[it] ?: 0) > 1 }
-            repeat(need) { result += nextFree(g.last()) }
-        }
-        for (d in singlesSub) {
-            if (weekend(d) || (count[d] ?: 0) > 1) result += nextFree(d)
+            result += d
         }
         return result
     }
