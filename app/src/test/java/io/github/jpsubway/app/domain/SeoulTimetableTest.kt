@@ -9,6 +9,10 @@ import io.github.jpsubway.app.domain.model.LineDirections
 import io.github.jpsubway.app.domain.model.LocalizedName
 import io.github.jpsubway.app.domain.model.Network
 import io.github.jpsubway.app.domain.model.Station
+import io.github.jpsubway.app.domain.model.StopTime
+import io.github.jpsubway.app.domain.model.Trip
+import io.github.jpsubway.app.domain.routing.RideLeg
+import io.github.jpsubway.app.ui.route.legLiveKey
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -16,14 +20,16 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.time.LocalDate
 
-/** 한국 공휴일·서울 시간표 읽기 */
+/** 한국 공휴일·서울 시간표 읽기·경로 실시간 표시 키 */
 class SeoulTimetableTest {
     @Test
     fun koreanHolidaysWithSubstitutes() {
         assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2026, 2, 16))) // 설날 전날
-        assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2025, 5, 6))) // 어린이날·부처님오신날 겹침 → 대체
-        assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2025, 10, 8))) // 추석 연휴 일요일·개천절 → 대체
+        assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2025, 5, 6))) // 어린이날·부처님오신날 겹침 → 대체 하루
+        assertFalse(KoreanHolidays.isHoliday(LocalDate.of(2025, 5, 7)))
+        assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2025, 10, 8))) // 추석 연휴 일요일 → 대체
         assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2026, 6, 3))) // 지방선거
+        assertTrue(KoreanHolidays.isHoliday(LocalDate.of(2026, 10, 5))) // 개천절(토) → 대체
         assertFalse(KoreanHolidays.isHoliday(LocalDate.of(2026, 10, 13)))
         assertEquals(DayType.HOLIDAY, DayType.of(LocalDate.of(2026, 9, 24), "kr")) // 추석 전날(목)
         assertEquals(DayType.WEEKDAY, DayType.of(LocalDate.of(2026, 9, 24), "jp"))
@@ -49,5 +55,12 @@ class SeoulTimetableTest {
         assertEquals(19830, t.stops[0].dep)
         assertEquals(20040, t.stops[2].arr)
         assertEquals("WEEKDAY", tt.dayType)
+    }
+
+    @Test
+    fun legLiveKeyUsesNextStop() {
+        val trip = Trip("t", "L", "1", "L:asc", "C", stops = listOf(StopTime("A", 0, 10), StopTime("B", 60, 70), StopTime("C", 120, 120)))
+        assertEquals("A|L|B", legLiveKey(RideLeg(trip, 0, 2, 10, 120)))
+        assertEquals("B|L|C", legLiveKey(RideLeg(trip, 1, 2, 70, 120)))
     }
 }
