@@ -1,0 +1,41 @@
+name: KRIC probe
+
+# 레일포털(KRIC) Open API 시험 — 보고서(tools/kric/raw/PROBE.md)와 노선 목록 원본만 커밋
+on:
+  push:
+    branches: ["feat-*", "fix-*"]
+    paths:
+      - "tools/kric/probe.py"
+      - ".github/workflows/kric-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kric-probe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe
+        env:
+          KRIC_KEY: ${{ secrets.KRIC_KEY }}
+        run: python tools/kric/probe.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/kric/raw
+          git commit -m "chore(kric): 레일포털 시험 보고서" || exit 0
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
+          done
