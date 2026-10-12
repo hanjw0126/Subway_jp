@@ -5,6 +5,7 @@ regions.json 의 지역별 설정:
   layoutHints: network.json 에 넣어 노선도 생성에 쓴다 (예: radialPower — tools/geo_projection.py)
   rivers: 강 중심선 파일(tools/ 기준) → 노선도 좌표로 옮겨 layout.json 에 넣는다
   transferTimes: 환승역 환승 소요시간 CSV(tools/ 기준) → network.json 환승 시간에 적용 (tools/seoul/transfer_times.py)
+  quickTransfer: 철도역 빠른 환승 CSV(tools/ 기준) → assets/regions/<지역>/quick_transfer.json (tools/seoul/build_quick_transfer.py)
 """
 import argparse
 import importlib.util
@@ -80,6 +81,10 @@ def main():
         tt = r.get("transferTimes")
         if tt and os.path.exists(os.path.join(HERE, tt)):
             _module(os.path.join(HERE, "seoul", "transfer_times.py"), "transfer_times").apply(net_path, os.path.join(HERE, tt))
+        qt = r.get("quickTransfer")
+        if qt and os.path.exists(os.path.join(HERE, qt)):
+            _module(os.path.join(HERE, "seoul", "build_quick_transfer.py"), "build_quick_transfer").build(
+                os.path.join(HERE, qt), os.path.join(rd, "quick_transfer.json"))
         run(os.path.join(HERE, "layout_schematic.py"), net_path)
         if r.get("rivers"):
             rivers.attach(rd, [os.path.join(HERE, p) for p in r["rivers"]])

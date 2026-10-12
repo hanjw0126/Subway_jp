@@ -16,25 +16,32 @@ import java.io.IOException
 import java.util.zip.GZIPInputStream
 
 /**
- * 서울교통공사_서울 도시철도 열차운행시각표 (tools/seoul/build_timetable.py 가 만든
- * assets/regions/<지역>/timetable_<DAY|SAT|END>.json.gz) → 경로 탐색용 Timetable.
+ * 수도권 시간표 → 경로 탐색용 Timetable. 두 파일을 합친다:
+ *  - timetable_<DAY|SAT|END>.json.gz: 서울교통공사_서울 도시철도 열차운행시각표 (tools/seoul/build_timetable.py)
+ *  - timetable_incheon_<DAY|SAT|END>.json.gz: 인천1·2호선 재구성 시간표 (tools/incheon/build_timetable.py)
  * 형식: {"source", "lines": [노선 ID], "stations": [역 ID],
  *        "trips": [[노선#, 열차코드, 방향(0=asc,1=desc), 종착역#, 급행(0/1), [역#...], [도착초...], [정차초...]]]}
  */
 class SeoulTimetableSource(private val context: Context, private val json: Json) {
 
-    /** 자산이 없으면 null */
+    /** 자산이 하나도 없으면 null */
     fun load(network: Network, day: DayType, nowEpochSec: Long): Timetable? {
-        val text = try {
-            GZIPInputStream(context.assets.open("regions/${network.regionId}/timetable_${code(day)}.json.gz"))
-                .bufferedReader(Charsets.UTF_8).use { it.readText() }
-        } catch (e: IOException) {
-            return null
+        val parts = FILES.mapNotNull { name ->
+            read("regions/${network.regionId}/${name}_${code(day)}.json.gz")?.let { parse(json, it, network, day, nowEpochSec) }
         }
-        return parse(json, text, network, day, nowEpochSec)
+        if (parts.isEmpty()) return null
+        return Timetable(network.regionId, day.name, parts.joinToString(" + ") { it.source }, nowEpochSec, parts.flatMap { it.trips })
+    }
+
+    private fun read(path: String): String? = try {
+        GZIPInputStream(context.assets.open(path)).bufferedReader(Charsets.UTF_8).use { it.readText() }
+    } catch (e: IOException) {
+        null
     }
 
     companion object {
+        private val FILES = listOf("timetable", "timetable_incheon")
+
         fun code(day: DayType): String = when (day) {
             DayType.WEEKDAY -> "DAY"
             DayType.SATURDAY -> "SAT"

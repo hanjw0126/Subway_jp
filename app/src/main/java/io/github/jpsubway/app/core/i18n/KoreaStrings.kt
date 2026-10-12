@@ -8,6 +8,13 @@ object KoreaStrings {
         else -> "Seoul Open Data real-time arrivals (updated every 15 s)"
     }
 
+    /** 실시간 API 가 없는 노선(인천1·2호선)의 역 화면 출처 */
+    fun timetableSource(l: AppLanguage) = when (l) {
+        AppLanguage.KO -> "인천교통공사 첫차·막차 시각표와 공표 운행간격으로 재구성한 시간표 기준 (실시간 아님)"
+        AppLanguage.JA -> "仁川交通公社の始発・終電時刻と公表運行間隔から再構成した時刻表に基づく（リアルタイムではありません）"
+        else -> "Based on a timetable rebuilt from Incheon Transit first/last-train times and published headways (not real-time)"
+    }
+
     fun liveError(l: AppLanguage) = when (l) {
         AppLanguage.KO -> "실시간 도착정보를 받지 못했습니다"
         AppLanguage.JA -> "リアルタイム到着情報を取得できませんでした"
@@ -35,15 +42,17 @@ object KoreaStrings {
     }
 
     fun notice(l: AppLanguage) = when (l) {
-        AppLanguage.KO -> "한국 노선 데이터는 서울 열린데이터광장(data.seoul.go.kr)과 서울교통공사(공공데이터포털: 열차운행시각표, " +
-            "환승역 환승 소요시간)가 제공하는 정보를 이용합니다 (공공누리 제1유형). " +
-            "실시간 도착정보·열차 위치·시간표는 운영기관이 제공한 값으로 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
-        AppLanguage.JA -> "韓国の路線データはソウル市オープンデータ広場（data.seoul.go.kr）とソウル交通公社（公共データポータル：列車運行時刻表、" +
-            "乗換駅の乗換所要時間）の情報を利用しています（公共ヌリ 第1類型）。" +
-            "リアルタイム到着情報・列車位置・時刻表は運営事業者の提供値であり、実際の運行と異なる場合があります。"
-        else -> "Korean line data is provided by Seoul Open Data Plaza (data.seoul.go.kr) and Seoul Metro (Public Data Portal: " +
-            "train timetables, transfer walking times) under KOGL Type 1. " +
-            "Real-time arrivals, train positions and timetables come from the operators and may differ from actual service. This is an unofficial app."
+        AppLanguage.KO -> "한국 노선 데이터는 서울 열린데이터광장(data.seoul.go.kr), 서울교통공사(열차운행시각표·환승역 환승 소요시간), " +
+            "인천교통공사(첫차·막차 열차운행시각표), 국토교통부(철도역 빠른 환승 정보)가 공공데이터포털 등에 제공하는 정보를 이용합니다 " +
+            "(공공누리 제1유형 등). 인천1·2호선 시간표는 첫차·막차 시각과 공표 운행간격으로 재구성한 것입니다. " +
+            "실시간 도착정보·열차 위치·시간표는 실제 운행과 다를 수 있습니다. 이 앱은 운영기관과 관련 없는 비공식 앱입니다."
+        AppLanguage.JA -> "韓国の路線データはソウル市オープンデータ広場、ソウル交通公社（列車運行時刻表・乗換所要時間）、" +
+            "仁川交通公社（始発・終電時刻表）、国土交通部（鉄道駅の乗換便利情報）の公開データを利用しています。" +
+            "仁川1・2号線の時刻表は始発・終電時刻と公表運行間隔から再構成したものです。実際の運行と異なる場合があります。"
+        else -> "Korean line data comes from Seoul Open Data Plaza, Seoul Metro (timetables, transfer times), Incheon Transit " +
+            "(first/last-train times) and MOLIT (quick-transfer car positions), via public data portals (KOGL Type 1 etc.). " +
+            "Incheon Lines 1–2 timetables are rebuilt from first/last-train times and published headways. " +
+            "Real-time arrivals, train positions and timetables may differ from actual service. This is an unofficial app."
     }
 
     fun osm(l: AppLanguage) = when (l) {

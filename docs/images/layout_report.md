@@ -23,5 +23,5 @@
 ## seoul
 
 ```
-{"nodes": 567, "bends": 166, "allOctilinear": true, "nodeOnEdge": 0, "overlaps": 0, "crossings": 13, "selfCrossings": 0, "bundled": 0, "minNodeDist": 0.5, "icons": 32}
+{"nodes": 619, "bends": 170, "allOctilinear": true, "nodeOnEdge": 0, "overlaps": 0, "crossings": 16, "selfCrossings": 0, "bundled": 1, "minNodeDist": 0.5, "icons": 40}
 ```
