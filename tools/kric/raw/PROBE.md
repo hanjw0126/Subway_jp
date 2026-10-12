@@ -1,9 +1,14 @@
 # 레일포털(KRIC) Open API 시험
 
-## 1) 도시철도 전체노선정보 (subwayRouteInfo, mreaWideCd=01)
-- 노선코드 없이: 0행 / 응답 앞부분: '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
-
-| 운영기관 코드 | 노선 코드 | 노선명 | 역 수 | 첫 역 |
-|---|---|---|---|---|
-
-## 2) 열차별 운행시각표 (subwayTimetable, 평일 dayCd=8, 노선별 첫 역)
+## 0) 키 형식 확인
+- 길이 60, '%' 포함 False, '+' 포함 False, '/' 포함 True, '=' 포함 False, 공백 포함 False
+- 원래 값·인코딩 · subwayTimetable: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 원래 값·인코딩 · stationInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 원래 값·인코딩 · subwayRouteInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 원래 값·그대로 · subwayTimetable: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 원래 값·그대로 · stationInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 원래 값·그대로 · subwayRouteInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 디코딩 값·인코딩 · subwayTimetable: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 디코딩 값·인코딩 · stationInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 디코딩 값·인코딩 · subwayRouteInfo: 0행 / '{"header":{"resultCode":"30","resultMsg":"등록되지 않은 서비스키입니다."}}'
+- 통하는 형식 없음
