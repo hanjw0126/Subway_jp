@@ -41,11 +41,13 @@ import java.time.format.DateTimeFormatter
 
 private val OFFSETS = listOf(0, 10, 30, 60)
 private val LiveGreen = Color(0xFF2B8A3E)
+private val QuickBlue = Color(0xFF1C7ED6)
 
 /**
  * 경로 검색: 출발/도착 → 출발 시각 → [최단시간 | 최소환승] 탭 → 경로 카드.
  * 결과 목록을 아래로 당기면 실시간 정보를 다시 받고 경로를 다시 계산한다.
- * 경로 카드의 승차역(출발·환승)마다 탈 노선·방면의 다음 열차 실시간 도착을 역명 아래 작게 보여 준다.
+ * 경로 카드의 승차역(출발·환승)마다 탈 노선·방면의 다음 열차 도착을 역명 아래 작게 보여 주고,
+ * 환승하는 하차역에는 빠른 환승 위치(칸·문)를 보여 준다 (데이터가 있는 지역).
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -120,8 +122,8 @@ fun RouteScreen(
                                 )
                             }
                         } else {
-                            itemsIndexed(sorted, key = { _, j -> j.legs.hashCode() }) { i, j ->
-                                JourneyCard(j, net, s, u.legLive, expandedInitially = i == 0)
+                            itemsIndexed(sorted) { i, j ->
+                                JourneyCard(j, net, s, u.legLive, u.quick, expandedInitially = i == 0)
                             }
                             item {
                                 Text(
@@ -163,8 +165,16 @@ private fun StationField(label: String, name: String, placeholder: String, color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun JourneyCard(j: Journey, net: Network, s: Strings, legLive: Map<String, String>, expandedInitially: Boolean) {
+private fun JourneyCard(
+    j: Journey,
+    net: Network,
+    s: Strings,
+    legLive: Map<String, String>,
+    quick: Map<String, String>,
+    expandedInitially: Boolean,
+) {
     var expanded by remember(j) { mutableStateOf(expandedInitially) }
+    val rides = remember(j) { j.legs.filterIsInstance<RideLeg>() }
     Card(onClick = { expanded = !expanded }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp)) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.Bottom) {
@@ -182,7 +192,10 @@ private fun JourneyCard(j: Journey, net: Network, s: Strings, legLive: Map<Strin
                 Spacer(Modifier.height(12.dp))
                 j.legs.forEach { leg ->
                     when (leg) {
-                        is RideLeg -> RideRow(leg, net, s, legLive[legLiveKey(leg)])
+                        is RideLeg -> {
+                            val next = rides.getOrNull(rides.indexOf(leg) + 1)
+                            RideRow(leg, net, s, legLive[legLiveKey(leg)], next?.let { quick[quickKey(leg, it)] })
+                        }
                         is WalkLeg -> Text(
                             s.walkTransfer(minutesText(leg.durationSec)),
                             Modifier.padding(start = 34.dp, top = 4.dp, bottom = 4.dp),
@@ -196,9 +209,9 @@ private fun JourneyCard(j: Journey, net: Network, s: Strings, legLive: Map<Strin
     }
 }
 
-/** 승차 구간: 승차역·시각 → (실시간 도착: 탈 노선·방면의 다음 열차) → 행선지·정차 수·소요 → 하차역 */
+/** 승차 구간: 승차역·시각 → (도착 예측) → 행선지·정차 수·소요 → 하차역 → (빠른 환승 위치) */
 @Composable
-private fun RideRow(leg: RideLeg, net: Network, s: Strings, live: String?) {
+private fun RideRow(leg: RideLeg, net: Network, s: Strings, live: String?, quick: String?) {
     val line = net.lineById[leg.trip.lineId]
     Row(Modifier.padding(vertical = 4.dp)) {
         if (line != null) LineBadge(line, 24.dp) else Spacer(Modifier.width(24.dp))
@@ -216,11 +229,14 @@ private fun RideRow(leg: RideLeg, net: Network, s: Strings, live: String?) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(s.alight(net.stationName(leg.toStationId), ServiceClock.format(leg.arrSec)))
+            if (quick != null) {
+                Text(quick, fontSize = 11.sp, color = QuickBlue, fontWeight = FontWeight.Medium)
+            }
         }
     }
 }
 
-/** 소요시간 비율 막대: 노선색 = 탑승, 회색 = 도보, 얗은 회색 = 대기 */
+/** 소요시간 비율 막대: 노선색 = 탑승, 회색 = 도보, 옅은 회색 = 대기 */
 @Composable
 private fun LegBar(j: Journey, net: Network) {
     Row(Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp))) {
