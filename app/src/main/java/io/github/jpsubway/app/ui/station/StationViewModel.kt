@@ -23,7 +23,9 @@ import kotlinx.coroutines.flow.*
 /**
  * 역 도착정보. 표시 중인 역(currentGroup)은 화면 안에서 바뀔 수 있다 (좌우 스와이프로 이웃 역 이동).
  * initialLine: 처음 선택할 노선 (노선 전체 지도에서 역을 눌러 들어온 경우 등)
- * 일본: 시간표 + ODPT 실시간 → boards / 한국(서울): 역별 실시간 도착 API(15초) → live
+ * 일본: 시간표 + ODPT 실시간 → boards
+ * 한국: 서울 실시간 도착 API 가 있는 노선은 역별 실시간 도착(15초) → live,
+ *       없는 노선(인천1·2호선)은 앱 시간표(인천교통공사 시각표 재구성) 기준 → boards
  */
 class StationViewModel(
     private val c: AppContainer,
@@ -52,8 +54,10 @@ class StationViewModel(
         val network: Network? = null,
         val nowSec: Int = 0,
         val nowEpochSec: Long = 0,
-        /** 한국(서울): 시간표 대신 실시간 도착정보(live)를 보여 준다 */
+        /** 한국 실시간 노선: 시간표 대신 실시간 도착정보(live)를 보여 준다 */
         val isLive: Boolean = false,
+        /** 한국 지역 (보조 표기 등) */
+        val isKorea: Boolean = false,
     )
 
     /** 서울 실시간 도착정보 */
@@ -119,7 +123,9 @@ class StationViewModel(
         if (lines.isEmpty()) return Ui(loading = false, error = str.stationNotFound, group = group)
         val line = lines.firstOrNull { it.id == sel } ?: lines.first()
         val station = stations.first { it.lineId == line.id }
-        val isLive = d.isLiveArrivals
+        val korea = d.isLiveArrivals
+        // 서울 실시간 API 가 있는 노선만 실시간, 나머지(인천1·2호선)는 시간표 기준
+        val isLive = korea && SeoulLive.lineKeyBySubwayId.containsValue(SeoulLive.lineKey(line.id))
         val boards = if (isLive) emptyList() else estimator.boards(line, station.id, d.tripsByLine[line.id].orEmpty(), rt, now)
         // 역 띠·스와이프의 좌우는 열차 방향과 관계없이 노선 순번으로 고정 (순환선은 끝↔처음 연결)
         val i = line.stations.indexOf(station.id)
@@ -132,6 +138,7 @@ class StationViewModel(
         }
         val label = when {
             isLive -> KoreaStrings.sourceLive(Lang.ui.value)
+            korea -> KoreaStrings.timetableSource(Lang.ui.value)
             d.timetable.isDemo -> str.sourceDemo
             rt.available -> str.sourceRealtime
             else -> str.sourceSchedule
@@ -139,8 +146,8 @@ class StationViewModel(
         return Ui(
             loading = false, group = group, name = station.name, lines = lines, line = line, station = station, boards = boards,
             leftStationId = at(i - 1), rightStationId = at(i + 1),
-            status = rt.statuses[line.id], sourceLabel = label, realtimeError = if (isLive) null else rt.error,
-            network = net, nowSec = now, nowEpochSec = nowEpoch, isLive = isLive,
+            status = rt.statuses[line.id], sourceLabel = label, realtimeError = if (korea) null else rt.error,
+            network = net, nowSec = now, nowEpochSec = nowEpoch, isLive = isLive, isKorea = korea,
         )
     }
 
